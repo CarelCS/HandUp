@@ -9,26 +9,43 @@ using System.Text;
 namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1 {
+    public interface IHandUpService {
 
         [OperationContract]
         string AddOrder(int value);
+        [OperationContract]
         string ConfirmOrder();
+        [OperationContract]
         string DeclineOrder();
+        [OperationContract]
         string AddTextToOrder();
+        [OperationContract]
         string AddTable();
+        [OperationContract]
         string AddPatronToTable();
+        [OperationContract]
         string CloseTable();
+        [OperationContract]
         string CallWaiter();
+        [OperationContract]
         string AddEmployee();
+        [OperationContract]
         string EditEmployee();
+        [OperationContract]
         string DisableEmployee();
+        [OperationContract]
         string GrantDenyAccessEmployee();
+        [OperationContract]
         string AddMenuItem();
+        [OperationContract]
         string AddSubmenuItem();
+        [OperationContract]
         string OverrideOrderValue();
+        [OperationContract]
         string MoveOrderFromTable();
+        [OperationContract]
         string ReportsOverView();
+        [OperationContract]
         string AddSpecialsList();
 
         [OperationContract]

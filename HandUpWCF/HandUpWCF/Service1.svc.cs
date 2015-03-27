@@ -8,7 +8,7 @@ using System.Text;
 
 namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    public class Service1 : IService1 {
+    public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
         public string AddOrder(int value) {
