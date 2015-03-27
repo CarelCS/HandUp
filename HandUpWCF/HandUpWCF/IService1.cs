@@ -12,7 +12,24 @@ namespace HandUpWCF {
     public interface IService1 {
 
         [OperationContract]
-        string GetData(int value);
+        string AddOrder(int value);
+        string ConfirmOrder();
+        string DeclineOrder();
+        string AddTextToOrder();
+        string AddTable();
+        string AddPatronToTable();
+        string CloseTable();
+        string CallWaiter();
+        string AddEmployee();
+        string EditEmployee();
+        string DisableEmployee();
+        string GrantDenyAccessEmployee();
+        string AddMenuItem();
+        string AddSubmenuItem();
+        string OverrideOrderValue();
+        string MoveOrderFromTable();
+        string ReportsOverView();
+        string AddSpecialsList();
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
