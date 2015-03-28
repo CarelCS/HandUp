@@ -37,7 +37,7 @@ namespace HandUpWCF {
             DataAdapters newAdapter = new DataAdapters();
             DataSet newDs = newAdapter.RetrieveTable("");
             string ThisValue = newDs.Tables[0].Rows[0][1].ToString();
-            return string.Format("AddSpecialsList"); 
+            return string.Format(ThisValue); 
         
         }
 
