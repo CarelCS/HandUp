@@ -3,8 +3,11 @@
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <p>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1"
-                runat="server" Text="Button" onclick="Button1_Click" />.
+        <asp:Label ID="lblUser" runat="server" Text="User Name : "></asp:Label><asp:TextBox ID="txtUserName" runat="server"></asp:TextBox><br />
+        <asp:Label ID="lblPassword" runat="server" Text="Password : "></asp:Label><asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+        <asp:Button ID="btnLogin" runat="server" Text="Login" onclick="Button1_Click" />.<br /><br />
+        <asp:Label ID="lblTableCode" runat="server" Text="Table Code : "></asp:Label><asp:TextBox ID="txtTableCode" runat="server"></asp:TextBox>
+        <asp:Button ID="btnJoinTable" runat="server" Text="Join Table" 
+            onclick="btnJoinTable_Click" />
     </p>
 </asp:Content>

@@ -14,7 +14,11 @@ namespace HandUpGUI {
 
         protected void Button1_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
-            TextBox1.Text = WSnew.AddSpecialsList();
+        }
+
+        protected void btnJoinTable_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSnew = new localhost.HandUpService();
+
         }
     }
 }

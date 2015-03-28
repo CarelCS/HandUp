@@ -12,6 +12,12 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
+        string LoginWaiter(string sUserName, string sPassword) { return ""; }
+        string JoinTableCode(string sTableCode) {
+            Table table = new Table();
+            table.JoinTableCode(sTableCode);
+            return ""; }
+
         public string AddOrder(int MenuItemID, string TextValue) {
             Orders order = new Orders();
             order.AddOrder(MenuItemID, TextValue);

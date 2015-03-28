@@ -12,6 +12,10 @@ namespace HandUpWCF {
     public interface IHandUpService {
 
         [OperationContract]
+        string LoginWaiter(string sUserName, string sPassword);
+        [OperationContract]
+        string JoinTableCode(string sTableCode);
+        [OperationContract]
         string AddOrder(int MenuItemID, string TextValue);
         [OperationContract]
         string ConfirmOrder(int OrderID, string sStatus);
