@@ -8,10 +8,12 @@ using System.Data;
 namespace HandUpWCF {
     public class DataAdapters {
         public string MyConnectionString = "Server=localhost;Database=HandUp;Uid=root;Pwd=Password1;";
-        public void InsertData(string InsertData) {
-        }
-
-        public void UpdateData(string InsertData) {
+        public void InsertUpdateData(string InsertData) {
+            MySqlConnection connection = new MySqlConnection(MyConnectionString);
+            connection.Open();
+            MySqlCommand cmd = new MySqlCommand(InsertData, connection);
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         public DataSet RetrieveTable(string QueryString) {
@@ -22,6 +24,7 @@ namespace HandUpWCF {
             MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adap.Fill(ds);
+            connection.Close();
             return ds;
         }
     }

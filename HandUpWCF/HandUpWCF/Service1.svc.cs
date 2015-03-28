@@ -12,11 +12,18 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
-        public string AddOrder(int value) {
-            return string.Format("You entered: {0}", value);
+        public string AddOrder(int MenuItemID, string TextValue) {
+            Orders order = new Orders();
+            order.AddOrder(MenuItemID, TextValue);
+            return string.Format("Order Passed.");
         }
 
-        public string ConfirmOrder() { return string.Format("ConfirmOrder"); }
+        public string ConfirmOrder(int OrderID, string sStatus) {
+            Orders order = new Orders();
+            order.ConfirmDenyOrder(OrderID, sStatus);
+            return string.Format("ConfirmOrder"); 
+        }
+
         public string DeclineOrder() { return string.Format("DeclineOrder"); }
         public string AddTextToOrder() { return string.Format("AddTextToOrder"); }
         public string AddTable() { return string.Format("AddTable"); }

@@ -12,9 +12,9 @@ namespace HandUpWCF {
     public interface IHandUpService {
 
         [OperationContract]
-        string AddOrder(int value);
+        string AddOrder(int MenuItemID, string TextValue);
         [OperationContract]
-        string ConfirmOrder();
+        string ConfirmOrder(int OrderID, string sStatus);
         [OperationContract]
         string DeclineOrder();
         [OperationContract]
