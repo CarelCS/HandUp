@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
 
 namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
@@ -31,7 +32,14 @@ namespace HandUpWCF {
         public string OverrideOrderValue() { return string.Format("OverrideOrderValue"); }
         public string MoveOrderFromTable() { return string.Format("MoveOrderFromTable"); }
         public string ReportsOverView() { return string.Format("ReportsOverView"); }
-        public string AddSpecialsList() { return string.Format("AddSpecialsList"); }
+        public string AddSpecialsList() {
+
+            DataAdapters newAdapter = new DataAdapters();
+            DataSet newDs = newAdapter.RetrieveTable("");
+            string ThisValue = newDs.Tables[0].Rows[0][1].ToString();
+            return string.Format("AddSpecialsList"); 
+        
+        }
 
 
 
