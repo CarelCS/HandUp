@@ -12,11 +12,14 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
-        string LoginWaiter(string sUserName, string sPassword) { return ""; }
-        string JoinTableCode(string sTableCode) {
+        public string LoginWaiter(string sUserName, string sPassword) {
             Table table = new Table();
-            table.JoinTableCode(sTableCode);
-            return ""; }
+            return table.WaiterLogin(sUserName, sPassword);
+        }
+        public string JoinTableCode(string sTableCode) {
+            Table table = new Table();
+            return table.JoinTableCode(sTableCode);
+        }
 
         public string AddOrder(int MenuItemID, string TextValue) {
             Orders order = new Orders();
@@ -49,7 +52,7 @@ namespace HandUpWCF {
 
             DataAdapters newAdapter = new DataAdapters();
             DataSet newDs = newAdapter.RetrieveTable("");
-            string ThisValue = newDs.Tables[0].Rows[0][1].ToString();
+            string ThisValue = newDs.Tables[0].Rows[0][1].ToString() + " " + newDs.Tables[0].Rows[0][2].ToString();
             return string.Format(ThisValue); 
         
         }

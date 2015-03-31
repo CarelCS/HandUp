@@ -20,7 +20,7 @@ namespace HandUpWCF {
             MySqlConnection connection = new MySqlConnection(MyConnectionString);
             MySqlCommand cmd = connection.CreateCommand();
             connection.Open();
-            cmd.CommandText = "Select * from tblEmployees";
+            cmd.CommandText = QueryString;
             MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adap.Fill(ds);

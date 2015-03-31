@@ -14,11 +14,20 @@ namespace HandUpGUI {
 
         protected void Button1_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
+            string ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
+            if (ReturnValue != "") {
+                Session.Add("SEmployee", ReturnValue);
+                Server.Transfer("pgMenuOrders.aspx", false);
+            }
+            else {
+                txtPassword.Text = "";
+                lblLoginFailure.Text = "Login failed. Please try again.";
+            }
         }
 
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
-
+            string ReturnValue = WSnew.JoinTableCode(txtTableCode.Text);
         }
     }
 }

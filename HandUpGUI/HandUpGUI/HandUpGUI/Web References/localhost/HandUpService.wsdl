@@ -7,6 +7,18 @@
       <xsd:import schemaLocation="http://localhost:1279/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HandUpWCF" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IHandUpService_LoginWaiter_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWaiter" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_LoginWaiter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWaiterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_JoinTableCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinTableCode" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_JoinTableCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinTableCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:AddOrder" />
   </wsdl:message>
@@ -122,6 +134,14 @@
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
   <wsdl:portType name="IHandUpService">
+    <wsdl:operation name="LoginWaiter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/LoginWaiter" message="tns:IHandUpService_LoginWaiter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/LoginWaiterResponse" message="tns:IHandUpService_LoginWaiter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinTableCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCode" message="tns:IHandUpService_JoinTableCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCodeResponse" message="tns:IHandUpService_JoinTableCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddOrder" message="tns:IHandUpService_AddOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddOrderResponse" message="tns:IHandUpService_AddOrder_OutputMessage" />
@@ -201,6 +221,24 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IHandUpService" type="tns:IHandUpService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginWaiter">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/LoginWaiter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinTableCode">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/JoinTableCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddOrder">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/AddOrder" style="document" />
       <wsdl:input>

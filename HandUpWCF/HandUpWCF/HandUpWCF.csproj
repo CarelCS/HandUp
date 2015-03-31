@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAdapters.cs" />
+    <Compile Include="Employees.cs" />
     <Compile Include="Management.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="Service1.svc.cs">

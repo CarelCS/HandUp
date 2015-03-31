@@ -29,6 +29,10 @@ namespace HandUpGUI.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IHandUpService", Namespace="http://tempuri.org/")]
     public partial class HandUpService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback LoginWaiterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback JoinTableCodeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddOrderOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConfirmOrderOperationCompleted;
@@ -106,6 +110,12 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        public event LoginWaiterCompletedEventHandler LoginWaiterCompleted;
+        
+        /// <remarks/>
+        public event JoinTableCodeCompletedEventHandler JoinTableCodeCompleted;
+        
+        /// <remarks/>
         public event AddOrderCompletedEventHandler AddOrderCompleted;
         
         /// <remarks/>
@@ -163,28 +173,92 @@ namespace HandUpGUI.localhost {
         public event GetDataUsingDataContractCompletedEventHandler GetDataUsingDataContractCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddOrder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/LoginWaiter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string AddOrder(int value, [System.Xml.Serialization.XmlIgnoreAttribute()] bool valueSpecified) {
-            object[] results = this.Invoke("AddOrder", new object[] {
-                        value,
-                        valueSpecified});
+        public string LoginWaiter([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sUserName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sPassword) {
+            object[] results = this.Invoke("LoginWaiter", new object[] {
+                        sUserName,
+                        sPassword});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void AddOrderAsync(int value, bool valueSpecified) {
-            this.AddOrderAsync(value, valueSpecified, null);
+        public void LoginWaiterAsync(string sUserName, string sPassword) {
+            this.LoginWaiterAsync(sUserName, sPassword, null);
         }
         
         /// <remarks/>
-        public void AddOrderAsync(int value, bool valueSpecified, object userState) {
+        public void LoginWaiterAsync(string sUserName, string sPassword, object userState) {
+            if ((this.LoginWaiterOperationCompleted == null)) {
+                this.LoginWaiterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginWaiterOperationCompleted);
+            }
+            this.InvokeAsync("LoginWaiter", new object[] {
+                        sUserName,
+                        sPassword}, this.LoginWaiterOperationCompleted, userState);
+        }
+        
+        private void OnLoginWaiterOperationCompleted(object arg) {
+            if ((this.LoginWaiterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginWaiterCompleted(this, new LoginWaiterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/JoinTableCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string JoinTableCode([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTableCode) {
+            object[] results = this.Invoke("JoinTableCode", new object[] {
+                        sTableCode});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void JoinTableCodeAsync(string sTableCode) {
+            this.JoinTableCodeAsync(sTableCode, null);
+        }
+        
+        /// <remarks/>
+        public void JoinTableCodeAsync(string sTableCode, object userState) {
+            if ((this.JoinTableCodeOperationCompleted == null)) {
+                this.JoinTableCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnJoinTableCodeOperationCompleted);
+            }
+            this.InvokeAsync("JoinTableCode", new object[] {
+                        sTableCode}, this.JoinTableCodeOperationCompleted, userState);
+        }
+        
+        private void OnJoinTableCodeOperationCompleted(object arg) {
+            if ((this.JoinTableCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.JoinTableCodeCompleted(this, new JoinTableCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddOrder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string AddOrder(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string TextValue) {
+            object[] results = this.Invoke("AddOrder", new object[] {
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        TextValue});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, string TextValue) {
+            this.AddOrderAsync(MenuItemID, MenuItemIDSpecified, TextValue, null);
+        }
+        
+        /// <remarks/>
+        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, string TextValue, object userState) {
             if ((this.AddOrderOperationCompleted == null)) {
                 this.AddOrderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddOrderOperationCompleted);
             }
             this.InvokeAsync("AddOrder", new object[] {
-                        value,
-                        valueSpecified}, this.AddOrderOperationCompleted, userState);
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        TextValue}, this.AddOrderOperationCompleted, userState);
         }
         
         private void OnAddOrderOperationCompleted(object arg) {
@@ -197,22 +271,28 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ConfirmOrder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string ConfirmOrder() {
-            object[] results = this.Invoke("ConfirmOrder", new object[0]);
+        public string ConfirmOrder(int OrderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool OrderIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sStatus) {
+            object[] results = this.Invoke("ConfirmOrder", new object[] {
+                        OrderID,
+                        OrderIDSpecified,
+                        sStatus});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void ConfirmOrderAsync() {
-            this.ConfirmOrderAsync(null);
+        public void ConfirmOrderAsync(int OrderID, bool OrderIDSpecified, string sStatus) {
+            this.ConfirmOrderAsync(OrderID, OrderIDSpecified, sStatus, null);
         }
         
         /// <remarks/>
-        public void ConfirmOrderAsync(object userState) {
+        public void ConfirmOrderAsync(int OrderID, bool OrderIDSpecified, string sStatus, object userState) {
             if ((this.ConfirmOrderOperationCompleted == null)) {
                 this.ConfirmOrderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConfirmOrderOperationCompleted);
             }
-            this.InvokeAsync("ConfirmOrder", new object[0], this.ConfirmOrderOperationCompleted, userState);
+            this.InvokeAsync("ConfirmOrder", new object[] {
+                        OrderID,
+                        OrderIDSpecified,
+                        sStatus}, this.ConfirmOrderOperationCompleted, userState);
         }
         
         private void OnConfirmOrderOperationCompleted(object arg) {
@@ -762,6 +842,58 @@ namespace HandUpGUI.localhost {
             }
             set {
                 this.stringValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void LoginWaiterCompletedEventHandler(object sender, LoginWaiterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginWaiterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginWaiterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void JoinTableCodeCompletedEventHandler(object sender, JoinTableCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class JoinTableCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal JoinTableCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
