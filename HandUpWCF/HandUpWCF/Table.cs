@@ -15,6 +15,12 @@ namespace HandUpWCF {
         public int NumberOfGuests { get; set; }
         public Table() { }
 
+        public string CreateTable() {
+            string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
+            DataAdapters da = new DataAdapters();
+            da.InsertUpdateData(SqlText);
+            return ""; 
+        }
 
         public string JoinTableCode(string sTableCode) {
             string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
