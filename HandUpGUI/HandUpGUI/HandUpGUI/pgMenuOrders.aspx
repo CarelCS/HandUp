@@ -14,29 +14,20 @@
     }
 
     function ConfirmOrder(OrderID) {
-        //alert("Confirm" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
     }
 
+    function OrderWithCallWaiter(OrderID) {
+        alert("Order and Call Waiter " + OrderID);
+    }
 
-    function openWindow() {
-//        var i, l, options = [{
-//            value: 'first',
-//            text: 'First'
-//        }, {
-//            value: 'second',
-//            text: 'Second'
-//        }],
+    function Order(OrderID) {
+        alert("Order " + OrderID);
+    }
+
+    function openOrderTextWindow() {
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
-        newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value)\" value=\"Add Text\" /><input id=\"btnTextClose\" type=\"button\" onclick=\"window.opener.UpdateTheText();window.close();\" value=\"Close\" />");
-//        newWindow.document.write("<select onchange='window.opener.setValue(this.value);'>");
-//        for (i = 0, l = options.length; i < l; i++) {
-//            newWindow.document.write("<option value='" + options[i].value + "'>");
-//            newWindow.document.write(options[i].text);
-//            newWindow.document.write("</option>");
-//        }
-//        newWindow.document.write("</select>");
-
+        newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value);window.close();\" value=\"Add Text\" />");
         var TextValue = window.opener.document.getElementById("<%= hdnTextForOrder.ClientID %>").value;
         alert(TextValue);
         if (TextValue != "") {
@@ -45,24 +36,20 @@
     }
 
     function setValue(value) {
-        //alert(value);
         document.getElementById("<%= hdnTextForOrder.ClientID %>").value = value;
-    }
-
-    function UpdateTheText() {
-        //alert("Update Text");
         var ClickChangeAlert = document.getElementById("<%= btnUpdateTextValues.ClientID %>");
         ClickChangeAlert.click();
     }
 
+    function UpdateTheText() {
+    }
+
     function AddTextTable(OrderID) {
-        //alert("Text" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
-        openWindow();
+        openOrderTextWindow();
     }
         
     function CancelOrder(OrderID) {
-        //alert("Cancel" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
     }
 
@@ -101,6 +88,7 @@
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
         if (CurrentAlert == "ALERT") {
             //alert("ALERT RUNNING");
+            //document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
         }
         var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
         ClickChangeAlert.click();
@@ -108,10 +96,10 @@
 </script>
 <body>
     <form id="form1" runat="server" enableviewstate="true">
-    <input id="Button1" type="button" onclick="setValue(value)" value="button" />
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <div>
-            ORDER AND MENU <br /> Welcome back : 
-            <asp:Label ID="lblEmployeeUserName" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblEmployeeUserName" runat="server" Text=""></asp:Label>
     </div>
     <div>
         <table><tr><td><div id="dvTablesTop" runat="server"></div></td><td onclick="ShowAdd()">+</td></tr></table><br /><br />
@@ -166,6 +154,7 @@
         <table>
             <tr>
                 <td>THE MENU</td>
+                <div id="dvMenu" runat="server"></div>
             </tr>
         </table>
     </div>
@@ -188,15 +177,15 @@
             </tr>
         </table>
     </div>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <asp:UpdatePanel ID="updateAlerts" runat="server">
-        <ContentTemplate>
-            <asp:Label ID="lblAlert" runat="server" Text="Label"></asp:Label>
-            <asp:Button ID="btnAlertUpdate" runat="server" Text="Update"
-                onclick="btnAlertUpdate_Click" />
-        </ContentTemplate>
-    </asp:UpdatePanel>
+    <div style="visibility:hidden">
+        <asp:UpdatePanel ID="updateAlerts" runat="server" >
+            <ContentTemplate>
+                <asp:Label ID="lblAlert" runat="server" Text="Label"></asp:Label>
+                <asp:Button ID="btnAlertUpdate" runat="server" Text="Update"
+                    onclick="btnAlertUpdate_Click" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
     <div style="visibility:hidden">
         <asp:Button ID="btnChangeTable" runat="server" Text="Change Table" onclick="btnChangeTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" onclick="btnUpdateTextValues_Click" />

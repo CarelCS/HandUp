@@ -10,6 +10,14 @@ namespace HandUpGUI {
         protected void Page_Load(object sender, EventArgs e) {
             lblEmployeeUserName.Text = Session["SEmployee"].ToString();
             dvTablesTop.InnerHtml = "<table border='1'><tr><td><div id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
+            PopulateMenu();
+        }
+
+        protected void PopulateMenu() {
+            string sOrderList = "<table border='1'><tr><td><img id=\"Image1\" src=\"Images/MenuImages/Burger.jpg\" height='50' /></td><td>Hamburger and Chips</td><td><div id=\"order3C\" onclick=\"Order('ORDER3')\">Order</div></td><td><div id=\"order3Ca\" onclick=\"OrderWithCallWaiter('ORDER3')\">Order Call Waiter</div></td></tr>";
+            sOrderList += "<tr><td><img id=\"Image2\" src=\"Images/MenuImages/Steak.jpg\" height='50' /></td><td>Steak egg and chips</td><td><div id=\"order4C\" onclick=\"Order('ORDER4')\">Order</div></td><td><div id=\"order4Ca\" onclick=\"OrderWithCallWaiter('ORDER4')\">Order Call Waiter</div></td></tr>";
+            sOrderList += "</table>";
+            dvMenu.InnerHtml = sOrderList;
         }
 
         protected void btnAddTable_Click(object sender, EventArgs e) {

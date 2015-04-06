@@ -55,6 +55,8 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Images\MenuImages\Burger.jpg" />
+    <Content Include="Images\MenuImages\Steak.jpg" />
     <Content Include="pgManagement.aspx" />
     <Content Include="pgMenuOrders.aspx" />
     <Content Include="Styles\Site.css" />
