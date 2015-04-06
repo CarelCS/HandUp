@@ -184,10 +184,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:1279/Service1.svc">
+    <WebReferenceUrl Include="http://localhost/HandUpWCF/Service1.svc">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\localhost\</RelPath>
-      <UpdateFromURL>http://localhost:1279/Service1.svc</UpdateFromURL>
+      <UpdateFromURL>http://localhost/HandUpWCF/Service1.svc</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

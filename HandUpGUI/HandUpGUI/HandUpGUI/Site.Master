@@ -9,7 +9,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" enableviewstate="true">
     <div class="page">
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>

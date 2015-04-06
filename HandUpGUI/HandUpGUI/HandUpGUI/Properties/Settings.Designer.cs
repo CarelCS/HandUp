@@ -26,7 +26,7 @@ namespace HandUpGUI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1279/Service1.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/HandUpWCF/Service1.svc")]
         public string HandUpGUI_localhost_HandUpService {
             get {
                 return ((string)(this["HandUpGUI_localhost_HandUpService"]));
