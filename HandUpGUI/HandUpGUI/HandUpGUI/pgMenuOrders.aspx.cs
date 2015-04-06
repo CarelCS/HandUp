@@ -22,10 +22,23 @@ namespace HandUpGUI {
             string TableValue = hdnTableNumber.Value;
             lblTableOpened.Text = "Table " + TableValue;
             lblTableGUI.Text = "GUI " + TableValue;
+            PopulateTable("GUI " + TableValue);
+        }
+
+        protected void PopulateTable(string TableGUI) {
+            string sOrderList = "<table><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
+            sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
+            sOrderList += "</table>";
+            dvTablesOrders.InnerHtml = sOrderList;
         }
 
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
             lblAlert.Text = "ALERT";
+        }
+
+        protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
+            string OrderNumber = hdnOrderNumber.Value;
+            string OrderText = hdnTextForOrder.Value;
         }
     }
 }

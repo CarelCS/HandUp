@@ -85,6 +85,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnAddTable;
         
         /// <summary>
+        /// dvTablesOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTablesOrders;
+        
+        /// <summary>
         /// lblTableGUI control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnChangeTable;
         
         /// <summary>
+        /// btnUpdateTextValues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateTextValues;
+        
+        /// <summary>
         /// hdnTableNumber control.
         /// </summary>
         /// <remarks>
@@ -146,5 +164,23 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnTableNumber;
+        
+        /// <summary>
+        /// hdnTextForOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTextForOrder;
+        
+        /// <summary>
+        /// hdnOrderNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnOrderNumber;
     }
 }
