@@ -14,7 +14,7 @@
     }
 
     function ConfirmOrder(OrderID) {
-        alert("Confirm" + OrderID);
+        //alert("Confirm" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
     }
 
@@ -28,7 +28,7 @@
 //            text: 'Second'
 //        }],
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
-        newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value)\" value=\"Add Text\" /><input id=\"btnTextClose\" type=\"button\" onclick=\"window.opener.UpdateTheText();\" value=\"Close\" />");
+        newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value)\" value=\"Add Text\" /><input id=\"btnTextClose\" type=\"button\" onclick=\"window.opener.UpdateTheText();window.close();\" value=\"Close\" />");
 //        newWindow.document.write("<select onchange='window.opener.setValue(this.value);'>");
 //        for (i = 0, l = options.length; i < l; i++) {
 //            newWindow.document.write("<option value='" + options[i].value + "'>");
@@ -36,28 +36,33 @@
 //            newWindow.document.write("</option>");
 //        }
 //        newWindow.document.write("</select>");
-        //newWindow.close();
+
+        var TextValue = window.opener.document.getElementById("<%= hdnTextForOrder.ClientID %>").value;
+        alert(TextValue);
+        if (TextValue != "") {
+            newWindow.close();
+        }
     }
 
     function setValue(value) {
-        alert(value);
+        //alert(value);
         document.getElementById("<%= hdnTextForOrder.ClientID %>").value = value;
     }
 
     function UpdateTheText() {
-        alert("Update Text");
+        //alert("Update Text");
         var ClickChangeAlert = document.getElementById("<%= btnUpdateTextValues.ClientID %>");
         ClickChangeAlert.click();
     }
 
     function AddTextTable(OrderID) {
-        alert("Text" + OrderID);
+        //alert("Text" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openWindow();
     }
         
     function CancelOrder(OrderID) {
-        alert("Cancel" + OrderID);
+        //alert("Cancel" + OrderID);
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
     }
 
@@ -173,7 +178,7 @@
         </table>
     </div>
     <div>
-        <table>
+        <table border="1">
             <tr>
                 <td><asp:Label ID="lblTableGUI" runat="server" Text=""></asp:Label></td>
                 <td id="tdMenu" onclick="ChangeDiv('Menu')">Menu</td>
