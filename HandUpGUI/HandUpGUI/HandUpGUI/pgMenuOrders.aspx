@@ -113,7 +113,7 @@
         </tr>
         <tr>
             <td>
-                <div>
+                <div id="dvWaiterMenu">
                     <table>
                         <tr>
                             <td>
@@ -244,7 +244,13 @@
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
+        <asp:HiddenField ID="hdnTableCodeOnlyGuest" runat="server" />
     </div>
     </form>
 </body>
+<script language="javascript">
+    if (document.getElementById("<%= hdnTableCodeOnlyGuest.ClientID %>").value != "") {
+        document.getElementById('dvWaiterMenu').style.display = 'none';
+    }
+</script>
 </html>

@@ -4,12 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace HandUpGUI {
     public partial class pgMenuOrders : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            lblEmployeeUserName.Text = Session["SEmployee"].ToString();
-            dvTablesTop.InnerHtml = "<table border='1'><tr><td><div id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
+            DataSet ds = new DataSet();
+            if ((DataSet)Session["SEmployee"] == null) {
+                if ((DataSet)Session["sTableCodeActive"] != null) {
+                    //a guest with table code only
+                    ds = (DataSet)Session["sTableCodeActive"];
+                    hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
+                    PopulateTable(ds.Tables[0].Rows[0]["UIDGenerated"].ToString());
+                }
+            }
+            else {
+                ds = (DataSet)Session["SEmployee"];
+                lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
+                dvTablesTop.InnerHtml = "<table border='1'><tr><td><div id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
+            }
             PopulateMenu();
         }
 

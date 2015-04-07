@@ -16,7 +16,7 @@ namespace HandUpWCF {
             Table table = new Table();
             return table.WaiterLogin(sUserName, sPassword);
         }
-        public string JoinTableCode(string sTableCode) {
+        public DataSet JoinTableCode(string sTableCode) {
             Table table = new Table();
             return table.JoinTableCode(sTableCode);
         }

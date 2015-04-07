@@ -15,7 +15,7 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet LoginWaiter(string sUserName, string sPassword);
         [OperationContract]
-        string JoinTableCode(string sTableCode);
+        DataSet JoinTableCode(string sTableCode);
         [OperationContract]
         string AddOrder(int MenuItemID, string TextValue);
         [OperationContract]

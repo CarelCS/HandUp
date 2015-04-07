@@ -22,11 +22,11 @@ namespace HandUpWCF {
             return ""; 
         }
 
-        public string JoinTableCode(string sTableCode) {
-            string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
-            DataAdapters da = new DataAdapters();
-            da.InsertUpdateData(SqlText);
-            return ""; 
+        public DataSet JoinTableCode(string sTableCode) {
+            DataAdapters newAdapter = new DataAdapters();
+            string SqlText = "Select * from tbltables where UIDGenerated = '" + sTableCode + "'";
+            DataSet da = newAdapter.RetrieveTable(SqlText);
+            return da; 
         }
 
         public DataSet WaiterLogin(string sUserName, string sPassword) {

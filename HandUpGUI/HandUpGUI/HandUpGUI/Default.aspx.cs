@@ -13,23 +13,56 @@ namespace HandUpGUI {
 
         protected void Button1_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
-            DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
-            if (ReturnValue.Tables[0].Rows.Count != 0) {
-                Session.Add("SEmployee", ReturnValue);
-                if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
-                    Server.Transfer("pgOrderProcessing.aspx", false);
-                else
-                    Server.Transfer("pgMenuOrders.aspx", false);
+            if (txtUserName.Text != "" && txtPassword.Text != "") {
+                DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
+                if (ReturnValue.Tables[0].Rows.Count != 0) {
+                    Session.Add("SEmployee", ReturnValue);
+                    if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
+                        Server.Transfer("pgOrderProcessing.aspx", false);
+                    else
+                        Server.Transfer("pgMenuOrders.aspx", false);
+                }
+                else {
+                    txtPassword.Text = "";
+                    lblLoginFailure.Text = "Login failed. Please try again.";
+                }
             }
             else {
-                txtPassword.Text = "";
-                lblLoginFailure.Text = "Login failed. Please try again.";
+                if (txtTableCode.Text != "") {
+                    DataSet TableSet = new DataSet();
+                    TableSet = WSnew.JoinTableCode(txtTableCode.Text);
+                    Session.Add("sTableCodeActive", TableSet);
+                    Server.Transfer("pgMenuOrders.aspx", false);
+                }
+                else { }
             }
         }
 
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
-            string ReturnValue = WSnew.JoinTableCode(txtTableCode.Text);
+            if (txtUserName.Text != "" && txtPassword.Text != "") {
+                DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
+                if (ReturnValue.Tables[0].Rows.Count != 0) {
+                    Session.Add("SEmployee", ReturnValue);
+                    if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
+                        Server.Transfer("pgOrderProcessing.aspx", false);
+                    else
+                        Server.Transfer("pgMenuOrders.aspx", false);
+                }
+                else {
+                    txtPassword.Text = "";
+                    lblLoginFailure.Text = "Login failed. Please try again.";
+                }
+            }
+            else {
+                if (txtTableCode.Text != "") {
+                    DataSet TableSet = new DataSet();
+                    TableSet = WSnew.JoinTableCode(txtTableCode.Text);
+                    Session.Add("sTableCodeActive", TableSet);
+                    Server.Transfer("pgMenuOrders.aspx", false);
+                }
+                else { }
+            }
         }
 
         protected void btnSendSize_Click(object sender, EventArgs e) {

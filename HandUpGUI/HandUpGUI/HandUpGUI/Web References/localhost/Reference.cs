@@ -208,10 +208,10 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/JoinTableCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string JoinTableCode([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTableCode) {
+        public System.Data.DataSet JoinTableCode([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTableCode) {
             object[] results = this.Invoke("JoinTableCode", new object[] {
                         sTableCode});
-            return ((string)(results[0]));
+            return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
@@ -891,10 +891,10 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
-        public string Result {
+        public System.Data.DataSet Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
