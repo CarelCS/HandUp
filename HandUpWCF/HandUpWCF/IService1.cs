@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
 
 namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
@@ -12,7 +13,7 @@ namespace HandUpWCF {
     public interface IHandUpService {
 
         [OperationContract]
-        string LoginWaiter(string sUserName, string sPassword);
+        DataSet LoginWaiter(string sUserName, string sPassword);
         [OperationContract]
         string JoinTableCode(string sTableCode);
         [OperationContract]

@@ -20,6 +20,7 @@ namespace HandUpGUI.localhost {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -175,11 +176,11 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/LoginWaiter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string LoginWaiter([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sUserName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sPassword) {
+        public System.Data.DataSet LoginWaiter([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sUserName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sPassword) {
             object[] results = this.Invoke("LoginWaiter", new object[] {
                         sUserName,
                         sPassword});
-            return ((string)(results[0]));
+            return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
@@ -864,10 +865,10 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
-        public string Result {
+        public System.Data.DataSet Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
