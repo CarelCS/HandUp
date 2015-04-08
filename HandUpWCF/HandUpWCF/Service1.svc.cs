@@ -60,6 +60,12 @@ namespace HandUpWCF {
         #region
         //carel
 
+        public DataSet MenuForProvider(string ProviderID) {
+            Menu table = new Menu();
+            return table.MenuForProvider(ProviderID);
+
+        }
+
         #endregion
 
 

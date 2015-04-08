@@ -52,6 +52,8 @@ namespace HandUpWCF {
         string ReportsOverView();
         [OperationContract]
         string AddSpecialsList();
+        [OperationContract]
+        DataSet MenuForProvider(string ProviderID);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
