@@ -72,9 +72,6 @@ namespace HandUpGUI {
                 }
             }
             MenuTotal += "</table>";
-            string sOrderList = "<table border='1'><tr><td><img id=\"Image1\" src=\"Images/MenuImages/Burger.jpg\" height='50' /></td><td>Hamburger and Chips</td><td><div id=\"order3C\" onclick=\"Order('ORDER3')\">Order</div></td><td><div id=\"order3Ca\" onclick=\"OrderWithCallWaiter('ORDER3')\">Order Call Waiter</div></td></tr>";
-            sOrderList += "<tr><td><img id=\"Image2\" src=\"Images/MenuImages/Steak.jpg\" height='50' /></td><td>Steak egg and chips</td><td><div id=\"order4C\" onclick=\"Order('ORDER4')\">Order</div></td><td><div id=\"order4Ca\" onclick=\"OrderWithCallWaiter('ORDER4')\">Order Call Waiter</div></td></tr>";
-            sOrderList += "</table>";
             dvMenu.InnerHtml = MenuTotal;
         }
 

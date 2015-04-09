@@ -38,7 +38,7 @@
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value);window.close();\" value=\"Add Text\" />");
         var TextValue = window.opener.document.getElementById("<%= hdnTextForOrder.ClientID %>").value;
-        alert(TextValue);
+        //alert(TextValue);
         if (TextValue != "") {
             newWindow.close();
         }
@@ -102,6 +102,7 @@
 </script>
 <body>
     <form id="form1" runat="server" enableviewstate="true">
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
