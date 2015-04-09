@@ -21,7 +21,17 @@
     }
 
     function Order(OrderID) {
-        alert("Order " + OrderID);
+        var Counter = document.getElementById("<%= hdnMaxSubs.ClientID %>").value;
+        document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value = OrderID + "|";
+        for (i = 0; i < Counter; i++) {
+            var SelectID = OrderID + "_ddlFirstSub_" + i;
+            var LiStAsk = document.getElementById(SelectID);
+            var SelVal = LiStAsk.value;
+            alert(SelVal);
+            document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value += SelVal + " ";
+        }
+        var ClickChangeAlert = document.getElementById("<%= btnPlaceOrder.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function openOrderTextWindow() {
@@ -241,10 +251,14 @@
     <div style="visibility: hidden">
         <asp:Button ID="btnChangeTable" runat="server" Text="Change Table" OnClick="btnChangeTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" OnClick="btnUpdateTextValues_Click" />
+        <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" 
+            onclick="btnPlaceOrder_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
         <asp:HiddenField ID="hdnTableCodeOnlyGuest" runat="server" />
+        <asp:HiddenField ID="hdnMaxSubs" runat="server" />
+        <asp:HiddenField ID="hdnOrderSelectValues" runat="server" />
     </div>
     </form>
 </body>
