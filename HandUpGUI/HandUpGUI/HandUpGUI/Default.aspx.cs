@@ -12,30 +12,7 @@ namespace HandUpGUI {
         }
 
         protected void Button1_Click(object sender, EventArgs e) {
-            localhost.HandUpService WSnew = new localhost.HandUpService();
-            if (txtUserName.Text != "" && txtPassword.Text != "") {
-                DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
-                if (ReturnValue.Tables[0].Rows.Count != 0) {
-                    Session.Add("SEmployee", ReturnValue);
-                    if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
-                        Server.Transfer("pgOrderProcessing.aspx", false);
-                    else
-                        Server.Transfer("pgMenuOrders.aspx", false);
-                }
-                else {
-                    txtPassword.Text = "";
-                    lblLoginFailure.Text = "Login failed. Please try again.";
-                }
-            }
-            else {
-                if (txtTableCode.Text != "") {
-                    DataSet TableSet = new DataSet();
-                    TableSet = WSnew.JoinTableCode(txtTableCode.Text);
-                    Session.Add("sTableCodeActive", TableSet);
-                    Server.Transfer("pgMenuOrders.aspx", false);
-                }
-                else { }
-            }
+            btnJoinTable_Click(sender, e);
         }
 
         protected void btnJoinTable_Click(object sender, EventArgs e) {
@@ -46,8 +23,12 @@ namespace HandUpGUI {
                     Session.Add("SEmployee", ReturnValue);
                     if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
                         Server.Transfer("pgOrderProcessing.aspx", false);
-                    else
-                        Server.Transfer("pgMenuOrders.aspx", false);
+                    else {
+                        if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "4")
+                            Server.Transfer("pgManagement.aspx", false);
+                        else
+                            Server.Transfer("pgMenuOrders.aspx", false);
+                    }
                 }
                 else {
                     txtPassword.Text = "";
