@@ -83,6 +83,11 @@ namespace HandUpGUI {
             dvEditTableOrders.InnerHtml = sOrderList;
         }
 
+        /// <summary>
+        /// Edit a menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnEditMenuItem_Click(object sender, EventArgs e) {
             if (hdnMenuStatus.Value == "1") {
                 //Send update to "delete" menu item
@@ -92,21 +97,98 @@ namespace HandUpGUI {
             }
         }
 
+        /// <summary>
+        /// edit an employee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnEditEmployee_Click(object sender, EventArgs e) {
             if (hdnEmployeetatus.Value == "1") {
                 //Send update to "delete" menu item
             }
             else {
                 //set the fields in the menu edit update add fields.
+                hdnEmployeeID.Value = "";
+                txtAddress2.Text = "";
+                txtAddress3.Text = "";
+                txtAdress1.Text = "";
+                txtContactNumber.Text = "";
+                txtEmail.Text = "";
+                txtID.Text = "";
+                txtName.Text = "";
+                txtPassword.Text = "";
+                txtSurname.Text = "";
+                txtUsername.Text = "";
+                calStartDate.TodaysDate = DateTime.Today;
+                calEndDate.TodaysDate = DateTime.Today;
+                ddlEmpStatus.SelectedIndex = 0;
+                ddlEmpType.SelectedIndex = 0;
             }
         }
 
+        /// <summary>
+        /// Select a table and set that table orders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnEditTable_Click(object sender, EventArgs e) {
             string TableID = hdnTableID.Value;
         }
 
+        /// <summary>
+        /// UPdate the text value for an order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
 
+        }
+
+        /// <summary>
+        /// Set the values in the employee edit area to the selected employee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
+            //set the values from GUI to send to DB
+            hdnEmployeeID.Value = "";
+            txtAddress2.Text = "";
+            txtAddress3.Text = "";
+            txtAdress1.Text = "";
+            txtContactNumber.Text = "";
+            txtEmail.Text = "";
+            txtID.Text = "";
+            txtName.Text = "";
+            txtPassword.Text = "";
+            txtSurname.Text = "";
+            txtUsername.Text = "";
+            calStartDate.TodaysDate = DateTime.Today;
+            calEndDate.TodaysDate = DateTime.Today;
+            ddlEmpStatus.SelectedIndex = 0;
+            ddlEmpType.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Clear the employee current there data to enter a new employee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClearAddNew_Click(object sender, EventArgs e) {
+            hdnEmployeeID.Value = "";
+            txtAddress2.Text = "";
+            txtAddress3.Text = "";
+            txtAdress1.Text = "";
+            txtContactNumber.Text = "";
+            txtEmail.Text = "";
+            txtID.Text = "";
+            txtName.Text = "";
+            txtPassword.Text = "";
+            txtSurname.Text = "";
+            txtUsername.Text = "";
+            calStartDate.TodaysDate = DateTime.Today;
+            calEndDate.TodaysDate = DateTime.Today;
+            ddlEmpStatus.SelectedIndex = 0;
+            ddlEmpType.SelectedIndex = 0;
         }
     }
 }

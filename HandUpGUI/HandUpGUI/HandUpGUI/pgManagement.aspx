@@ -11,24 +11,28 @@
     function ChangePage(Option) {
         switch (Option) {
             case "1":
+                document.getElementById('dvEmployeeDetails').style.display = '';
                 document.getElementById('dvEmployee').style.display = '';
                 document.getElementById('dvMenu').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
             case "2":
+                document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = '';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
             case "3":
+                document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = 'none';
                 document.getElementById('dvReports').style.display = '';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
             case "4":
+                document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
@@ -109,6 +113,146 @@
         <tr><td>Employees</td></tr>
         <tr><td><div id="dvEmployeeList" runat="server"></div></td></tr>
         <tr><td><div id="dvEmployeeEditAdd" runat="server"></div></td></tr>
+    </table>
+    </div>
+    <div id="dvEmployeeDetails">
+    <table width="100%">
+        <tr>
+            <td>
+                <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:Label ID="lblSurname" runat="server" Text="Surname"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblID" runat="server" Text="ID"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:Label ID="lblEmail" runat="server" Text="E-mail"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblTel" runat="server" Text="Contact Number"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtContactNumber" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+            </td>
+            <td>
+                <asp:RadioButtonList ID="rbtnGender" runat="server">
+                    <asp:ListItem Value="Male">Male</asp:ListItem>
+                    <asp:ListItem Value="Female">Female</asp:ListItem>
+                </asp:RadioButtonList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblAddress1" runat="server" Text="Address"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtAdress1" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:Label ID="lblAddress2" runat="server" Text="Address2"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtAddress2" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblAddress3" runat="server" Text="Address"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtAddress3" runat="server"></asp:TextBox>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblUserName" runat="server" Text="User Name"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblEmpType" runat="server" Text="Employee Type"></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlEmpType" runat="server">
+                    <asp:ListItem Value="1">Waiter</asp:ListItem>
+                    <asp:ListItem Value="2">Processor</asp:ListItem>
+                    <asp:ListItem Value="3">Guest</asp:ListItem>
+                    <asp:ListItem Value="4">Administrator</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:Label ID="lblStatus" runat="server" Text="Status"></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlEmpStatus" runat="server">
+                    <asp:ListItem Value="1">Active</asp:ListItem>
+                    <asp:ListItem Value="2">Inactive</asp:ListItem>
+                    <asp:ListItem Value="3">Deleted</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblStartDate" runat="server" Text="Start Date"></asp:Label>
+            </td>
+            <td>
+                <asp:Calendar ID="calStartDate" runat="server"></asp:Calendar>
+            </td>
+            <td>
+                <asp:Label ID="lblEndDate" runat="server" Text="End Date"></asp:Label>
+            </td>
+            <td>
+                <asp:Calendar ID="calEndDate" runat="server"></asp:Calendar>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnClearAddNew" runat="server" Text="Add New Employee" 
+                    onclick="btnClearAddNew_Click" />
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                <asp:Button ID="btnUpdateAddEmp" runat="server" Text="Submit" 
+                    onclick="btnUpdateAddEmp_Click" />
+            </td>
+        </tr>
     </table>
     </div>
     <div id="dvMenu" style="display: none;">
