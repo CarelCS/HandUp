@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace HandUpGUI {
     public partial class pgMenuOrders : System.Web.UI.Page {
@@ -75,9 +77,27 @@ namespace HandUpGUI {
             dvMenu.InnerHtml = MenuTotal;
         }
 
+
+        public static string GetUniqueKey(int maxSize) {
+            char[] chars = new char[35];
+            chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+            crypto.GetNonZeroBytes(data);
+            data = new byte[maxSize];
+            crypto.GetNonZeroBytes(data);
+            StringBuilder result = new StringBuilder(maxSize);
+            foreach (byte b in data) {
+                result.Append(chars[b % (chars.Length - 1)]);
+            }
+            return result.ToString();
+        }
+
         protected void btnAddTable_Click(object sender, EventArgs e) {
             Table tbl = new Table();
-
+            string UITable = "";
+            UITable = PKiProviderID + GetUniqueKey(3) + DateTime.Now.Month + DateTime.Now.Day;
         }
 
         protected void btnChangeTable_Click(object sender, EventArgs e) {
