@@ -26,7 +26,7 @@ namespace HandUpGUI {
                 ds = (DataSet)Session["SEmployee"];
                 PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
                 lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
-                dvTablesTop.InnerHtml = "<table border='1'><tr><td><div id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
+                dvTablesTop.InnerHtml = "<table border='1'><tr><td><div style=\"cursor:pointer;\" id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div style=\"cursor:pointer;\" id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div style=\"cursor:pointer;\" id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
             }
             PopulateMenu();
         }
@@ -69,7 +69,7 @@ namespace HandUpGUI {
                         FirstDone = true;
                         ItemColumn++;
                     }
-                    MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\">ORDER</div></td></tr>";
+                    MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order_now.png\" height='50' /></div></td></tr>";
                     ItemRow++;
                 }
             }
@@ -109,8 +109,8 @@ namespace HandUpGUI {
         }
 
         protected void PopulateTable(string TableGUI) {
-            string sOrderList = "<table border='1'><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
-            sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
+            string sOrderList = "<table border='1'><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
+            sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div style=\"cursor:pointer;\" id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
             sOrderList += "</table>";
             dvTablesOrders.InnerHtml = sOrderList;
         }
