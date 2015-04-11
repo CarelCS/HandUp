@@ -10,7 +10,9 @@ namespace HandUpGUI {
     public partial class pgManagement : System.Web.UI.Page {
         public string PKiProviderID;
         protected void Page_Load(object sender, EventArgs e) {
-
+            PopulateEmployees();
+            PopulateTables();
+            PopulateMenu();
         }
 
         protected void PopulateEmployees() {
@@ -21,6 +23,7 @@ namespace HandUpGUI {
         }
 
         protected void PopulateMenu() {
+            PKiProviderID = "1";
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
             ds = WSNew.MenuForProvider(PKiProviderID);
@@ -103,7 +106,7 @@ namespace HandUpGUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnEditEmployee_Click(object sender, EventArgs e) {
-            if (hdnEmployeetatus.Value == "1") {
+            if (hdnEmployeeStatus.Value == "1") {
                 //Send update to "delete" menu item
             }
             else {

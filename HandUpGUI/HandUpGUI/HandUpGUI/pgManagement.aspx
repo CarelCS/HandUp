@@ -255,26 +255,26 @@
         </tr>
     </table>
     </div>
-    <div id="dvMenu" style="display: none;">
+    <div id="dvMenu" style="visibility: hidden">
     <table width="100%">
         <tr><td>Menu</td></tr>
         <tr><td><div id="dvMenulist" runat="server"></div></td></tr>
         <tr><td><div id="dvMenuItemEditAdd" runat="server"></div></td></tr>
     </table>
     </div>
-    <div id="dvReports" style="display: none;">
+    <div id="dvReports" style="visibility: hidden">
     <table width="100%">
         <tr><td>Reports</td></tr>
     </table>
     </div>
-    <div id="dvTableManagement" style="display: none;">
+    <div id="dvTableManagement" style="visibility: hidden">
     <table width="100%">
         <tr><td>Table Management</td></tr>
         <tr><td><div id="dvTableList" runat="server"></div></td></tr>
         <tr><td><div id="dvEditTableOrders" runat="server"></div></td></tr>
     </table>
     </div>
-    <div id="dvHiddenFields">
+    <div id="dvHiddenFields" style="visibility: hidden">
         <asp:HiddenField ID="hdnMaxSubs" runat="server" />
         <asp:Button ID="btnEditEmployee" runat="server" Text="Button" onclick="btnEditEmployee_Click" />
         <asp:Button ID="btnEditMenuItem" runat="server" Text="Button" onclick="btnEditMenuItem_Click" />
@@ -285,7 +285,7 @@
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />
-        <asp:HiddenField ID="hdnEmployeetatus" runat="server" />
+        <asp:HiddenField ID="hdnEmployeeStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeActive" runat="server" />
         <asp:HiddenField ID="hdnTableID" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
