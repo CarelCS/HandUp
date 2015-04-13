@@ -67,6 +67,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAdapters.cs" />
+    <Compile Include="DBClasses\clsDatabase.cs" />
+    <Compile Include="DBClasses\tblAdverts.cs" />
+    <Compile Include="DBClasses\tblEmployees.cs" />
+    <Compile Include="DBClasses\tblluEmployeetype.cs" />
+    <Compile Include="DBClasses\tblluMenugroups.cs" />
+    <Compile Include="DBClasses\tblluSubmenus.cs" />
+    <Compile Include="DBClasses\tblMenu.cs" />
+    <Compile Include="DBClasses\tblOrders.cs" />
+    <Compile Include="DBClasses\tblOrderssubitems.cs" />
+    <Compile Include="DBClasses\tblPatrons.cs" />
+    <Compile Include="DBClasses\tblProviders.cs" />
+    <Compile Include="DBClasses\tblSpecials.cs" />
+    <Compile Include="DBClasses\tblTables.cs" />
     <Compile Include="Employees.cs" />
     <Compile Include="Management.cs" />
     <Compile Include="Menu.cs" />
