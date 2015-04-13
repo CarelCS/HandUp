@@ -20,8 +20,8 @@ namespace HandUpGUI {
             if (txtUserName.Text != "" && txtPassword.Text != "") {
                 DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
                 if (ReturnValue.Tables[0].Rows.Count != 0) {
+                    DataSet TableSet = new DataSet();
                     if (txtTableCode.Text != "") {
-                        DataSet TableSet = new DataSet();
                         TableSet = WSnew.JoinTableCode(txtTableCode.Text);
                         if (TableSet.Tables[0].Rows.Count > 0) {
                             Session.Add("sTableCodeActive", TableSet);
@@ -34,8 +34,12 @@ namespace HandUpGUI {
                         if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "4")
                             Server.Transfer("pgManagement.aspx", false);
                         else {
-                            if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2")
-                                Server.Transfer("pgPatron.aspx", false);
+                            if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2"){
+                                if (TableSet.Tables[0].Rows.Count > 0)
+                                    Server.Transfer("pgMenuOrders.aspx", false);
+                                else
+                                    Server.Transfer("pgPatron.aspx", false);
+                            }
                             else
                                 Server.Transfer("pgMenuOrders.aspx", false);
                         }
@@ -64,10 +68,6 @@ namespace HandUpGUI {
 
         protected void btnRegister_Click(object sender, EventArgs e) {
             Server.Transfer("pgRegistration.aspx", false);
-        }
-
-        protected void btnUpdateTableCode_Click(object sender, EventArgs e) {
-
         }
     }
 }

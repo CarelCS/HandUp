@@ -22,21 +22,6 @@
             getMobileHeight();
         };
 
-        function openOrderTextWindow() {
-            newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
-            newWindow.document.write("<textarea id=\"txtTableCode\" cols=\"20\" rows=\"1\"></textarea><br /><input id=\"btnTableCodeConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtTableCode').value);window.close();\" value=\"Confirm Table Code\" />");
-            var TextValue = window.opener.document.getElementById("<%= txtTableCode.ClientID %>").value;
-            //alert(TextValue);
-            if (TextValue != "") {
-                newWindow.close();
-            }
-        }
-        
-        function setValue(value) {
-            document.getElementById("<%= hdnTableCode.ClientID %>").value = value;
-            var ClickChangeAlert = document.getElementById("<%= btnUpdateTableCode.ClientID %>");
-            ClickChangeAlert.click();
-        }
 
     </script>
     <p>
@@ -67,9 +52,6 @@
                     onclick="btnRegister_Click" /></td>
         </tr>
     </table>
-        <asp:HiddenField ID="hdnTableCode" runat="server" />
-        <asp:Button ID="btnUpdateTableCode" runat="server" Text="Button" 
-            onclick="btnUpdateTableCode_Click" />
         <asp:HiddenField ID="screenHeight" runat="server" />
         <asp:HiddenField ID="screenWidth" runat="server" />
         <div style="visibility:collapse">

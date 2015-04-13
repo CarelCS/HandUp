@@ -13,7 +13,9 @@ namespace HandUpGUI {
         public string PKiProviderID;
         protected void Page_Load(object sender, EventArgs e) {
             DataSet ds = new DataSet();
-            if ((DataSet)Session["SEmployee"] == null) {
+            DataSet dsE = new DataSet();
+            dsE = (DataSet)Session["SEmployee"];
+            if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
                 if ((DataSet)Session["sTableCodeActive"] != null) {
                     //a guest with table code only
                     ds = (DataSet)Session["sTableCodeActive"];
