@@ -20,14 +20,25 @@ namespace HandUpGUI {
             if (txtUserName.Text != "" && txtPassword.Text != "") {
                 DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
                 if (ReturnValue.Tables[0].Rows.Count != 0) {
+                    if (txtTableCode.Text != "") {
+                        DataSet TableSet = new DataSet();
+                        TableSet = WSnew.JoinTableCode(txtTableCode.Text);
+                        if (TableSet.Tables[0].Rows.Count > 0) {
+                            Session.Add("sTableCodeActive", TableSet);
+                        }
+                    }
                     Session.Add("SEmployee", ReturnValue);
                     if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
                         Server.Transfer("pgOrderProcessing.aspx", false);
                     else {
                         if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "4")
                             Server.Transfer("pgManagement.aspx", false);
-                        else
-                            Server.Transfer("pgMenuOrders.aspx", false);
+                        else {
+                            if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2")
+                                Server.Transfer("pgPatron.aspx", false);
+                            else
+                                Server.Transfer("pgMenuOrders.aspx", false);
+                        }
                     }
                 }
                 else {
@@ -49,6 +60,14 @@ namespace HandUpGUI {
         protected void btnSendSize_Click(object sender, EventArgs e) {
             string ScreenH = screenHeight.Value;
             string ScreenW = screenWidth.Value;
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e) {
+            Server.Transfer("pgRegistration.aspx", false);
+        }
+
+        protected void btnUpdateTableCode_Click(object sender, EventArgs e) {
+
         }
     }
 }

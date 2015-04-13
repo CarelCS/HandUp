@@ -54,7 +54,7 @@
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openOrderTextWindow();
     }
-
+    
     function CancelOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
     }
