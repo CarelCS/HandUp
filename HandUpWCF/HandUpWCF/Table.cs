@@ -29,16 +29,6 @@ namespace HandUpWCF {
             return da; 
         }
 
-        public DataSet WaiterLogin(string sUserName, string sPassword) {
-            DataAdapters newAdapter = new DataAdapters();
-            string sSqlQuery = "Select * from tblEmployees inner join tblluemployeetype on FKiEmployeeType = PKiEmployeeTypeID where sUserName = '" + sUserName + "' and sPassword = '" + sPassword + "'";
-            DataSet newDs = newAdapter.RetrieveTable(sSqlQuery);
-            string ThisValue = "";
-            try {
-                ThisValue = newDs.Tables[0].Rows[0][1].ToString() + " " + newDs.Tables[0].Rows[0][2].ToString();
-            }
-            catch { }
-            return newDs; 
-        }
+       
     }
 }

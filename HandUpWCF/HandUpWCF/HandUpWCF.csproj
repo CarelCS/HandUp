@@ -66,6 +66,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsLogin.cs" />
     <Compile Include="DataAdapters.cs" />
     <Compile Include="DBClasses\clsDatabase.cs" />
     <Compile Include="DBClasses\tblAdverts.cs" />

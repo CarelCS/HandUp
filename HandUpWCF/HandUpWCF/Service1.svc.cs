@@ -12,9 +12,9 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
-        public DataSet LoginWaiter(string sUserName, string sPassword) {
-            Table table = new Table();
-            return table.WaiterLogin(sUserName, sPassword);
+        public DataSet Login(string sUserName, string sPassword) {
+            clsLogin aLogin = new clsLogin();
+            return aLogin.Login(sUserName, sPassword);
         }
         public DataSet JoinTableCode(string sTableCode) {
             Table table = new Table();

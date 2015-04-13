@@ -13,7 +13,7 @@ namespace HandUpWCF {
     public interface IHandUpService {
 
         [OperationContract]
-        DataSet LoginWaiter(string sUserName, string sPassword);
+        DataSet Login(string sUserName, string sPassword);
         [OperationContract]
         DataSet JoinTableCode(string sTableCode);
         [OperationContract]
