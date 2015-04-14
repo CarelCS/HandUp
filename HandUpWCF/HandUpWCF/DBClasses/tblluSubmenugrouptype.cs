@@ -4,67 +4,67 @@ using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace HandUpWCF.DBClasses{
-	class tblAdverts{
-		public const string _PKIADVERTID="PKiAdvertID";
-		public const string _FKIPROVIDERID="FKiProviderID";
-		public const string _SADVERTURL="sAdvertURL";
-		public const string _IMGADVERTIMAGE="imgAdvertImage";
-		public const string _tblAdverts="tbladverts";
+	class tblluSubmenugrouptype{
+		public const string _PKISUBMENUGROUPTYPEID="PKiSubMenuGroupTypeID";
+		public const string _SSUBMENUGROUPTYPENAME="sSubMenuGroupTypeName";
+		public const string _SSUBMENUGROUPTYPEDESCRIPTION="sSubMenuGroupTypeDescription";
+		public const string _BACTIVESTATUS="bActiveStatus";
+		public const string _tblluSubmenugrouptype="tbllusubmenugrouptype";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
 
 		private string sSqlWhere="";
 
-		private int _PKiAdvertID;
-		public int PKiAdvertID{
+		private int _PKiSubMenuGroupTypeID;
+		public int PKiSubMenuGroupTypeID{
 			get {
-				return _PKiAdvertID;
+				return _PKiSubMenuGroupTypeID;
 			}
 			set {
-				_PKiAdvertID = value;
+				_PKiSubMenuGroupTypeID = value;
 			}
 		}
-		private int _FKiProviderID;
-		public int FKiProviderID{
+		private string _sSubMenuGroupTypeName;
+		public string sSubMenuGroupTypeName{
 			get {
-				return _FKiProviderID;
+				return _sSubMenuGroupTypeName;
 			}
 			set {
-				_FKiProviderID = value;
+				_sSubMenuGroupTypeName = value;
 			}
 		}
-		private string _sAdvertURL;
-		public string sAdvertURL{
+		private string _sSubMenuGroupTypeDescription;
+		public string sSubMenuGroupTypeDescription{
 			get {
-				return _sAdvertURL;
+				return _sSubMenuGroupTypeDescription;
 			}
 			set {
-				_sAdvertURL = value;
+				_sSubMenuGroupTypeDescription = value;
 			}
 		}
-		private string _imgAdvertImage;
-		public string imgAdvertImage{
+		private int _bActiveStatus;
+		public int bActiveStatus{
 			get {
-				return _imgAdvertImage;
+				return _bActiveStatus;
 			}
 			set {
-				_imgAdvertImage = value;
+				_bActiveStatus = value;
 			}
 		}
-		private string sOrderBy="PKiAdvertID";
+		private string sOrderBy="PKiSubMenuGroupTypeID";
 		private string sOrderType="ASC";
 
-		public tblAdverts(int initPKiAdvertID){
-			addEquals(_PKIADVERTID,initPKiAdvertID);
-			List<tblAdverts> listtblAdverts=executeSelect();
-			tblAdverts atblAdverts=listtblAdverts[0];
-			this.PKiAdvertID=atblAdverts.PKiAdvertID;
-			this.FKiProviderID=atblAdverts.FKiProviderID;
-			this.sAdvertURL=atblAdverts.sAdvertURL;
-			this.imgAdvertImage=atblAdverts.imgAdvertImage;
+		public tblluSubmenugrouptype(int initPKiSubMenuGroupTypeID){
+			addEquals(_PKISUBMENUGROUPTYPEID,initPKiSubMenuGroupTypeID);
+			List<tblluSubmenugrouptype> listtblluSubmenugrouptype=executeSelect();
+			tblluSubmenugrouptype atblluSubmenugrouptype=listtblluSubmenugrouptype[0];
+			this.PKiSubMenuGroupTypeID=atblluSubmenugrouptype.PKiSubMenuGroupTypeID;
+			this.sSubMenuGroupTypeName=atblluSubmenugrouptype.sSubMenuGroupTypeName;
+			this.sSubMenuGroupTypeDescription=atblluSubmenugrouptype.sSubMenuGroupTypeDescription;
+			this.bActiveStatus=atblluSubmenugrouptype.bActiveStatus;
 		}
 
-		public tblAdverts(){
+		public tblluSubmenugrouptype(){
 			sSqlWhere="";
 		}
 
@@ -77,18 +77,18 @@ namespace HandUpWCF.DBClasses{
 			return sSqlWhere;
 		}
 
-		public List<tblAdverts> executeSelect(){
+		public List<tblluSubmenugrouptype> executeSelect(){
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		public List<tblAdverts> executeSelect(string localsOrderBy,string localsOrderType){
+		public List<tblluSubmenugrouptype> executeSelect(string localsOrderBy,string localsOrderType){
 			sOrderBy=localsOrderBy;
 			sOrderType=localsOrderType;
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		private List<tblAdverts> getConnectionAndExecuteSelect(string sSelectStmt){
-			List<tblAdverts> listtblAdverts=new List<tblAdverts>();
+		private List<tblluSubmenugrouptype> getConnectionAndExecuteSelect(string sSelectStmt){
+			List<tblluSubmenugrouptype> listtblluSubmenugrouptype=new List<tblluSubmenugrouptype>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -96,24 +96,24 @@ namespace HandUpWCF.DBClasses{
          int iIndex=0;
 			if (aSqlReader.HasRows) {
 				while (aSqlReader.Read()) {
-					tblAdverts atblAdverts= new tblAdverts();
-					iIndex=aSqlReader.GetOrdinal("PKiAdvertID");
-					atblAdverts.PKiAdvertID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
-					atblAdverts.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("sAdvertURL");
-					atblAdverts.sAdvertURL=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("imgAdvertImage");
-					atblAdverts.imgAdvertImage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					listtblAdverts.Add(atblAdverts);
+					tblluSubmenugrouptype atblluSubmenugrouptype= new tblluSubmenugrouptype();
+					iIndex=aSqlReader.GetOrdinal("PKiSubMenuGroupTypeID");
+					atblluSubmenugrouptype.PKiSubMenuGroupTypeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sSubMenuGroupTypeName");
+					atblluSubmenugrouptype.sSubMenuGroupTypeName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sSubMenuGroupTypeDescription");
+					atblluSubmenugrouptype.sSubMenuGroupTypeDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
+					atblluSubmenugrouptype.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					listtblluSubmenugrouptype.Add(atblluSubmenugrouptype);
 					}
 			}
 			aSqlReader.Close();
-			return listtblAdverts;
+			return listtblluSubmenugrouptype;
 		}
 
 		public string getCompleteSQL(){
-			string sCompleteSQL="SELECT * FROM tbladverts WHERE "+ sSqlWhere;
+			string sCompleteSQL="SELECT * FROM tbllusubmenugrouptype WHERE "+ sSqlWhere;
 			sCompleteSQL+=" ORDER BY " + sOrderBy + " " + sOrderType;
 			return sCompleteSQL;
 		}
@@ -129,7 +129,7 @@ namespace HandUpWCF.DBClasses{
 		}
 
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
-			List<tblAdverts> listtblAdverts=new List<tblAdverts>();
+			List<tblluSubmenugrouptype> listtblluSubmenugrouptype=new List<tblluSubmenugrouptype>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -226,31 +226,31 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblProviders gettblProviders_FKiProviderID(){
-				tblProviders atblProviders=new tblProviders(FKiProviderID);
-				return atblProviders;
+			public tblluSubmenus gettblluSubmenus_PKiSubMenuGroupTypeID(){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus(PKiSubMenuGroupTypeID);
+				return atblluSubmenus;
 			}
 
-			public tblAdverts executeINSERT(){
-				MySqlCommand insertCommand = new MySqlCommand("tbladverts_INSERT", clsDatabase.getPooledConnection());
+			public tblluSubmenugrouptype executeINSERT(){
+				MySqlCommand insertCommand = new MySqlCommand("tbllusubmenugrouptype_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				insertCommand.Parameters.AddWithValue("@outPKiAdvertID",MySqlDbType.Int32);
-				insertCommand.Parameters["@outPKiAdvertID"].Direction = System.Data.ParameterDirection.Output;
-				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
-				insertCommand.Parameters.AddWithValue("@sAdvertURL",sAdvertURL);
-				insertCommand.Parameters.AddWithValue("@imgAdvertImage",imgAdvertImage);
+				insertCommand.Parameters.AddWithValue("@outPKiSubMenuGroupTypeID",MySqlDbType.Int32);
+				insertCommand.Parameters["@outPKiSubMenuGroupTypeID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@sSubMenuGroupTypeName",sSubMenuGroupTypeName);
+				insertCommand.Parameters.AddWithValue("@sSubMenuGroupTypeDescription",sSubMenuGroupTypeDescription);
+				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
-             PKiAdvertID= (Int32)insertCommand.Parameters["@outPKiAdvertID"].Value;
+             PKiSubMenuGroupTypeID= (Int32)insertCommand.Parameters["@outPKiSubMenuGroupTypeID"].Value;
 				return this;
 			}
 
 			public bool executeUPDATE(){
-				MySqlCommand updateCommand = new MySqlCommand("tbladverts_UPDATE", clsDatabase.getPooledConnection());
+				MySqlCommand updateCommand = new MySqlCommand("tbllusubmenugrouptype_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				updateCommand.Parameters.AddWithValue("@inPKiAdvertID", PKiAdvertID);
-				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
-				updateCommand.Parameters.AddWithValue("@insAdvertURL", sAdvertURL);
-				updateCommand.Parameters.AddWithValue("@inimgAdvertImage", imgAdvertImage);
+				updateCommand.Parameters.AddWithValue("@inPKiSubMenuGroupTypeID", PKiSubMenuGroupTypeID);
+				updateCommand.Parameters.AddWithValue("@insSubMenuGroupTypeName", sSubMenuGroupTypeName);
+				updateCommand.Parameters.AddWithValue("@insSubMenuGroupTypeDescription", sSubMenuGroupTypeDescription);
+				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

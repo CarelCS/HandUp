@@ -6,6 +6,8 @@ using System.Data;
 namespace HandUpWCF.DBClasses{
 	class tblEmployees{
 		public const string _PKIEMPLOYEEID="PKiEmployeeID";
+		public const string _FKIPROVIDERID="FKiProviderID";
+		public const string _FKIEMPLOYEETYPE="FKiEmployeeType";
 		public const string _SEMPLOYEENAME="sEmployeeName";
 		public const string _SEMPLOYEESURNAME="sEmployeeSurname";
 		public const string _SEMPLOYEEID="sEmployeeID";
@@ -17,11 +19,9 @@ namespace HandUpWCF.DBClasses{
 		public const string _SEMPLOYEENATIONALITY="sEmployeeNationality";
 		public const string _SUSERNAME="sUserName";
 		public const string _SPASSWORD="sPassword";
-		public const string _FKIEMPLOYEETYPE="FKiEmployeeType";
 		public const string _DTSTARTDATE="dtStartDate";
 		public const string _DTENDDATE="dtEndDate";
 		public const string _BGENDER="bGender";
-		public const string _FKIPROVIDERID="FKiProviderID";
 		public const string _BACTIVESTATUS="bActiveStatus";
 		public const string _tblEmployees="tblemployees";
 		public const string _Ascending="ASC";
@@ -36,6 +36,24 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_PKiEmployeeID = value;
+			}
+		}
+		private int _FKiProviderID;
+		public int FKiProviderID{
+			get {
+				return _FKiProviderID;
+			}
+			set {
+				_FKiProviderID = value;
+			}
+		}
+		private int _FKiEmployeeType;
+		public int FKiEmployeeType{
+			get {
+				return _FKiEmployeeType;
+			}
+			set {
+				_FKiEmployeeType = value;
 			}
 		}
 		private string _sEmployeeName;
@@ -137,15 +155,6 @@ namespace HandUpWCF.DBClasses{
 				_sPassword = value;
 			}
 		}
-		private int _FKiEmployeeType;
-		public int FKiEmployeeType{
-			get {
-				return _FKiEmployeeType;
-			}
-			set {
-				_FKiEmployeeType = value;
-			}
-		}
 		private DateTime _dtStartDate;
 		public DateTime dtStartDate{
 			get {
@@ -173,15 +182,6 @@ namespace HandUpWCF.DBClasses{
 				_bGender = value;
 			}
 		}
-		private int _FKiProviderID;
-		public int FKiProviderID{
-			get {
-				return _FKiProviderID;
-			}
-			set {
-				_FKiProviderID = value;
-			}
-		}
 		private string _bActiveStatus;
 		public string bActiveStatus{
 			get {
@@ -199,6 +199,8 @@ namespace HandUpWCF.DBClasses{
 			List<tblEmployees> listtblEmployees=executeSelect();
 			tblEmployees atblEmployees=listtblEmployees[0];
 			this.PKiEmployeeID=atblEmployees.PKiEmployeeID;
+			this.FKiProviderID=atblEmployees.FKiProviderID;
+			this.FKiEmployeeType=atblEmployees.FKiEmployeeType;
 			this.sEmployeeName=atblEmployees.sEmployeeName;
 			this.sEmployeeSurname=atblEmployees.sEmployeeSurname;
 			this.sEmployeeID=atblEmployees.sEmployeeID;
@@ -210,11 +212,9 @@ namespace HandUpWCF.DBClasses{
 			this.sEmployeeNationality=atblEmployees.sEmployeeNationality;
 			this.sUserName=atblEmployees.sUserName;
 			this.sPassword=atblEmployees.sPassword;
-			this.FKiEmployeeType=atblEmployees.FKiEmployeeType;
 			this.dtStartDate=atblEmployees.dtStartDate;
 			this.dtEndDate=atblEmployees.dtEndDate;
 			this.bGender=atblEmployees.bGender;
-			this.FKiProviderID=atblEmployees.FKiProviderID;
 			this.bActiveStatus=atblEmployees.bActiveStatus;
 		}
 
@@ -253,6 +253,10 @@ namespace HandUpWCF.DBClasses{
 					tblEmployees atblEmployees= new tblEmployees();
 					iIndex=aSqlReader.GetOrdinal("PKiEmployeeID");
 					atblEmployees.PKiEmployeeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
+					atblEmployees.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiEmployeeType");
+					atblEmployees.FKiEmployeeType=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sEmployeeName");
 					atblEmployees.sEmployeeName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sEmployeeSurname");
@@ -275,16 +279,12 @@ namespace HandUpWCF.DBClasses{
 					atblEmployees.sUserName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sPassword");
 					atblEmployees.sPassword=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiEmployeeType");
-					atblEmployees.FKiEmployeeType=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("dtStartDate");
 					atblEmployees.dtStartDate=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("dtEndDate");
 					atblEmployees.dtEndDate=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bGender");
 					atblEmployees.bGender=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
-					atblEmployees.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
 					atblEmployees.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					listtblEmployees.Add(atblEmployees);
@@ -441,11 +441,23 @@ namespace HandUpWCF.DBClasses{
 				return atblluEmployeetype;
 			}
 
+			public tblProviders gettblProviders_FKiProviderID(){
+				tblProviders atblProviders=new tblProviders(FKiProviderID);
+				return atblProviders;
+			}
+
+			public tblTables gettblTables_PKiEmployeeID(){
+				tblTables atblTables=new tblTables(PKiEmployeeID);
+				return atblTables;
+			}
+
 			public tblEmployees executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tblemployees_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiEmployeeID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiEmployeeID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
+				insertCommand.Parameters.AddWithValue("@FKiEmployeeType",FKiEmployeeType);
 				insertCommand.Parameters.AddWithValue("@sEmployeeName",sEmployeeName);
 				insertCommand.Parameters.AddWithValue("@sEmployeeSurname",sEmployeeSurname);
 				insertCommand.Parameters.AddWithValue("@sEmployeeID",sEmployeeID);
@@ -457,11 +469,9 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@sEmployeeNationality",sEmployeeNationality);
 				insertCommand.Parameters.AddWithValue("@sUserName",sUserName);
 				insertCommand.Parameters.AddWithValue("@sPassword",sPassword);
-				insertCommand.Parameters.AddWithValue("@FKiEmployeeType",FKiEmployeeType);
 				insertCommand.Parameters.AddWithValue("@dtStartDate",dtStartDate);
 				insertCommand.Parameters.AddWithValue("@dtEndDate",dtEndDate);
 				insertCommand.Parameters.AddWithValue("@bGender",bGender);
-				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
              PKiEmployeeID= (Int32)insertCommand.Parameters["@outPKiEmployeeID"].Value;
@@ -472,6 +482,8 @@ namespace HandUpWCF.DBClasses{
 				MySqlCommand updateCommand = new MySqlCommand("tblemployees_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiEmployeeID", PKiEmployeeID);
+				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
+				updateCommand.Parameters.AddWithValue("@inFKiEmployeeType", FKiEmployeeType);
 				updateCommand.Parameters.AddWithValue("@insEmployeeName", sEmployeeName);
 				updateCommand.Parameters.AddWithValue("@insEmployeeSurname", sEmployeeSurname);
 				updateCommand.Parameters.AddWithValue("@insEmployeeID", sEmployeeID);
@@ -483,11 +495,9 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@insEmployeeNationality", sEmployeeNationality);
 				updateCommand.Parameters.AddWithValue("@insUserName", sUserName);
 				updateCommand.Parameters.AddWithValue("@insPassword", sPassword);
-				updateCommand.Parameters.AddWithValue("@inFKiEmployeeType", FKiEmployeeType);
 				updateCommand.Parameters.AddWithValue("@indtStartDate", dtStartDate);
 				updateCommand.Parameters.AddWithValue("@indtEndDate", dtEndDate);
 				updateCommand.Parameters.AddWithValue("@inbGender", bGender);
-				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;

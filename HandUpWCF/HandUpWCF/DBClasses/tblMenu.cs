@@ -7,13 +7,13 @@ namespace HandUpWCF.DBClasses{
 	class tblMenu{
 		public const string _PKIMENUID="PKiMenuID";
 		public const string _FKIPROVIDERID="FKiProviderID";
+		public const string _FKIMENUID="FKiMenuID";
+		public const string _FKIMENUGROUPID="FKiMenuGroupID";
 		public const string _SMENUITEMNAME="sMenuItemName";
 		public const string _SMENUITEMDESCRIPTION="sMenuItemDescription";
 		public const string _DTMENUITEMMODIFIED="dtMenuItemModified";
 		public const string _DBLMENUITEMPRICE="dblMenuItemPrice";
 		public const string _IMGMENUITEMIMAGE="imgMenuItemImage";
-		public const string _FKIMENUID="FKiMenuID";
-		public const string _FKISUBMENUID="FKiSubMenuID";
 		public const string _BACTIVESTATUS="bActiveStatus";
 		public const string _tblMenu="tblmenu";
 		public const string _Ascending="ASC";
@@ -37,6 +37,24 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_FKiProviderID = value;
+			}
+		}
+		private int _FKiMenuID;
+		public int FKiMenuID{
+			get {
+				return _FKiMenuID;
+			}
+			set {
+				_FKiMenuID = value;
+			}
+		}
+		private int _FKiMenuGroupID;
+		public int FKiMenuGroupID{
+			get {
+				return _FKiMenuGroupID;
+			}
+			set {
+				_FKiMenuGroupID = value;
 			}
 		}
 		private string _sMenuItemName;
@@ -84,26 +102,8 @@ namespace HandUpWCF.DBClasses{
 				_imgMenuItemImage = value;
 			}
 		}
-		private int _FKiMenuID;
-		public int FKiMenuID{
-			get {
-				return _FKiMenuID;
-			}
-			set {
-				_FKiMenuID = value;
-			}
-		}
-		private int _FKiSubMenuID;
-		public int FKiSubMenuID{
-			get {
-				return _FKiSubMenuID;
-			}
-			set {
-				_FKiSubMenuID = value;
-			}
-		}
-		private string _bActiveStatus;
-		public string bActiveStatus{
+		private int _bActiveStatus;
+		public int bActiveStatus{
 			get {
 				return _bActiveStatus;
 			}
@@ -120,13 +120,13 @@ namespace HandUpWCF.DBClasses{
 			tblMenu atblMenu=listtblMenu[0];
 			this.PKiMenuID=atblMenu.PKiMenuID;
 			this.FKiProviderID=atblMenu.FKiProviderID;
+			this.FKiMenuID=atblMenu.FKiMenuID;
+			this.FKiMenuGroupID=atblMenu.FKiMenuGroupID;
 			this.sMenuItemName=atblMenu.sMenuItemName;
 			this.sMenuItemDescription=atblMenu.sMenuItemDescription;
 			this.dtMenuItemModified=atblMenu.dtMenuItemModified;
 			this.dblMenuItemPrice=atblMenu.dblMenuItemPrice;
 			this.imgMenuItemImage=atblMenu.imgMenuItemImage;
-			this.FKiMenuID=atblMenu.FKiMenuID;
-			this.FKiSubMenuID=atblMenu.FKiSubMenuID;
 			this.bActiveStatus=atblMenu.bActiveStatus;
 		}
 
@@ -167,6 +167,10 @@ namespace HandUpWCF.DBClasses{
 					atblMenu.PKiMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
 					atblMenu.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiMenuID");
+					atblMenu.FKiMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiMenuGroupID");
+					atblMenu.FKiMenuGroupID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sMenuItemName");
 					atblMenu.sMenuItemName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sMenuItemDescription");
@@ -176,12 +180,8 @@ namespace HandUpWCF.DBClasses{
 					atblMenu.dblMenuItemPrice=(double)aSqlReader["dblMenuItemPrice"];
 					iIndex=aSqlReader.GetOrdinal("imgMenuItemImage");
 					atblMenu.imgMenuItemImage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiMenuID");
-					atblMenu.FKiMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiSubMenuID");
-					atblMenu.FKiSubMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
-					atblMenu.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					atblMenu.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblMenu.Add(atblMenu);
 					}
 			}
@@ -359,19 +359,39 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblluSubmenus gettblluSubmenus_PKiMenuID(){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus(PKiMenuID);
+				return atblluSubmenus;
+			}
+
+			public tblluMenugroups gettblluMenugroups_FKiMenuGroupID(){
+				tblluMenugroups atblluMenugroups=new tblluMenugroups(FKiMenuGroupID);
+				return atblluMenugroups;
+			}
+
+			public tblProviders gettblProviders_FKiProviderID(){
+				tblProviders atblProviders=new tblProviders(FKiProviderID);
+				return atblProviders;
+			}
+
+			public tblOrders gettblOrders_PKiMenuID(){
+				tblOrders atblOrders=new tblOrders(PKiMenuID);
+				return atblOrders;
+			}
+
 			public tblMenu executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tblmenu_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiMenuID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiMenuID"].Direction = System.Data.ParameterDirection.Output;
 				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
+				insertCommand.Parameters.AddWithValue("@FKiMenuID",FKiMenuID);
+				insertCommand.Parameters.AddWithValue("@FKiMenuGroupID",FKiMenuGroupID);
 				insertCommand.Parameters.AddWithValue("@sMenuItemName",sMenuItemName);
 				insertCommand.Parameters.AddWithValue("@sMenuItemDescription",sMenuItemDescription);
 				insertCommand.Parameters.AddWithValue("@dtMenuItemModified",dtMenuItemModified);
 				insertCommand.Parameters.AddWithValue("@dblMenuItemPrice",dblMenuItemPrice);
 				insertCommand.Parameters.AddWithValue("@imgMenuItemImage",imgMenuItemImage);
-				insertCommand.Parameters.AddWithValue("@FKiMenuID",FKiMenuID);
-				insertCommand.Parameters.AddWithValue("@FKiSubMenuID",FKiSubMenuID);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
              PKiMenuID= (Int32)insertCommand.Parameters["@outPKiMenuID"].Value;
@@ -383,13 +403,13 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiMenuID", PKiMenuID);
 				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
+				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
+				updateCommand.Parameters.AddWithValue("@inFKiMenuGroupID", FKiMenuGroupID);
 				updateCommand.Parameters.AddWithValue("@insMenuItemName", sMenuItemName);
 				updateCommand.Parameters.AddWithValue("@insMenuItemDescription", sMenuItemDescription);
 				updateCommand.Parameters.AddWithValue("@indtMenuItemModified", dtMenuItemModified);
 				updateCommand.Parameters.AddWithValue("@indblMenuItemPrice", dblMenuItemPrice);
 				updateCommand.Parameters.AddWithValue("@inimgMenuItemImage", imgMenuItemImage);
-				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
-				updateCommand.Parameters.AddWithValue("@inFKiSubMenuID", FKiSubMenuID);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;

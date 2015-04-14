@@ -6,12 +6,12 @@ using System.Data;
 namespace HandUpWCF.DBClasses{
 	class tblPatrons{
 		public const string _PKIPATRONID="PKiPatronID";
+		public const string _FKIPROVIDERID="FKiProviderID";
 		public const string _SPATRONNAME="sPatronName";
 		public const string _SPATRONSURNAME="sPatronSurname";
 		public const string _SPATRONCONTACTNUMBER="sPatronContactNumber";
 		public const string _SPATRONEMAIL="sPatronEmail";
 		public const string _BGENDER="bGender";
-		public const string _FKIPROVIDERID="FKiProviderID";
 		public const string _DTSIGNUPDATE="dtSignUpDate";
 		public const string _tblPatrons="tblpatrons";
 		public const string _Ascending="ASC";
@@ -26,6 +26,15 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_PKiPatronID = value;
+			}
+		}
+		private int _FKiProviderID;
+		public int FKiProviderID{
+			get {
+				return _FKiProviderID;
+			}
+			set {
+				_FKiProviderID = value;
 			}
 		}
 		private string _sPatronName;
@@ -73,15 +82,6 @@ namespace HandUpWCF.DBClasses{
 				_bGender = value;
 			}
 		}
-		private int _FKiProviderID;
-		public int FKiProviderID{
-			get {
-				return _FKiProviderID;
-			}
-			set {
-				_FKiProviderID = value;
-			}
-		}
 		private DateTime _dtSignUpDate;
 		public DateTime dtSignUpDate{
 			get {
@@ -99,12 +99,12 @@ namespace HandUpWCF.DBClasses{
 			List<tblPatrons> listtblPatrons=executeSelect();
 			tblPatrons atblPatrons=listtblPatrons[0];
 			this.PKiPatronID=atblPatrons.PKiPatronID;
+			this.FKiProviderID=atblPatrons.FKiProviderID;
 			this.sPatronName=atblPatrons.sPatronName;
 			this.sPatronSurname=atblPatrons.sPatronSurname;
 			this.sPatronContactNumber=atblPatrons.sPatronContactNumber;
 			this.sPatronEmail=atblPatrons.sPatronEmail;
 			this.bGender=atblPatrons.bGender;
-			this.FKiProviderID=atblPatrons.FKiProviderID;
 			this.dtSignUpDate=atblPatrons.dtSignUpDate;
 		}
 
@@ -143,6 +143,8 @@ namespace HandUpWCF.DBClasses{
 					tblPatrons atblPatrons= new tblPatrons();
 					iIndex=aSqlReader.GetOrdinal("PKiPatronID");
 					atblPatrons.PKiPatronID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
+					atblPatrons.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sPatronName");
 					atblPatrons.sPatronName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sPatronSurname");
@@ -153,8 +155,6 @@ namespace HandUpWCF.DBClasses{
 					atblPatrons.sPatronEmail=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bGender");
 					atblPatrons.bGender=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
-					atblPatrons.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("dtSignUpDate");
 					atblPatrons.dtSignUpDate=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					listtblPatrons.Add(atblPatrons);
@@ -311,12 +311,12 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiPatronID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiPatronID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
 				insertCommand.Parameters.AddWithValue("@sPatronName",sPatronName);
 				insertCommand.Parameters.AddWithValue("@sPatronSurname",sPatronSurname);
 				insertCommand.Parameters.AddWithValue("@sPatronContactNumber",sPatronContactNumber);
 				insertCommand.Parameters.AddWithValue("@sPatronEmail",sPatronEmail);
 				insertCommand.Parameters.AddWithValue("@bGender",bGender);
-				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
 				insertCommand.Parameters.AddWithValue("@dtSignUpDate",dtSignUpDate);
 				insertCommand.ExecuteNonQuery();
              PKiPatronID= (Int32)insertCommand.Parameters["@outPKiPatronID"].Value;
@@ -327,12 +327,12 @@ namespace HandUpWCF.DBClasses{
 				MySqlCommand updateCommand = new MySqlCommand("tblpatrons_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiPatronID", PKiPatronID);
+				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@insPatronName", sPatronName);
 				updateCommand.Parameters.AddWithValue("@insPatronSurname", sPatronSurname);
 				updateCommand.Parameters.AddWithValue("@insPatronContactNumber", sPatronContactNumber);
 				updateCommand.Parameters.AddWithValue("@insPatronEmail", sPatronEmail);
 				updateCommand.Parameters.AddWithValue("@inbGender", bGender);
-				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@indtSignUpDate", dtSignUpDate);
 				updateCommand.ExecuteNonQuery();
 				return true;

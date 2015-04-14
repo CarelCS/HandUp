@@ -306,6 +306,31 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblAdverts gettblAdverts_PKiProviderID(){
+				tblAdverts atblAdverts=new tblAdverts(PKiProviderID);
+				return atblAdverts;
+			}
+
+			public tblEmployees gettblEmployees_PKiProviderID(){
+				tblEmployees atblEmployees=new tblEmployees(PKiProviderID);
+				return atblEmployees;
+			}
+
+			public tblMenu gettblMenu_PKiProviderID(){
+				tblMenu atblMenu=new tblMenu(PKiProviderID);
+				return atblMenu;
+			}
+
+			public tblOrders gettblOrders_PKiProviderID(){
+				tblOrders atblOrders=new tblOrders(PKiProviderID);
+				return atblOrders;
+			}
+
+			public tblTables gettblTables_PKiProviderID(){
+				tblTables atblTables=new tblTables(PKiProviderID);
+				return atblTables;
+			}
+
 			public tblProviders executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tblproviders_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;

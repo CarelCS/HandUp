@@ -6,13 +6,14 @@ using System.Data;
 namespace HandUpWCF.DBClasses{
 	class tblOrders{
 		public const string _PKIORDERID="PKiOrderID";
-		public const string _DTORDERDATESTAMP="dtOrderDateStamp";
 		public const string _FKIPROVIDERID="FKiProviderID";
 		public const string _FKIPATRONID="FKiPatronID";
 		public const string _FKIMENUID="FKiMenuID";
+		public const string _FKITABLEID="FKiTableID";
+		public const string _FKIMENUGROUPID="FKiMenuGroupID";
+		public const string _DTORDERDATESTAMP="dtOrderDateStamp";
 		public const string _SMENUITEMCHANGES="sMenuItemChanges";
 		public const string _SORDERSTATUS="sOrderStatus";
-		public const string _FKITABLEID="FKiTableID";
 		public const string _DBLORDERVALUE="dblOrderValue";
 		public const string _IBILLID="iBillID";
 		public const string _tblOrders="tblorders";
@@ -28,15 +29,6 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_PKiOrderID = value;
-			}
-		}
-		private DateTime _dtOrderDateStamp;
-		public DateTime dtOrderDateStamp{
-			get {
-				return _dtOrderDateStamp;
-			}
-			set {
-				_dtOrderDateStamp = value;
 			}
 		}
 		private int _FKiProviderID;
@@ -66,6 +58,33 @@ namespace HandUpWCF.DBClasses{
 				_FKiMenuID = value;
 			}
 		}
+		private int _FKiTableID;
+		public int FKiTableID{
+			get {
+				return _FKiTableID;
+			}
+			set {
+				_FKiTableID = value;
+			}
+		}
+		private int _FKiMenuGroupID;
+		public int FKiMenuGroupID{
+			get {
+				return _FKiMenuGroupID;
+			}
+			set {
+				_FKiMenuGroupID = value;
+			}
+		}
+		private DateTime _dtOrderDateStamp;
+		public DateTime dtOrderDateStamp{
+			get {
+				return _dtOrderDateStamp;
+			}
+			set {
+				_dtOrderDateStamp = value;
+			}
+		}
 		private string _sMenuItemChanges;
 		public string sMenuItemChanges{
 			get {
@@ -82,15 +101,6 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_sOrderStatus = value;
-			}
-		}
-		private int _FKiTableID;
-		public int FKiTableID{
-			get {
-				return _FKiTableID;
-			}
-			set {
-				_FKiTableID = value;
 			}
 		}
 		private double _dblOrderValue;
@@ -119,13 +129,14 @@ namespace HandUpWCF.DBClasses{
 			List<tblOrders> listtblOrders=executeSelect();
 			tblOrders atblOrders=listtblOrders[0];
 			this.PKiOrderID=atblOrders.PKiOrderID;
-			this.dtOrderDateStamp=atblOrders.dtOrderDateStamp;
 			this.FKiProviderID=atblOrders.FKiProviderID;
 			this.FKiPatronID=atblOrders.FKiPatronID;
 			this.FKiMenuID=atblOrders.FKiMenuID;
+			this.FKiTableID=atblOrders.FKiTableID;
+			this.FKiMenuGroupID=atblOrders.FKiMenuGroupID;
+			this.dtOrderDateStamp=atblOrders.dtOrderDateStamp;
 			this.sMenuItemChanges=atblOrders.sMenuItemChanges;
 			this.sOrderStatus=atblOrders.sOrderStatus;
-			this.FKiTableID=atblOrders.FKiTableID;
 			this.dblOrderValue=atblOrders.dblOrderValue;
 			this.iBillID=atblOrders.iBillID;
 		}
@@ -165,20 +176,22 @@ namespace HandUpWCF.DBClasses{
 					tblOrders atblOrders= new tblOrders();
 					iIndex=aSqlReader.GetOrdinal("PKiOrderID");
 					atblOrders.PKiOrderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("dtOrderDateStamp");
-					atblOrders.dtOrderDateStamp=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
 					atblOrders.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("FKiPatronID");
 					atblOrders.FKiPatronID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("FKiMenuID");
 					atblOrders.FKiMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiTableID");
+					atblOrders.FKiTableID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiMenuGroupID");
+					atblOrders.FKiMenuGroupID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("dtOrderDateStamp");
+					atblOrders.dtOrderDateStamp=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sMenuItemChanges");
 					atblOrders.sMenuItemChanges=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sOrderStatus");
 					atblOrders.sOrderStatus=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiTableID");
-					atblOrders.FKiTableID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					atblOrders.dblOrderValue=(double)aSqlReader["dblOrderValue"];
 					iIndex=aSqlReader.GetOrdinal("iBillID");
 					atblOrders.iBillID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
@@ -359,18 +372,34 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblMenu gettblMenu_FKiMenuID(){
+				tblMenu atblMenu=new tblMenu(FKiMenuID);
+				return atblMenu;
+			}
+
+			public tblProviders gettblProviders_FKiProviderID(){
+				tblProviders atblProviders=new tblProviders(FKiProviderID);
+				return atblProviders;
+			}
+
+			public tblTables gettblTables_FKiTableID(){
+				tblTables atblTables=new tblTables(FKiTableID);
+				return atblTables;
+			}
+
 			public tblOrders executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tblorders_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiOrderID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiOrderID"].Direction = System.Data.ParameterDirection.Output;
-				insertCommand.Parameters.AddWithValue("@dtOrderDateStamp",dtOrderDateStamp);
 				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
 				insertCommand.Parameters.AddWithValue("@FKiPatronID",FKiPatronID);
 				insertCommand.Parameters.AddWithValue("@FKiMenuID",FKiMenuID);
+				insertCommand.Parameters.AddWithValue("@FKiTableID",FKiTableID);
+				insertCommand.Parameters.AddWithValue("@FKiMenuGroupID",FKiMenuGroupID);
+				insertCommand.Parameters.AddWithValue("@dtOrderDateStamp",dtOrderDateStamp);
 				insertCommand.Parameters.AddWithValue("@sMenuItemChanges",sMenuItemChanges);
 				insertCommand.Parameters.AddWithValue("@sOrderStatus",sOrderStatus);
-				insertCommand.Parameters.AddWithValue("@FKiTableID",FKiTableID);
 				insertCommand.Parameters.AddWithValue("@dblOrderValue",dblOrderValue);
 				insertCommand.Parameters.AddWithValue("@iBillID",iBillID);
 				insertCommand.ExecuteNonQuery();
@@ -382,13 +411,14 @@ namespace HandUpWCF.DBClasses{
 				MySqlCommand updateCommand = new MySqlCommand("tblorders_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiOrderID", PKiOrderID);
-				updateCommand.Parameters.AddWithValue("@indtOrderDateStamp", dtOrderDateStamp);
 				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@inFKiPatronID", FKiPatronID);
 				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
+				updateCommand.Parameters.AddWithValue("@inFKiTableID", FKiTableID);
+				updateCommand.Parameters.AddWithValue("@inFKiMenuGroupID", FKiMenuGroupID);
+				updateCommand.Parameters.AddWithValue("@indtOrderDateStamp", dtOrderDateStamp);
 				updateCommand.Parameters.AddWithValue("@insMenuItemChanges", sMenuItemChanges);
 				updateCommand.Parameters.AddWithValue("@insOrderStatus", sOrderStatus);
-				updateCommand.Parameters.AddWithValue("@inFKiTableID", FKiTableID);
 				updateCommand.Parameters.AddWithValue("@indblOrderValue", dblOrderValue);
 				updateCommand.Parameters.AddWithValue("@iniBillID", iBillID);
 				updateCommand.ExecuteNonQuery();

@@ -12,6 +12,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTSTARTDATETIME="dtStartDateTime";
 		public const string _DTENDDATETIME="dtEndDateTime";
 		public const string _UIDGENERATED="UIDGenerated";
+		public const string _BACTIVESTATUS="bActiveStatus";
 		public const string _tblTables="tbltables";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -81,6 +82,15 @@ namespace HandUpWCF.DBClasses{
 				_UIDGenerated = value;
 			}
 		}
+		private int _bActiveStatus;
+		public int bActiveStatus{
+			get {
+				return _bActiveStatus;
+			}
+			set {
+				_bActiveStatus = value;
+			}
+		}
 		private string sOrderBy="PKiTableID";
 		private string sOrderType="ASC";
 
@@ -95,6 +105,7 @@ namespace HandUpWCF.DBClasses{
 			this.dtStartDateTime=atblTables.dtStartDateTime;
 			this.dtEndDateTime=atblTables.dtEndDateTime;
 			this.UIDGenerated=atblTables.UIDGenerated;
+			this.bActiveStatus=atblTables.bActiveStatus;
 		}
 
 		public tblTables(){
@@ -144,6 +155,8 @@ namespace HandUpWCF.DBClasses{
 					atblTables.dtEndDateTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("UIDGenerated");
 					atblTables.UIDGenerated=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
+					atblTables.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblTables.Add(atblTables);
 					}
 			}
@@ -293,6 +306,21 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblOrders gettblOrders_PKiTableID(){
+				tblOrders atblOrders=new tblOrders(PKiTableID);
+				return atblOrders;
+			}
+
+			public tblEmployees gettblEmployees_FKiEmployeeID(){
+				tblEmployees atblEmployees=new tblEmployees(FKiEmployeeID);
+				return atblEmployees;
+			}
+
+			public tblProviders gettblProviders_FKiProviderID(){
+				tblProviders atblProviders=new tblProviders(FKiProviderID);
+				return atblProviders;
+			}
+
 			public tblTables executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tbltables_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -304,6 +332,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dtStartDateTime",dtStartDateTime);
 				insertCommand.Parameters.AddWithValue("@dtEndDateTime",dtEndDateTime);
 				insertCommand.Parameters.AddWithValue("@UIDGenerated",UIDGenerated);
+				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
              PKiTableID= (Int32)insertCommand.Parameters["@outPKiTableID"].Value;
 				return this;
@@ -319,6 +348,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indtStartDateTime", dtStartDateTime);
 				updateCommand.Parameters.AddWithValue("@indtEndDateTime", dtEndDateTime);
 				updateCommand.Parameters.AddWithValue("@inUIDGenerated", UIDGenerated);
+				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

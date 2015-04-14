@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using HandUpWCF.DBClasses;
 
 namespace HandUpWCF {
     public class Table {
@@ -15,20 +16,47 @@ namespace HandUpWCF {
         public int NumberOfGuests { get; set; }
         public Table() { }
 
-        public string CreateTable() {
+        public string CreateNewTable() {
             string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
             DataAdapters da = new DataAdapters();
             da.InsertUpdateData(SqlText);
-            return ""; 
+            return "";
         }
 
         public DataSet JoinTableCode(string sTableCode) {
-            DataAdapters newAdapter = new DataAdapters();
-            string SqlText = "Select * from tbltables where UIDGenerated = '" + sTableCode + "'";
-            DataSet da = newAdapter.RetrieveTable(SqlText);
-            return da; 
+            tblTables aTable = new tblTables();
+            aTable.addEquals(tblTables._UIDGENERATED, sTableCode);
+            DataSet aDataSet = aTable.executeSelectDataSet();
+
+            //DataAdapters newAdapter = new DataAdapters();
+            //string SqlText = "Select * from tbltables where UIDGenerated = '" + sTableCode + "'";
+            //DataSet da = newAdapter.RetrieveTable(SqlText);
+            return aDataSet;
         }
 
-       
+        public DataSet ActiveTablesForWaiter(int EmployeeID) {
+            DataSet aDataSet = new DataSet();
+            return aDataSet;
+        }
+
+        public DataSet ActiveTablesForProcessor(int EmployeeID) {
+            DataSet aDataSet = new DataSet();
+            return aDataSet;
+        }
+
+        public DataSet ActiveTablesForProvider(int ProviderID) {
+            DataSet aDataSet = new DataSet();
+            return aDataSet;
+        }
+
+        public DataSet AllTablesForProviderByDate(int ProviderID, DateTime dtFromDate) {
+            DataSet aDataSet = new DataSet();
+            return aDataSet;
+        }
+
+        public DataSet AllTablesForProviderByDateStatus(int ProviderID, DateTime dtFromDate, int StatusID) {
+            DataSet aDataSet = new DataSet();
+            return aDataSet;
+        }
     }
 }

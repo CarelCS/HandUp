@@ -213,6 +213,11 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblMenu gettblMenu_PKiMenuGroupID(){
+				tblMenu atblMenu=new tblMenu(PKiMenuGroupID);
+				return atblMenu;
+			}
+
 			public tblluMenugroups executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tbllumenugroups_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;

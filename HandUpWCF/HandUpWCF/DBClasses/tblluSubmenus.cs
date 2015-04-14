@@ -6,6 +6,8 @@ using System.Data;
 namespace HandUpWCF.DBClasses{
 	class tblluSubmenus{
 		public const string _PKISUBMENUID="PKiSubMenuID";
+		public const string _FKIMENUID="FKiMenuID";
+		public const string _FKISUBMENUGROUPTYPEID="FKiSubMenuGroupTypeID";
 		public const string _SSUBMENUNAME="sSubMenuName";
 		public const string _SSUBMENUDESCRIPTION="sSubMenuDescription";
 		public const string _tblluSubmenus="tbllusubmenus";
@@ -21,6 +23,24 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_PKiSubMenuID = value;
+			}
+		}
+		private int _FKiMenuID;
+		public int FKiMenuID{
+			get {
+				return _FKiMenuID;
+			}
+			set {
+				_FKiMenuID = value;
+			}
+		}
+		private int _FKiSubMenuGroupTypeID;
+		public int FKiSubMenuGroupTypeID{
+			get {
+				return _FKiSubMenuGroupTypeID;
+			}
+			set {
+				_FKiSubMenuGroupTypeID = value;
 			}
 		}
 		private string _sSubMenuName;
@@ -49,6 +69,8 @@ namespace HandUpWCF.DBClasses{
 			List<tblluSubmenus> listtblluSubmenus=executeSelect();
 			tblluSubmenus atblluSubmenus=listtblluSubmenus[0];
 			this.PKiSubMenuID=atblluSubmenus.PKiSubMenuID;
+			this.FKiMenuID=atblluSubmenus.FKiMenuID;
+			this.FKiSubMenuGroupTypeID=atblluSubmenus.FKiSubMenuGroupTypeID;
 			this.sSubMenuName=atblluSubmenus.sSubMenuName;
 			this.sSubMenuDescription=atblluSubmenus.sSubMenuDescription;
 		}
@@ -88,6 +110,10 @@ namespace HandUpWCF.DBClasses{
 					tblluSubmenus atblluSubmenus= new tblluSubmenus();
 					iIndex=aSqlReader.GetOrdinal("PKiSubMenuID");
 					atblluSubmenus.PKiSubMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiMenuID");
+					atblluSubmenus.FKiMenuID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiSubMenuGroupTypeID");
+					atblluSubmenus.FKiSubMenuGroupTypeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sSubMenuName");
 					atblluSubmenus.sSubMenuName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sSubMenuDescription");
@@ -213,11 +239,23 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
+			public tblluSubmenugrouptype gettblluSubmenugrouptype_FKiSubMenuGroupTypeID(){
+				tblluSubmenugrouptype atblluSubmenugrouptype=new tblluSubmenugrouptype(FKiSubMenuGroupTypeID);
+				return atblluSubmenugrouptype;
+			}
+
+			public tblMenu gettblMenu_FKiMenuID(){
+				tblMenu atblMenu=new tblMenu(FKiMenuID);
+				return atblMenu;
+			}
+
 			public tblluSubmenus executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tbllusubmenus_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiSubMenuID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiSubMenuID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@FKiMenuID",FKiMenuID);
+				insertCommand.Parameters.AddWithValue("@FKiSubMenuGroupTypeID",FKiSubMenuGroupTypeID);
 				insertCommand.Parameters.AddWithValue("@sSubMenuName",sSubMenuName);
 				insertCommand.Parameters.AddWithValue("@sSubMenuDescription",sSubMenuDescription);
 				insertCommand.ExecuteNonQuery();
@@ -229,6 +267,8 @@ namespace HandUpWCF.DBClasses{
 				MySqlCommand updateCommand = new MySqlCommand("tbllusubmenus_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiSubMenuID", PKiSubMenuID);
+				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
+				updateCommand.Parameters.AddWithValue("@inFKiSubMenuGroupTypeID", FKiSubMenuGroupTypeID);
 				updateCommand.Parameters.AddWithValue("@insSubMenuName", sSubMenuName);
 				updateCommand.Parameters.AddWithValue("@insSubMenuDescription", sSubMenuDescription);
 				updateCommand.ExecuteNonQuery();
