@@ -14,12 +14,6 @@
   <wsdl:message name="IHandUpService_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IHandUpService_JoinTableCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:JoinTableCode" />
-  </wsdl:message>
-  <wsdl:message name="IHandUpService_JoinTableCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:JoinTableCodeResponse" />
-  </wsdl:message>
   <wsdl:message name="IHandUpService_AddOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:AddOrder" />
   </wsdl:message>
@@ -44,6 +38,12 @@
   <wsdl:message name="IHandUpService_AddTextToOrder_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddTextToOrderResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_JoinTableCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinTableCode" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_JoinTableCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinTableCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddTable_InputMessage">
     <wsdl:part name="parameters" element="tns:AddTable" />
   </wsdl:message>
@@ -67,6 +67,36 @@
   </wsdl:message>
   <wsdl:message name="IHandUpService_CallWaiter_OutputMessage">
     <wsdl:part name="parameters" element="tns:CallWaiterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForWaiter_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForWaiter" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForWaiter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForWaiterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForProcessor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForProcessor" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForProcessor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForProcessorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ActiveTablesForProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveTablesForProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AllTablesForProviderByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllTablesForProviderByDate" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AllTablesForProviderByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllTablesForProviderByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AllTablesForProviderByDateStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllTablesForProviderByDateStatus" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AllTablesForProviderByDateStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllTablesForProviderByDateStatusResponse" />
   </wsdl:message>
   <wsdl:message name="IHandUpService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
@@ -145,10 +175,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/Login" message="tns:IHandUpService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/LoginResponse" message="tns:IHandUpService_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="JoinTableCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCode" message="tns:IHandUpService_JoinTableCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCodeResponse" message="tns:IHandUpService_JoinTableCode_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="AddOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddOrder" message="tns:IHandUpService_AddOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddOrderResponse" message="tns:IHandUpService_AddOrder_OutputMessage" />
@@ -165,6 +191,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddTextToOrder" message="tns:IHandUpService_AddTextToOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddTextToOrderResponse" message="tns:IHandUpService_AddTextToOrder_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="JoinTableCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCode" message="tns:IHandUpService_JoinTableCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCodeResponse" message="tns:IHandUpService_JoinTableCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddTable">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddTable" message="tns:IHandUpService_AddTable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddTableResponse" message="tns:IHandUpService_AddTable_OutputMessage" />
@@ -180,6 +210,26 @@
     <wsdl:operation name="CallWaiter">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/CallWaiter" message="tns:IHandUpService_CallWaiter_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/CallWaiterResponse" message="tns:IHandUpService_CallWaiter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForWaiter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForWaiter" message="tns:IHandUpService_ActiveTablesForWaiter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForWaiterResponse" message="tns:IHandUpService_ActiveTablesForWaiter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForProcessor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForProcessor" message="tns:IHandUpService_ActiveTablesForProcessor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForProcessorResponse" message="tns:IHandUpService_ActiveTablesForProcessor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForProvider" message="tns:IHandUpService_ActiveTablesForProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ActiveTablesForProviderResponse" message="tns:IHandUpService_ActiveTablesForProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllTablesForProviderByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDate" message="tns:IHandUpService_AllTablesForProviderByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDateResponse" message="tns:IHandUpService_AllTablesForProviderByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllTablesForProviderByDateStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatus" message="tns:IHandUpService_AllTablesForProviderByDateStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatusResponse" message="tns:IHandUpService_AllTablesForProviderByDateStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployee" message="tns:IHandUpService_AddEmployee_InputMessage" />
@@ -241,15 +291,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="JoinTableCode">
-      <soap:operation soapAction="http://tempuri.org/IHandUpService/JoinTableCode" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="AddOrder">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/AddOrder" style="document" />
       <wsdl:input>
@@ -286,6 +327,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="JoinTableCode">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/JoinTableCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddTable">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/AddTable" style="document" />
       <wsdl:input>
@@ -315,6 +365,51 @@
     </wsdl:operation>
     <wsdl:operation name="CallWaiter">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/CallWaiter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForWaiter">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ActiveTablesForWaiter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForProcessor">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ActiveTablesForProcessor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveTablesForProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ActiveTablesForProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllTablesForProviderByDate">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AllTablesForProviderByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllTablesForProviderByDateStatus">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

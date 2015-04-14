@@ -32,8 +32,6 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback LoginOperationCompleted;
         
-        private System.Threading.SendOrPostCallback JoinTableCodeOperationCompleted;
-        
         private System.Threading.SendOrPostCallback AddOrderOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConfirmOrderOperationCompleted;
@@ -42,6 +40,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback AddTextToOrderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback JoinTableCodeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddTableOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddPatronToTableOperationCompleted;
@@ -49,6 +49,16 @@ namespace HandUpGUI.localhost {
         private System.Threading.SendOrPostCallback CloseTableOperationCompleted;
         
         private System.Threading.SendOrPostCallback CallWaiterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ActiveTablesForWaiterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ActiveTablesForProcessorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ActiveTablesForProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AllTablesForProviderByDateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AllTablesForProviderByDateStatusOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
@@ -116,9 +126,6 @@ namespace HandUpGUI.localhost {
         public event LoginCompletedEventHandler LoginCompleted;
         
         /// <remarks/>
-        public event JoinTableCodeCompletedEventHandler JoinTableCodeCompleted;
-        
-        /// <remarks/>
         public event AddOrderCompletedEventHandler AddOrderCompleted;
         
         /// <remarks/>
@@ -131,6 +138,9 @@ namespace HandUpGUI.localhost {
         public event AddTextToOrderCompletedEventHandler AddTextToOrderCompleted;
         
         /// <remarks/>
+        public event JoinTableCodeCompletedEventHandler JoinTableCodeCompleted;
+        
+        /// <remarks/>
         public event AddTableCompletedEventHandler AddTableCompleted;
         
         /// <remarks/>
@@ -141,6 +151,21 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event CallWaiterCompletedEventHandler CallWaiterCompleted;
+        
+        /// <remarks/>
+        public event ActiveTablesForWaiterCompletedEventHandler ActiveTablesForWaiterCompleted;
+        
+        /// <remarks/>
+        public event ActiveTablesForProcessorCompletedEventHandler ActiveTablesForProcessorCompleted;
+        
+        /// <remarks/>
+        public event ActiveTablesForProviderCompletedEventHandler ActiveTablesForProviderCompleted;
+        
+        /// <remarks/>
+        public event AllTablesForProviderByDateCompletedEventHandler AllTablesForProviderByDateCompleted;
+        
+        /// <remarks/>
+        public event AllTablesForProviderByDateStatusCompletedEventHandler AllTablesForProviderByDateStatusCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -207,36 +232,6 @@ namespace HandUpGUI.localhost {
             if ((this.LoginCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.LoginCompleted(this, new LoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/JoinTableCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet JoinTableCode([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTableCode) {
-            object[] results = this.Invoke("JoinTableCode", new object[] {
-                        sTableCode});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void JoinTableCodeAsync(string sTableCode) {
-            this.JoinTableCodeAsync(sTableCode, null);
-        }
-        
-        /// <remarks/>
-        public void JoinTableCodeAsync(string sTableCode, object userState) {
-            if ((this.JoinTableCodeOperationCompleted == null)) {
-                this.JoinTableCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnJoinTableCodeOperationCompleted);
-            }
-            this.InvokeAsync("JoinTableCode", new object[] {
-                        sTableCode}, this.JoinTableCodeOperationCompleted, userState);
-        }
-        
-        private void OnJoinTableCodeOperationCompleted(object arg) {
-            if ((this.JoinTableCodeCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.JoinTableCodeCompleted(this, new JoinTableCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -365,6 +360,36 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/JoinTableCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet JoinTableCode([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTableCode) {
+            object[] results = this.Invoke("JoinTableCode", new object[] {
+                        sTableCode});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void JoinTableCodeAsync(string sTableCode) {
+            this.JoinTableCodeAsync(sTableCode, null);
+        }
+        
+        /// <remarks/>
+        public void JoinTableCodeAsync(string sTableCode, object userState) {
+            if ((this.JoinTableCodeOperationCompleted == null)) {
+                this.JoinTableCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnJoinTableCodeOperationCompleted);
+            }
+            this.InvokeAsync("JoinTableCode", new object[] {
+                        sTableCode}, this.JoinTableCodeOperationCompleted, userState);
+        }
+        
+        private void OnJoinTableCodeOperationCompleted(object arg) {
+            if ((this.JoinTableCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.JoinTableCodeCompleted(this, new JoinTableCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AddTable() {
@@ -473,6 +498,178 @@ namespace HandUpGUI.localhost {
             if ((this.CallWaiterCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CallWaiterCompleted(this, new CallWaiterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ActiveTablesForWaiter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet ActiveTablesForWaiter(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
+            object[] results = this.Invoke("ActiveTablesForWaiter", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForWaiterAsync(int EmployeeID, bool EmployeeIDSpecified) {
+            this.ActiveTablesForWaiterAsync(EmployeeID, EmployeeIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForWaiterAsync(int EmployeeID, bool EmployeeIDSpecified, object userState) {
+            if ((this.ActiveTablesForWaiterOperationCompleted == null)) {
+                this.ActiveTablesForWaiterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActiveTablesForWaiterOperationCompleted);
+            }
+            this.InvokeAsync("ActiveTablesForWaiter", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified}, this.ActiveTablesForWaiterOperationCompleted, userState);
+        }
+        
+        private void OnActiveTablesForWaiterOperationCompleted(object arg) {
+            if ((this.ActiveTablesForWaiterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ActiveTablesForWaiterCompleted(this, new ActiveTablesForWaiterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ActiveTablesForProcessor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet ActiveTablesForProcessor(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
+            object[] results = this.Invoke("ActiveTablesForProcessor", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForProcessorAsync(int EmployeeID, bool EmployeeIDSpecified) {
+            this.ActiveTablesForProcessorAsync(EmployeeID, EmployeeIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForProcessorAsync(int EmployeeID, bool EmployeeIDSpecified, object userState) {
+            if ((this.ActiveTablesForProcessorOperationCompleted == null)) {
+                this.ActiveTablesForProcessorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActiveTablesForProcessorOperationCompleted);
+            }
+            this.InvokeAsync("ActiveTablesForProcessor", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified}, this.ActiveTablesForProcessorOperationCompleted, userState);
+        }
+        
+        private void OnActiveTablesForProcessorOperationCompleted(object arg) {
+            if ((this.ActiveTablesForProcessorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ActiveTablesForProcessorCompleted(this, new ActiveTablesForProcessorCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ActiveTablesForProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet ActiveTablesForProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("ActiveTablesForProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.ActiveTablesForProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ActiveTablesForProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.ActiveTablesForProviderOperationCompleted == null)) {
+                this.ActiveTablesForProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActiveTablesForProviderOperationCompleted);
+            }
+            this.InvokeAsync("ActiveTablesForProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.ActiveTablesForProviderOperationCompleted, userState);
+        }
+        
+        private void OnActiveTablesForProviderOperationCompleted(object arg) {
+            if ((this.ActiveTablesForProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ActiveTablesForProviderCompleted(this, new ActiveTablesForProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AllTablesForProviderByDate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AllTablesForProviderByDate(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, System.DateTime dtFromDate, [System.Xml.Serialization.XmlIgnoreAttribute()] bool dtFromDateSpecified) {
+            object[] results = this.Invoke("AllTablesForProviderByDate", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtFromDate,
+                        dtFromDateSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AllTablesForProviderByDateAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtFromDate, bool dtFromDateSpecified) {
+            this.AllTablesForProviderByDateAsync(ProviderID, ProviderIDSpecified, dtFromDate, dtFromDateSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void AllTablesForProviderByDateAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtFromDate, bool dtFromDateSpecified, object userState) {
+            if ((this.AllTablesForProviderByDateOperationCompleted == null)) {
+                this.AllTablesForProviderByDateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllTablesForProviderByDateOperationCompleted);
+            }
+            this.InvokeAsync("AllTablesForProviderByDate", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtFromDate,
+                        dtFromDateSpecified}, this.AllTablesForProviderByDateOperationCompleted, userState);
+        }
+        
+        private void OnAllTablesForProviderByDateOperationCompleted(object arg) {
+            if ((this.AllTablesForProviderByDateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AllTablesForProviderByDateCompleted(this, new AllTablesForProviderByDateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatus", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AllTablesForProviderByDateStatus(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, System.DateTime dtFromDate, [System.Xml.Serialization.XmlIgnoreAttribute()] bool dtFromDateSpecified, int StatusID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StatusIDSpecified) {
+            object[] results = this.Invoke("AllTablesForProviderByDateStatus", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtFromDate,
+                        dtFromDateSpecified,
+                        StatusID,
+                        StatusIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AllTablesForProviderByDateStatusAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtFromDate, bool dtFromDateSpecified, int StatusID, bool StatusIDSpecified) {
+            this.AllTablesForProviderByDateStatusAsync(ProviderID, ProviderIDSpecified, dtFromDate, dtFromDateSpecified, StatusID, StatusIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void AllTablesForProviderByDateStatusAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtFromDate, bool dtFromDateSpecified, int StatusID, bool StatusIDSpecified, object userState) {
+            if ((this.AllTablesForProviderByDateStatusOperationCompleted == null)) {
+                this.AllTablesForProviderByDateStatusOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllTablesForProviderByDateStatusOperationCompleted);
+            }
+            this.InvokeAsync("AllTablesForProviderByDateStatus", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtFromDate,
+                        dtFromDateSpecified,
+                        StatusID,
+                        StatusIDSpecified}, this.AllTablesForProviderByDateStatusOperationCompleted, userState);
+        }
+        
+        private void OnAllTablesForProviderByDateStatusOperationCompleted(object arg) {
+            if ((this.AllTablesForProviderByDateStatusCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AllTablesForProviderByDateStatusCompleted(this, new AllTablesForProviderByDateStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -910,32 +1107,6 @@ namespace HandUpGUI.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void JoinTableCodeCompletedEventHandler(object sender, JoinTableCodeCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class JoinTableCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal JoinTableCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void AddOrderCompletedEventHandler(object sender, AddOrderCompletedEventArgs e);
     
     /// <remarks/>
@@ -1040,6 +1211,32 @@ namespace HandUpGUI.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void JoinTableCodeCompletedEventHandler(object sender, JoinTableCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class JoinTableCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal JoinTableCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void AddTableCompletedEventHandler(object sender, AddTableCompletedEventArgs e);
     
     /// <remarks/>
@@ -1138,6 +1335,136 @@ namespace HandUpGUI.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ActiveTablesForWaiterCompletedEventHandler(object sender, ActiveTablesForWaiterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ActiveTablesForWaiterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ActiveTablesForWaiterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ActiveTablesForProcessorCompletedEventHandler(object sender, ActiveTablesForProcessorCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ActiveTablesForProcessorCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ActiveTablesForProcessorCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ActiveTablesForProviderCompletedEventHandler(object sender, ActiveTablesForProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ActiveTablesForProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ActiveTablesForProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AllTablesForProviderByDateCompletedEventHandler(object sender, AllTablesForProviderByDateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AllTablesForProviderByDateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AllTablesForProviderByDateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AllTablesForProviderByDateStatusCompletedEventHandler(object sender, AllTablesForProviderByDateStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AllTablesForProviderByDateStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AllTablesForProviderByDateStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

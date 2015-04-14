@@ -12,6 +12,7 @@ namespace HandUpGUI {
     public partial class pgMenuOrders : System.Web.UI.Page {
         public string PKiProviderID;
         protected void Page_Load(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = new DataSet();
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
@@ -28,6 +29,8 @@ namespace HandUpGUI {
                 ds = (DataSet)Session["SEmployee"];
                 PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
                 lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
+                DataSet dsTables = new DataSet();
+                dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
                 dvTablesTop.InnerHtml = "<table border='1'><tr><td><div style=\"cursor:pointer;\" id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div style=\"cursor:pointer;\" id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div style=\"cursor:pointer;\" id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
             }
             PopulateMenu();
@@ -111,6 +114,8 @@ namespace HandUpGUI {
         }
 
         protected void PopulateTable(string TableGUI) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            //DataSet ds = WSNew.
             string sOrderList = "<table border='1'><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
             sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div style=\"cursor:pointer;\" id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
             sOrderList += "</table>";
@@ -124,6 +129,8 @@ namespace HandUpGUI {
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
             string OrderNumber = hdnOrderNumber.Value;
             string OrderText = hdnTextForOrder.Value;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            string Success = WSNew.AddTextToOrder();
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e) {
@@ -131,6 +138,15 @@ namespace HandUpGUI {
             string[] OrderFull = OrderValue.Split('|');
             string OrderID = OrderFull[0];
             string ChoicesString = OrderFull[1];
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            string Success = WSNew.AddOrder(Convert.ToInt32(OrderID), true, ChoicesString);
+        }
+
+        protected void btnUpdateOrderStatus_Click(object sender, EventArgs e) {
+            string OrderID = hdnOrderNumber.Value;
+            string OrderStatus = hdnOrderStatus.Value;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            string Success = WSNew.ConfirmOrder(Convert.ToInt32(OrderID), true, OrderStatus);
         }
     }
 }
