@@ -52,7 +52,6 @@ namespace HandUpWCF {
                 tblMenu aMenuItem = new tblMenu((int)aMenuItemRow[tblOrders._FKIMENUID]);
                 aMenuItemRow[tblMenu._SMENUITEMDESCRIPTION] = aMenuItem.sMenuItemDescription;
                 aMenuItemRow[tblMenu._SMENUITEMNAME] = aMenuItem.sMenuItemName;
-                a
             }
             return aDataSet;
         }
