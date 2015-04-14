@@ -12,14 +12,16 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
+        #region Login
+
         public DataSet Login(string sUserName, string sPassword) {
             clsLogin aLogin = new clsLogin();
             return aLogin.Login(sUserName, sPassword);
         }
-        public DataSet JoinTableCode(string sTableCode) {
-            Table table = new Table();
-            return table.JoinTableCode(sTableCode);
-        }
+
+        #endregion
+
+        #region Orders
 
         public string AddOrder(int MenuItemID, string TextValue) {
             Orders order = new Orders();
@@ -30,15 +32,58 @@ namespace HandUpWCF {
         public string ConfirmOrder(int OrderID, string sStatus) {
             Orders order = new Orders();
             order.ConfirmDenyOrder(OrderID, sStatus);
-            return string.Format("ConfirmOrder"); 
+            return string.Format("ConfirmOrder");
         }
 
         public string DeclineOrder() { return string.Format("DeclineOrder"); }
+
         public string AddTextToOrder() { return string.Format("AddTextToOrder"); }
+
+        #endregion
+
+        #region Tables
+
+        public DataSet JoinTableCode(string sTableCode) {
+            Table clsTable = new Table();
+            return clsTable.JoinTableCode(sTableCode);
+        }
+
         public string AddTable() { return string.Format("AddTable"); }
+
         public string AddPatronToTable() { return string.Format("AddPatronToTable"); }
+
         public string CloseTable() { return string.Format("CloseTable"); }
+
         public string CallWaiter() { return string.Format("CallWaiter"); }
+
+        public DataSet ActiveTablesForWaiter(int EmployeeID) {
+            Table clsTable = new Table();
+            return clsTable.ActiveTablesForWaiter(EmployeeID);
+        }
+
+        public DataSet ActiveTablesForProcessor(int EmployeeID) {
+            Table clsTable = new Table();
+            return clsTable.ActiveTablesForProcessor(EmployeeID);
+        }
+
+        public DataSet ActiveTablesForProvider(int ProviderID) {
+            Table clsTable = new Table();
+            return clsTable.ActiveTablesForProvider(ProviderID);
+        }
+
+        public DataSet AllTablesForProviderByDate(int ProviderID, DateTime dtFromDate) {
+            Table clsTable = new Table();
+            return clsTable.AllTablesForProviderByDate(ProviderID, dtFromDate);
+        }
+
+        public DataSet AllTablesForProviderByDateStatus(int ProviderID, DateTime dtFromDate, int StatusID) {
+            Table clsTable = new Table();
+            return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
+        }
+
+        #endregion
+
+
         public string AddEmployee() { return string.Format("AddEmployee"); }
         public string EditEmployee() { return string.Format("EditEmployee"); }
         public string DisableEmployee() { return string.Format("DisableEmployee"); }
@@ -53,8 +98,8 @@ namespace HandUpWCF {
             DataAdapters newAdapter = new DataAdapters();
             DataSet newDs = newAdapter.RetrieveTable("");
             string ThisValue = newDs.Tables[0].Rows[0][1].ToString() + " " + newDs.Tables[0].Rows[0][2].ToString();
-            return string.Format(ThisValue); 
-        
+            return string.Format(ThisValue);
+
         }
 
         #region

@@ -14,6 +14,7 @@ namespace HandUpWCF {
             aUser.addEquals(tblEmployees._SPASSWORD, sPassword);
             DataSet aDataSet = aUser.executeSelectDataSet();
             return aDataSet;
+
             /*DataAdapters newAdapter = new DataAdapters();
             string sSqlQuery = "Select * from tblEmployees inner join tblluemployeetype on FKiEmployeeType = PKiEmployeeTypeID where sUserName = '" + sUserName + "' and sPassword = '" + sPassword + "'";
             DataSet newDs = newAdapter.RetrieveTable(sSqlQuery);

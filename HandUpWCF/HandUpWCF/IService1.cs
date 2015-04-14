@@ -11,11 +11,15 @@ namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IHandUpService {
+        #region Login
 
         [OperationContract]
         DataSet Login(string sUserName, string sPassword);
-        [OperationContract]
-        DataSet JoinTableCode(string sTableCode);
+
+        #endregion
+
+        #region Orders
+
         [OperationContract]
         string AddOrder(int MenuItemID, string TextValue);
         [OperationContract]
@@ -24,6 +28,13 @@ namespace HandUpWCF {
         string DeclineOrder();
         [OperationContract]
         string AddTextToOrder();
+
+        #endregion
+
+        #region Tables
+
+        [OperationContract]
+        DataSet JoinTableCode(string sTableCode);
         [OperationContract]
         string AddTable();
         [OperationContract]
@@ -32,6 +43,24 @@ namespace HandUpWCF {
         string CloseTable();
         [OperationContract]
         string CallWaiter();
+        [OperationContract]
+        DataSet ActiveTablesForWaiter(int EmployeeID);
+        [OperationContract]
+        DataSet ActiveTablesForProcessor(int EmployeeID);
+        [OperationContract]
+        DataSet ActiveTablesForProvider(int ProviderID);
+        [OperationContract]
+        DataSet AllTablesForProviderByDate(int ProviderID, DateTime dtFromDate);
+        [OperationContract]
+        DataSet AllTablesForProviderByDateStatus(int ProviderID, DateTime dtFromDate, int StatusID);
+
+        #endregion
+
+        #region Menu
+
+
+        #endregion
+
         [OperationContract]
         string AddEmployee();
         [OperationContract]
