@@ -27,7 +27,7 @@ namespace HandUpWCF {
         [OperationContract]
         string DeclineOrder(int OrderID);
         [OperationContract]
-        string AddTextToOrder(int OrderID,string TextValue);
+        DataSet AddTextToOrder(int OrderID, string TextValue);
         [OperationContract]
         DataSet OrdersPerTable(int TableID);
 
