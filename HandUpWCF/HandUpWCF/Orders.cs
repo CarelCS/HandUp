@@ -46,6 +46,14 @@ namespace HandUpWCF {
             tblOrders aOrder=new tblOrders();
             aOrder.addEquals(tblOrders._FKITABLEID,TableID);
             DataSet aDataSet = aOrder.executeSelectDataSet();
+            aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMDESCRIPTION);
+            aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMNAME);
+            foreach (DataRow aMenuItemRow in aDataSet.Tables[0].Rows) {
+                tblMenu aMenuItem = new tblMenu((int)aMenuItemRow[tblOrders._FKIMENUID]);
+                aMenuItemRow[tblMenu._SMENUITEMDESCRIPTION] = aMenuItem.sMenuItemDescription;
+                aMenuItemRow[tblMenu._SMENUITEMNAME] = aMenuItem.sMenuItemName;
+                a
+            }
             return aDataSet;
         }
 

@@ -12,8 +12,18 @@ namespace HandUpWCF {
             aMenu.addEquals(tblMenu._FKIPROVIDERID, sProviderID);
             DataSet aDataSet = aMenu.executeSelectDataSet();
 
-          // DataAdapters newAdapter = new DataAdapters();
-           // string SqlText = "Select * from tblmenu where FKiProviderID = '" + sProviderID + "'; Select * from tblmenu inner join tbllusubmenus on PKiSubMenuID = FKiSubMenuID;";
+            foreach (DataRow aMenuDataRow in aDataSet.Tables[0].Rows) {
+                tblluSubmenus aSubMenu = new tblluSubmenus();
+                aSubMenu.addEquals(tblluSubmenus._FKIMENUID, Convert.ToInt32(aMenuDataRow[tblMenu._PKIMENUID]));
+                DataSet dsSubMenus = aSubMenu.executeSelectDataSet();
+                foreach (DataRow aSubMenuDataRow in dsSubMenus.Tables[0].Rows) {
+
+                }
+            }
+
+
+            // DataAdapters newAdapter = new DataAdapters();
+            // string SqlText = "Select * from tblmenu where FKiProviderID = '" + sProviderID + "'; Select * from tblmenu inner join tbllusubmenus on PKiSubMenuID = FKiSubMenuID;";
             //DataSet da = newAdapter.RetrieveTable(SqlText);
             return aDataSet;
         }
