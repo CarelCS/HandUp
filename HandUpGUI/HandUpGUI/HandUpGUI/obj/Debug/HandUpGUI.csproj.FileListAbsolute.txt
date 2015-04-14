@@ -2,3 +2,7 @@ C:\Development\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\bin\HandUpGUI.dll
 C:\Development\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\bin\HandUpGUI.pdb
 C:\Development\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\obj\Debug\HandUpGUI.dll
 C:\Development\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\obj\Debug\HandUpGUI.pdb
+C:\Development\Handup\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\bin\HandUpGUI.dll
+C:\Development\Handup\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\bin\HandUpGUI.pdb
+C:\Development\Handup\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\obj\Debug\HandUpGUI.dll
+C:\Development\Handup\HandUp\HandUpGUI\HandUpGUI\HandUpGUI\obj\Debug\HandUpGUI.pdb

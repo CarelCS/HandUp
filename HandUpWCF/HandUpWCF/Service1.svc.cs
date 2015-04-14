@@ -36,7 +36,10 @@ namespace HandUpWCF {
 
         public string DeclineOrder(int OrderID) { return string.Format("DeclineOrder"); }
 
-        public string AddTextToOrder(int OrderID, string TextValue) { return string.Format("AddTextToOrder"); }
+        public DataSet AddTextToOrder(int OrderID, string TextValue) {
+            Orders clsOrder = new Orders();
+            return clsOrder.AddTextToOrder(OrderID, TextValue);
+        }
 
         public DataSet OrdersPerTable(int TableID) {
             Orders clsOrder = new Orders();

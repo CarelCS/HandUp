@@ -56,6 +56,14 @@ namespace HandUpWCF {
             return aDataSet;
         }
 
+        public DataSet AddTextToOrder(int OrderID, string TextValue) {
+            tblOrders aOrder = new tblOrders(OrderID);
+            aOrder.sMenuItemChanges = aOrder.sMenuItemChanges+"<br />" + TextValue;
+            aOrder.executeUPDATE();
+            Orders clsOrder = new Orders();
+            return OrdersPerTable(aOrder.PKiOrderID);
+        }
+
         /// <summary>
         /// Waiter
         /// </summary>
