@@ -115,9 +115,19 @@ namespace HandUpGUI {
 
         protected void PopulateTable(string TableGUI) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            //DataSet ds = WSNew.
+            DataSet ds = WSNew.OrdersPerTable(Convert.ToInt32(hdnTableNumber.Value), true);
             string sOrderList = "<table border='1'><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
             sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div style=\"cursor:pointer;\" id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
+            sOrderList += "</table>";
+            dvTablesOrders.InnerHtml = sOrderList;
+        }
+
+        protected void PopulateNewOrderForTable(DataSet ds) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            string sOrderList = "<table border='1'>";
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                sOrderList += "<tr><td>" + dr["sMenuItemDescription"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
+            }
             sOrderList += "</table>";
             dvTablesOrders.InnerHtml = sOrderList;
         }
@@ -130,7 +140,7 @@ namespace HandUpGUI {
             string OrderNumber = hdnOrderNumber.Value;
             string OrderText = hdnTextForOrder.Value;
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            string Success = WSNew.AddTextToOrder();
+            string Success = WSNew.AddTextToOrder(Convert.ToInt32(OrderNumber), true, OrderNumber);
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e) {
@@ -139,7 +149,7 @@ namespace HandUpGUI {
             string OrderID = OrderFull[0];
             string ChoicesString = OrderFull[1];
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            string Success = WSNew.AddOrder(Convert.ToInt32(OrderID), true, ChoicesString);
+            PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoicesString));
         }
 
         protected void btnUpdateOrderStatus_Click(object sender, EventArgs e) {
