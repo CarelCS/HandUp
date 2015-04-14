@@ -5,7 +5,11 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+<<<<<<< HEAD
 using System.Data;
+=======
+using MySql.Data.MySqlClient;
+>>>>>>> master
 
 namespace HandUpWCF {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
