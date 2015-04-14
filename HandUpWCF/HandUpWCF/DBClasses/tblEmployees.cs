@@ -446,6 +446,11 @@ namespace HandUpWCF.DBClasses{
 				return atblProviders;
 			}
 
+			public tblTablealerts gettblTablealerts_PKiEmployeeID(){
+				tblTablealerts atblTablealerts=new tblTablealerts(PKiEmployeeID);
+				return atblTablealerts;
+			}
+
 			public tblTables gettblTables_PKiEmployeeID(){
 				tblTables atblTables=new tblTables(PKiEmployeeID);
 				return atblTables;

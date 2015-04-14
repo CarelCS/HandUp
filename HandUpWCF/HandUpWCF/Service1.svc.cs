@@ -23,10 +23,9 @@ namespace HandUpWCF {
 
         #region Orders
 
-        public string AddOrder(int MenuItemID, string TextValue) {
-            Orders order = new Orders();
-            order.AddOrder(MenuItemID, TextValue);
-            return string.Format("Order Passed.");
+        public DataSet AddOrder(int MenuItemID, int TableID, string TextValue) {
+            Orders clsOrder = new Orders();
+            return clsOrder.AddOrder( MenuItemID,  TableID,  TextValue);
         }
 
         public string ConfirmOrder(int OrderID, string sStatus) {
@@ -35,9 +34,14 @@ namespace HandUpWCF {
             return string.Format("ConfirmOrder");
         }
 
-        public string DeclineOrder() { return string.Format("DeclineOrder"); }
+        public string DeclineOrder(int OrderID) { return string.Format("DeclineOrder"); }
 
-        public string AddTextToOrder() { return string.Format("AddTextToOrder"); }
+        public string AddTextToOrder(int OrderID, string TextValue) { return string.Format("AddTextToOrder"); }
+
+        public DataSet OrdersPerTable(int TableID) {
+            Orders clsOrder = new Orders();
+            return clsOrder.OrdersPerTable(TableID);
+        }
 
         #endregion
 
@@ -48,13 +52,22 @@ namespace HandUpWCF {
             return clsTable.JoinTableCode(sTableCode);
         }
 
-        public string AddTable() { return string.Format("AddTable"); }
+        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber) {
+            Table clsTable = new Table();
+            return clsTable.AddTable(FKiEmployeeID,FKiProviderID,iGuestNumber);
+        }
 
-        public string AddPatronToTable() { return string.Format("AddPatronToTable"); }
+        public string AddPatronToTable(int PkiTableID) {
+            Table clsTable = new Table();
+            return clsTable.AddPatronToTable(PkiTableID);
+        }
 
-        public string CloseTable() { return string.Format("CloseTable"); }
+        public string CloseTable(int PkiTableID, int iStatusID) { return string.Format("CloseTable"); }
 
-        public string CallWaiter() { return string.Format("CallWaiter"); }
+        public string CallWaiter(int PkiTableID, string sMessage) {
+            Table clsTable = new Table();
+            return clsTable.CallWaiter(PkiTableID, sMessage);
+        }
 
         public DataSet ActiveTablesForWaiter(int EmployeeID) {
             Table clsTable = new Table();
@@ -83,6 +96,14 @@ namespace HandUpWCF {
 
         #endregion
 
+        #region Menu
+
+        public DataSet MenuForProvider(string ProviderID) {
+            Menu table = new Menu();
+            return table.MenuForProvider(ProviderID);
+
+        }
+        #endregion
 
         public string AddEmployee() { return string.Format("AddEmployee"); }
         public string EditEmployee() { return string.Format("EditEmployee"); }
@@ -101,18 +122,6 @@ namespace HandUpWCF {
             return string.Format(ThisValue);
 
         }
-
-        #region
-        //carel
-
-        public DataSet MenuForProvider(string ProviderID) {
-            Menu table = new Menu();
-            return table.MenuForProvider(ProviderID);
-
-        }
-
-        #endregion
-
 
         public CompositeType GetDataUsingDataContract(CompositeType composite) {
             if (composite == null) {

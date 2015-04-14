@@ -4,82 +4,72 @@ using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace HandUpWCF.DBClasses{
-	class tblTables{
-		public const string _PKITABLEID="PKiTableID";
-		public const string _FKIEMPLOYEEID="FKiEmployeeID";
-		public const string _FKIPROVIDERID="FKiProviderID";
-		public const string _IGUESTNUMBER="iGuestNumber";
-		public const string _DTSTARTDATETIME="dtStartDateTime";
-		public const string _DTENDDATETIME="dtEndDateTime";
-		public const string _UIDGENERATED="UIDGenerated";
+	class tblTablealerts{
+		public const string _PKITABLEALERTSID="PKiTableAlertsID";
+		public const string _FKITABLEID="FKiTableID";
+		public const string _FKIEPLOYEEID="FKiEployeeID";
+		public const string _DTALERTSTARTTIME="dtAlertStartTime";
+		public const string _DTALERTCONFIMTIME="dtAlertConfimTime";
+		public const string _SALERTMESSAGE="sAlertMessage";
 		public const string _BACTIVESTATUS="bActiveStatus";
-		public const string _tblTables="tbltables";
+		public const string _tblTablealerts="tbltablealerts";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
 
 		private string sSqlWhere="";
 
-		private int _PKiTableID;
-		public int PKiTableID{
+		private int _PKiTableAlertsID;
+		public int PKiTableAlertsID{
 			get {
-				return _PKiTableID;
+				return _PKiTableAlertsID;
 			}
 			set {
-				_PKiTableID = value;
+				_PKiTableAlertsID = value;
 			}
 		}
-		private int _FKiEmployeeID;
-		public int FKiEmployeeID{
+		private int _FKiTableID;
+		public int FKiTableID{
 			get {
-				return _FKiEmployeeID;
+				return _FKiTableID;
 			}
 			set {
-				_FKiEmployeeID = value;
+				_FKiTableID = value;
 			}
 		}
-		private int _FKiProviderID;
-		public int FKiProviderID{
+		private int _FKiEployeeID;
+		public int FKiEployeeID{
 			get {
-				return _FKiProviderID;
+				return _FKiEployeeID;
 			}
 			set {
-				_FKiProviderID = value;
+				_FKiEployeeID = value;
 			}
 		}
-		private int _iGuestNumber;
-		public int iGuestNumber{
+		private DateTime _dtAlertStartTime;
+		public DateTime dtAlertStartTime{
 			get {
-				return _iGuestNumber;
+				return _dtAlertStartTime;
 			}
 			set {
-				_iGuestNumber = value;
+				_dtAlertStartTime = value;
 			}
 		}
-		private DateTime _dtStartDateTime;
-		public DateTime dtStartDateTime{
+		private DateTime _dtAlertConfimTime;
+		public DateTime dtAlertConfimTime{
 			get {
-				return _dtStartDateTime;
+				return _dtAlertConfimTime;
 			}
 			set {
-				_dtStartDateTime = value;
+				_dtAlertConfimTime = value;
 			}
 		}
-		private DateTime _dtEndDateTime;
-		public DateTime dtEndDateTime{
+		private string _sAlertMessage;
+		public string sAlertMessage{
 			get {
-				return _dtEndDateTime;
+				return _sAlertMessage;
 			}
 			set {
-				_dtEndDateTime = value;
-			}
-		}
-		private string _UIDGenerated;
-		public string UIDGenerated{
-			get {
-				return _UIDGenerated;
-			}
-			set {
-				_UIDGenerated = value;
+				_sAlertMessage = value;
 			}
 		}
 		private int _bActiveStatus;
@@ -91,24 +81,23 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
-		private string sOrderBy="PKiTableID";
+		private string sOrderBy="PKiTableAlertsID";
 		private string sOrderType="ASC";
 
-		public tblTables(int initPKiTableID){
-			addEquals(_PKITABLEID,initPKiTableID);
-			List<tblTables> listtblTables=executeSelect();
-			tblTables atblTables=listtblTables[0];
-			this.PKiTableID=atblTables.PKiTableID;
-			this.FKiEmployeeID=atblTables.FKiEmployeeID;
-			this.FKiProviderID=atblTables.FKiProviderID;
-			this.iGuestNumber=atblTables.iGuestNumber;
-			this.dtStartDateTime=atblTables.dtStartDateTime;
-			this.dtEndDateTime=atblTables.dtEndDateTime;
-			this.UIDGenerated=atblTables.UIDGenerated;
-			this.bActiveStatus=atblTables.bActiveStatus;
+		public tblTablealerts(int initPKiTableAlertsID){
+			addEquals(_PKITABLEALERTSID,initPKiTableAlertsID);
+			List<tblTablealerts> listtblTablealerts=executeSelect();
+			tblTablealerts atblTablealerts=listtblTablealerts[0];
+			this.PKiTableAlertsID=atblTablealerts.PKiTableAlertsID;
+			this.FKiTableID=atblTablealerts.FKiTableID;
+			this.FKiEployeeID=atblTablealerts.FKiEployeeID;
+			this.dtAlertStartTime=atblTablealerts.dtAlertStartTime;
+			this.dtAlertConfimTime=atblTablealerts.dtAlertConfimTime;
+			this.sAlertMessage=atblTablealerts.sAlertMessage;
+			this.bActiveStatus=atblTablealerts.bActiveStatus;
 		}
 
-		public tblTables(){
+		public tblTablealerts(){
 			sSqlWhere="";
 		}
 
@@ -121,18 +110,18 @@ namespace HandUpWCF.DBClasses{
 			return sSqlWhere;
 		}
 
-		public List<tblTables> executeSelect(){
+		public List<tblTablealerts> executeSelect(){
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		public List<tblTables> executeSelect(string localsOrderBy,string localsOrderType){
+		public List<tblTablealerts> executeSelect(string localsOrderBy,string localsOrderType){
 			sOrderBy=localsOrderBy;
 			sOrderType=localsOrderType;
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		private List<tblTables> getConnectionAndExecuteSelect(string sSelectStmt){
-			List<tblTables> listtblTables=new List<tblTables>();
+		private List<tblTablealerts> getConnectionAndExecuteSelect(string sSelectStmt){
+			List<tblTablealerts> listtblTablealerts=new List<tblTablealerts>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -140,32 +129,30 @@ namespace HandUpWCF.DBClasses{
          int iIndex=0;
 			if (aSqlReader.HasRows) {
 				while (aSqlReader.Read()) {
-					tblTables atblTables= new tblTables();
-					iIndex=aSqlReader.GetOrdinal("PKiTableID");
-					atblTables.PKiTableID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiEmployeeID");
-					atblTables.FKiEmployeeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
-					atblTables.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("iGuestNumber");
-					atblTables.iGuestNumber=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("dtStartDateTime");
-					atblTables.dtStartDateTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
-					iIndex=aSqlReader.GetOrdinal("dtEndDateTime");
-					atblTables.dtEndDateTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
-					iIndex=aSqlReader.GetOrdinal("UIDGenerated");
-					atblTables.UIDGenerated=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					tblTablealerts atblTablealerts= new tblTablealerts();
+					iIndex=aSqlReader.GetOrdinal("PKiTableAlertsID");
+					atblTablealerts.PKiTableAlertsID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiTableID");
+					atblTablealerts.FKiTableID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiEployeeID");
+					atblTablealerts.FKiEployeeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("dtAlertStartTime");
+					atblTablealerts.dtAlertStartTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
+					iIndex=aSqlReader.GetOrdinal("dtAlertConfimTime");
+					atblTablealerts.dtAlertConfimTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sAlertMessage");
+					atblTablealerts.sAlertMessage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
-					atblTables.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					listtblTables.Add(atblTables);
+					atblTablealerts.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					listtblTablealerts.Add(atblTablealerts);
 					}
 			}
 			aSqlReader.Close();
-			return listtblTables;
+			return listtblTablealerts;
 		}
 
 		public string getCompleteSQL(){
-			string sCompleteSQL="SELECT * FROM tbltables WHERE "+ sSqlWhere;
+			string sCompleteSQL="SELECT * FROM tbltablealerts WHERE "+ sSqlWhere;
 			sCompleteSQL+=" ORDER BY " + sOrderBy + " " + sOrderType;
 			return sCompleteSQL;
 		}
@@ -181,7 +168,7 @@ namespace HandUpWCF.DBClasses{
 		}
 
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
-			List<tblTables> listtblTables=new List<tblTables>();
+			List<tblTablealerts> listtblTablealerts=new List<tblTablealerts>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -306,53 +293,41 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblOrders gettblOrders_PKiTableID(){
-				tblOrders atblOrders=new tblOrders(PKiTableID);
-				return atblOrders;
-			}
-
-			public tblTablealerts gettblTablealerts_PKiTableID(){
-				tblTablealerts atblTablealerts=new tblTablealerts(PKiTableID);
-				return atblTablealerts;
-			}
-
-			public tblEmployees gettblEmployees_FKiEmployeeID(){
-				tblEmployees atblEmployees=new tblEmployees(FKiEmployeeID);
+			public tblEmployees gettblEmployees_FKiEployeeID(){
+				tblEmployees atblEmployees=new tblEmployees(FKiEployeeID);
 				return atblEmployees;
 			}
 
-			public tblProviders gettblProviders_FKiProviderID(){
-				tblProviders atblProviders=new tblProviders(FKiProviderID);
-				return atblProviders;
+			public tblTables gettblTables_FKiTableID(){
+				tblTables atblTables=new tblTables(FKiTableID);
+				return atblTables;
 			}
 
-			public tblTables executeINSERT(){
-				MySqlCommand insertCommand = new MySqlCommand("tbltables_INSERT", clsDatabase.getPooledConnection());
+			public tblTablealerts executeINSERT(){
+				MySqlCommand insertCommand = new MySqlCommand("tbltablealerts_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				insertCommand.Parameters.AddWithValue("@outPKiTableID",MySqlDbType.Int32);
-				insertCommand.Parameters["@outPKiTableID"].Direction = System.Data.ParameterDirection.Output;
-				insertCommand.Parameters.AddWithValue("@FKiEmployeeID",FKiEmployeeID);
-				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
-				insertCommand.Parameters.AddWithValue("@iGuestNumber",iGuestNumber);
-				insertCommand.Parameters.AddWithValue("@dtStartDateTime",dtStartDateTime);
-				insertCommand.Parameters.AddWithValue("@dtEndDateTime",dtEndDateTime);
-				insertCommand.Parameters.AddWithValue("@UIDGenerated",UIDGenerated);
+				insertCommand.Parameters.AddWithValue("@outPKiTableAlertsID",MySqlDbType.Int32);
+				insertCommand.Parameters["@outPKiTableAlertsID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@FKiTableID",FKiTableID);
+				insertCommand.Parameters.AddWithValue("@FKiEployeeID",FKiEployeeID);
+				insertCommand.Parameters.AddWithValue("@dtAlertStartTime",dtAlertStartTime);
+				insertCommand.Parameters.AddWithValue("@dtAlertConfimTime",dtAlertConfimTime);
+				insertCommand.Parameters.AddWithValue("@sAlertMessage",sAlertMessage);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
-             PKiTableID= (Int32)insertCommand.Parameters["@outPKiTableID"].Value;
+             PKiTableAlertsID= (Int32)insertCommand.Parameters["@outPKiTableAlertsID"].Value;
 				return this;
 			}
 
 			public bool executeUPDATE(){
-				MySqlCommand updateCommand = new MySqlCommand("tbltables_UPDATE", clsDatabase.getPooledConnection());
+				MySqlCommand updateCommand = new MySqlCommand("tbltablealerts_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				updateCommand.Parameters.AddWithValue("@inPKiTableID", PKiTableID);
-				updateCommand.Parameters.AddWithValue("@inFKiEmployeeID", FKiEmployeeID);
-				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
-				updateCommand.Parameters.AddWithValue("@iniGuestNumber", iGuestNumber);
-				updateCommand.Parameters.AddWithValue("@indtStartDateTime", dtStartDateTime);
-				updateCommand.Parameters.AddWithValue("@indtEndDateTime", dtEndDateTime);
-				updateCommand.Parameters.AddWithValue("@inUIDGenerated", UIDGenerated);
+				updateCommand.Parameters.AddWithValue("@inPKiTableAlertsID", PKiTableAlertsID);
+				updateCommand.Parameters.AddWithValue("@inFKiTableID", FKiTableID);
+				updateCommand.Parameters.AddWithValue("@inFKiEployeeID", FKiEployeeID);
+				updateCommand.Parameters.AddWithValue("@indtAlertStartTime", dtAlertStartTime);
+				updateCommand.Parameters.AddWithValue("@indtAlertConfimTime", dtAlertConfimTime);
+				updateCommand.Parameters.AddWithValue("@insAlertMessage", sAlertMessage);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;

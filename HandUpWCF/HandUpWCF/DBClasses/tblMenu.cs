@@ -177,7 +177,8 @@ namespace HandUpWCF.DBClasses{
 					atblMenu.sMenuItemDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("dtMenuItemModified");
 					atblMenu.dtMenuItemModified=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
-					atblMenu.dblMenuItemPrice=(double)aSqlReader["dblMenuItemPrice"];
+					iIndex=aSqlReader.GetOrdinal("dblMenuItemPrice");
+					atblMenu.dblMenuItemPrice=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetDouble(iIndex);
 					iIndex=aSqlReader.GetOrdinal("imgMenuItemImage");
 					atblMenu.imgMenuItemImage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");

@@ -7,10 +7,28 @@ using HandUpWCF.DBClasses;
 
 namespace HandUpWCF {
     public class Orders {
-        public void AddOrder(int MenuItemID, string OrderText) {
-            string SqlText = "insert into tblOrders () values (" + MenuItemID + ", '" + OrderText + "')";
-            DataAdapters da = new DataAdapters();
-            da.InsertUpdateData(SqlText);
+        public DataSet AddOrder( int MenuItemID, int TableID, string TextValue) {
+            tblOrders aOrder = new tblOrders();
+            tblMenu aMenuItem=new tblMenu(MenuItemID);
+            aOrder.dblOrderValue = aMenuItem.dblMenuItemPrice;
+            aOrder.dtOrderDateStamp = DateTime.Now;
+            aOrder.FKiMenuGroupID = aMenuItem.FKiMenuGroupID;
+            aOrder.FKiMenuID = aMenuItem.PKiMenuID;
+            aOrder.FKiPatronID = 0;
+            aOrder.FKiProviderID = aMenuItem.FKiProviderID;
+            aOrder.FKiTableID = TableID;
+            aOrder.iBillID = 0;
+            aOrder.sMenuItemChanges = TextValue;
+            aOrder.sOrderStatus = "1";
+            aOrder.executeINSERT();
+            
+            Orders clsOrders=new Orders();
+            DataSet aDataSet = clsOrders.OrdersPerTable(TableID);
+            
+            //string SqlText = "insert into tblOrders () values (" + MenuItemID + ", '" + OrderText + "')";
+            ///DataAdapters da = new DataAdapters();
+            //da.InsertUpdateData(SqlText);
+            return aDataSet;
         }
 
         public void ConfirmDenyOrder(int OrderID, string sStatus) {
@@ -21,6 +39,14 @@ namespace HandUpWCF {
             //string SqlText = "update tblOrders set sOrderStatus = '" + sStatus + "' where PKiOrderID = '" + OrderID + "')";
             //DataAdapters da = new DataAdapters();
             //da.InsertUpdateData(SqlText);
+        }
+
+        public DataSet OrdersPerTable(int TableID) {
+            tblTables aTable = new tblTables(TableID);
+            tblOrders aOrder=new tblOrders();
+            aOrder.addEquals(tblOrders._FKITABLEID,TableID);
+            DataSet aDataSet = aOrder.executeSelectDataSet();
+            return aDataSet;
         }
 
         /// <summary>

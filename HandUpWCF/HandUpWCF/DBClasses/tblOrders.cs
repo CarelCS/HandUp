@@ -192,7 +192,8 @@ namespace HandUpWCF.DBClasses{
 					atblOrders.sMenuItemChanges=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sOrderStatus");
 					atblOrders.sOrderStatus=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					atblOrders.dblOrderValue=(double)aSqlReader["dblOrderValue"];
+					iIndex=aSqlReader.GetOrdinal("dblOrderValue");
+					atblOrders.dblOrderValue=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetDouble(iIndex);
 					iIndex=aSqlReader.GetOrdinal("iBillID");
 					atblOrders.iBillID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblOrders.Add(atblOrders);

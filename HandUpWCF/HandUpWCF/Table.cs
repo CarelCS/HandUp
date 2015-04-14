@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using HandUpWCF.DBClasses;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HandUpWCF {
     public class Table {
@@ -16,11 +18,59 @@ namespace HandUpWCF {
         public int NumberOfGuests { get; set; }
         public Table() { }
 
-        public string CreateNewTable() {
-            string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
-            DataAdapters da = new DataAdapters();
-            da.InsertUpdateData(SqlText);
+
+        private string GetUniqueKey(int maxSize) {
+            char[] chars = new char[35];
+            chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+            crypto.GetNonZeroBytes(data);
+            data = new byte[maxSize];
+            crypto.GetNonZeroBytes(data);
+            StringBuilder result = new StringBuilder(maxSize);
+            foreach (byte b in data) {
+                result.Append(chars[b % (chars.Length - 1)]);
+            }
+            return result.ToString();
+        }
+
+        public string AddPatronToTable(int PkiTableID) {
+            tblTables aTable = new tblTables(PkiTableID);
+            aTable.iGuestNumber = aTable.iGuestNumber + 1;
+            aTable.executeUPDATE();
+            return aTable.iGuestNumber.ToString();
+        }
+
+        public string CallWaiter(int PkiTableID, string sMessage) {
+            tblTables aTable = new tblTables(PkiTableID);
+            tblEmployees aEmp = aTable.gettblEmployees_FKiEmployeeID();
+            //check if recorde exists before inseirt
+            tblTablealerts aAlert = new tblTablealerts();
+            aAlert.bActiveStatus = 1;
+            aAlert.dtAlertStartTime = DateTime.Now;
+            aAlert.FKiEployeeID = aEmp.PKiEmployeeID;
+            aAlert.FKiTableID = PkiTableID;
+            aAlert.sAlertMessage = sMessage;
+            aAlert.executeINSERT();
             return "";
+        }
+
+        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber) {
+            tblTables aTable = new tblTables();
+            aTable.bActiveStatus = 1;
+            aTable.dtStartDateTime = DateTime.Now;
+            aTable.FKiEmployeeID = FKiEmployeeID;
+            aTable.FKiProviderID = FKiProviderID;
+            aTable.iGuestNumber = iGuestNumber;
+            aTable.UIDGenerated = FKiEmployeeID + GetUniqueKey(3) + DateTime.Now.Month + DateTime.Now.Day;
+            //check if UIDGenerated is unique befor insert
+            aTable.executeINSERT();
+
+            //string SqlText = "insert into tblTables (FKiEmployeeID, FKiProviderID, iGuestNumber, dtStartDateTime, dtEndDateTime, UIDGenerate) values (" + WaiterID + ", '" + ProviderID + "', '" + NumberOfGuests + "', '" + TableStartDate + "', '" + TableEndDate + "', '" + TableCode + "')";
+            //DataAdapters da = new DataAdapters();
+            //da.InsertUpdateData(SqlText);
+            return aTable.PKiTableID.ToString() + "_" + aTable.UIDGenerated;
         }
 
         public DataSet JoinTableCode(string sTableCode) {

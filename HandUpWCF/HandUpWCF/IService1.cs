@@ -21,13 +21,16 @@ namespace HandUpWCF {
         #region Orders
 
         [OperationContract]
-        string AddOrder(int MenuItemID, string TextValue);
+        DataSet AddOrder(int MenuItemID,int TableID, string TextValue);
         [OperationContract]
         string ConfirmOrder(int OrderID, string sStatus);
         [OperationContract]
-        string DeclineOrder();
+        string DeclineOrder(int OrderID);
         [OperationContract]
-        string AddTextToOrder();
+        string AddTextToOrder(int OrderID,string TextValue);
+        [OperationContract]
+        DataSet OrdersPerTable(int TableID);
+
 
         #endregion
 
@@ -36,13 +39,13 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet JoinTableCode(string sTableCode);
         [OperationContract]
-        string AddTable();
+        string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber);
         [OperationContract]
-        string AddPatronToTable();
+        string AddPatronToTable(int PkiTableID);
         [OperationContract]
-        string CloseTable();
+        string CloseTable(int PkiTableID, int iStatusID);
         [OperationContract]
-        string CallWaiter();
+        string CallWaiter(int PkiTableID, string sMessage);
         [OperationContract]
         DataSet ActiveTablesForWaiter(int EmployeeID);
         [OperationContract]
@@ -58,6 +61,8 @@ namespace HandUpWCF {
 
         #region Menu
 
+        [OperationContract]
+        DataSet MenuForProvider(string ProviderID);
 
         #endregion
 
@@ -81,8 +86,7 @@ namespace HandUpWCF {
         string ReportsOverView();
         [OperationContract]
         string AddSpecialsList();
-        [OperationContract]
-        DataSet MenuForProvider(string ProviderID);
+        
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
