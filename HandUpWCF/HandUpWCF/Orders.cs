@@ -58,10 +58,9 @@ namespace HandUpWCF {
 
         public DataSet AddTextToOrder(int OrderID, string TextValue) {
             tblOrders aOrder = new tblOrders(OrderID);
-            aOrder.sMenuItemChanges = aOrder.sMenuItemChanges+"<br />" + TextValue;
+            aOrder.sMenuItemChanges = aOrder.sMenuItemChanges + "<br /> "+TextValue;
             aOrder.executeUPDATE();
-            Orders clsOrder = new Orders();
-            return OrdersPerTable(aOrder.PKiOrderID);
+            return OrdersPerTable(aOrder.FKiTableID);
         }
 
         /// <summary>
