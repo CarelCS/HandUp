@@ -32,6 +32,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="MenuItemID" type="xs:int" />
+        <xs:element minOccurs="0" name="TableID" type="xs:int" />
         <xs:element minOccurs="0" name="TextValue" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -39,7 +40,19 @@
   <xs:element name="AddOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AddOrderResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AddOrderResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -60,7 +73,9 @@
   </xs:element>
   <xs:element name="DeclineOrder">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderID" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeclineOrderResponse">
@@ -72,13 +87,42 @@
   </xs:element>
   <xs:element name="AddTextToOrder">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderID" type="xs:int" />
+        <xs:element minOccurs="0" name="TextValue" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddTextToOrderResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddTextToOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrdersPerTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TableID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrdersPerTableResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrdersPerTableResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -110,7 +154,11 @@
   </xs:element>
   <xs:element name="AddTable">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FKiEmployeeID" type="xs:int" />
+        <xs:element minOccurs="0" name="FKiProviderID" type="xs:int" />
+        <xs:element minOccurs="0" name="iGuestNumber" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddTableResponse">
@@ -122,7 +170,9 @@
   </xs:element>
   <xs:element name="AddPatronToTable">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PkiTableID" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddPatronToTableResponse">
@@ -134,7 +184,10 @@
   </xs:element>
   <xs:element name="CloseTable">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PkiTableID" type="xs:int" />
+        <xs:element minOccurs="0" name="iStatusID" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CloseTableResponse">
@@ -146,7 +199,10 @@
   </xs:element>
   <xs:element name="CallWaiter">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PkiTableID" type="xs:int" />
+        <xs:element minOccurs="0" name="sMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CallWaiterResponse">
@@ -289,6 +345,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="MenuForProvider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProviderID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuForProviderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MenuForProviderResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddEmployee">
     <xs:complexType>
       <xs:sequence />
@@ -406,32 +488,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddSpecialsListResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MenuForProvider">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ProviderID" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MenuForProviderResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="MenuForProviderResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
