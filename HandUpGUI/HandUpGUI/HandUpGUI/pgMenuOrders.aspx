@@ -14,10 +14,23 @@
 
     function ConfirmOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "1";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function OrderWithCallWaiter(OrderID) {
-        alert("Order and Call Waiter " + OrderID);
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function CancelOrder(OrderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "3";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function Order(OrderID) {
@@ -55,9 +68,6 @@
         openOrderTextWindow();
     }
     
-    function CancelOrder(OrderID) {
-        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
-    }
 
     function ChangeDiv(DivDisplay) {
         if (DivDisplay == "Menu") {
@@ -251,14 +261,15 @@
     <div style="visibility: hidden">
         <asp:Button ID="btnChangeTable" runat="server" Text="Change Table" OnClick="btnChangeTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" OnClick="btnUpdateTextValues_Click" />
-        <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" 
-            onclick="btnPlaceOrder_Click" />
+        <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" onclick="btnPlaceOrder_Click" />
+        <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
         <asp:HiddenField ID="hdnTableCodeOnlyGuest" runat="server" />
         <asp:HiddenField ID="hdnMaxSubs" runat="server" />
         <asp:HiddenField ID="hdnOrderSelectValues" runat="server" />
+        <asp:HiddenField ID="hdnOrderStatus" runat="server" />
     </div>
     </form>
 </body>

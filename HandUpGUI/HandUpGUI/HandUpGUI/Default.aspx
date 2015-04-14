@@ -35,10 +35,6 @@
             <td align="left"><asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Text="Admin"></asp:TextBox></td>
         </tr>
         <tr>
-            <td align="right"><asp:Label ID="lblLoginFailure" runat="server" Text=""></asp:Label></td>
-            <td align="left"><asp:Button ID="btnLogin" runat="server" Text="Login" onclick="Button1_Click" /></td>
-        </tr>
-        <tr>
             <td align="right"><asp:Label ID="lblTableCode" runat="server" Text="Table Code : "></asp:Label></td>
             <td align="left"><asp:TextBox ID="txtTableCode" runat="server"></asp:TextBox></td>
         </tr>
@@ -47,7 +43,11 @@
             <td align="left"><asp:Button ID="btnJoinTable" runat="server" Text="Join Table" onclick="btnJoinTable_Click" /></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td align="right"><asp:Label ID="lblLoginFailure" runat="server" Text=""></asp:Label></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
                 <asp:Button ID="btnRegister" runat="server" Text="Register" 
                     onclick="btnRegister_Click" /></td>
         </tr>

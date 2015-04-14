@@ -10,11 +10,7 @@ namespace HandUpGUI {
     public partial class _Default : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
         }
-
-        protected void Button1_Click(object sender, EventArgs e) {
-            btnJoinTable_Click(sender, e);
-        }
-
+        
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
             if (txtUserName.Text != "" && txtPassword.Text != "") {
