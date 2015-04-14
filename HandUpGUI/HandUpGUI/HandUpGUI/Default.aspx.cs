@@ -18,7 +18,7 @@ namespace HandUpGUI {
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
             if (txtUserName.Text != "" && txtPassword.Text != "") {
-                DataSet ReturnValue = WSnew.LoginWaiter(txtUserName.Text, txtPassword.Text);
+                DataSet ReturnValue = WSnew.Login(txtUserName.Text, txtPassword.Text);
                 DataSet TableSet = new DataSet();
                 bool IsTable = false;
                 if (ReturnValue.Tables[0].Rows.Count != 0) {

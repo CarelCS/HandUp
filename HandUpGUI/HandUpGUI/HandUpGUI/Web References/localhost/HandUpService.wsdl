@@ -8,11 +8,11 @@
       <xsd:import schemaLocation="http://localhost/HandUpWCF/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HandUpWCF" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IHandUpService_LoginWaiter_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoginWaiter" />
+  <wsdl:message name="IHandUpService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="IHandUpService_LoginWaiter_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoginWaiterResponse" />
+  <wsdl:message name="IHandUpService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="IHandUpService_JoinTableCode_InputMessage">
     <wsdl:part name="parameters" element="tns:JoinTableCode" />
@@ -141,9 +141,9 @@
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
   <wsdl:portType name="IHandUpService">
-    <wsdl:operation name="LoginWaiter">
-      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/LoginWaiter" message="tns:IHandUpService_LoginWaiter_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/LoginWaiterResponse" message="tns:IHandUpService_LoginWaiter_OutputMessage" />
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/Login" message="tns:IHandUpService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/LoginResponse" message="tns:IHandUpService_Login_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="JoinTableCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/JoinTableCode" message="tns:IHandUpService_JoinTableCode_InputMessage" />
@@ -232,8 +232,8 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IHandUpService" type="tns:IHandUpService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="LoginWaiter">
-      <soap:operation soapAction="http://tempuri.org/IHandUpService/LoginWaiter" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

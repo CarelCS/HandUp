@@ -30,7 +30,7 @@ namespace HandUpGUI.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IHandUpService", Namespace="http://tempuri.org/")]
     public partial class HandUpService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback LoginWaiterOperationCompleted;
+        private System.Threading.SendOrPostCallback LoginOperationCompleted;
         
         private System.Threading.SendOrPostCallback JoinTableCodeOperationCompleted;
         
@@ -113,7 +113,7 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
-        public event LoginWaiterCompletedEventHandler LoginWaiterCompleted;
+        public event LoginCompletedEventHandler LoginCompleted;
         
         /// <remarks/>
         public event JoinTableCodeCompletedEventHandler JoinTableCodeCompleted;
@@ -179,34 +179,34 @@ namespace HandUpGUI.localhost {
         public event GetDataUsingDataContractCompletedEventHandler GetDataUsingDataContractCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/LoginWaiter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet LoginWaiter([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sUserName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sPassword) {
-            object[] results = this.Invoke("LoginWaiter", new object[] {
+        public System.Data.DataSet Login([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sUserName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sPassword) {
+            object[] results = this.Invoke("Login", new object[] {
                         sUserName,
                         sPassword});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginWaiterAsync(string sUserName, string sPassword) {
-            this.LoginWaiterAsync(sUserName, sPassword, null);
+        public void LoginAsync(string sUserName, string sPassword) {
+            this.LoginAsync(sUserName, sPassword, null);
         }
         
         /// <remarks/>
-        public void LoginWaiterAsync(string sUserName, string sPassword, object userState) {
-            if ((this.LoginWaiterOperationCompleted == null)) {
-                this.LoginWaiterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginWaiterOperationCompleted);
+        public void LoginAsync(string sUserName, string sPassword, object userState) {
+            if ((this.LoginOperationCompleted == null)) {
+                this.LoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginOperationCompleted);
             }
-            this.InvokeAsync("LoginWaiter", new object[] {
+            this.InvokeAsync("Login", new object[] {
                         sUserName,
-                        sPassword}, this.LoginWaiterOperationCompleted, userState);
+                        sPassword}, this.LoginOperationCompleted, userState);
         }
         
-        private void OnLoginWaiterOperationCompleted(object arg) {
-            if ((this.LoginWaiterCompleted != null)) {
+        private void OnLoginOperationCompleted(object arg) {
+            if ((this.LoginCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LoginWaiterCompleted(this, new LoginWaiterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.LoginCompleted(this, new LoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -884,17 +884,17 @@ namespace HandUpGUI.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void LoginWaiterCompletedEventHandler(object sender, LoginWaiterCompletedEventArgs e);
+    public delegate void LoginCompletedEventHandler(object sender, LoginCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LoginWaiterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class LoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LoginWaiterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal LoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
