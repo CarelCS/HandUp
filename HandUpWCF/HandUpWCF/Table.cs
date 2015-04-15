@@ -85,7 +85,9 @@ namespace HandUpWCF {
         }
 
         public DataSet ActiveTablesForWaiter(int EmployeeID) {
-            DataSet aDataSet = new DataSet();
+            tblTables aTable = new tblTables();
+            aTable.addEquals(tblTables._FKIEMPLOYEEID, EmployeeID);
+            DataSet aDataSet = aTable.executeSelectDataSet();
             return aDataSet;
         }
 

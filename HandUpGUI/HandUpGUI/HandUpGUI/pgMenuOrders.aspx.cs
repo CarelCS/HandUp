@@ -30,8 +30,24 @@ namespace HandUpGUI {
                 PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
                 lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
                 DataSet dsTables = new DataSet();
+                if (hdnTableNumber.Value == "") 
+                {
+                    hdnTableNumber.Value = "1";
+                    Table tbl = new Table();
+                    string TableValue = hdnTableNumber.Value;
+                    lblTableOpened.Text = "Table " + TableValue;
+                    lblTableGUI.Text = "GUI " + TableValue;
+                    PopulateTable("GUI " + TableValue);
+                }
                 dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
-                dvTablesTop.InnerHtml = "<table border='1'><tr><td><div style=\"cursor:pointer;\" id=\"Table1\" onclick=\"OpenTable('1')\">Table 1</div></td><td><div style=\"cursor:pointer;\" id=\"Table2\" onclick=\"OpenTable('2')\">Table 2</div></td><td><div style=\"cursor:pointer;\" id=\"Table3\" onclick=\"OpenTable('3')\">Table 3</div></td></tr></table>";
+                if (dsTables.Tables.Count > 0) {
+                    string sTablesDisplay = "<table border='1'><tr>";
+                    foreach (DataRow dr in dsTables.Tables[0].Rows) {
+                        sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["PKiTableID"].ToString() + "</div></td>";
+                    }
+                    sTablesDisplay += "</tr></table>";
+                    dvTablesTop.InnerHtml = sTablesDisplay;
+                }
             }
             PopulateMenu();
         }
@@ -116,8 +132,10 @@ namespace HandUpGUI {
         protected void PopulateTable(string TableGUI) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.OrdersPerTable(Convert.ToInt32(hdnTableNumber.Value), true);
-            string sOrderList = "<table border='1'><tr><td>Patron 1</td><td>Hamburger and Chips</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
-            sOrderList += "<tr><td>Patron 2</td><td>Steak egg and chips</td><td><div style=\"cursor:pointer;\" id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
+            string sOrderList = "<table border='1'>";
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                sOrderList += "<tr><td>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\">CONFIRM</div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\">Cancel</div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\">TEXT</div></td></tr>";
+            }
             sOrderList += "</table>";
             dvTablesOrders.InnerHtml = sOrderList;
         }
