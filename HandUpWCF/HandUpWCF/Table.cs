@@ -56,13 +56,15 @@ namespace HandUpWCF {
             return "";
         }
 
-        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber) {
+        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber,string sTableName,string sDescription) {
             tblTables aTable = new tblTables();
             aTable.bActiveStatus = 1;
             aTable.dtStartDateTime = DateTime.Now;
             aTable.FKiEmployeeID = FKiEmployeeID;
             aTable.FKiProviderID = FKiProviderID;
             aTable.iGuestNumber = iGuestNumber;
+            aTable.sTableDescription = sDescription;
+            aTable.sTableName = sTableName;
             aTable.UIDGenerated = FKiEmployeeID + GetUniqueKey(3) + DateTime.Now.Month + DateTime.Now.Day;
             //check if UIDGenerated is unique befor insert
             aTable.executeINSERT();

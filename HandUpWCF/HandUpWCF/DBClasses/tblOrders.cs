@@ -417,7 +417,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
 				updateCommand.Parameters.AddWithValue("@inFKiTableID", FKiTableID);
 				updateCommand.Parameters.AddWithValue("@inFKiMenuGroupID", FKiMenuGroupID);
-				updateCommand.Parameters.AddWithValue("@dtOrderDateStamp", dtOrderDateStamp);
+				updateCommand.Parameters.AddWithValue("@indtOrderDateStamp", dtOrderDateStamp);
 				updateCommand.Parameters.AddWithValue("@insMenuItemChanges", sMenuItemChanges);
 				updateCommand.Parameters.AddWithValue("@insOrderStatus", sOrderStatus);
 				updateCommand.Parameters.AddWithValue("@indblOrderValue", dblOrderValue);

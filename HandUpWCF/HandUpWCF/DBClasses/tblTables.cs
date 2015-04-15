@@ -12,6 +12,8 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTSTARTDATETIME="dtStartDateTime";
 		public const string _DTENDDATETIME="dtEndDateTime";
 		public const string _UIDGENERATED="UIDGenerated";
+		public const string _STABLENAME="sTableName";
+		public const string _STABLEDESCRIPTION="sTableDescription";
 		public const string _BACTIVESTATUS="bActiveStatus";
 		public const string _tblTables="tbltables";
 		public const string _Ascending="ASC";
@@ -82,6 +84,24 @@ namespace HandUpWCF.DBClasses{
 				_UIDGenerated = value;
 			}
 		}
+		private string _sTableName;
+		public string sTableName{
+			get {
+				return _sTableName;
+			}
+			set {
+				_sTableName = value;
+			}
+		}
+		private string _sTableDescription;
+		public string sTableDescription{
+			get {
+				return _sTableDescription;
+			}
+			set {
+				_sTableDescription = value;
+			}
+		}
 		private int _bActiveStatus;
 		public int bActiveStatus{
 			get {
@@ -105,6 +125,8 @@ namespace HandUpWCF.DBClasses{
 			this.dtStartDateTime=atblTables.dtStartDateTime;
 			this.dtEndDateTime=atblTables.dtEndDateTime;
 			this.UIDGenerated=atblTables.UIDGenerated;
+			this.sTableName=atblTables.sTableName;
+			this.sTableDescription=atblTables.sTableDescription;
 			this.bActiveStatus=atblTables.bActiveStatus;
 		}
 
@@ -155,6 +177,10 @@ namespace HandUpWCF.DBClasses{
 					atblTables.dtEndDateTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("UIDGenerated");
 					atblTables.UIDGenerated=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sTableName");
+					atblTables.sTableName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sTableDescription");
+					atblTables.sTableDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
 					atblTables.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblTables.Add(atblTables);
@@ -337,6 +363,8 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dtStartDateTime",dtStartDateTime);
 				insertCommand.Parameters.AddWithValue("@dtEndDateTime",dtEndDateTime);
 				insertCommand.Parameters.AddWithValue("@UIDGenerated",UIDGenerated);
+				insertCommand.Parameters.AddWithValue("@sTableName",sTableName);
+				insertCommand.Parameters.AddWithValue("@sTableDescription",sTableDescription);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
              PKiTableID= (Int32)insertCommand.Parameters["@outPKiTableID"].Value;
@@ -353,6 +381,8 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indtStartDateTime", dtStartDateTime);
 				updateCommand.Parameters.AddWithValue("@indtEndDateTime", dtEndDateTime);
 				updateCommand.Parameters.AddWithValue("@inUIDGenerated", UIDGenerated);
+				updateCommand.Parameters.AddWithValue("@insTableName", sTableName);
+				updateCommand.Parameters.AddWithValue("@insTableDescription", sTableDescription);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;
