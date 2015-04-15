@@ -128,6 +128,16 @@ namespace HandUpWCF.DBClasses{
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
 		}
 
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
+		}
+
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
 			List<tblluSubmenugrouptype> listtblluSubmenugrouptype=new List<tblluSubmenugrouptype>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
