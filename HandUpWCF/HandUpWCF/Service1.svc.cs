@@ -97,6 +97,11 @@ namespace HandUpWCF {
             return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
         }
 
+        public DataSet TableAlertPerEmployee(int EmployeeID) {
+            Table clsTable = new Table();
+            return clsTable.TableAlertPerEmployee(EmployeeID);
+        }
+
         #endregion
 
         #region Menu

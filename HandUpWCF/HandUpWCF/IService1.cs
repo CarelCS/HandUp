@@ -56,6 +56,8 @@ namespace HandUpWCF {
         DataSet AllTablesForProviderByDate(int ProviderID, DateTime dtFromDate);
         [OperationContract]
         DataSet AllTablesForProviderByDateStatus(int ProviderID, DateTime dtFromDate, int StatusID);
+        [OperationContract]
+        DataSet TableAlertPerEmployee(int EmployeeID);
 
         #endregion
 
