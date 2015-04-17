@@ -39,7 +39,7 @@
         document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value = OrderID + "|";
         for (i = 0; i < Counter; i++) {
             try {
-                alert(i);
+                //alert(i);
                 var SelectID = OrderID + "_ddlFirstSub_" + i;
                 var LiStAsk = document.getElementById(SelectID);
                 var SelVal = LiStAsk.value;
@@ -47,7 +47,8 @@
                 //alert(SelVal);
                 document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value += "~ " + SelVal + " ";
             }
-            catch (ex) { alert(SelVal); }
+            catch (ex) { //alert(SelVal); 
+            }
         }
         //alert("ORDER THE SHIT");
         var ClickChangeAlert = document.getElementById("<%= btnPlaceOrder.ClientID %>");
