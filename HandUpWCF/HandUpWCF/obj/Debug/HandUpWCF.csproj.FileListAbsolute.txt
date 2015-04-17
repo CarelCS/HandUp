@@ -7,7 +7,11 @@ C:\Development\Handup\HandUp\HandUpWCF\HandUpWCF\bin\HandUpWCF.pdb
 C:\Development\Handup\HandUp\HandUpWCF\HandUpWCF\obj\Debug\HandUpWCF.dll
 C:\Development\Handup\HandUp\HandUpWCF\HandUpWCF\obj\Debug\HandUpWCF.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Development\Handup\HandUp\HandUpWCF\HandUpWCF\obj\Debug\HandUpWCF.csprojResolveAssemblyReference.cache
+=======
+C:\Development\HandUp\HandUpWCF\HandUpWCF\obj\Debug\HandUpWCF.csprojResolveAssemblyReference.cache
+>>>>>>> origin/HandUpWCF
 =======
 C:\Development\HandUp\HandUpWCF\HandUpWCF\obj\Debug\HandUpWCF.csprojResolveAssemblyReference.cache
 >>>>>>> origin/HandUpWCF
