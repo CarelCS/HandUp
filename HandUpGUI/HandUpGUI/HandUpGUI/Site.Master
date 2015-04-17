@@ -9,9 +9,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server" enableviewstate="true">
-    <div class="page">
-        <div class="main">
+    <form runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG-01.png); background-repeat:repeat" >
+    <div class="page" style="background-color:transparent">
+        <div class="main" style="background-color:transparent">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>
         <div class="clear">

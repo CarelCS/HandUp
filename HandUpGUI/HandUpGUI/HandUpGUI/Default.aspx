@@ -22,10 +22,22 @@
             getMobileHeight();
         };
 
+        function Login() {
+            var ClickChangeTable = document.getElementById("<%= btnJoinTable.ClientID %>");
+            ClickChangeTable.click();
+        }
 
+        function Register() {
+            var ClickChangeTable = document.getElementById("<%= btnRegister.ClientID %>");
+            ClickChangeTable.click();
+        }
     </script>
     <p>
-    <table width="100%" >
+    <table width="100%" style="background-color:transparent">
+        <tr>
+            <td colspan="2">
+                <asp:Image ID="Image3" ImageUrl="~/Images/Icons/Logo-01.png" runat="server" /></td>
+        </tr>
         <tr>
             <td align="right"><asp:Label ID="lblUser" runat="server" Text="User Name : "></asp:Label></td>
             <td align="left"><asp:TextBox ID="txtUserName" runat="server" Text="Carine"></asp:TextBox></td>
@@ -39,22 +51,24 @@
             <td align="left"><asp:TextBox ID="txtTableCode" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
-            <td align="right"></td>
-            <td align="left"><asp:Button ID="btnJoinTable" runat="server" Text="Join Table" onclick="btnJoinTable_Click" /></td>
+            <td align="right"><div id="dvRegister" onclick="Register()">
+                <asp:Image ID="Image2" ImageUrl="~/Images/Icons/Register-01.png" runat="server" /></div></td>
+            <td align="left"><div id="dvLogin" onclick="Login()">
+                <asp:Image ID="Image1" ImageUrl="~/Images/Icons/Login-01.png" runat="server" /></div></td>
         </tr>
         <tr>
             <td align="right"><asp:Label ID="lblLoginFailure" runat="server" Text=""></asp:Label></td>
         </tr>
         <tr>
             <td></td>
-            <td>
-                <asp:Button ID="btnRegister" runat="server" Text="Register" 
-                    onclick="btnRegister_Click" /></td>
+            <td></td>
         </tr>
     </table>
         <asp:HiddenField ID="screenHeight" runat="server" />
         <asp:HiddenField ID="screenWidth" runat="server" />
         <div style="visibility:collapse">
+            <asp:Button ID="btnRegister" runat="server" Text="Register" onclick="btnRegister_Click" />
+            <asp:Button ID="btnJoinTable" runat="server" Text="Join Table" onclick="btnJoinTable_Click" />
             <asp:Button ID="btnSendSize" runat="server" Text="Button" onclick="btnSendSize_Click" />
         </div>
 
