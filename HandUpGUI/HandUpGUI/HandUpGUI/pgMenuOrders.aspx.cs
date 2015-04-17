@@ -11,11 +11,13 @@ using System.Security.Cryptography;
 namespace HandUpGUI {
     public partial class pgMenuOrders : System.Web.UI.Page {
         public string PKiProviderID;
+        public string PKiEmployeeID;
         protected void Page_Load(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = new DataSet();
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
+            PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
             if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
                 if ((DataSet)Session["sTableCodeActive"] != null) {
                     //a guest with table code only
@@ -163,7 +165,12 @@ namespace HandUpGUI {
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = new DataSet();
-            //ds = WSNew.
+            ds = WSNew.TableAlertPerEmployee(Convert.ToInt32(PKiEmployeeID), true);
+            if (ds.Tables[0].Rows.Count > 0) {
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+
+                }
+            }
             lblAlert.Text = "ALERT";
         }
 

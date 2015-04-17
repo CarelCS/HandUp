@@ -106,7 +106,7 @@
         document.getElementById('dvAddTable').style.display = '';
     }
 
-    //setInterval(myCheckAlert, 50000000);
+    setInterval(myCheckAlert, 5000);
 
     function myCheckAlert() {
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;

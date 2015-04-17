@@ -64,6 +64,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback MenuForProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback EditEmployeeOperationCompleted;
@@ -174,6 +176,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event MenuForProviderCompletedEventHandler MenuForProviderCompleted;
+        
+        /// <remarks/>
+        public event TableAlertPerEmployeeCompletedEventHandler TableAlertPerEmployeeCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -785,6 +790,38 @@ namespace HandUpGUI.localhost {
             if ((this.MenuForProviderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MenuForProviderCompleted(this, new MenuForProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/TableAlertPerEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet TableAlertPerEmployee(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
+            object[] results = this.Invoke("TableAlertPerEmployee", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TableAlertPerEmployeeAsync(int EmployeeID, bool EmployeeIDSpecified) {
+            this.TableAlertPerEmployeeAsync(EmployeeID, EmployeeIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void TableAlertPerEmployeeAsync(int EmployeeID, bool EmployeeIDSpecified, object userState) {
+            if ((this.TableAlertPerEmployeeOperationCompleted == null)) {
+                this.TableAlertPerEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTableAlertPerEmployeeOperationCompleted);
+            }
+            this.InvokeAsync("TableAlertPerEmployee", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified}, this.TableAlertPerEmployeeOperationCompleted, userState);
+        }
+        
+        private void OnTableAlertPerEmployeeOperationCompleted(object arg) {
+            if ((this.TableAlertPerEmployeeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TableAlertPerEmployeeCompleted(this, new TableAlertPerEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1593,6 +1630,32 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal MenuForProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void TableAlertPerEmployeeCompletedEventHandler(object sender, TableAlertPerEmployeeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TableAlertPerEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TableAlertPerEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
