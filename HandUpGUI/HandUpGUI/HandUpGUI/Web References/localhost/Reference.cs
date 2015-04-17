@@ -443,24 +443,26 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string AddTable(int FKiEmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool FKiEmployeeIDSpecified, int FKiProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool FKiProviderIDSpecified, int iGuestNumber, [System.Xml.Serialization.XmlIgnoreAttribute()] bool iGuestNumberSpecified) {
+        public string AddTable(int FKiEmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool FKiEmployeeIDSpecified, int FKiProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool FKiProviderIDSpecified, int iGuestNumber, [System.Xml.Serialization.XmlIgnoreAttribute()] bool iGuestNumberSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string TableName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Description) {
             object[] results = this.Invoke("AddTable", new object[] {
                         FKiEmployeeID,
                         FKiEmployeeIDSpecified,
                         FKiProviderID,
                         FKiProviderIDSpecified,
                         iGuestNumber,
-                        iGuestNumberSpecified});
+                        iGuestNumberSpecified,
+                        TableName,
+                        Description});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void AddTableAsync(int FKiEmployeeID, bool FKiEmployeeIDSpecified, int FKiProviderID, bool FKiProviderIDSpecified, int iGuestNumber, bool iGuestNumberSpecified) {
-            this.AddTableAsync(FKiEmployeeID, FKiEmployeeIDSpecified, FKiProviderID, FKiProviderIDSpecified, iGuestNumber, iGuestNumberSpecified, null);
+        public void AddTableAsync(int FKiEmployeeID, bool FKiEmployeeIDSpecified, int FKiProviderID, bool FKiProviderIDSpecified, int iGuestNumber, bool iGuestNumberSpecified, string TableName, string Description) {
+            this.AddTableAsync(FKiEmployeeID, FKiEmployeeIDSpecified, FKiProviderID, FKiProviderIDSpecified, iGuestNumber, iGuestNumberSpecified, TableName, Description, null);
         }
         
         /// <remarks/>
-        public void AddTableAsync(int FKiEmployeeID, bool FKiEmployeeIDSpecified, int FKiProviderID, bool FKiProviderIDSpecified, int iGuestNumber, bool iGuestNumberSpecified, object userState) {
+        public void AddTableAsync(int FKiEmployeeID, bool FKiEmployeeIDSpecified, int FKiProviderID, bool FKiProviderIDSpecified, int iGuestNumber, bool iGuestNumberSpecified, string TableName, string Description, object userState) {
             if ((this.AddTableOperationCompleted == null)) {
                 this.AddTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddTableOperationCompleted);
             }
@@ -470,7 +472,9 @@ namespace HandUpGUI.localhost {
                         FKiProviderID,
                         FKiProviderIDSpecified,
                         iGuestNumber,
-                        iGuestNumberSpecified}, this.AddTableOperationCompleted, userState);
+                        iGuestNumberSpecified,
+                        TableName,
+                        Description}, this.AddTableOperationCompleted, userState);
         }
         
         private void OnAddTableOperationCompleted(object arg) {

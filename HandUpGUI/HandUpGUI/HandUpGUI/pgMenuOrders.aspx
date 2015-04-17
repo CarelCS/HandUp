@@ -109,6 +109,15 @@
         var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
         ClickChangeAlert.click();
     }
+
+    function ChangemenuArea(GroupID) {
+        var X = document.getElementById("<%= hdnGroupHeaders.ClientID %>").value;
+        MyArray = Split(X,"|")
+        for (i = 0; i < a.length; i++) {
+            document.getElementById("dvGroup" + a[i]).style.display = 'none';
+        }
+        document.getElementById(GroupID).style.display = '';
+    }
 </script>
 <body>
     <form id="form1" runat="server" enableviewstate="true">
@@ -200,10 +209,9 @@
                     <table>
                         <tr>
                             <td>
-                                THE MENU
+                            <div id="dvMenuGroup" runat="server"></div><br />
+                            <div id="dvMenu" runat="server"></div>
                             </td>
-                            <div id="dvMenu" runat="server">
-                            </div>
                         </tr>
                     </table>
                 </div>
@@ -270,6 +278,7 @@
         <asp:HiddenField ID="hdnMaxSubs" runat="server" />
         <asp:HiddenField ID="hdnOrderSelectValues" runat="server" />
         <asp:HiddenField ID="hdnOrderStatus" runat="server" />
+        <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
     </div>
     </form>
 </body>
