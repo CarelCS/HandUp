@@ -60,26 +60,29 @@ namespace HandUpGUI {
             string MenuTotal = "";
             string MenuHeaders = "<table>";
             string menuHeaderCollection = "";
-            foreach (DataRow drGroups in ds.Tables["MenuGroups"].Rows) {
+            foreach (DataRow drGroups in ds.Tables["MenuGroup"].Rows) {
                 menuHeaderCollection += drGroups["PKiMenuGroupID"].ToString() + "|";
-                MenuHeaders += "<tr><td><div id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups[""].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td></tr>";
+                MenuHeaders += "<tr><td><div id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td></tr>";
                 MenuTotal += "<div id=\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\"><table border='1'>";
                 string CurrentMenuID = "";
                 int ItemRow = 0;
                 hdnMaxSubs.Value = (ds.Tables.Count - 1).ToString();
-                foreach (DataRow dr in ds.Tables[0].Rows) {
-                    if (dr["FKiMenuID"].ToString() == "" && dr["FKiMenuGroupID"].ToString() == drGroups["PKiMenuGroupID"].ToString()) {
+                foreach (DataRow dr in ds.Tables[0].Rows) 
+                {
+                    if (dr["FKiMenuID"].ToString() == "" && dr["FKiMenuGroupID"].ToString() == drGroups["PKiMenuGroupID"].ToString()) 
+                    {
                         MenuTotal += "<tr><td><img id=\"Image1\" src=\"" + dr["imgMenuItemImage"].ToString() + "\" height='50' /></td><td>" + dr["sMenuItemName"].ToString() + "</td><td>" + dr["sMenuItemDescription"].ToString();
                         CurrentMenuID = dr["PKiMenuID"].ToString();
+                        int ItemColumn = 0;
                         foreach (DataTable dt in ds.Tables) {
-                            int ItemColumn = 0;
                             if (dt.TableName != "Menu" && dt.TableName != "MenuGroup") {
                                 string MenuTotalSUB = "<select name=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\" id=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\">";
+                                ItemColumn++; 
                                 MenuTotalSUB += "<option value='1'>--</option>";
                                 bool IsItem = false;
                                 foreach (DataRow drInner in dt.Rows) {
                                     if (drInner["FKiMenuID"].ToString() == CurrentMenuID) {
-                                        MenuTotalSUB += "<option value=\"" + drInner["sMenuItemName"].ToString() + "\">" + drInner["sMenuItemName"].ToString() + "</option>";
+                                        MenuTotalSUB += "<option value=\"" + drInner["sSubMenuName"].ToString() + "\">" + drInner["sSubMenuName"].ToString() + "</option>";
                                         IsItem = true;
                                     }
                                 }
@@ -89,7 +92,6 @@ namespace HandUpGUI {
                                 }
 
                             }
-                            ItemColumn++;
                         }
                         MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order_now.png\" height='50' /></div></td></tr>";
                         ItemRow++;
@@ -159,6 +161,9 @@ namespace HandUpGUI {
         }
 
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = new DataSet();
+            //ds = WSNew.
             lblAlert.Text = "ALERT";
         }
 
@@ -175,7 +180,7 @@ namespace HandUpGUI {
             string OrderID = OrderFull[0];
             string ChoicesString = OrderFull[1];
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoicesString));
+            PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoicesString.Replace("~", "<br />")));
         }
 
         protected void btnUpdateOrderStatus_Click(object sender, EventArgs e) {

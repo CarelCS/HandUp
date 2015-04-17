@@ -35,14 +35,21 @@
 
     function Order(OrderID) {
         var Counter = document.getElementById("<%= hdnMaxSubs.ClientID %>").value;
+        //alert(Counter);
         document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value = OrderID + "|";
         for (i = 0; i < Counter; i++) {
-            var SelectID = OrderID + "_ddlFirstSub_" + i;
-            var LiStAsk = document.getElementById(SelectID);
-            var SelVal = LiStAsk.value;
-            alert(SelVal);
-            document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value += SelVal + " ";
+            try {
+                alert(i);
+                var SelectID = OrderID + "_ddlFirstSub_" + i;
+                var LiStAsk = document.getElementById(SelectID);
+                var SelVal = LiStAsk.value;
+                //alert(SelVal);
+                //alert(SelVal);
+                document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value += "~ " + SelVal + " ";
+            }
+            catch (ex) { alert(SelVal); }
         }
+        //alert("ORDER THE SHIT");
         var ClickChangeAlert = document.getElementById("<%= btnPlaceOrder.ClientID %>");
         ClickChangeAlert.click();
     }
@@ -98,7 +105,7 @@
         document.getElementById('dvAddTable').style.display = '';
     }
 
-    setInterval(myCheckAlert, 5000);
+    //setInterval(myCheckAlert, 50000000);
 
     function myCheckAlert() {
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
@@ -111,6 +118,7 @@
     }
 
     function ChangemenuArea(GroupID) {
+        alert(GroupID);
         var X = document.getElementById("<%= hdnGroupHeaders.ClientID %>").value;
         MyArray = Split(X,"|")
         for (i = 0; i < a.length; i++) {
