@@ -316,29 +316,129 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblAdverts gettblAdverts_PKiProviderID(){
-				tblAdverts atblAdverts=new tblAdverts(PKiProviderID);
-				return atblAdverts;
+			public List<tblAdverts> gettblAdverts_FKiProviderIDList(){
+				tblAdverts atblAdverts=new tblAdverts();
+				atblAdverts.addEquals("FKiProviderID",PKiProviderID);
+				return atblAdverts.executeSelect();
 			}
 
-			public tblEmployees gettblEmployees_PKiProviderID(){
-				tblEmployees atblEmployees=new tblEmployees(PKiProviderID);
-				return atblEmployees;
+			public List<tblAdverts> gettblAdverts_FKiProviderIDList(string localsOrderBy,string localsOrderType){
+				tblAdverts atblAdverts=new tblAdverts();
+				atblAdverts.addEquals("FKiProviderID",PKiProviderID);
+				return atblAdverts.executeSelect(localsOrderBy,localsOrderType);
 			}
 
-			public tblMenu gettblMenu_PKiProviderID(){
-				tblMenu atblMenu=new tblMenu(PKiProviderID);
-				return atblMenu;
+			public List<tblAdverts> gettblAdverts_FKiProviderIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblAdverts atblAdverts=new tblAdverts();
+				atblAdverts.addToSqlWhere(sAddToSqlWhere);
+				atblAdverts.addEquals("FKiProviderID",PKiProviderID);
+				return atblAdverts.executeSelect(localsOrderBy,localsOrderType);
 			}
 
-			public tblOrders gettblOrders_PKiProviderID(){
-				tblOrders atblOrders=new tblOrders(PKiProviderID);
-				return atblOrders;
+			public List<tblAdverts> gettblAdverts_FKiProviderIDList(string sAddToSqlWhere){
+				tblAdverts atblAdverts=new tblAdverts();
+				atblAdverts.addToSqlWhere(sAddToSqlWhere);
+				return atblAdverts.executeSelect();
 			}
 
-			public tblTables gettblTables_PKiProviderID(){
-				tblTables atblTables=new tblTables(PKiProviderID);
-				return atblTables;
+			public List<tblEmployees> gettblEmployees_FKiProviderIDList(){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addEquals("FKiProviderID",PKiProviderID);
+				return atblEmployees.executeSelect();
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiProviderIDList(string localsOrderBy,string localsOrderType){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addEquals("FKiProviderID",PKiProviderID);
+				return atblEmployees.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiProviderIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addToSqlWhere(sAddToSqlWhere);
+				atblEmployees.addEquals("FKiProviderID",PKiProviderID);
+				return atblEmployees.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiProviderIDList(string sAddToSqlWhere){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addToSqlWhere(sAddToSqlWhere);
+				return atblEmployees.executeSelect();
+			}
+
+			public List<tblMenu> gettblMenu_FKiProviderIDList(){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addEquals("FKiProviderID",PKiProviderID);
+				return atblMenu.executeSelect();
+			}
+
+			public List<tblMenu> gettblMenu_FKiProviderIDList(string localsOrderBy,string localsOrderType){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addEquals("FKiProviderID",PKiProviderID);
+				return atblMenu.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblMenu> gettblMenu_FKiProviderIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addToSqlWhere(sAddToSqlWhere);
+				atblMenu.addEquals("FKiProviderID",PKiProviderID);
+				return atblMenu.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblMenu> gettblMenu_FKiProviderIDList(string sAddToSqlWhere){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addToSqlWhere(sAddToSqlWhere);
+				return atblMenu.executeSelect();
+			}
+
+			public List<tblOrders> gettblOrders_FKiProviderIDList(){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiProviderID",PKiProviderID);
+				return atblOrders.executeSelect();
+			}
+
+			public List<tblOrders> gettblOrders_FKiProviderIDList(string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiProviderID",PKiProviderID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiProviderIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				atblOrders.addEquals("FKiProviderID",PKiProviderID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiProviderIDList(string sAddToSqlWhere){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				return atblOrders.executeSelect();
+			}
+
+			public List<tblTables> gettblTables_FKiProviderIDList(){
+				tblTables atblTables=new tblTables();
+				atblTables.addEquals("FKiProviderID",PKiProviderID);
+				return atblTables.executeSelect();
+			}
+
+			public List<tblTables> gettblTables_FKiProviderIDList(string localsOrderBy,string localsOrderType){
+				tblTables atblTables=new tblTables();
+				atblTables.addEquals("FKiProviderID",PKiProviderID);
+				return atblTables.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTables> gettblTables_FKiProviderIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblTables atblTables=new tblTables();
+				atblTables.addToSqlWhere(sAddToSqlWhere);
+				atblTables.addEquals("FKiProviderID",PKiProviderID);
+				return atblTables.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTables> gettblTables_FKiProviderIDList(string sAddToSqlWhere){
+				tblTables atblTables=new tblTables();
+				atblTables.addToSqlWhere(sAddToSqlWhere);
+				return atblTables.executeSelect();
 			}
 
 			public tblProviders executeINSERT(){

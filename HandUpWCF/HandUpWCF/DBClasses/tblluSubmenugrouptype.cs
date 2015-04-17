@@ -236,9 +236,29 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblluSubmenus gettblluSubmenus_PKiSubMenuGroupTypeID(){
-				tblluSubmenus atblluSubmenus=new tblluSubmenus(PKiSubMenuGroupTypeID);
-				return atblluSubmenus;
+			public List<tblluSubmenus> gettblluSubmenus_FKiSubMenuGroupTypeIDList(){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addEquals("FKiSubMenuGroupTypeID",PKiSubMenuGroupTypeID);
+				return atblluSubmenus.executeSelect();
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiSubMenuGroupTypeIDList(string localsOrderBy,string localsOrderType){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addEquals("FKiSubMenuGroupTypeID",PKiSubMenuGroupTypeID);
+				return atblluSubmenus.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiSubMenuGroupTypeIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addToSqlWhere(sAddToSqlWhere);
+				atblluSubmenus.addEquals("FKiSubMenuGroupTypeID",PKiSubMenuGroupTypeID);
+				return atblluSubmenus.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiSubMenuGroupTypeIDList(string sAddToSqlWhere){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addToSqlWhere(sAddToSqlWhere);
+				return atblluSubmenus.executeSelect();
 			}
 
 			public tblluSubmenugrouptype executeINSERT(){

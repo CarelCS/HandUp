@@ -223,9 +223,29 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblMenu gettblMenu_PKiMenuGroupID(){
-				tblMenu atblMenu=new tblMenu(PKiMenuGroupID);
-				return atblMenu;
+			public List<tblMenu> gettblMenu_FKiMenuGroupIDList(){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addEquals("FKiMenuGroupID",PKiMenuGroupID);
+				return atblMenu.executeSelect();
+			}
+
+			public List<tblMenu> gettblMenu_FKiMenuGroupIDList(string localsOrderBy,string localsOrderType){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addEquals("FKiMenuGroupID",PKiMenuGroupID);
+				return atblMenu.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblMenu> gettblMenu_FKiMenuGroupIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addToSqlWhere(sAddToSqlWhere);
+				atblMenu.addEquals("FKiMenuGroupID",PKiMenuGroupID);
+				return atblMenu.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblMenu> gettblMenu_FKiMenuGroupIDList(string sAddToSqlWhere){
+				tblMenu atblMenu=new tblMenu();
+				atblMenu.addToSqlWhere(sAddToSqlWhere);
+				return atblMenu.executeSelect();
 			}
 
 			public tblluMenugroups executeINSERT(){
