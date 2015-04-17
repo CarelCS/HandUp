@@ -172,6 +172,7 @@ namespace HandUpGUI {
                 }
             }
             lblAlert.Text = "ALERT";
+
         }
 
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {

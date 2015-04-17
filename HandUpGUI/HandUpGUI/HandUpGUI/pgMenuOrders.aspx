@@ -6,6 +6,7 @@
     <title></title>
 </head>
 <script type="text/javascript">
+
     function OpenTable(Number) {
         document.getElementById("<%= hdnTableNumber.ClientID %>").value = Number;
         var ClickChangeTable = document.getElementById("<%= btnChangeTable.ClientID %>");
