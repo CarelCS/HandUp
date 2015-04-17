@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using HandUpWCF.DBClasses;
 
 namespace HandUpWCF {
     public class Employees {
@@ -23,5 +25,24 @@ namespace HandUpWCF {
         public string bGender { get; set; }
         public int FKiProviderID { get; set; }
         public string bActiveStatus { get; set; }
+
+        public DataSet TableAlertPerEmployee(int EmployeeID) {
+            tblEmployees aEmployee = new tblEmployees(EmployeeID);
+            tblTablealerts aTableAlert = new tblTablealerts();
+            aTableAlert.addEquals(tblTablealerts._BACTIVESTATUS, 1);
+            aTableAlert.addAND();
+            aTableAlert.addEquals(tblTablealerts._FKIEPLOYEEID, EmployeeID);
+            DataSet aDataset = aTableAlert.executeSelectDataSet();
+            DataSet dsTableName = new DataSet();
+            dsTableName.Tables.Add("TableNames");
+            dsTableName.Tables[0].Columns.Add(tblTables._PKITABLEID);
+            dsTableName.Tables[0].Columns.Add(tblTables._STABLENAME);
+            foreach (DataRow aTableAlertRow in aDataset.Tables[0].Rows) {
+                tblTables aTable = new tblTables((int)aTableAlertRow[tblTablealerts._FKITABLEID]);
+                dsTableName.Tables[0].Rows.Add(new object[] { aTable.PKiTableID, aTable.sTableName });
+            }
+            aDataset.Tables.Add(dsTableName.Tables[0].Copy());
+            return aDataset;
+        }
     }
 }

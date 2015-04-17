@@ -97,12 +97,7 @@ namespace HandUpWCF {
             return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
         }
 
-        public DataSet TableAlertPerEmployee(int EmployeeID) {
-            Table clsTable = new Table();
-            return clsTable.TableAlertPerEmployee(EmployeeID);
-        }
-
-        #endregion
+       #endregion
 
         #region Menu
 
@@ -111,6 +106,15 @@ namespace HandUpWCF {
             return table.MenuForProvider(ProviderID);
 
         }
+        #endregion
+
+        #region Employee
+
+        public DataSet TableAlertPerEmployee(int EmployeeID) {
+            Employees clsEmployees = new Employees();
+            return clsEmployees.TableAlertPerEmployee(EmployeeID);
+        }
+
         #endregion
 
         public string AddEmployee() { return string.Format("AddEmployee"); }
