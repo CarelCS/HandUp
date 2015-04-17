@@ -55,9 +55,9 @@ namespace HandUpWCF {
             return clsTable.JoinTableCode(sTableCode);
         }
 
-        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber) {
+        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber,string TableName,string Description) {
             Table clsTable = new Table();
-            return clsTable.AddTable(FKiEmployeeID,FKiProviderID,iGuestNumber);
+            return clsTable.AddTable(FKiEmployeeID,FKiProviderID,iGuestNumber,TableName,Description);
         }
 
         public string AddPatronToTable(int PkiTableID) {
@@ -95,6 +95,11 @@ namespace HandUpWCF {
         public DataSet AllTablesForProviderByDateStatus(int ProviderID, DateTime dtFromDate, int StatusID) {
             Table clsTable = new Table();
             return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
+        }
+
+        public DataSet TableAlertPerEmployee(int EmployeeID) {
+            Table clsTable = new Table();
+            return clsTable.TableAlertPerEmployee(EmployeeID);
         }
 
         #endregion

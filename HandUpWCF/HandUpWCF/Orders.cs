@@ -48,8 +48,18 @@ namespace HandUpWCF {
             DataSet aDataSet = aOrder.executeSelectDataSet();
             aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMDESCRIPTION);
             aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMNAME);
+
+            Dictionary<int, tblMenu> dicMenu = new Dictionary<int, tblMenu>();
             foreach (DataRow aMenuItemRow in aDataSet.Tables[0].Rows) {
-                tblMenu aMenuItem = new tblMenu((int)aMenuItemRow[tblOrders._FKIMENUID]);
+                int iPKMenuID=Convert.ToInt32(aMenuItemRow[tblOrders._FKIMENUID]);
+                tblMenu aMenuItem;
+                if (dicMenu.ContainsKey(iPKMenuID)) {
+                    aMenuItem = dicMenu[iPKMenuID];
+                }
+                else {
+                    aMenuItem = new tblMenu((int)aMenuItemRow[tblOrders._FKIMENUID]);
+                    dicMenu.Add(aMenuItem.PKiMenuID, aMenuItem);
+                }
                 aMenuItemRow[tblMenu._SMENUITEMDESCRIPTION] = aMenuItem.sMenuItemDescription;
                 aMenuItemRow[tblMenu._SMENUITEMNAME] = aMenuItem.sMenuItemName;
             }
