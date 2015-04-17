@@ -310,6 +310,16 @@ namespace HandUpWCF.DBClasses{
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
 		}
 
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
+		}
+
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
 			List<tblEmployees> listtblEmployees=new List<tblEmployees>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
@@ -446,14 +456,54 @@ namespace HandUpWCF.DBClasses{
 				return atblProviders;
 			}
 
-			public tblTablealerts gettblTablealerts_PKiEmployeeID(){
-				tblTablealerts atblTablealerts=new tblTablealerts(PKiEmployeeID);
-				return atblTablealerts;
+			public List<tblTablealerts> gettblTablealerts_FKiEployeeIDList(){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addEquals("FKiEployeeID",PKiEmployeeID);
+				return atblTablealerts.executeSelect();
 			}
 
-			public tblTables gettblTables_PKiEmployeeID(){
-				tblTables atblTables=new tblTables(PKiEmployeeID);
-				return atblTables;
+			public List<tblTablealerts> gettblTablealerts_FKiEployeeIDList(string localsOrderBy,string localsOrderType){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addEquals("FKiEployeeID",PKiEmployeeID);
+				return atblTablealerts.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiEployeeIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addToSqlWhere(sAddToSqlWhere);
+				atblTablealerts.addEquals("FKiEployeeID",PKiEmployeeID);
+				return atblTablealerts.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiEployeeIDList(string sAddToSqlWhere){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addToSqlWhere(sAddToSqlWhere);
+				return atblTablealerts.executeSelect();
+			}
+
+			public List<tblTables> gettblTables_FKiEmployeeIDList(){
+				tblTables atblTables=new tblTables();
+				atblTables.addEquals("FKiEmployeeID",PKiEmployeeID);
+				return atblTables.executeSelect();
+			}
+
+			public List<tblTables> gettblTables_FKiEmployeeIDList(string localsOrderBy,string localsOrderType){
+				tblTables atblTables=new tblTables();
+				atblTables.addEquals("FKiEmployeeID",PKiEmployeeID);
+				return atblTables.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTables> gettblTables_FKiEmployeeIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblTables atblTables=new tblTables();
+				atblTables.addToSqlWhere(sAddToSqlWhere);
+				atblTables.addEquals("FKiEmployeeID",PKiEmployeeID);
+				return atblTables.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTables> gettblTables_FKiEmployeeIDList(string sAddToSqlWhere){
+				tblTables atblTables=new tblTables();
+				atblTables.addToSqlWhere(sAddToSqlWhere);
+				return atblTables.executeSelect();
 			}
 
 			public tblEmployees executeINSERT(){

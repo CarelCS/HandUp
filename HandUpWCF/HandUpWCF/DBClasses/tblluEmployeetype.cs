@@ -115,6 +115,16 @@ namespace HandUpWCF.DBClasses{
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
 		}
 
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
+		}
+
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
 			List<tblluEmployeetype> listtblluEmployeetype=new List<tblluEmployeetype>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
@@ -213,9 +223,29 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblEmployees gettblEmployees_PKiEmployeeTypeID(){
-				tblEmployees atblEmployees=new tblEmployees(PKiEmployeeTypeID);
-				return atblEmployees;
+			public List<tblEmployees> gettblEmployees_FKiEmployeeTypeList(){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addEquals("FKiEmployeeType",PKiEmployeeTypeID);
+				return atblEmployees.executeSelect();
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiEmployeeTypeList(string localsOrderBy,string localsOrderType){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addEquals("FKiEmployeeType",PKiEmployeeTypeID);
+				return atblEmployees.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiEmployeeTypeList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addToSqlWhere(sAddToSqlWhere);
+				atblEmployees.addEquals("FKiEmployeeType",PKiEmployeeTypeID);
+				return atblEmployees.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblEmployees> gettblEmployees_FKiEmployeeTypeList(string sAddToSqlWhere){
+				tblEmployees atblEmployees=new tblEmployees();
+				atblEmployees.addToSqlWhere(sAddToSqlWhere);
+				return atblEmployees.executeSelect();
 			}
 
 			public tblluEmployeetype executeINSERT(){

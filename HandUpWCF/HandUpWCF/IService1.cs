@@ -39,7 +39,7 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet JoinTableCode(string sTableCode);
         [OperationContract]
-        string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber);
+        string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber, string TableName, string Description);
         [OperationContract]
         string AddPatronToTable(int PkiTableID);
         [OperationContract]

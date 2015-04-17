@@ -206,6 +206,16 @@ namespace HandUpWCF.DBClasses{
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
 		}
 
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
+		}
+
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
 			List<tblMenu> listtblMenu=new List<tblMenu>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
@@ -360,11 +370,6 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblluSubmenus gettblluSubmenus_PKiMenuID(){
-				tblluSubmenus atblluSubmenus=new tblluSubmenus(PKiMenuID);
-				return atblluSubmenus;
-			}
-
 			public tblluMenugroups gettblluMenugroups_FKiMenuGroupID(){
 				tblluMenugroups atblluMenugroups=new tblluMenugroups(FKiMenuGroupID);
 				return atblluMenugroups;
@@ -375,9 +380,54 @@ namespace HandUpWCF.DBClasses{
 				return atblProviders;
 			}
 
-			public tblOrders gettblOrders_PKiMenuID(){
-				tblOrders atblOrders=new tblOrders(PKiMenuID);
-				return atblOrders;
+			public List<tblluSubmenus> gettblluSubmenus_FKiMenuIDList(){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addEquals("FKiMenuID",PKiMenuID);
+				return atblluSubmenus.executeSelect();
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiMenuIDList(string localsOrderBy,string localsOrderType){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addEquals("FKiMenuID",PKiMenuID);
+				return atblluSubmenus.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiMenuIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addToSqlWhere(sAddToSqlWhere);
+				atblluSubmenus.addEquals("FKiMenuID",PKiMenuID);
+				return atblluSubmenus.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblluSubmenus> gettblluSubmenus_FKiMenuIDList(string sAddToSqlWhere){
+				tblluSubmenus atblluSubmenus=new tblluSubmenus();
+				atblluSubmenus.addToSqlWhere(sAddToSqlWhere);
+				return atblluSubmenus.executeSelect();
+			}
+
+			public List<tblOrders> gettblOrders_FKiMenuIDList(){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiMenuID",PKiMenuID);
+				return atblOrders.executeSelect();
+			}
+
+			public List<tblOrders> gettblOrders_FKiMenuIDList(string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiMenuID",PKiMenuID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiMenuIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				atblOrders.addEquals("FKiMenuID",PKiMenuID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiMenuIDList(string sAddToSqlWhere){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				return atblOrders.executeSelect();
 			}
 
 			public tblMenu executeINSERT(){

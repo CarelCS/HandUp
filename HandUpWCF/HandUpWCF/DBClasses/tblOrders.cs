@@ -219,6 +219,16 @@ namespace HandUpWCF.DBClasses{
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
 		}
 
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
+		}
+
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
 			List<tblOrders> listtblOrders=new List<tblOrders>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
@@ -417,7 +427,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@inFKiMenuID", FKiMenuID);
 				updateCommand.Parameters.AddWithValue("@inFKiTableID", FKiTableID);
 				updateCommand.Parameters.AddWithValue("@inFKiMenuGroupID", FKiMenuGroupID);
-				updateCommand.Parameters.AddWithValue("@dtOrderDateStamp", dtOrderDateStamp);
+				updateCommand.Parameters.AddWithValue("@indtOrderDateStamp", dtOrderDateStamp);
 				updateCommand.Parameters.AddWithValue("@insMenuItemChanges", sMenuItemChanges);
 				updateCommand.Parameters.AddWithValue("@insOrderStatus", sOrderStatus);
 				updateCommand.Parameters.AddWithValue("@indblOrderValue", dblOrderValue);

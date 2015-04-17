@@ -12,6 +12,8 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTSTARTDATETIME="dtStartDateTime";
 		public const string _DTENDDATETIME="dtEndDateTime";
 		public const string _UIDGENERATED="UIDGenerated";
+		public const string _STABLENAME="sTableName";
+		public const string _STABLEDESCRIPTION="sTableDescription";
 		public const string _BACTIVESTATUS="bActiveStatus";
 		public const string _tblTables="tbltables";
 		public const string _Ascending="ASC";
@@ -82,6 +84,24 @@ namespace HandUpWCF.DBClasses{
 				_UIDGenerated = value;
 			}
 		}
+		private string _sTableName;
+		public string sTableName{
+			get {
+				return _sTableName;
+			}
+			set {
+				_sTableName = value;
+			}
+		}
+		private string _sTableDescription;
+		public string sTableDescription{
+			get {
+				return _sTableDescription;
+			}
+			set {
+				_sTableDescription = value;
+			}
+		}
 		private int _bActiveStatus;
 		public int bActiveStatus{
 			get {
@@ -105,6 +125,8 @@ namespace HandUpWCF.DBClasses{
 			this.dtStartDateTime=atblTables.dtStartDateTime;
 			this.dtEndDateTime=atblTables.dtEndDateTime;
 			this.UIDGenerated=atblTables.UIDGenerated;
+			this.sTableName=atblTables.sTableName;
+			this.sTableDescription=atblTables.sTableDescription;
 			this.bActiveStatus=atblTables.bActiveStatus;
 		}
 
@@ -155,6 +177,10 @@ namespace HandUpWCF.DBClasses{
 					atblTables.dtEndDateTime=aSqlReader.IsDBNull(iIndex) ? new DateTime() : aSqlReader.GetDateTime(iIndex);
 					iIndex=aSqlReader.GetOrdinal("UIDGenerated");
 					atblTables.UIDGenerated=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sTableName");
+					atblTables.sTableName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sTableDescription");
+					atblTables.sTableDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
 					atblTables.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblTables.Add(atblTables);
@@ -178,6 +204,16 @@ namespace HandUpWCF.DBClasses{
 			sOrderBy=localsOrderBy;
 			sOrderType=localsOrderType;
 			return getConnectionAndExecuteSelectDataSet(getCompleteSQL());
+		}
+
+		public DataSet executeCustomSQLDataSet(string sCustomSQL){
+			MySqlCommand aSqlCommand = new MySqlCommand();
+			aSqlCommand.Connection=clsDatabase.getPooledConnection();
+			aSqlCommand.CommandText = sCustomSQL;
+			MySqlDataAdapter aDataAdapter = new MySqlDataAdapter(aSqlCommand);
+			DataSet aDataSet = new DataSet();
+			aDataAdapter.Fill(aDataSet);
+			return aDataSet;
 		}
 
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
@@ -306,16 +342,6 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblOrders gettblOrders_PKiTableID(){
-				tblOrders atblOrders=new tblOrders(PKiTableID);
-				return atblOrders;
-			}
-
-			public tblTablealerts gettblTablealerts_PKiTableID(){
-				tblTablealerts atblTablealerts=new tblTablealerts(PKiTableID);
-				return atblTablealerts;
-			}
-
 			public tblEmployees gettblEmployees_FKiEmployeeID(){
 				tblEmployees atblEmployees=new tblEmployees(FKiEmployeeID);
 				return atblEmployees;
@@ -324,6 +350,56 @@ namespace HandUpWCF.DBClasses{
 			public tblProviders gettblProviders_FKiProviderID(){
 				tblProviders atblProviders=new tblProviders(FKiProviderID);
 				return atblProviders;
+			}
+
+			public List<tblOrders> gettblOrders_FKiTableIDList(){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiTableID",PKiTableID);
+				return atblOrders.executeSelect();
+			}
+
+			public List<tblOrders> gettblOrders_FKiTableIDList(string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addEquals("FKiTableID",PKiTableID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiTableIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				atblOrders.addEquals("FKiTableID",PKiTableID);
+				return atblOrders.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblOrders> gettblOrders_FKiTableIDList(string sAddToSqlWhere){
+				tblOrders atblOrders=new tblOrders();
+				atblOrders.addToSqlWhere(sAddToSqlWhere);
+				return atblOrders.executeSelect();
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiTableIDList(){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addEquals("FKiTableID",PKiTableID);
+				return atblTablealerts.executeSelect();
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiTableIDList(string localsOrderBy,string localsOrderType){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addEquals("FKiTableID",PKiTableID);
+				return atblTablealerts.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiTableIDList(string sAddToSqlWhere,string localsOrderBy,string localsOrderType){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addToSqlWhere(sAddToSqlWhere);
+				atblTablealerts.addEquals("FKiTableID",PKiTableID);
+				return atblTablealerts.executeSelect(localsOrderBy,localsOrderType);
+			}
+
+			public List<tblTablealerts> gettblTablealerts_FKiTableIDList(string sAddToSqlWhere){
+				tblTablealerts atblTablealerts=new tblTablealerts();
+				atblTablealerts.addToSqlWhere(sAddToSqlWhere);
+				return atblTablealerts.executeSelect();
 			}
 
 			public tblTables executeINSERT(){
@@ -337,6 +413,8 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dtStartDateTime",dtStartDateTime);
 				insertCommand.Parameters.AddWithValue("@dtEndDateTime",dtEndDateTime);
 				insertCommand.Parameters.AddWithValue("@UIDGenerated",UIDGenerated);
+				insertCommand.Parameters.AddWithValue("@sTableName",sTableName);
+				insertCommand.Parameters.AddWithValue("@sTableDescription",sTableDescription);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
              PKiTableID= (Int32)insertCommand.Parameters["@outPKiTableID"].Value;
@@ -353,6 +431,8 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indtStartDateTime", dtStartDateTime);
 				updateCommand.Parameters.AddWithValue("@indtEndDateTime", dtEndDateTime);
 				updateCommand.Parameters.AddWithValue("@inUIDGenerated", UIDGenerated);
+				updateCommand.Parameters.AddWithValue("@insTableName", sTableName);
+				updateCommand.Parameters.AddWithValue("@insTableDescription", sTableDescription);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
 				updateCommand.ExecuteNonQuery();
 				return true;
