@@ -29,10 +29,13 @@ namespace HandUpWCF {
         public DataSet TableAlertPerEmployee(int EmployeeID) {
             tblEmployees aEmployee = new tblEmployees(EmployeeID);
             tblTablealerts aTableAlert = new tblTablealerts();
-            aTableAlert.addEquals(tblTablealerts._BACTIVESTATUS, 1);
-            aTableAlert.addAND();
-            aTableAlert.addEquals(tblTablealerts._FKIEPLOYEEID, EmployeeID);
-            DataSet aDataset = aTableAlert.executeSelectDataSet();
+            string sSql="SELECT tbltablealerts.*,tbltables.sTableName FROM tbltablealerts,tbltables where tbltables.PKiTableID=tbltablealerts.FKiTableID "+
+                "AND tbltablealerts." + tblTablealerts._BACTIVESTATUS + "= 1 " +
+                "AND tbltablealerts." + tblTablealerts._FKIEPLOYEEID + "=" + EmployeeID;
+            DataSet aDataset = aTableAlert.executeCustomSQLDataSet(sSql);
+
+
+           /* DataSet aDataset = aTableAlert.executeSelectDataSet();
             DataSet dsTableName = new DataSet();
             dsTableName.Tables.Add("TableNames");
             dsTableName.Tables[0].Columns.Add(tblTables._PKITABLEID);
@@ -42,6 +45,7 @@ namespace HandUpWCF {
                 dsTableName.Tables[0].Rows.Add(new object[] { aTable.PKiTableID, aTable.sTableName });
             }
             aDataset.Tables.Add(dsTableName.Tables[0].Copy());
+            * */
             return aDataset;
         }
     }
