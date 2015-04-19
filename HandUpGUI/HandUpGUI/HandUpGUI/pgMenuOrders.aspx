@@ -54,6 +54,7 @@
         //alert("ORDER THE SHIT");
         var ClickChangeAlert = document.getElementById("<%= btnPlaceOrder.ClientID %>");
         ClickChangeAlert.click();
+        //alert("ORDER THE SHIT CLICKED");
     }
 
     function openOrderTextWindow() {

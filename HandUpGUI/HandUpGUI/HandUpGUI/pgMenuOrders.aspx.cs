@@ -13,45 +13,49 @@ namespace HandUpGUI {
         public string PKiProviderID;
         public string PKiEmployeeID;
         protected void Page_Load(object sender, EventArgs e) {
-            localhost.HandUpService WSNew = new localhost.HandUpService();
-            DataSet ds = new DataSet();
-            DataSet dsE = new DataSet();
-            dsE = (DataSet)Session["SEmployee"];
-            PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
-            if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
-                if ((DataSet)Session["sTableCodeActive"] != null) {
-                    //a guest with table code only
-                    ds = (DataSet)Session["sTableCodeActive"];
-                    hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
-                    PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
-                    PopulateTable(ds.Tables[0].Rows[0]["UIDGenerated"].ToString());
-                }
-            }
-            else {
-                ds = (DataSet)Session["SEmployee"];
-                PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
-                lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
-                DataSet dsTables = new DataSet();
-                if (hdnTableNumber.Value == "") 
-                {
-                    hdnTableNumber.Value = "1";
-                    Table tbl = new Table();
-                    string TableValue = hdnTableNumber.Value;
-                    lblTableOpened.Text = "Table " + TableValue;
-                    lblTableGUI.Text = "GUI " + TableValue;
-                    PopulateTable("GUI " + TableValue);
-                }
-                dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
-                if (dsTables.Tables.Count > 0) {
-                    string sTablesDisplay = "<table border='1'><tr>";
-                    foreach (DataRow dr in dsTables.Tables[0].Rows) {
-                        sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["PKiTableID"].ToString() + "</div></td>";
+            try {
+                localhost.HandUpService WSNew = new localhost.HandUpService();
+                DataSet ds = new DataSet();
+                DataSet dsE = new DataSet();
+                dsE = (DataSet)Session["SEmployee"];
+                PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
+            
+                if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
+                    if ((DataSet)Session["sTableCodeActive"] != null) {
+                        //a guest with table code only
+                        ds = (DataSet)Session["sTableCodeActive"];
+                        hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
+                        PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
+                        PopulateTable(ds.Tables[0].Rows[0]["UIDGenerated"].ToString());
                     }
-                    sTablesDisplay += "</tr></table>";
-                    dvTablesTop.InnerHtml = sTablesDisplay;
                 }
+                else {
+                    ds = (DataSet)Session["SEmployee"];
+                    PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
+                    lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
+                    DataSet dsTables = new DataSet();
+                    if (hdnTableNumber.Value == "") 
+                    {
+                        hdnTableNumber.Value = "1";
+                        Table tbl = new Table();
+                        string TableValue = hdnTableNumber.Value;
+                        lblTableOpened.Text = "Table " + TableValue;
+                        lblTableGUI.Text = "GUI " + TableValue;
+                        PopulateTable("GUI " + TableValue);
+                    }
+                    dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
+                    if (dsTables.Tables.Count > 0) {
+                        string sTablesDisplay = "<table border='1'><tr>";
+                        foreach (DataRow dr in dsTables.Tables[0].Rows) {
+                            sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["PKiTableID"].ToString() + "</div></td>";
+                        }
+                        sTablesDisplay += "</tr></table>";
+                        dvTablesTop.InnerHtml = sTablesDisplay;
+                    }
+                }
+                PopulateMenu();
             }
-            PopulateMenu();
+            catch { PKiEmployeeID = "0"; }
         }
 
         protected void PopulateMenu() {
@@ -183,6 +187,9 @@ namespace HandUpGUI {
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e) {
+            DataSet dsE = new DataSet();
+            dsE = (DataSet)Session["SEmployee"];
+            PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
             string OrderValue = hdnOrderSelectValues.Value;
             string[] OrderFull = OrderValue.Split('|');
             string OrderID = OrderFull[0];
