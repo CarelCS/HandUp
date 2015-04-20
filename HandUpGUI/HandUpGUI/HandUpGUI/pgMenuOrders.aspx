@@ -121,11 +121,10 @@
     }
 
     function ChangemenuArea(GroupID) {
-        alert(GroupID);
         var X = document.getElementById("<%= hdnGroupHeaders.ClientID %>").value;
-        MyArray = Split(X,"|")
-        for (i = 0; i < a.length; i++) {
-            document.getElementById("dvGroup" + a[i]).style.display = 'none';
+        var MyArray2 = X.split("|");
+        for (i = 0; i < MyArray2.length - 1; i++) {
+            document.getElementById("dvGroup" + MyArray2[i]).style.display = 'none';
         }
         document.getElementById(GroupID).style.display = '';
     }
@@ -135,7 +134,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
-        <table>
+        <table width="100%">
             <tr>
                 <td>
                     ADD SPACE
@@ -154,7 +153,7 @@
         <tr>
             <td>
                 <div id="dvWaiterMenu">
-                    <table>
+                    <table width="100%">
                         <tr>
                             <td>
                                 <div id="dvTablesTop" runat="server">
@@ -174,7 +173,7 @@
         <tr>
             <td>
                 <div id="dvAddTable" style="display: none;">
-                    <table>
+                    <table width="100%">
                         <tr>
                             <td>
                                 Add Table
@@ -217,11 +216,11 @@
         <tr>
             <td>
                 <div id="dvMenu" style="display: inline;">
-                    <table>
+                    <table width="100%">
                         <tr>
                             <td>
                             <div id="dvMenuGroup" runat="server"></div><br />
-                            <div id="dvMenu" runat="server"></div>
+                            <div id="dvMenuMain" runat="server"></div>
                             </td>
                         </tr>
                     </table>
@@ -231,13 +230,13 @@
         <tr>
             <td>
                 <div id="dvOrderList" style="display: inline;">
-                    <table>
+                    <table width="100%">
                         <tr>
                             <td>
                                 THE ORDER LIST
+                                <div id="dvTablesOrders" runat="server">
+                                </div>
                             </td>
-                            <div id="dvTablesOrders" runat="server">
-                            </div>
                         </tr>
                     </table>
                 </div>
@@ -246,7 +245,7 @@
         <tr>
             <td>
                 <div>
-                    <table border="1">
+                    <table border="1" width="100%">
                         <tr>
                             <td>
                                 <asp:Label ID="lblTableGUI" runat="server" Text=""></asp:Label>
@@ -293,7 +292,7 @@
     </div>
     </form>
 </body>
-<script language="javascript">
+<script language="javascript" type="text/javascript">
     if (document.getElementById("<%= hdnTableCodeOnlyGuest.ClientID %>").value != "") {
         document.getElementById('dvWaiterMenu').style.display = 'none';
     }

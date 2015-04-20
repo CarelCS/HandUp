@@ -58,7 +58,6 @@
     <Content Include="Images\Icons\BG-01.png" />
     <Content Include="Images\Icons\Login-01.png" />
     <Content Include="Images\Icons\Logo-01.png" />
-    <Content Include="Images\Icons\order_now.png" />
     <Content Include="Images\Icons\Register-01.png" />
     <Content Include="Images\MenuImages\Burger.jpg" />
     <Content Include="Images\MenuImages\Steak.jpg" />
