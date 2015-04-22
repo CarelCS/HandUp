@@ -10,6 +10,9 @@ namespace HandUpGUI {
     public partial class pgManagement : System.Web.UI.Page {
         public string PKiProviderID;
         protected void Page_Load(object sender, EventArgs e) {
+            DataSet dsE = new DataSet();
+            dsE = (DataSet)Session["SEmployee"];
+            PKiProviderID = dsE.Tables[0].Rows[0]["FKiProviderID"].ToString();
             PopulateEmployees();
             PopulateTables();
             PopulateMenu();
@@ -23,45 +26,53 @@ namespace HandUpGUI {
         }
 
         protected void PopulateMenu() {
-            PKiProviderID = "1";
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            ds = WSNew.MenuForProvider(PKiProviderID);
-            string MenuTotal = "<table border='1'>";
-            string CurrentMenuID = "";
-            int ItemRow = 0;
-            hdnMaxSubs.Value = (ds.Tables.Count - 1).ToString();
-            foreach (DataRow dr in ds.Tables[0].Rows) {
-                if (dr["FKiMenuID"].ToString() == "") {
-                    MenuTotal += "<tr><td><img id=\"Image1\" src=\"" + dr["imgMenuItemImage"].ToString() + "\" height='50' /></td><td>" + dr["sMenuItemName"].ToString() + "</td><td>" + dr["sMenuItemDescription"].ToString();
-                    CurrentMenuID = dr["PKiMenuID"].ToString();
-                    bool FirstDone = false;
-                    foreach (DataTable dt in ds.Tables) {
-                        int ItemColumn = 0;
-                        if (FirstDone) {
-                            string MenuTotalSUB = "<select name=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\" id=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\">";
-                            MenuTotalSUB += "<option value='1'>--</option>";
-                            bool IsItem = false;
-                            foreach (DataRow drInner in dt.Rows) {
-                                if (drInner["FKiMenuID"].ToString() == CurrentMenuID) {
-                                    MenuTotalSUB += "<option value=\"" + drInner["sMenuItemName"].ToString() + "\">" + drInner["sMenuItemName"].ToString() + "</option>";
-                                    IsItem = true;
-                                }
-                            }
-                            MenuTotalSUB += "</select>";
-                            if (IsItem) {
-                                MenuTotal += MenuTotalSUB;
-                            }
+            ds = WSNew.MenuForProvider(PKiProviderID); // Admin
 
+            string MenuTotal = "";
+            string MenuHeaders = "<table width=\"100%\"><tr>";
+            string menuHeaderCollection = "";
+            foreach (DataRow drGroups in ds.Tables["MenuGroup"].Rows) {
+                menuHeaderCollection += drGroups["PKiMenuGroupID"].ToString() + "|";
+                MenuHeaders += "<td><div id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td>";
+                MenuTotal += "<div id=\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\"><table border='1'  width=\"100%\">";
+                string CurrentMenuID = "";
+                int ItemRow = 0;
+                hdnMaxSubs.Value = (ds.Tables.Count - 1).ToString();
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    if (dr["FKiMenuID"].ToString() == "" && dr["FKiMenuGroupID"].ToString() == drGroups["PKiMenuGroupID"].ToString()) {
+                        MenuTotal += "<tr><td><img id=\"MenuImage " + dr["FKiMenuID"].ToString() + "\" src=\"" + dr["imgMenuItemImage"].ToString() + "\" height='50' /></td><td>" + dr["sMenuItemName"].ToString() + "</td><td>" + dr["sMenuItemDescription"].ToString();
+                        CurrentMenuID = dr["PKiMenuID"].ToString();
+                        int ItemColumn = 0;
+                        foreach (DataTable dt in ds.Tables) {
+                            if (dt.TableName != "Menu" && dt.TableName != "MenuGroup") {
+                                string MenuTotalSUB = "<select name=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\" id=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\">";
+                                ItemColumn++;
+                                MenuTotalSUB += "<option value='1'>--</option>";
+                                bool IsItem = false;
+                                foreach (DataRow drInner in dt.Rows) {
+                                    if (drInner["FKiMenuID"].ToString() == CurrentMenuID) {
+                                        MenuTotalSUB += "<option value=\"" + drInner["sSubMenuName"].ToString() + "\">" + drInner["sSubMenuName"].ToString() + "</option>";
+                                        IsItem = true;
+                                    }
+                                }
+                                MenuTotalSUB += "</select>";
+                                if (IsItem) {
+                                    MenuTotal += MenuTotalSUB;
+                                }
+
+                            }
                         }
-                        FirstDone = true;
-                        ItemColumn++;
+                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order_now.png\" height='50' /></div></td></tr>";
+                        ItemRow++;
                     }
-                    MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"EditDeleteMenuItem('" + dr["PKiMenuID"].ToString() + "', '0')\">Edit</div></td><td><div id=\"" + dr["PKiMenuID"].ToString() + "Delete\" onclick=\"EditDeleteMenuItem('" + dr["PKiMenuID"].ToString() + "', '1')\">Edit</div></td></tr>";
-                    ItemRow++;
                 }
+                MenuTotal += "</table></div>";
             }
-            MenuTotal += "</table>";
+            MenuHeaders += "</tr></table>";
+            dvMenuGroup.InnerHtml = MenuHeaders;
+            hdnGroupHeaders.Value = menuHeaderCollection;
             dvMenulist.InnerHtml = MenuTotal;
         }
 

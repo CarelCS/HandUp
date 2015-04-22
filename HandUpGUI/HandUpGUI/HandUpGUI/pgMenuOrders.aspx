@@ -128,6 +128,18 @@
         }
         document.getElementById(GroupID).style.display = '';
     }
+
+    function CallWaiter() {
+        alert("Call waiter");
+    }
+
+    function CloseBill() {
+        alert("Close Bill");
+    }
+
+    function CloseTable() {
+        alert("Close Table");
+    }
 </script>
 <body>
     <form id="form1" runat="server" enableviewstate="true">
@@ -267,6 +279,13 @@
                 </div>
             </td>
         </tr>
+    </table>
+    <table>
+    <tr>
+    <td><div id="dvCallWaiter" onclick="CallWaiter()">CALL WAITER</div></td>
+    <td><div id="dvCloseBill" onclick="CloseBill()">Close Bill</div></td>
+    <td><div id="dvCloseTable" onclick="CloseTable()">Close Table</div></td>
+    </tr>
     </table>
     <div style="visibility: hidden">
         <asp:UpdatePanel ID="updateAlerts" runat="server">

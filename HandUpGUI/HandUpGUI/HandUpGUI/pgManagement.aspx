@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
 </head>
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 
     function ChangePage(Option) {
         switch (Option) {
@@ -85,6 +85,15 @@
     function AddTextTable(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openOrderTextWindow();
+    }
+
+    function ChangemenuArea(GroupID) {
+        var X = document.getElementById("<%= hdnGroupHeaders.ClientID %>").value;
+        var MyArray2 = X.split("|");
+        for (i = 0; i < MyArray2.length - 1; i++) {
+            document.getElementById("dvGroup" + MyArray2[i]).style.display = 'none';
+        }
+        document.getElementById(GroupID).style.display = '';
     }
 
 </script>
@@ -257,7 +266,7 @@
     </div>
     <div id="dvMenu" style="visibility: hidden">
     <table width="100%">
-        <tr><td>Menu</td></tr>
+        <tr><td>Menu<div id="dvMenuGroup" runat="server"></div></td></tr>
         <tr><td><div id="dvMenulist" runat="server"></div></td></tr>
         <tr><td><div id="dvMenuItemEditAdd" runat="server"></div></td></tr>
     </table>
@@ -290,6 +299,7 @@
         <asp:HiddenField ID="hdnTableID" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
+        <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
     </div>
     </form>
 </body>
