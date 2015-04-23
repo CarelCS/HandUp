@@ -62,11 +62,13 @@ namespace HandUpGUI {
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
             ds = WSNew.MenuForProvider(PKiProviderID);
-
+            string MenuGroupDefault = "";
             string MenuTotal = "";
             string MenuHeaders = "<table width=\"100%\"><tr>";
             string menuHeaderCollection = "";
             foreach (DataRow drGroups in ds.Tables["MenuGroup"].Rows) {
+                if (MenuGroupDefault == "")
+                    MenuGroupDefault = "dvGroup" + drGroups["PKiMenuGroupID"].ToString();
                 menuHeaderCollection += drGroups["PKiMenuGroupID"].ToString() + "|";
                 MenuHeaders += "<td><div id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td>";
                 MenuTotal += "<div id=\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\"><table border='1'  width=\"100%\">";
@@ -105,13 +107,14 @@ namespace HandUpGUI {
                 }
                 MenuTotal += "</table></div>";
             }
+            if (!IsPostBack)
+                ClientScript.RegisterStartupScript(GetType(), "id", "ChangemenuArea('" + MenuGroupDefault + "')", true);
             MenuHeaders += "</tr></table>";
             dvMenuGroup.InnerHtml = MenuHeaders;
             hdnGroupHeaders.Value = menuHeaderCollection;
             dvMenuMain.InnerHtml = MenuTotal;
         }
-
-
+        
         public static string GetUniqueKey(int maxSize) {
             char[] chars = new char[35];
             chars =

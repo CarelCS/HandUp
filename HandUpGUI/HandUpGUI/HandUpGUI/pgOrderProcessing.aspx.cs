@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace HandUpGUI {
     public partial class pgOrderProcessing : System.Web.UI.Page {
@@ -12,6 +13,8 @@ namespace HandUpGUI {
         }
 
         protected void PopulateTable(string ProviderGUI) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            //DataSet ds = WSNew.
             string sOrderList = "<table border='1'><tr><td>Waiter 1</td><td>Table 1</td><td>Hamburger and Chips</td><td><div id=\"order3C\" onclick=\"ConfirmOrder('ORDER3')\">CONFIRM</div></td><td><div id=\"order3Ca\" onclick=\"CancelOrder('ORDER3')\">Cancel</div></td><td><div id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td></tr>";
             sOrderList += "<tr><td>Waiter 2</td><td>Table 2</td><td>Steak egg and chips</td><td><div id=\"order4C\" onclick=\"ConfirmOrder('ORDER4')\">CONFIRM</div></td><td><div id=\"order4Ca\" onclick=\"CancelOrder('ORDER4')\">Cancel</div></td><td><div id=\"order4T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td></tr>";
             sOrderList += "</table>";
