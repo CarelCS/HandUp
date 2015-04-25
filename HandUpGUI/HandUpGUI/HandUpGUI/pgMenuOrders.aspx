@@ -142,14 +142,15 @@
     }
 </script>
 <body>
-    <form id="form1" runat="server" enableviewstate="true">
+    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG-01.png); background-repeat:repeat">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
-        <table width="100%">
+        <table width="100%" style="background-color:transparent; height:100%">
             <tr>
                 <td>
                     ADD SPACE
+                    <div id="dvAddArea" runat="server"></div>
                 </td>
             </tr>
         </table>

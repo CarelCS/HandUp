@@ -54,6 +54,7 @@ namespace HandUpGUI {
                     }
                 }
                 PopulateMenu();
+                AddAdverts();
             }
             catch { PKiEmployeeID = "0"; }
         }
@@ -206,6 +207,9 @@ namespace HandUpGUI {
             string OrderStatus = hdnOrderStatus.Value;
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string Success = WSNew.ConfirmOrder(Convert.ToInt32(OrderID), true, OrderStatus);
+        }
+
+        protected void AddAdverts() {
         }
     }
 }

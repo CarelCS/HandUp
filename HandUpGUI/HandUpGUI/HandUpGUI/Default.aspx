@@ -33,9 +33,9 @@
         }
     </script>
     <p>
-    <table width="100%" style="background-color:transparent">
+    <table width="100%" border="0" style="background-color:transparent; height:100%">
         <tr>
-            <td colspan="2">
+            <td colspan="2" align="center">
                 <asp:Image ID="Image3" ImageUrl="~/Images/Icons/Logo-01.png" runat="server" /></td>
         </tr>
         <tr>
