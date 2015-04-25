@@ -34,20 +34,18 @@ namespace HandUpGUI {
                     PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
                     lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
                     DataSet dsTables = new DataSet();
-                    if (hdnTableNumber.Value == "") 
-                    {
-                        hdnTableNumber.Value = "1";
-                        Table tbl = new Table();
-                        string TableValue = hdnTableNumber.Value;
-                        lblTableOpened.Text = "Table " + TableValue;
-                        lblTableGUI.Text = "GUI " + TableValue;
-                        PopulateTable("GUI " + TableValue);
-                    }
                     dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
                     if (dsTables.Tables.Count > 0) {
                         string sTablesDisplay = "<table border='1' width=\"100%\"><tr>";
                         foreach (DataRow dr in dsTables.Tables[0].Rows) {
-                            sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["PKiTableID"].ToString() + "</div></td>";
+                            if (hdnTableNumber.Value == "") 
+                            {
+                                hdnTableNumber.Value = dr["PKiTableID"].ToString();
+                                lblTableOpened.Text = dr["sTableName"].ToString();
+                                lblTableGUI.Text = "GUI : " + dr["UIDGenerated"].ToString();
+                                PopulateTable(dr["sTableName"].ToString());
+                            }
+                            sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td>";
                         }
                         sTablesDisplay += "</tr></table>";
                         dvTablesTop.InnerHtml = sTablesDisplay;
@@ -110,6 +108,8 @@ namespace HandUpGUI {
             }
             if (!IsPostBack)
                 ClientScript.RegisterStartupScript(GetType(), "id", "ChangemenuArea('" + MenuGroupDefault + "')", true);
+            else
+                ClientScript.RegisterStartupScript(GetType(), "id", "ChangemenuArea('" + hdnGroupCurrent.Value + "')", true);
             MenuHeaders += "</tr></table>";
             dvMenuGroup.InnerHtml = MenuHeaders;
             hdnGroupHeaders.Value = menuHeaderCollection;
@@ -118,8 +118,7 @@ namespace HandUpGUI {
         
         public static string GetUniqueKey(int maxSize) {
             char[] chars = new char[35];
-            chars =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
             byte[] data = new byte[1];
             RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
             crypto.GetNonZeroBytes(data);

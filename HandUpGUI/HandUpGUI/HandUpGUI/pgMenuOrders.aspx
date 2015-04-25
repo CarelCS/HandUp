@@ -127,6 +127,7 @@
             document.getElementById("dvGroup" + MyArray2[i]).style.display = 'none';
         }
         document.getElementById(GroupID).style.display = '';
+        document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = GroupID;
     }
 
     function CallWaiter() {
@@ -309,6 +310,7 @@
         <asp:HiddenField ID="hdnOrderSelectValues" runat="server" />
         <asp:HiddenField ID="hdnOrderStatus" runat="server" />
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
+        <asp:HiddenField ID="hdnGroupCurrent" runat="server" />
     </div>
     </form>
 </body>

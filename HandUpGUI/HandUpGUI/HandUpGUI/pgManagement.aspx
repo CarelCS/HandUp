@@ -98,7 +98,7 @@
 
 </script>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG-01.png); background-repeat:repeat">
     <div>
     <table border="1">
         <tr>
