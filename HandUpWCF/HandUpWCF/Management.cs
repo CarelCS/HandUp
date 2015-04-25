@@ -7,41 +7,58 @@ using System.Data;
 namespace HandUpWCF {
     public class Management {
         public DataSet MenuPerProviderAdminFull(int ProviderID) {
-
+            DataSet ds = new DataSet();
+            return ds;
         }
 
         public DataSet EmployeeListPerProvireAdminFull(int ProviderID) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet AddEmployeePerProviderAdminFull(int ProviderID) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet UpdateEmployeePerProviderAdminFull(int ProviderID) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         #region Tables
 
-        public DataSet TablesPerProviderAdminFull(int ProviderID,DateTime dtOpen) {
+        public DataSet TablesPerProviderAdminFull(int ProviderID, DateTime dtOpen) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
-        public DataSet  ReOpenTablesPerProviderAdmin(int ProviderID, DateTime dtOpen) {
+        public DataSet ReOpenTablesPerProviderAdmin(int ProviderID, DateTime dtOpen) {
+            DataSet ds = new DataSet();
+            return ds;
             // true is Employee is still active - send only db tbale 
             // false  db tbale and table with active Employees
         }
 
         public DataSet MoveOrderBetweenTablesPerProviderAdmin(int ProviderID, DateTime dtOpen) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet MoveTableBetweenEmployeePerProviderAdmin(int ProviderID, DateTime dtOpen) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet ChangeOrderValuePerOrderPerProviderAdmin(int ProviderID, DateTime dtOpen) {
+            DataSet ds = new DataSet();
+            return ds;
             //set order status inctive with reason description 
             // create new order
             // update relevant db tables
@@ -50,47 +67,67 @@ namespace HandUpWCF {
 
         #endregion
 
-        public DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, DateTime dtOpen,int StatusID) {
+        public DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, DateTime dtOpen, int StatusID) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet AddNewMenuItem() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet UpdateMenuItem() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet MenuGroupPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet AddMenuGroupPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
 
         public DataSet MenuGroupTypesPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet SubMenuGroupTypesPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet SubMenuGroupPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
         public DataSet AddSubMenuGroupPerProvider() {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
         
 
         #region Reports
-        
+
         public DataSet DefaultReportPerProvider(int ProviderID) {
+            DataSet ds = new DataSet();
+            return ds;
 
         }
 
