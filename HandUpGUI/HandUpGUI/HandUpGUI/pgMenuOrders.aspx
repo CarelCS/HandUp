@@ -265,16 +265,16 @@
                                 <asp:Label ID="lblTableGUI" runat="server" Text=""></asp:Label>
                             </td>
                             <td id="tdMenu" onclick="ChangeDiv('Menu')">
-                                Menu
+                                <img src="Images/Icons/Menu.png" />
                             </td>
                             <td id="tdOrder" onclick="ChangeDiv('Order')">
-                                Orders
+                                <img src="Images/Icons/Orders.png" />
                             </td>
                             <td id="tdSplit" onclick="ChangeDiv('Split')">
-                                All
+                                <img src="Images/Icons/All.png" />
                             </td>
                             <td id="td1" onclick="ChangeDiv('Hide')">
-                                Hide
+                                <img src="Images/Icons/Hide.png" />
                             </td>
                         </tr>
                     </table>
@@ -284,9 +284,9 @@
     </table>
     <table>
     <tr>
-    <td><div id="dvCallWaiter" onclick="CallWaiter()">CALL WAITER</div></td>
-    <td><div id="dvCloseBill" onclick="CloseBill()">Close Bill</div></td>
-    <td><div id="dvCloseTable" onclick="CloseTable()">Close Table</div></td>
+    <td><div id="dvCallWaiter" onclick="CallWaiter()"><img src="Images/Icons/CallWaiter.png" /></div></td>
+    <td><div id="dvCloseBill" onclick="CloseBill()"><img src="Images/Icons/CloseBill.png" /></div></td>
+    <td><div id="dvCloseTable" onclick="CloseTable()"><img src="Images/Icons/CloseTable.png" /></div></td>
     </tr>
     </table>
     <div style="visibility: hidden">
