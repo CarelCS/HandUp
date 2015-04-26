@@ -56,9 +56,14 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Images\Icons\BG-01.png" />
+    <Content Include="Images\Icons\Cancel.png" />
+    <Content Include="Images\Icons\Confirm.png" />
     <Content Include="Images\Icons\Login-01.png" />
     <Content Include="Images\Icons\Logo-01.png" />
+    <Content Include="Images\Icons\Order.png" />
     <Content Include="Images\Icons\Register-01.png" />
+    <Content Include="Images\Icons\Text.png" />
+    <Content Include="Images\Icons\Waiter.png" />
     <Content Include="Images\MenuImages\Burger.jpg" />
     <Content Include="Images\MenuImages\Steak.jpg" />
     <Content Include="pgManagement.aspx" />

@@ -143,7 +143,7 @@
     }
 </script>
 <body>
-    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG-01.png); background-repeat:repeat">
+    <form id="form1" runat="server" enableviewstate="true" style="background-color: rgba(145,232,66,1); ">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
