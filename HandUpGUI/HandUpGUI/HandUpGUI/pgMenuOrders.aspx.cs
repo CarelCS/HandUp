@@ -12,6 +12,7 @@ namespace HandUpGUI {
     public partial class pgMenuOrders : System.Web.UI.Page {
         public string PKiProviderID;
         public string PKiEmployeeID;
+        public string PKiEmployeeTypeID;
         protected void Page_Load(object sender, EventArgs e) {
             try {
                 localhost.HandUpService WSNew = new localhost.HandUpService();
@@ -19,7 +20,7 @@ namespace HandUpGUI {
                 DataSet dsE = new DataSet();
                 dsE = (DataSet)Session["SEmployee"];
                 PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
-            
+                PKiEmployeeTypeID = dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString();
                 if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
                     if ((DataSet)Session["sTableCodeActive"] != null) {
                         //a guest with table code only
@@ -100,7 +101,7 @@ namespace HandUpGUI {
 
                             }
                         }
-                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order.png\" height='50' /></div></td></tr>";
+                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order.png\" /></div></td></tr>";
                         ItemRow++;
                     }
                 }
@@ -152,8 +153,16 @@ namespace HandUpGUI {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.OrdersPerTable(Convert.ToInt32(hdnTableNumber.Value), true);
             string sOrderList = "<table border='1' width=\"100%\">";
-            foreach (DataRow dr in ds.Tables[0].Rows) {
-                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" height='50' /></div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" height='50' /></div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" height='50' /></div></td></tr>";
+            string sCapableOption = "";
+            string sCanConfirm = "";
+             foreach (DataRow dr in ds.Tables[0].Rows) {
+                 if (PKiEmployeeTypeID == "2")
+                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\" /></div>";
+                 else {
+                     sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" /></div>";
+                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" /></div>";
+                 }
+                 sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" /></div></td><td>" + sCapableOption + "</td></tr>";
             }
             sOrderList += "</table>";
             dvTablesOrders.InnerHtml = sOrderList;
@@ -162,8 +171,17 @@ namespace HandUpGUI {
         protected void PopulateNewOrderForTable(DataSet ds) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string sOrderList = "<table border='1' width=\"100%\">";
+            string sCapableOption = "";
+            string sCanConfirm = "";
             foreach (DataRow dr in ds.Tables[0].Rows) {
-                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" height='50' /></div></td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" height='50' /></div></td><td><div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" height='50' /></div></td></tr>";
+                if (PKiEmployeeTypeID == "2")
+                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\" /></div>";
+                else
+                {
+                    sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" /></div>";
+                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" /></div>";
+                }
+                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" /></div></td><td>" + sCapableOption + "</td></tr>";
             }
             sOrderList += "</table>";
             dvTablesOrders.InnerHtml = sOrderList;
