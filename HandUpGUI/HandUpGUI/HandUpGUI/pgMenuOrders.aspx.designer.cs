@@ -139,6 +139,51 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Label lblTableGUI;
         
         /// <summary>
+        /// lblWaiterName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWaiterName;
+        
+        /// <summary>
+        /// dvWaiterImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvWaiterImage;
+        
+        /// <summary>
+        /// dvCallWaiter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCallWaiter;
+        
+        /// <summary>
+        /// dvCloseBill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseBill;
+        
+        /// <summary>
+        /// dvCloseTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseTable;
+        
+        /// <summary>
         /// updateAlerts control.
         /// </summary>
         /// <remarks>

@@ -35,7 +35,7 @@ namespace HandUpGUI {
                         if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "4")
                             Server.Transfer("pgManagement.aspx", false);
                         else {
-                            if (ReturnValue.Tables[0].Rows[0][12].ToString() == "2"){
+                            if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
                                 if (IsTable)
                                     Server.Transfer("pgMenuOrders.aspx", false);
                                 else
@@ -65,6 +65,10 @@ namespace HandUpGUI {
         protected void btnSendSize_Click(object sender, EventArgs e) {
             string ScreenH = screenHeight.Value;
             string ScreenW = screenWidth.Value;
+            Session.Add("ScreenWidth", ScreenW);
+            Image3.Width = Convert.ToInt32(ScreenW) / 5;
+            Image2.Width = Convert.ToInt32(ScreenW) / 5;
+            Image1.Width = Convert.ToInt32(ScreenW) / 5;
         }
 
         protected void btnRegister_Click(object sender, EventArgs e) {

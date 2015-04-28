@@ -261,9 +261,6 @@
                 <div>
                     <table border="1" width="100%">
                         <tr>
-                            <td>
-                                <asp:Label ID="lblTableGUI" runat="server" Text=""></asp:Label>
-                            </td>
                             <td id="tdMenu" onclick="ChangeDiv('Menu')">
                                 <img src="Images/Icons/Menu.png" />
                             </td>
@@ -281,12 +278,29 @@
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblTableGUI" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lblWaiterName" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td>
+                        <div id="dvWaiterImage" runat="server"></div>
+                    </td>
+                </tr>
+            </table>
+            </td>
+        </tr>
     </table>
     <table>
     <tr>
-    <td><div id="dvCallWaiter" onclick="CallWaiter()"><img src="Images/Icons/CallWaiter.png" /></div></td>
-    <td><div id="dvCloseBill" onclick="CloseBill()"><img src="Images/Icons/CloseBill.png" /></div></td>
-    <td><div id="dvCloseTable" onclick="CloseTable()"><img src="Images/Icons/CloseTable.png" /></div></td>
+    <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img src="Images/Icons/CallWaiter.png" /></div></td>
+    <td><div id="dvCloseBill" onclick="CloseBill()" runat="server"><img src="Images/Icons/CloseBill.png" /></div></td>
+    <td><div id="dvCloseTable" onclick="CloseTable()" runat="server"><img src="Images/Icons/CloseTable.png" /></div></td>
     </tr>
     </table>
     <div style="visibility: hidden">

@@ -13,8 +13,12 @@ namespace HandUpGUI {
         public string PKiProviderID;
         public string PKiEmployeeID;
         public string PKiEmployeeTypeID;
+        public string ScreenWidth;
+        int IconWidth;
         protected void Page_Load(object sender, EventArgs e) {
             try {
+                ScreenWidth = Session["ScreenWidth"].ToString();
+                IconWidth = Convert.ToInt32(ScreenWidth) / 20;
                 localhost.HandUpService WSNew = new localhost.HandUpService();
                 DataSet ds = new DataSet();
                 DataSet dsE = new DataSet();
@@ -27,10 +31,17 @@ namespace HandUpGUI {
                         ds = (DataSet)Session["sTableCodeActive"];
                         hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
                         PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
+                        hdnTableNumber.Value = ds.Tables[0].Rows[0]["PKiTableID"].ToString();
+                        lblTableGUI.Text = "GUI : " + ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
+                        lblWaiterName.Text = "Carel";
+                        dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
                         PopulateTable(ds.Tables[0].Rows[0]["UIDGenerated"].ToString());
+                        dvCloseTable.Visible = false;
                     }
                 }
                 else {
+                    dvCallWaiter.Visible = false;
+                    dvCloseBill.Visible = false;
                     ds = (DataSet)Session["SEmployee"];
                     PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
                     lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
@@ -44,6 +55,8 @@ namespace HandUpGUI {
                                 hdnTableNumber.Value = dr["PKiTableID"].ToString();
                                 lblTableOpened.Text = dr["sTableName"].ToString();
                                 lblTableGUI.Text = "GUI : " + dr["UIDGenerated"].ToString();
+                                lblWaiterName.Text = "Carel";
+                                dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
                                 PopulateTable(dr["sTableName"].ToString());
                             }
                             sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td>";
@@ -101,7 +114,7 @@ namespace HandUpGUI {
 
                             }
                         }
-                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order.png\" /></div></td></tr>";
+                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order.png\" width='" + IconWidth + "' /></div></td></tr>";
                         ItemRow++;
                     }
                 }
@@ -146,6 +159,8 @@ namespace HandUpGUI {
             string TableValue = hdnTableNumber.Value;
             lblTableOpened.Text = "Table " + TableValue;
             lblTableGUI.Text = "GUI " + TableValue;
+            lblWaiterName.Text = "Carel";
+            dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth * 2 + "' />";
             PopulateTable("GUI " + TableValue);
         }
 
@@ -155,16 +170,18 @@ namespace HandUpGUI {
             string sOrderList = "<table border='1' width=\"100%\">";
             string sCapableOption = "";
             string sCanConfirm = "";
+            double TotalCost = 0;
              foreach (DataRow dr in ds.Tables[0].Rows) {
                  if (PKiEmployeeTypeID == "2")
-                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\" /></div>";
+                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
                  else {
-                     sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" /></div>";
-                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" /></div>";
+                     sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
                  }
-                 sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" /></div></td><td>" + sCapableOption + "</td></tr>";
-            }
-            sOrderList += "</table>";
+                 sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
+             }
+             sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
             dvTablesOrders.InnerHtml = sOrderList;
         }
 
@@ -173,17 +190,19 @@ namespace HandUpGUI {
             string sOrderList = "<table border='1' width=\"100%\">";
             string sCapableOption = "";
             string sCanConfirm = "";
+            double TotalCost = 0;
             foreach (DataRow dr in ds.Tables[0].Rows) {
                 if (PKiEmployeeTypeID == "2")
-                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\" /></div>";
+                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
                 else
                 {
-                    sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\" /></div>";
-                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\" /></div>";
+                    sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
                 }
-                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" /></div></td><td>" + sCapableOption + "</td></tr>";
+                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
             }
-            sOrderList += "</table>";
+            sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
             dvTablesOrders.InnerHtml = sOrderList;
         }
 

@@ -55,6 +55,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Images\EmployeeImages\Carelwaiter.jpg" />
     <Content Include="Images\Icons\All.png" />
     <Content Include="Images\Icons\BG-01.png" />
     <Content Include="Images\Icons\CallWaiter.png" />
