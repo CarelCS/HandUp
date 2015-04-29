@@ -182,7 +182,7 @@ namespace HandUpGUI {
                  if (dr["sOrderStatus"].ToString() == "2" || dr["sOrderStatus"].ToString() == "4") {
                      //is confirmed so cannot show cancel or with waiter. So all buttons removed.
                      if (dr["sOrderStatus"].ToString() == "2") {
-                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Login-01.png\"  width='" + IconWidth + "'/></div>";
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Processed.png\"  width='" + IconWidth + "'/></div>";
                      }
                      else {
                          sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";
@@ -224,7 +224,7 @@ namespace HandUpGUI {
                  if (dr["sOrderStatus"].ToString() == "2" || dr["sOrderStatus"].ToString() == "4") {
                      //is confirmed so cannot show cancel or with waiter. So all buttons removed.
                      if (dr["sOrderStatus"].ToString() == "2") {
-                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Login-01.png\"  width='" + IconWidth + "'/></div>";
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Processed.png\"  width='" + IconWidth + "'/></div>";
                      }
                      else {
                          sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";

@@ -70,6 +70,7 @@
     <Content Include="Images\Icons\Menu.png" />
     <Content Include="Images\Icons\Order.png" />
     <Content Include="Images\Icons\Orders.png" />
+    <Content Include="Images\Icons\Processed.png" />
     <Content Include="Images\Icons\Register-01.png" />
     <Content Include="Images\Icons\Text.png" />
     <Content Include="Images\Icons\Waiter.png" />
