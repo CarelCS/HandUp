@@ -40,6 +40,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnUpdateTextValues;
         
         /// <summary>
+        /// btnUpdateOrderStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateOrderStatus;
+        
+        /// <summary>
         /// hdnTableNumber control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,14 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnOrderNumber;
+        
+        /// <summary>
+        /// hdnOrderStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnOrderStatus;
     }
 }

@@ -10,10 +10,23 @@
 <script type="text/javascript">
     function ConfirmOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function OrderWithCallWaiter(OrderID) {
-        alert("Order and Call Waiter " + OrderID);
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "3";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function CancelOrder(OrderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "4";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function Order(OrderID) {
@@ -41,7 +54,7 @@
         openOrderTextWindow();
     }
 </script>
-<body>
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server">
     <table>
         <tr>
@@ -54,9 +67,11 @@
     </table>
     <div style="visibility: hidden">
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" OnClick="btnUpdateTextValues_Click" />
+        <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
+        <asp:HiddenField ID="hdnOrderStatus" runat="server" />
     </div>
     </form>
 </body>

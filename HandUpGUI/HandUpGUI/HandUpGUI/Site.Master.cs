@@ -10,5 +10,16 @@ namespace HandUpGUI {
         protected void Page_Load(object sender, EventArgs e) {
 
         }
+
+        protected void btnSendSize_Click(object sender, EventArgs e) {
+            string ScreenH = screenHeight.Value;
+            string ScreenW = screenWidth.Value;
+            Session.Add("ScreenWidth", ScreenW);
+            if (Convert.ToInt32(ScreenH) > Convert.ToInt32(ScreenW)) {
+                
+            }
+            else {
+            }
+        }
     }
 }

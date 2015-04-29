@@ -19,6 +19,13 @@ namespace HandUpGUI {
             try {
                 ScreenWidth = Session["ScreenWidth"].ToString();
                 IconWidth = Convert.ToInt32(ScreenWidth) / 20;
+                imgAll.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgHide.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgMenu.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgOrders.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgCallWaiter.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgCloseBill.Width = Convert.ToInt32(ScreenWidth) / 6;
+                imgCloseTable.Width = Convert.ToInt32(ScreenWidth) / 6; 
                 localhost.HandUpService WSNew = new localhost.HandUpService();
                 DataSet ds = new DataSet();
                 DataSet dsE = new DataSet();
@@ -172,14 +179,36 @@ namespace HandUpGUI {
             string sCanConfirm = "";
             double TotalCost = 0;
              foreach (DataRow dr in ds.Tables[0].Rows) {
-                 if (PKiEmployeeTypeID == "2")
-                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
-                 else {
-                     sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
-                     sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
+                 if (dr["sOrderStatus"].ToString() == "2" || dr["sOrderStatus"].ToString() == "4") {
+                     //is confirmed so cannot show cancel or with waiter. So all buttons removed.
+                     if (dr["sOrderStatus"].ToString() == "2") {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Login-01.png\"  width='" + IconWidth + "'/></div>";
+                     }
+                     else {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";
+                     }
                  }
-                 sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
-                TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
+                 else {
+                     if (PKiEmployeeTypeID == "2")
+                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
+                     else {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
+                     }
+                 }
+                 if (dr["sOrderStatus"].ToString() == "4" || dr["sOrderStatus"].ToString() == "2") {
+                     if (dr["sOrderStatus"].ToString() == "4") {
+                         sOrderList += "<tr style=\"text-decoration:line-through\"><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                     }
+                     else {
+                         sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                     }
+                 }
+                 else {
+                     sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                 }
+                 if (dr["sOrderStatus"].ToString() != "4")
+                    TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
              }
              sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
             dvTablesOrders.InnerHtml = sOrderList;
@@ -192,18 +221,39 @@ namespace HandUpGUI {
             string sCanConfirm = "";
             double TotalCost = 0;
             foreach (DataRow dr in ds.Tables[0].Rows) {
-                if (PKiEmployeeTypeID == "2")
-                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
-                else
-                {
-                    sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
-                    sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
-                }
-                sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
-                TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
-            }
-            sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
-            dvTablesOrders.InnerHtml = sOrderList;
+                 if (dr["sOrderStatus"].ToString() == "2" || dr["sOrderStatus"].ToString() == "4") {
+                     //is confirmed so cannot show cancel or with waiter. So all buttons removed.
+                     if (dr["sOrderStatus"].ToString() == "2") {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Login-01.png\"  width='" + IconWidth + "'/></div>";
+                     }
+                     else {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";
+                     }
+                 }
+                 else {
+                     if (PKiEmployeeTypeID == "2")
+                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"OrderWithCallWaiter('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Waiter.png\"  width='" + IconWidth + "'/></div>";
+                     else {
+                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
+                     }
+                 }
+                 if (dr["sOrderStatus"].ToString() == "4" || dr["sOrderStatus"].ToString() == "2") {
+                     if (dr["sOrderStatus"].ToString() == "4") {
+                         sOrderList += "<tr style=\"text-decoration:line-through\"><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                     }
+                     else {
+                         sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                     }
+                 }
+                 else {
+                     sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                 }
+                 if (dr["sOrderStatus"].ToString() != "4")
+                    TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
+             }
+             sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
+             dvTablesOrders.InnerHtml = sOrderList;
         }
 
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
@@ -243,6 +293,7 @@ namespace HandUpGUI {
             string OrderStatus = hdnOrderStatus.Value;
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string Success = WSNew.ConfirmOrder(Convert.ToInt32(OrderID), true, OrderStatus);
+            PopulateTable(lblTableGUI.Text);
         }
 
         protected void AddAdverts() {

@@ -4,6 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+</style>
 </head>
 <script type="text/javascript">
 
@@ -15,21 +17,21 @@
 
     function ConfirmOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
-        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "1";
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";
         var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
         ClickChangeAlert.click();
     }
 
     function OrderWithCallWaiter(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
-        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "3";
         var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
         ClickChangeAlert.click();
     }
 
     function CancelOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
-        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "3";
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "4";
         var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
         ClickChangeAlert.click();
     }
@@ -142,9 +144,8 @@
         alert("Close Table");
     }
 </script>
-<body>
-    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG.jpg);            
-                background-size: 100%; background-repeat:repeat; border:0;">
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
+    <form id="form1" runat="server" enableviewstate="true" >
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
@@ -260,7 +261,7 @@
         <tr>
             <td>
                 <div>
-                    <table border="1" width="100%">
+                    <table border="0" width="100%">
                         <tr>
                             <td id="tdMenu" onclick="ChangeDiv('Menu')">
                                 <img id="imgMenu" src="Images/Icons/Menu.png" runat="server"  />

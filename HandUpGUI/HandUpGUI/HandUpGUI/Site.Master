@@ -8,9 +8,28 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
-    <form runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG.jpg);            
-                background-size: 100%; background-repeat:no-repeat; border:0;" >
+<script language="javascript" type="text/javascript">
+    function getOrientation() {
+        return Math.abs(window.orientation) - 90 == 0 ? "landscape" : "portrait";
+    };
+    function getMobileWidth() {
+        var WidthHere = getOrientation() == "landscape" ? screen.availHeight : screen.availWidth;
+        document.getElementById("<%= screenHeight.ClientID %>").value = WidthHere;
+        return WidthHere;
+    };
+    function getMobileHeight() {
+        var HeightHEre = getOrientation() == "landscape" ? screen.availWidth : screen.availHeight;
+        document.getElementById("<%= screenWidth.ClientID %>").value = HeightHEre;
+        return HeightHEre;
+    };
+
+    function Sizes() {
+        getMobileWidth();
+        getMobileHeight();
+    };
+</script>
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:no-repeat; border:0;">
+    <form runat="server" enableviewstate="true"  >
     <div class="page" style="background-color:transparent">
         <div class="main" style="background-color:transparent">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
@@ -21,6 +40,19 @@
     <div class="footer">
         
     </div>
+        <asp:HiddenField ID="screenHeight" runat="server" />
+        <asp:HiddenField ID="screenWidth" runat="server" />
+    <div style="visibility:collapse"><asp:Button ID="btnSendSize" runat="server" Text="Button" onclick="btnSendSize_Click" /></div>
+            
     </form>
 </body>
 </html>
+<script language="javascript">
+
+    var chkPostBack = '<%= Page.IsPostBack ? "true" : "false" %>';
+    if (chkPostBack == "false") {
+        Sizes();
+        var ClickChangeAlert = document.getElementById("<%= btnSendSize.ClientID %>");
+        ClickChangeAlert.click();
+    }
+</script>
