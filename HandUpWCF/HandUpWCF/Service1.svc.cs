@@ -25,7 +25,7 @@ namespace HandUpWCF {
 
         public DataSet AddOrder(int MenuItemID, int TableID, string TextValue) {
             Orders clsOrder = new Orders();
-            return clsOrder.AddOrder( MenuItemID,  TableID,  TextValue);
+            return clsOrder.AddOrder(MenuItemID, TableID, TextValue);
         }
 
         public string ConfirmOrder(int OrderID, string sStatus) {
@@ -55,9 +55,9 @@ namespace HandUpWCF {
             return clsTable.JoinTableCode(sTableCode);
         }
 
-        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber,string TableName,string Description) {
+        public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber, string TableName, string Description) {
             Table clsTable = new Table();
-            return clsTable.AddTable(FKiEmployeeID,FKiProviderID,iGuestNumber,TableName,Description);
+            return clsTable.AddTable(FKiEmployeeID, FKiProviderID, iGuestNumber, TableName, Description);
         }
 
         public string AddPatronToTable(int PkiTableID) {
@@ -97,7 +97,7 @@ namespace HandUpWCF {
             return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
         }
 
-       #endregion
+        #endregion
 
         #region Menu
 
@@ -143,6 +143,109 @@ namespace HandUpWCF {
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        #region Management
+
+        public DataSet MenuPerProviderAdminFull(int ProviderID) {
+            Management clsManagement = new Management();
+            return clsManagement.MenuPerProviderAdminFull(ProviderID);
+        }
+
+
+
+        public DataSet EmployeeListPerProvireAdminFull(int ProviderID) {
+            Management clsManagement = new Management();
+            return clsManagement.EmployeeListPerProvireAdminFull(ProviderID);
+        }
+
+        public DataSet AddEmployeePerProviderAdminFull(int ProviderID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
+           string EmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+            Management clsManagement = new Management();
+            return clsManagement.AddEmployeePerProviderAdminFull(ProviderID, EmployeeType, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, EmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName);
+        }
+
+        public DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
+           string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateEmployeePerProviderAdminFull(EmployeeID, EmployeeType, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName);
+        }
+
+        #endregion
+
+
+
+        public DataSet TablesPerProviderAdminFull(int ProviderID, DateTime dtOpen) {
+            Management clsManagement = new Management();
+            return clsManagement.TablesPerProviderAdminFull(ProviderID, dtOpen);
+        }
+
+        public DataSet ReOpenTablesPerProviderAdmin(int ProviderID, int TableID) {
+            Management clsManagement = new Management();
+            return clsManagement.ReOpenTablesPerProviderAdmin(ProviderID, TableID);
+        }
+
+        public DataSet MoveOrderBetweenTablesPerProviderAdmin(int ProviderID, int OrderID, int ToTableID) {
+            Management clsManagement = new Management();
+            return clsManagement.MoveOrderBetweenTablesPerProviderAdmin(ProviderID, OrderID,ToTableID);
+        }
+
+        public DataSet MoveTableBetweenEmployeePerProviderAdmin(int ProviderID, int EmployeeID, int ToTableID) {
+            Management clsManagement = new Management();
+            return clsManagement.MoveTableBetweenEmployeePerProviderAdmin(ProviderID, EmployeeID, ToTableID);
+        }
+
+        public DataSet ChangeOrderValuePerOrderPerProviderAdmin(int ProviderID, int OrderID, double OrderValue) {
+            Management clsManagement = new Management();
+            return clsManagement.ChangeOrderValuePerOrderPerProviderAdmin(ProviderID, OrderID,OrderValue);
+        }
+
+        public DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, DateTime dtOpen, int StatusID) {
+            Management clsManagement = new Management();
+            return clsManagement.TablesPerProviderPerStatusAdminFull(ProviderID, dtOpen,StatusID);
+        }
+
+
+        public DataSet AddNewMenuItem(int ProviderID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
+            Management clsManagement = new Management();
+            return clsManagement.AddNewMenuItem(ProviderID, MenuGroupID,MenuItemName, MenuItemDescription,MenuItemImage,MenuItemPrice);
+        }
+
+        public DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateMenuItem(MenuItemID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, ActiveStatus);
+        }
+
+        public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
+        }
+
+
+
+        public DataSet UpdateMenuGroupTypesPerProvider(int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateMenuGroupTypesPerProvider(MenuGroupID, MenuGroupName, MenuGroupDescription);
+        }
+
+        public DataSet AddSubMenuGroupTypesPerProvider(int ProviderID, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.AddSubMenuGroupTypesPerProvider(ProviderID, SubMenuGroupTypeName, SubMenuGroupTypepDescription);
+        }
+
+        public DataSet UpdateSubMenuGroupTypePerProvider(int SubMenuGroupTypeID, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription, int ActiveStatus) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateSubMenuGroupTypePerProvider(SubMenuGroupTypeID, SubMenuGroupTypeName, SubMenuGroupTypepDescription, ActiveStatus);
+        }
+
+        public DataSet AddSubMenuPerProvider(int ProviderID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.AddSubMenuPerProvider(ProviderID, MenuItemID, SubMenuGroupTypeID, SubMenuName, SubMenuDescription);
+        }
+
+        public DataSet UpdateSubMenuPerProvider(int SubMenuID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateSubMenuPerProvider(SubMenuID, MenuItemID, SubMenuGroupTypeID, SubMenuName, SubMenuDescription);
         }
     }
 }

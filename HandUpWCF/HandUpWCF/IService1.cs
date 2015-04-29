@@ -66,10 +66,76 @@ namespace HandUpWCF {
 
         #endregion
 
-        #region Employyes
+        #region Employees
 
         [OperationContract]
         DataSet TableAlertPerEmployee(int EmployeeID);
+
+        #endregion
+
+        #region Managment
+
+        [OperationContract]
+        DataSet MenuPerProviderAdminFull(int ProviderID);
+        [OperationContract]
+        DataSet EmployeeListPerProvireAdminFull(int ProviderID);
+
+        [OperationContract]
+        DataSet AddEmployeePerProviderAdminFull(int ProviderID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
+          string EmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName);
+
+        [OperationContract]
+        DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
+          string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName);
+
+        [OperationContract]
+        DataSet TablesPerProviderAdminFull(int ProviderID, DateTime dtOpen);
+
+        [OperationContract]
+        DataSet ReOpenTablesPerProviderAdmin(int ProviderID, int TableID);
+
+        [OperationContract]
+        DataSet MoveOrderBetweenTablesPerProviderAdmin(int ProviderID, int OrderID, int ToTableID);
+
+        [OperationContract]
+        DataSet MoveTableBetweenEmployeePerProviderAdmin(int ProviderID, int EmployeeID, int ToTableID);
+
+        [OperationContract]
+        DataSet ChangeOrderValuePerOrderPerProviderAdmin(int ProviderID, int OrderID, double OrderValue);
+
+        [OperationContract]
+        DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, DateTime dtOpen, int StatusID);
+
+
+        [OperationContract]
+        DataSet AddNewMenuItem(int ProviderID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice);
+
+        [OperationContract]
+        DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus)
+           ;
+
+        [OperationContract]
+        DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription);
+
+
+
+        [OperationContract]
+        DataSet UpdateMenuGroupTypesPerProvider(int MenuGroupID, string MenuGroupName, string MenuGroupDescription);
+
+        [OperationContract]
+        DataSet AddSubMenuGroupTypesPerProvider(int ProviderID, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription);
+
+        [OperationContract]
+        DataSet UpdateSubMenuGroupTypePerProvider(int SubMenuGroupTypeID, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription, int ActiveStatus);
+
+        [OperationContract]
+        DataSet AddSubMenuPerProvider(int ProviderID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription);
+
+        [OperationContract]
+        DataSet UpdateSubMenuPerProvider(int SubMenuID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription);
+
+
+
 
         #endregion
 
