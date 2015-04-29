@@ -103,7 +103,7 @@ namespace HandUpWCF {
         public DataSet ActiveTablesForProvider(int ProviderID) {
             tblTables aTable = new tblTables();
             aTable.addEquals(tblTables._FKIPROVIDERID, ProviderID);
-            DataSet aDataSet = new DataSet();
+            DataSet aDataSet = aTable.executeSelectDataSet();
             return aDataSet;
         }
 
