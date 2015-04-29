@@ -83,7 +83,7 @@ namespace HandUpGUI {
                 if (MenuGroupDefault == "")
                     MenuGroupDefault = "dvGroup" + drGroups["PKiMenuGroupID"].ToString();
                 menuHeaderCollection += drGroups["PKiMenuGroupID"].ToString() + "|";
-                MenuHeaders += "<td><div id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td>";
+                MenuHeaders += "<td><div  style='color:White; font-weight:bolder' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td>";
                 MenuTotal += "<div id=\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\"><table border='1'  width=\"100%\">";
                 string CurrentMenuID = "";
                 int ItemRow = 0;

@@ -58,6 +58,7 @@
     <Content Include="Images\EmployeeImages\Carelwaiter.jpg" />
     <Content Include="Images\Icons\All.png" />
     <Content Include="Images\Icons\BG-01.png" />
+    <Content Include="Images\Icons\BG.jpg" />
     <Content Include="Images\Icons\CallWaiter.png" />
     <Content Include="Images\Icons\Cancel.png" />
     <Content Include="Images\Icons\CloseBill.png" />
@@ -253,7 +254,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1146</DevelopmentServerPort>
+          <DevelopmentServerPort>3325</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -130,6 +130,42 @@ namespace HandUpGUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTablesOrders;
         
         /// <summary>
+        /// imgMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgMenu;
+        
+        /// <summary>
+        /// imgOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgOrders;
+        
+        /// <summary>
+        /// imgAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgAll;
+        
+        /// <summary>
+        /// imgHide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgHide;
+        
+        /// <summary>
         /// lblTableGUI control.
         /// </summary>
         /// <remarks>
@@ -166,6 +202,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCallWaiter;
         
         /// <summary>
+        /// imgCallWaiter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgCallWaiter;
+        
+        /// <summary>
         /// dvCloseBill control.
         /// </summary>
         /// <remarks>
@@ -175,6 +220,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseBill;
         
         /// <summary>
+        /// imgCloseBill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgCloseBill;
+        
+        /// <summary>
         /// dvCloseTable control.
         /// </summary>
         /// <remarks>
@@ -182,6 +236,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseTable;
+        
+        /// <summary>
+        /// imgCloseTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgCloseTable;
         
         /// <summary>
         /// updateAlerts control.

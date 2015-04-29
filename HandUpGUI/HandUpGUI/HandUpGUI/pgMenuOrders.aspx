@@ -143,7 +143,8 @@
     }
 </script>
 <body>
-    <form id="form1" runat="server" enableviewstate="true" style="background-color: rgba(145,232,66,1); ">
+    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG.jpg);            
+                background-size: 100%; background-repeat:repeat; border:0;">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
@@ -262,16 +263,16 @@
                     <table border="1" width="100%">
                         <tr>
                             <td id="tdMenu" onclick="ChangeDiv('Menu')">
-                                <img src="Images/Icons/Menu.png" />
+                                <img id="imgMenu" src="Images/Icons/Menu.png" runat="server"  />
                             </td>
                             <td id="tdOrder" onclick="ChangeDiv('Order')">
-                                <img src="Images/Icons/Orders.png" />
+                                <img id="imgOrders" src="Images/Icons/Orders.png" runat="server"  />
                             </td>
                             <td id="tdSplit" onclick="ChangeDiv('Split')">
-                                <img src="Images/Icons/All.png" />
+                                <img id="imgAll" src="Images/Icons/All.png" runat="server"  />
                             </td>
                             <td id="td1" onclick="ChangeDiv('Hide')">
-                                <img src="Images/Icons/Hide.png" />
+                                <img id="imgHide" src="Images/Icons/Hide.png" runat="server"  />
                             </td>
                         </tr>
                     </table>
@@ -298,9 +299,9 @@
     </table>
     <table>
     <tr>
-    <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img src="Images/Icons/CallWaiter.png" /></div></td>
-    <td><div id="dvCloseBill" onclick="CloseBill()" runat="server"><img src="Images/Icons/CloseBill.png" /></div></td>
-    <td><div id="dvCloseTable" onclick="CloseTable()" runat="server"><img src="Images/Icons/CloseTable.png" /></div></td>
+    <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img id="imgCallWaiter" src="Images/Icons/CallWaiter.png" runat="server" /></div></td>
+    <td><div id="dvCloseBill" onclick="CloseBill()" runat="server"><img id="imgCloseBill" src="Images/Icons/CloseBill.png" runat="server"  /></div></td>
+    <td><div id="dvCloseTable" onclick="CloseTable()" runat="server"><img id="imgCloseTable" src="Images/Icons/CloseTable.png" runat="server"  /></div></td>
     </tr>
     </table>
     <div style="visibility: hidden">
