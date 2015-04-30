@@ -6,32 +6,32 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server">
     <div>
-    <table>
-        <tr>
-            <td>Restaurant Menus</td>
-            <td>
+    <table width="100%">
+        <tr align="center">
+            <td align="right">Restaurant Menus</td>
+            <td align="left">
                 <asp:DropDownList ID="DropDownList1" runat="server">
                 </asp:DropDownList>
             </td>
         </tr>
-        <tr>
-            <td></td>
-            <td>
+        <tr align="center">
+            <td align="right"></td>
+            <td align="left">
                 <asp:Button ID="btnSeeMenu" runat="server" Text="VIew Menu" 
                     onclick="btnSeeMenu_Click" />
             </td>
         </tr>
-        <tr>
-            <td>Join Table Code</td>
-            <td>
+        <tr align="center">
+            <td align="right">Join Table Code</td>
+            <td align="left">
                 <asp:TextBox ID="txtTableCode" runat="server"></asp:TextBox></td>
         </tr>
-        <tr>
-            <td></td>
-            <td>
+        <tr align="center">
+            <td align="right"></td>
+            <td align="left">
                 <asp:Button ID="btnJoinTable" runat="server" Text="JoinTable" 
                     onclick="btnJoinTable_Click" /></td>
         </tr>

@@ -9,6 +9,9 @@ using System.Data;
 namespace HandUpGUI {
     public partial class pgPatron : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = new DataSet();
+            //ds = WSNew.
 
         }
 
