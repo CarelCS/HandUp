@@ -32,9 +32,9 @@ namespace HandUpGUI {
                         if (drOrder["sOrderStatus"].ToString() == "2") {
                             sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Processed.png\"  width='" + IconWidth + "'/></div>";
                         }
-                        else {
-                            sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";
-                        }
+                        //else {
+                        //    sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Logo-01.png\"  width='" + IconWidth + "'/></div>";
+                        //}
                     }
                     else {
                         sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
@@ -42,7 +42,7 @@ namespace HandUpGUI {
                     }
                     if (drOrder["sOrderStatus"].ToString() == "4" || drOrder["sOrderStatus"].ToString() == "2") {
                         if (drOrder["sOrderStatus"].ToString() == "4") {
-                            sOrderList += "<tr style=\"text-decoration:line-through\"><td>" + dr["sTableName"].ToString() + "</td><td width='100%'>" + drOrder["sMenuItemDescription"].ToString() + drOrder["sMenuItemChanges"].ToString() + "</td><td>R " + drOrder["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                            //sOrderList += "<tr style=\"text-decoration:line-through\"><td>" + dr["sTableName"].ToString() + "</td><td width='100%'>" + drOrder["sMenuItemDescription"].ToString() + drOrder["sMenuItemChanges"].ToString() + "</td><td>R " + drOrder["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
                         }
                         else {
                             sOrderList += "<tr><td>" + dr["sTableName"].ToString() + "</td><td width='100%'>" + drOrder["sMenuItemDescription"].ToString() + drOrder["sMenuItemChanges"].ToString() + "</td><td>R " + drOrder["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
