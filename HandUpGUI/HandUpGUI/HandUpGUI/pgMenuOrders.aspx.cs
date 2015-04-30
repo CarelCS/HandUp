@@ -78,6 +78,9 @@ namespace HandUpGUI {
             catch { PKiEmployeeID = "0"; }
         }
 
+        protected void Advertisement() {
+        }
+
         protected void PopulateMenu() {
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
