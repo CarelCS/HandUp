@@ -15,6 +15,12 @@ namespace HandUpGUI {
         public string PKiEmployeeTypeID;
         public string ScreenWidth;
         int IconWidth;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             try {
                 ScreenWidth = Session["ScreenWidth"].ToString();
@@ -78,9 +84,15 @@ namespace HandUpGUI {
             catch { PKiEmployeeID = "0"; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Advertisement() {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void PopulateMenu() {
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
@@ -140,6 +152,11 @@ namespace HandUpGUI {
             dvMenuMain.InnerHtml = MenuTotal;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="maxSize"></param>
+        /// <returns></returns>
         public static string GetUniqueKey(int maxSize) {
             char[] chars = new char[35];
             chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
@@ -155,6 +172,11 @@ namespace HandUpGUI {
             return result.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAddTable_Click(object sender, EventArgs e) {
             Table tbl = new Table();
             string UITable = "";
@@ -164,6 +186,11 @@ namespace HandUpGUI {
             //WSNew.AddTable(
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnChangeTable_Click(object sender, EventArgs e) {
             Table tbl = new Table();
             string TableValue = hdnTableNumber.Value;
@@ -174,6 +201,10 @@ namespace HandUpGUI {
             PopulateTable("GUI " + TableValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TableGUI"></param>
         protected void PopulateTable(string TableGUI) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.OrdersPerTable(Convert.ToInt32(hdnTableNumber.Value), true);
@@ -217,6 +248,10 @@ namespace HandUpGUI {
             dvTablesOrders.InnerHtml = sOrderList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
         protected void PopulateNewOrderForTable(DataSet ds) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string sOrderList = "<table border='1' width=\"100%\">";
@@ -259,6 +294,11 @@ namespace HandUpGUI {
              dvTablesOrders.InnerHtml = sOrderList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = new DataSet();
@@ -279,6 +319,11 @@ namespace HandUpGUI {
             PopulateNewOrderForTable(WSNew.AddTextToOrder(Convert.ToInt32(OrderNumber), true, OrderText));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnPlaceOrder_Click(object sender, EventArgs e) {
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
@@ -291,6 +336,11 @@ namespace HandUpGUI {
             PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoicesString.Replace("~", "<br />")));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdateOrderStatus_Click(object sender, EventArgs e) {
             string OrderID = hdnOrderNumber.Value;
             string OrderStatus = hdnOrderStatus.Value;
@@ -299,6 +349,9 @@ namespace HandUpGUI {
             PopulateTable(lblTableGUI.Text);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void AddAdverts() {
         }
     }

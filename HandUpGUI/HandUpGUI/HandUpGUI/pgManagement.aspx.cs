@@ -181,7 +181,7 @@ namespace HandUpGUI {
         /// <param name="e"></param>
         protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex) + 1, true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
+            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
         }
 
         /// <summary>

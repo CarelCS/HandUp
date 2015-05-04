@@ -8,9 +8,20 @@ using System.Data;
 
 namespace HandUpGUI {
     public partial class _Default : System.Web.UI.Page {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
             if (txtUserName.Text != "" && txtPassword.Text != "") {
@@ -62,6 +73,11 @@ namespace HandUpGUI {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSendSize_Click(object sender, EventArgs e) {
             string ScreenH = screenHeight.Value;
             string ScreenW = screenWidth.Value;
@@ -72,6 +88,11 @@ namespace HandUpGUI {
             Image1.Width = Convert.ToInt32(ScreenW) / 5;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnRegister_Click(object sender, EventArgs e) {
             Server.Transfer("pgRegistration.aspx", false);
         }

@@ -15,6 +15,11 @@ namespace HandUpGUI {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnJoinTable_Click(object sender, EventArgs e) {
             localhost.HandUpService WSnew = new localhost.HandUpService();
             DataSet TableSet = new DataSet();
@@ -23,6 +28,11 @@ namespace HandUpGUI {
             Server.Transfer("pgMenuOrders.aspx", false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSeeMenu_Click(object sender, EventArgs e) {
 
         }

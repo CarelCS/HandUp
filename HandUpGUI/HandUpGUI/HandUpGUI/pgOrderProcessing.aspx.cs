@@ -13,6 +13,9 @@ namespace HandUpGUI {
                 PopulateTable();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void PopulateTable() {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string ScreenWidth = Session["ScreenWidth"].ToString();
@@ -57,6 +60,11 @@ namespace HandUpGUI {
             dvTablesOrders.InnerHtml = sOrderList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
             string OrderNumber = hdnOrderNumber.Value;
             string OrderText = hdnTextForOrder.Value;
@@ -65,6 +73,11 @@ namespace HandUpGUI {
             PopulateTable();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdateOrderStatus_Click(object sender, EventArgs e) {
             string OrderID = hdnOrderNumber.Value;
             string OrderStatus = hdnOrderStatus.Value;
