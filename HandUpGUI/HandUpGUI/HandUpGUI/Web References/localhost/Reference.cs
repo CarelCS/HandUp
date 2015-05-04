@@ -66,6 +66,42 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback MenuPerProviderAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EmployeeListPerProvireAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddEmployeePerProviderAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateEmployeePerProviderAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TablesPerProviderAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ReOpenTablesPerProviderAdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MoveOrderBetweenTablesPerProviderAdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MoveTableBetweenEmployeePerProviderAdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangeOrderValuePerOrderPerProviderAdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TablesPerProviderPerStatusAdminFullOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddNewMenuItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateMenuItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddMenuGroupPerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateMenuGroupTypesPerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddSubMenuGroupTypesPerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateSubMenuGroupTypePerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddSubMenuPerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateSubMenuPerProviderOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback EditEmployeeOperationCompleted;
@@ -179,6 +215,60 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event TableAlertPerEmployeeCompletedEventHandler TableAlertPerEmployeeCompleted;
+        
+        /// <remarks/>
+        public event MenuPerProviderAdminFullCompletedEventHandler MenuPerProviderAdminFullCompleted;
+        
+        /// <remarks/>
+        public event EmployeeListPerProvireAdminFullCompletedEventHandler EmployeeListPerProvireAdminFullCompleted;
+        
+        /// <remarks/>
+        public event AddEmployeePerProviderAdminFullCompletedEventHandler AddEmployeePerProviderAdminFullCompleted;
+        
+        /// <remarks/>
+        public event UpdateEmployeePerProviderAdminFullCompletedEventHandler UpdateEmployeePerProviderAdminFullCompleted;
+        
+        /// <remarks/>
+        public event TablesPerProviderAdminFullCompletedEventHandler TablesPerProviderAdminFullCompleted;
+        
+        /// <remarks/>
+        public event ReOpenTablesPerProviderAdminCompletedEventHandler ReOpenTablesPerProviderAdminCompleted;
+        
+        /// <remarks/>
+        public event MoveOrderBetweenTablesPerProviderAdminCompletedEventHandler MoveOrderBetweenTablesPerProviderAdminCompleted;
+        
+        /// <remarks/>
+        public event MoveTableBetweenEmployeePerProviderAdminCompletedEventHandler MoveTableBetweenEmployeePerProviderAdminCompleted;
+        
+        /// <remarks/>
+        public event ChangeOrderValuePerOrderPerProviderAdminCompletedEventHandler ChangeOrderValuePerOrderPerProviderAdminCompleted;
+        
+        /// <remarks/>
+        public event TablesPerProviderPerStatusAdminFullCompletedEventHandler TablesPerProviderPerStatusAdminFullCompleted;
+        
+        /// <remarks/>
+        public event AddNewMenuItemCompletedEventHandler AddNewMenuItemCompleted;
+        
+        /// <remarks/>
+        public event UpdateMenuItemCompletedEventHandler UpdateMenuItemCompleted;
+        
+        /// <remarks/>
+        public event AddMenuGroupPerProviderCompletedEventHandler AddMenuGroupPerProviderCompleted;
+        
+        /// <remarks/>
+        public event UpdateMenuGroupTypesPerProviderCompletedEventHandler UpdateMenuGroupTypesPerProviderCompleted;
+        
+        /// <remarks/>
+        public event AddSubMenuGroupTypesPerProviderCompletedEventHandler AddSubMenuGroupTypesPerProviderCompleted;
+        
+        /// <remarks/>
+        public event UpdateSubMenuGroupTypePerProviderCompletedEventHandler UpdateSubMenuGroupTypePerProviderCompleted;
+        
+        /// <remarks/>
+        public event AddSubMenuPerProviderCompletedEventHandler AddSubMenuPerProviderCompleted;
+        
+        /// <remarks/>
+        public event UpdateSubMenuPerProviderCompletedEventHandler UpdateSubMenuPerProviderCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -822,6 +912,782 @@ namespace HandUpGUI.localhost {
             if ((this.TableAlertPerEmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TableAlertPerEmployeeCompleted(this, new TableAlertPerEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/MenuPerProviderAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet MenuPerProviderAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("MenuPerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MenuPerProviderAdminFullAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.MenuPerProviderAdminFullAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void MenuPerProviderAdminFullAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.MenuPerProviderAdminFullOperationCompleted == null)) {
+                this.MenuPerProviderAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMenuPerProviderAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("MenuPerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.MenuPerProviderAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnMenuPerProviderAdminFullOperationCompleted(object arg) {
+            if ((this.MenuPerProviderAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MenuPerProviderAdminFullCompleted(this, new MenuPerProviderAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/EmployeeListPerProvireAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet EmployeeListPerProvireAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("EmployeeListPerProvireAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EmployeeListPerProvireAdminFullAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.EmployeeListPerProvireAdminFullAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void EmployeeListPerProvireAdminFullAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.EmployeeListPerProvireAdminFullOperationCompleted == null)) {
+                this.EmployeeListPerProvireAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEmployeeListPerProvireAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("EmployeeListPerProvireAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.EmployeeListPerProvireAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnEmployeeListPerProvireAdminFullOperationCompleted(object arg) {
+            if ((this.EmployeeListPerProvireAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EmployeeListPerProvireAdminFullCompleted(this, new EmployeeListPerProvireAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddEmployeePerProviderAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddEmployeePerProviderAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int EmployeeType, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeTypeSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress1, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress2, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress3, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeEmail, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeNationality, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeSurname, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeTel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string UserName) {
+            object[] results = this.Invoke("AddEmployeePerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        EmployeeType,
+                        EmployeeTypeSpecified,
+                        EmployeeAddress1,
+                        EmployeeAddress2,
+                        EmployeeAddress3,
+                        EmployeeEmail,
+                        EmployeeID,
+                        EmployeeName,
+                        EmployeeNationality,
+                        EmployeeSurname,
+                        EmployeeTel,
+                        Password,
+                        UserName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddEmployeePerProviderAdminFullAsync(int ProviderID, bool ProviderIDSpecified, int EmployeeType, bool EmployeeTypeSpecified, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail, string EmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+            this.AddEmployeePerProviderAdminFullAsync(ProviderID, ProviderIDSpecified, EmployeeType, EmployeeTypeSpecified, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, EmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName, null);
+        }
+        
+        /// <remarks/>
+        public void AddEmployeePerProviderAdminFullAsync(
+                    int ProviderID, 
+                    bool ProviderIDSpecified, 
+                    int EmployeeType, 
+                    bool EmployeeTypeSpecified, 
+                    string EmployeeAddress1, 
+                    string EmployeeAddress2, 
+                    string EmployeeAddress3, 
+                    string EmployeeEmail, 
+                    string EmployeeID, 
+                    string EmployeeName, 
+                    string EmployeeNationality, 
+                    string EmployeeSurname, 
+                    string EmployeeTel, 
+                    string Password, 
+                    string UserName, 
+                    object userState) {
+            if ((this.AddEmployeePerProviderAdminFullOperationCompleted == null)) {
+                this.AddEmployeePerProviderAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddEmployeePerProviderAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("AddEmployeePerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        EmployeeType,
+                        EmployeeTypeSpecified,
+                        EmployeeAddress1,
+                        EmployeeAddress2,
+                        EmployeeAddress3,
+                        EmployeeEmail,
+                        EmployeeID,
+                        EmployeeName,
+                        EmployeeNationality,
+                        EmployeeSurname,
+                        EmployeeTel,
+                        Password,
+                        UserName}, this.AddEmployeePerProviderAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnAddEmployeePerProviderAdminFullOperationCompleted(object arg) {
+            if ((this.AddEmployeePerProviderAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddEmployeePerProviderAdminFullCompleted(this, new AddEmployeePerProviderAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateEmployeePerProviderAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified, int EmployeeType, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeTypeSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress1, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress2, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress3, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeEmail, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sEmployeeID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeNationality, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeSurname, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeTel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string UserName) {
+            object[] results = this.Invoke("UpdateEmployeePerProviderAdminFull", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        EmployeeType,
+                        EmployeeTypeSpecified,
+                        EmployeeAddress1,
+                        EmployeeAddress2,
+                        EmployeeAddress3,
+                        EmployeeEmail,
+                        sEmployeeID,
+                        EmployeeName,
+                        EmployeeNationality,
+                        EmployeeSurname,
+                        EmployeeTel,
+                        Password,
+                        UserName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateEmployeePerProviderAdminFullAsync(int EmployeeID, bool EmployeeIDSpecified, int EmployeeType, bool EmployeeTypeSpecified, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail, string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+            this.UpdateEmployeePerProviderAdminFullAsync(EmployeeID, EmployeeIDSpecified, EmployeeType, EmployeeTypeSpecified, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateEmployeePerProviderAdminFullAsync(
+                    int EmployeeID, 
+                    bool EmployeeIDSpecified, 
+                    int EmployeeType, 
+                    bool EmployeeTypeSpecified, 
+                    string EmployeeAddress1, 
+                    string EmployeeAddress2, 
+                    string EmployeeAddress3, 
+                    string EmployeeEmail, 
+                    string sEmployeeID, 
+                    string EmployeeName, 
+                    string EmployeeNationality, 
+                    string EmployeeSurname, 
+                    string EmployeeTel, 
+                    string Password, 
+                    string UserName, 
+                    object userState) {
+            if ((this.UpdateEmployeePerProviderAdminFullOperationCompleted == null)) {
+                this.UpdateEmployeePerProviderAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateEmployeePerProviderAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("UpdateEmployeePerProviderAdminFull", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        EmployeeType,
+                        EmployeeTypeSpecified,
+                        EmployeeAddress1,
+                        EmployeeAddress2,
+                        EmployeeAddress3,
+                        EmployeeEmail,
+                        sEmployeeID,
+                        EmployeeName,
+                        EmployeeNationality,
+                        EmployeeSurname,
+                        EmployeeTel,
+                        Password,
+                        UserName}, this.UpdateEmployeePerProviderAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnUpdateEmployeePerProviderAdminFullOperationCompleted(object arg) {
+            if ((this.UpdateEmployeePerProviderAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateEmployeePerProviderAdminFullCompleted(this, new UpdateEmployeePerProviderAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/TablesPerProviderAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet TablesPerProviderAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, System.DateTime dtOpen, [System.Xml.Serialization.XmlIgnoreAttribute()] bool dtOpenSpecified) {
+            object[] results = this.Invoke("TablesPerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtOpen,
+                        dtOpenSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TablesPerProviderAdminFullAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtOpen, bool dtOpenSpecified) {
+            this.TablesPerProviderAdminFullAsync(ProviderID, ProviderIDSpecified, dtOpen, dtOpenSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void TablesPerProviderAdminFullAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtOpen, bool dtOpenSpecified, object userState) {
+            if ((this.TablesPerProviderAdminFullOperationCompleted == null)) {
+                this.TablesPerProviderAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTablesPerProviderAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("TablesPerProviderAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtOpen,
+                        dtOpenSpecified}, this.TablesPerProviderAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnTablesPerProviderAdminFullOperationCompleted(object arg) {
+            if ((this.TablesPerProviderAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TablesPerProviderAdminFullCompleted(this, new TablesPerProviderAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ReOpenTablesPerProviderAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet ReOpenTablesPerProviderAdmin(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int TableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool TableIDSpecified) {
+            object[] results = this.Invoke("ReOpenTablesPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        TableID,
+                        TableIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ReOpenTablesPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int TableID, bool TableIDSpecified) {
+            this.ReOpenTablesPerProviderAdminAsync(ProviderID, ProviderIDSpecified, TableID, TableIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ReOpenTablesPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int TableID, bool TableIDSpecified, object userState) {
+            if ((this.ReOpenTablesPerProviderAdminOperationCompleted == null)) {
+                this.ReOpenTablesPerProviderAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnReOpenTablesPerProviderAdminOperationCompleted);
+            }
+            this.InvokeAsync("ReOpenTablesPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        TableID,
+                        TableIDSpecified}, this.ReOpenTablesPerProviderAdminOperationCompleted, userState);
+        }
+        
+        private void OnReOpenTablesPerProviderAdminOperationCompleted(object arg) {
+            if ((this.ReOpenTablesPerProviderAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ReOpenTablesPerProviderAdminCompleted(this, new ReOpenTablesPerProviderAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/MoveOrderBetweenTablesPerProviderAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet MoveOrderBetweenTablesPerProviderAdmin(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int OrderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool OrderIDSpecified, int ToTableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ToTableIDSpecified) {
+            object[] results = this.Invoke("MoveOrderBetweenTablesPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        OrderID,
+                        OrderIDSpecified,
+                        ToTableID,
+                        ToTableIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MoveOrderBetweenTablesPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int OrderID, bool OrderIDSpecified, int ToTableID, bool ToTableIDSpecified) {
+            this.MoveOrderBetweenTablesPerProviderAdminAsync(ProviderID, ProviderIDSpecified, OrderID, OrderIDSpecified, ToTableID, ToTableIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void MoveOrderBetweenTablesPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int OrderID, bool OrderIDSpecified, int ToTableID, bool ToTableIDSpecified, object userState) {
+            if ((this.MoveOrderBetweenTablesPerProviderAdminOperationCompleted == null)) {
+                this.MoveOrderBetweenTablesPerProviderAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMoveOrderBetweenTablesPerProviderAdminOperationCompleted);
+            }
+            this.InvokeAsync("MoveOrderBetweenTablesPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        OrderID,
+                        OrderIDSpecified,
+                        ToTableID,
+                        ToTableIDSpecified}, this.MoveOrderBetweenTablesPerProviderAdminOperationCompleted, userState);
+        }
+        
+        private void OnMoveOrderBetweenTablesPerProviderAdminOperationCompleted(object arg) {
+            if ((this.MoveOrderBetweenTablesPerProviderAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MoveOrderBetweenTablesPerProviderAdminCompleted(this, new MoveOrderBetweenTablesPerProviderAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/MoveTableBetweenEmployeePerProviderAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet MoveTableBetweenEmployeePerProviderAdmin(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified, int ToTableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ToTableIDSpecified) {
+            object[] results = this.Invoke("MoveTableBetweenEmployeePerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        ToTableID,
+                        ToTableIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MoveTableBetweenEmployeePerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int EmployeeID, bool EmployeeIDSpecified, int ToTableID, bool ToTableIDSpecified) {
+            this.MoveTableBetweenEmployeePerProviderAdminAsync(ProviderID, ProviderIDSpecified, EmployeeID, EmployeeIDSpecified, ToTableID, ToTableIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void MoveTableBetweenEmployeePerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int EmployeeID, bool EmployeeIDSpecified, int ToTableID, bool ToTableIDSpecified, object userState) {
+            if ((this.MoveTableBetweenEmployeePerProviderAdminOperationCompleted == null)) {
+                this.MoveTableBetweenEmployeePerProviderAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMoveTableBetweenEmployeePerProviderAdminOperationCompleted);
+            }
+            this.InvokeAsync("MoveTableBetweenEmployeePerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        ToTableID,
+                        ToTableIDSpecified}, this.MoveTableBetweenEmployeePerProviderAdminOperationCompleted, userState);
+        }
+        
+        private void OnMoveTableBetweenEmployeePerProviderAdminOperationCompleted(object arg) {
+            if ((this.MoveTableBetweenEmployeePerProviderAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MoveTableBetweenEmployeePerProviderAdminCompleted(this, new MoveTableBetweenEmployeePerProviderAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ChangeOrderValuePerOrderPerProviderAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet ChangeOrderValuePerOrderPerProviderAdmin(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int OrderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool OrderIDSpecified, double OrderValue, [System.Xml.Serialization.XmlIgnoreAttribute()] bool OrderValueSpecified) {
+            object[] results = this.Invoke("ChangeOrderValuePerOrderPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        OrderID,
+                        OrderIDSpecified,
+                        OrderValue,
+                        OrderValueSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChangeOrderValuePerOrderPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int OrderID, bool OrderIDSpecified, double OrderValue, bool OrderValueSpecified) {
+            this.ChangeOrderValuePerOrderPerProviderAdminAsync(ProviderID, ProviderIDSpecified, OrderID, OrderIDSpecified, OrderValue, OrderValueSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ChangeOrderValuePerOrderPerProviderAdminAsync(int ProviderID, bool ProviderIDSpecified, int OrderID, bool OrderIDSpecified, double OrderValue, bool OrderValueSpecified, object userState) {
+            if ((this.ChangeOrderValuePerOrderPerProviderAdminOperationCompleted == null)) {
+                this.ChangeOrderValuePerOrderPerProviderAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangeOrderValuePerOrderPerProviderAdminOperationCompleted);
+            }
+            this.InvokeAsync("ChangeOrderValuePerOrderPerProviderAdmin", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        OrderID,
+                        OrderIDSpecified,
+                        OrderValue,
+                        OrderValueSpecified}, this.ChangeOrderValuePerOrderPerProviderAdminOperationCompleted, userState);
+        }
+        
+        private void OnChangeOrderValuePerOrderPerProviderAdminOperationCompleted(object arg) {
+            if ((this.ChangeOrderValuePerOrderPerProviderAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangeOrderValuePerOrderPerProviderAdminCompleted(this, new ChangeOrderValuePerOrderPerProviderAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/TablesPerProviderPerStatusAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, System.DateTime dtOpen, [System.Xml.Serialization.XmlIgnoreAttribute()] bool dtOpenSpecified, int StatusID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StatusIDSpecified) {
+            object[] results = this.Invoke("TablesPerProviderPerStatusAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtOpen,
+                        dtOpenSpecified,
+                        StatusID,
+                        StatusIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TablesPerProviderPerStatusAdminFullAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtOpen, bool dtOpenSpecified, int StatusID, bool StatusIDSpecified) {
+            this.TablesPerProviderPerStatusAdminFullAsync(ProviderID, ProviderIDSpecified, dtOpen, dtOpenSpecified, StatusID, StatusIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void TablesPerProviderPerStatusAdminFullAsync(int ProviderID, bool ProviderIDSpecified, System.DateTime dtOpen, bool dtOpenSpecified, int StatusID, bool StatusIDSpecified, object userState) {
+            if ((this.TablesPerProviderPerStatusAdminFullOperationCompleted == null)) {
+                this.TablesPerProviderPerStatusAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTablesPerProviderPerStatusAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("TablesPerProviderPerStatusAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        dtOpen,
+                        dtOpenSpecified,
+                        StatusID,
+                        StatusIDSpecified}, this.TablesPerProviderPerStatusAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnTablesPerProviderPerStatusAdminFullOperationCompleted(object arg) {
+            if ((this.TablesPerProviderPerStatusAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TablesPerProviderPerStatusAdminFullCompleted(this, new TablesPerProviderPerStatusAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddNewMenuItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddNewMenuItem(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified) {
+            object[] results = this.Invoke("AddNewMenuItem", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuItemName,
+                        MenuItemDescription,
+                        MenuItemImage,
+                        MenuItemPrice,
+                        MenuItemPriceSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified) {
+            this.AddNewMenuItemAsync(ProviderID, ProviderIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, object userState) {
+            if ((this.AddNewMenuItemOperationCompleted == null)) {
+                this.AddNewMenuItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddNewMenuItemOperationCompleted);
+            }
+            this.InvokeAsync("AddNewMenuItem", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuItemName,
+                        MenuItemDescription,
+                        MenuItemImage,
+                        MenuItemPrice,
+                        MenuItemPriceSpecified}, this.AddNewMenuItemOperationCompleted, userState);
+        }
+        
+        private void OnAddNewMenuItemOperationCompleted(object arg) {
+            if ((this.AddNewMenuItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddNewMenuItemCompleted(this, new AddNewMenuItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateMenuItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateMenuItem(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified, int ActiveStatus, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ActiveStatusSpecified) {
+            object[] results = this.Invoke("UpdateMenuItem", new object[] {
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuItemName,
+                        MenuItemDescription,
+                        MenuItemImage,
+                        MenuItemPrice,
+                        MenuItemPriceSpecified,
+                        ActiveStatus,
+                        ActiveStatusSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuItemAsync(int MenuItemID, bool MenuItemIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, int ActiveStatus, bool ActiveStatusSpecified) {
+            this.UpdateMenuItemAsync(MenuItemID, MenuItemIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, ActiveStatus, ActiveStatusSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuItemAsync(int MenuItemID, bool MenuItemIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, int ActiveStatus, bool ActiveStatusSpecified, object userState) {
+            if ((this.UpdateMenuItemOperationCompleted == null)) {
+                this.UpdateMenuItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateMenuItemOperationCompleted);
+            }
+            this.InvokeAsync("UpdateMenuItem", new object[] {
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuItemName,
+                        MenuItemDescription,
+                        MenuItemImage,
+                        MenuItemPrice,
+                        MenuItemPriceSpecified,
+                        ActiveStatus,
+                        ActiveStatusSpecified}, this.UpdateMenuItemOperationCompleted, userState);
+        }
+        
+        private void OnUpdateMenuItemOperationCompleted(object arg) {
+            if ((this.UpdateMenuItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateMenuItemCompleted(this, new UpdateMenuItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddMenuGroupPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription) {
+            object[] results = this.Invoke("AddMenuGroupPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription) {
+            this.AddMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupName, MenuGroupDescription, null);
+        }
+        
+        /// <remarks/>
+        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription, object userState) {
+            if ((this.AddMenuGroupPerProviderOperationCompleted == null)) {
+                this.AddMenuGroupPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddMenuGroupPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("AddMenuGroupPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription}, this.AddMenuGroupPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnAddMenuGroupPerProviderOperationCompleted(object arg) {
+            if ((this.AddMenuGroupPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddMenuGroupPerProviderCompleted(this, new AddMenuGroupPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateMenuGroupTypesPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateMenuGroupTypesPerProvider(int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription) {
+            object[] results = this.Invoke("UpdateMenuGroupTypesPerProvider", new object[] {
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuGroupTypesPerProviderAsync(int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription) {
+            this.UpdateMenuGroupTypesPerProviderAsync(MenuGroupID, MenuGroupIDSpecified, MenuGroupName, MenuGroupDescription, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuGroupTypesPerProviderAsync(int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription, object userState) {
+            if ((this.UpdateMenuGroupTypesPerProviderOperationCompleted == null)) {
+                this.UpdateMenuGroupTypesPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateMenuGroupTypesPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("UpdateMenuGroupTypesPerProvider", new object[] {
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription}, this.UpdateMenuGroupTypesPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnUpdateMenuGroupTypesPerProviderOperationCompleted(object arg) {
+            if ((this.UpdateMenuGroupTypesPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateMenuGroupTypesPerProviderCompleted(this, new UpdateMenuGroupTypesPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddSubMenuGroupTypesPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddSubMenuGroupTypesPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuGroupTypeName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuGroupTypepDescription) {
+            object[] results = this.Invoke("AddSubMenuGroupTypesPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        SubMenuGroupTypeName,
+                        SubMenuGroupTypepDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddSubMenuGroupTypesPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription) {
+            this.AddSubMenuGroupTypesPerProviderAsync(ProviderID, ProviderIDSpecified, SubMenuGroupTypeName, SubMenuGroupTypepDescription, null);
+        }
+        
+        /// <remarks/>
+        public void AddSubMenuGroupTypesPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription, object userState) {
+            if ((this.AddSubMenuGroupTypesPerProviderOperationCompleted == null)) {
+                this.AddSubMenuGroupTypesPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddSubMenuGroupTypesPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("AddSubMenuGroupTypesPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        SubMenuGroupTypeName,
+                        SubMenuGroupTypepDescription}, this.AddSubMenuGroupTypesPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnAddSubMenuGroupTypesPerProviderOperationCompleted(object arg) {
+            if ((this.AddSubMenuGroupTypesPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddSubMenuGroupTypesPerProviderCompleted(this, new AddSubMenuGroupTypesPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateSubMenuGroupTypePerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateSubMenuGroupTypePerProvider(int SubMenuGroupTypeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool SubMenuGroupTypeIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuGroupTypeName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuGroupTypepDescription, int ActiveStatus, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ActiveStatusSpecified) {
+            object[] results = this.Invoke("UpdateSubMenuGroupTypePerProvider", new object[] {
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuGroupTypeName,
+                        SubMenuGroupTypepDescription,
+                        ActiveStatus,
+                        ActiveStatusSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateSubMenuGroupTypePerProviderAsync(int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription, int ActiveStatus, bool ActiveStatusSpecified) {
+            this.UpdateSubMenuGroupTypePerProviderAsync(SubMenuGroupTypeID, SubMenuGroupTypeIDSpecified, SubMenuGroupTypeName, SubMenuGroupTypepDescription, ActiveStatus, ActiveStatusSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateSubMenuGroupTypePerProviderAsync(int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuGroupTypeName, string SubMenuGroupTypepDescription, int ActiveStatus, bool ActiveStatusSpecified, object userState) {
+            if ((this.UpdateSubMenuGroupTypePerProviderOperationCompleted == null)) {
+                this.UpdateSubMenuGroupTypePerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateSubMenuGroupTypePerProviderOperationCompleted);
+            }
+            this.InvokeAsync("UpdateSubMenuGroupTypePerProvider", new object[] {
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuGroupTypeName,
+                        SubMenuGroupTypepDescription,
+                        ActiveStatus,
+                        ActiveStatusSpecified}, this.UpdateSubMenuGroupTypePerProviderOperationCompleted, userState);
+        }
+        
+        private void OnUpdateSubMenuGroupTypePerProviderOperationCompleted(object arg) {
+            if ((this.UpdateSubMenuGroupTypePerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateSubMenuGroupTypePerProviderCompleted(this, new UpdateSubMenuGroupTypePerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddSubMenuPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddSubMenuPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int SubMenuGroupTypeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool SubMenuGroupTypeIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuDescription) {
+            object[] results = this.Invoke("AddSubMenuPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuName,
+                        SubMenuDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddSubMenuPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuItemID, bool MenuItemIDSpecified, int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuName, string SubMenuDescription) {
+            this.AddSubMenuPerProviderAsync(ProviderID, ProviderIDSpecified, MenuItemID, MenuItemIDSpecified, SubMenuGroupTypeID, SubMenuGroupTypeIDSpecified, SubMenuName, SubMenuDescription, null);
+        }
+        
+        /// <remarks/>
+        public void AddSubMenuPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuItemID, bool MenuItemIDSpecified, int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuName, string SubMenuDescription, object userState) {
+            if ((this.AddSubMenuPerProviderOperationCompleted == null)) {
+                this.AddSubMenuPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddSubMenuPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("AddSubMenuPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuName,
+                        SubMenuDescription}, this.AddSubMenuPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnAddSubMenuPerProviderOperationCompleted(object arg) {
+            if ((this.AddSubMenuPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddSubMenuPerProviderCompleted(this, new AddSubMenuPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateSubMenuPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateSubMenuPerProvider(int SubMenuID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool SubMenuIDSpecified, int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int SubMenuGroupTypeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool SubMenuGroupTypeIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubMenuDescription) {
+            object[] results = this.Invoke("UpdateSubMenuPerProvider", new object[] {
+                        SubMenuID,
+                        SubMenuIDSpecified,
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuName,
+                        SubMenuDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateSubMenuPerProviderAsync(int SubMenuID, bool SubMenuIDSpecified, int MenuItemID, bool MenuItemIDSpecified, int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuName, string SubMenuDescription) {
+            this.UpdateSubMenuPerProviderAsync(SubMenuID, SubMenuIDSpecified, MenuItemID, MenuItemIDSpecified, SubMenuGroupTypeID, SubMenuGroupTypeIDSpecified, SubMenuName, SubMenuDescription, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateSubMenuPerProviderAsync(int SubMenuID, bool SubMenuIDSpecified, int MenuItemID, bool MenuItemIDSpecified, int SubMenuGroupTypeID, bool SubMenuGroupTypeIDSpecified, string SubMenuName, string SubMenuDescription, object userState) {
+            if ((this.UpdateSubMenuPerProviderOperationCompleted == null)) {
+                this.UpdateSubMenuPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateSubMenuPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("UpdateSubMenuPerProvider", new object[] {
+                        SubMenuID,
+                        SubMenuIDSpecified,
+                        MenuItemID,
+                        MenuItemIDSpecified,
+                        SubMenuGroupTypeID,
+                        SubMenuGroupTypeIDSpecified,
+                        SubMenuName,
+                        SubMenuDescription}, this.UpdateSubMenuPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnUpdateSubMenuPerProviderOperationCompleted(object arg) {
+            if ((this.UpdateSubMenuPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateSubMenuPerProviderCompleted(this, new UpdateSubMenuPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1656,6 +2522,474 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal TableAlertPerEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void MenuPerProviderAdminFullCompletedEventHandler(object sender, MenuPerProviderAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MenuPerProviderAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MenuPerProviderAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void EmployeeListPerProvireAdminFullCompletedEventHandler(object sender, EmployeeListPerProvireAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EmployeeListPerProvireAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EmployeeListPerProvireAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddEmployeePerProviderAdminFullCompletedEventHandler(object sender, AddEmployeePerProviderAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddEmployeePerProviderAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddEmployeePerProviderAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateEmployeePerProviderAdminFullCompletedEventHandler(object sender, UpdateEmployeePerProviderAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateEmployeePerProviderAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateEmployeePerProviderAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void TablesPerProviderAdminFullCompletedEventHandler(object sender, TablesPerProviderAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TablesPerProviderAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TablesPerProviderAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ReOpenTablesPerProviderAdminCompletedEventHandler(object sender, ReOpenTablesPerProviderAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ReOpenTablesPerProviderAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ReOpenTablesPerProviderAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void MoveOrderBetweenTablesPerProviderAdminCompletedEventHandler(object sender, MoveOrderBetweenTablesPerProviderAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MoveOrderBetweenTablesPerProviderAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MoveOrderBetweenTablesPerProviderAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void MoveTableBetweenEmployeePerProviderAdminCompletedEventHandler(object sender, MoveTableBetweenEmployeePerProviderAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MoveTableBetweenEmployeePerProviderAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MoveTableBetweenEmployeePerProviderAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ChangeOrderValuePerOrderPerProviderAdminCompletedEventHandler(object sender, ChangeOrderValuePerOrderPerProviderAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangeOrderValuePerOrderPerProviderAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangeOrderValuePerOrderPerProviderAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void TablesPerProviderPerStatusAdminFullCompletedEventHandler(object sender, TablesPerProviderPerStatusAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TablesPerProviderPerStatusAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TablesPerProviderPerStatusAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddNewMenuItemCompletedEventHandler(object sender, AddNewMenuItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddNewMenuItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddNewMenuItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateMenuItemCompletedEventHandler(object sender, UpdateMenuItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateMenuItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateMenuItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddMenuGroupPerProviderCompletedEventHandler(object sender, AddMenuGroupPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddMenuGroupPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddMenuGroupPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateMenuGroupTypesPerProviderCompletedEventHandler(object sender, UpdateMenuGroupTypesPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateMenuGroupTypesPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateMenuGroupTypesPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddSubMenuGroupTypesPerProviderCompletedEventHandler(object sender, AddSubMenuGroupTypesPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddSubMenuGroupTypesPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddSubMenuGroupTypesPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateSubMenuGroupTypePerProviderCompletedEventHandler(object sender, UpdateSubMenuGroupTypePerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateSubMenuGroupTypePerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateSubMenuGroupTypePerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddSubMenuPerProviderCompletedEventHandler(object sender, AddSubMenuPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddSubMenuPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddSubMenuPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateSubMenuPerProviderCompletedEventHandler(object sender, UpdateSubMenuPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateSubMenuPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateSubMenuPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

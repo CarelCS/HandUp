@@ -19,8 +19,12 @@ namespace HandUpGUI {
         }
 
         protected void PopulateEmployees() {
-            string sOrderList = "<table border='1'><tr><td>Waiter</td><td>Carel</td><td><div id=\"order3C\" onclick=\"EditDeleteEmployee('ORDER3', '0', '0')\">Update</div></td><td><div id=\"order3Ca\" onclick=\"EditDeleteEmployee('ORDER3', '1', '0')\">Delete</div></td><td><div id=\"order3T\" onclick=\"EditDeleteEmployee('ORDER3', '0', '1')\">Set Active</div></td></tr>";
-            sOrderList += "<tr><td>Guest</td><td>Carine</td><td><div id=\"order4C\" onclick=\"EditDeleteEmployee('ORDER4', '0', '0')\">Update</div></td><td><div id=\"order4Ca\" onclick=\"EditDeleteEmployee('ORDER4', '1', '0')\">Delete</div></td><td><div id=\"order4T\" onclick=\"EditDeleteEmployee('ORDER4', '0', '1')\">Set Active</div></td></tr>";
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = WSNew.EmployeeListPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
+            string sOrderList = "<table border='1'>";
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                sOrderList = "<tr><td>Waiter</td><td>Carel</td><td><div id=\"order3C\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '0')\">Update</div></td><td><div id=\"order3Ca\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '1', '0')\">Delete</div></td><td><div id=\"order3T\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '1')\">Set Active</div></td></tr>";
+            }
             sOrderList += "</table>";
             dvEmployeeList.InnerHtml = sOrderList;
         }
@@ -122,21 +126,28 @@ namespace HandUpGUI {
             }
             else {
                 //set the fields in the menu edit update add fields.
-                hdnEmployeeID.Value = "";
-                txtAddress2.Text = "";
-                txtAddress3.Text = "";
-                txtAdress1.Text = "";
-                txtContactNumber.Text = "";
-                txtEmail.Text = "";
-                txtID.Text = "";
-                txtName.Text = "";
-                txtPassword.Text = "";
-                txtSurname.Text = "";
-                txtUsername.Text = "";
-                calStartDate.TodaysDate = DateTime.Today;
-                calEndDate.TodaysDate = DateTime.Today;
-                ddlEmpStatus.SelectedIndex = 0;
-                ddlEmpType.SelectedIndex = 0;
+                localhost.HandUpService WSNew = new localhost.HandUpService();
+                DataSet ds = WSNew.EmployeeListPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    if (dr["PKiEmployeeID"].ToString() == hdnEmployeeID.Value) {
+                        //hdnEmployeeID.Value = "";
+                        txtAddress2.Text = dr["sEmployeeAddress2"].ToString();
+                        txtAddress3.Text = dr["sEmployeeAddress3"].ToString();
+                        txtAdress1.Text = dr["sEmployeeAddress1"].ToString();
+                        txtContactNumber.Text = dr["sEmployeeTel"].ToString();
+                        txtEmail.Text = dr["sEmployeeEmail"].ToString();
+                        txtID.Text = dr["sEmployeeID"].ToString();
+                        txtName.Text = dr["sEmployeeName"].ToString();
+                        txtPassword.Text = dr["sPassword"].ToString();
+                        txtSurname.Text = dr["sEmployeeSurname"].ToString();
+                        txtUsername.Text = dr["sUserName"].ToString();
+                        calStartDate.TodaysDate = Convert.ToDateTime(dr["dtStartDate"].ToString());
+                        calEndDate.TodaysDate = Convert.ToDateTime(dr["dtEndDate"].ToString());
+                        ddlEmpStatus.SelectedIndex = Convert.ToInt32(dr["bActiveStatus"].ToString());
+                        ddlEmpType.SelectedIndex = Convert.ToInt32(dr["FKiEmployeeType"].ToString());
+                        rbtnGender.SelectedIndex = Convert.ToInt32(dr["bGender"].ToString());
+                    }
+                }
             }
         }
 
@@ -164,22 +175,8 @@ namespace HandUpGUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
-            //set the values from GUI to send to DB
-            hdnEmployeeID.Value = "";
-            txtAddress2.Text = "";
-            txtAddress3.Text = "";
-            txtAdress1.Text = "";
-            txtContactNumber.Text = "";
-            txtEmail.Text = "";
-            txtID.Text = "";
-            txtName.Text = "";
-            txtPassword.Text = "";
-            txtSurname.Text = "";
-            txtUsername.Text = "";
-            calStartDate.TodaysDate = DateTime.Today;
-            calEndDate.TodaysDate = DateTime.Today;
-            ddlEmpStatus.SelectedIndex = 0;
-            ddlEmpType.SelectedIndex = 0;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
         }
 
         /// <summary>

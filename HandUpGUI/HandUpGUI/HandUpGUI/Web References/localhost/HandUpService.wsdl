@@ -116,6 +116,114 @@
   <wsdl:message name="IHandUpService_TableAlertPerEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:TableAlertPerEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_MenuPerProviderAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:MenuPerProviderAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_MenuPerProviderAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MenuPerProviderAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_EmployeeListPerProvireAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:EmployeeListPerProvireAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_EmployeeListPerProvireAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EmployeeListPerProvireAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddEmployeePerProviderAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployeePerProviderAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddEmployeePerProviderAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployeePerProviderAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateEmployeePerProviderAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmployeePerProviderAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateEmployeePerProviderAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmployeePerProviderAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_TablesPerProviderAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:TablesPerProviderAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_TablesPerProviderAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TablesPerProviderAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ReOpenTablesPerProviderAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReOpenTablesPerProviderAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ReOpenTablesPerProviderAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReOpenTablesPerProviderAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_MoveOrderBetweenTablesPerProviderAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:MoveOrderBetweenTablesPerProviderAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_MoveOrderBetweenTablesPerProviderAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveOrderBetweenTablesPerProviderAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_MoveTableBetweenEmployeePerProviderAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:MoveTableBetweenEmployeePerProviderAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_MoveTableBetweenEmployeePerProviderAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveTableBetweenEmployeePerProviderAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ChangeOrderValuePerOrderPerProviderAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderValuePerOrderPerProviderAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ChangeOrderValuePerOrderPerProviderAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderValuePerOrderPerProviderAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_TablesPerProviderPerStatusAdminFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:TablesPerProviderPerStatusAdminFull" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_TablesPerProviderPerStatusAdminFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TablesPerProviderPerStatusAdminFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddNewMenuItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewMenuItem" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddNewMenuItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewMenuItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuItem" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddMenuGroupPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMenuGroupPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddMenuGroupPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMenuGroupPerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuGroupTypesPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuGroupTypesPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuGroupTypesPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuGroupTypesPerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddSubMenuGroupTypesPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubMenuGroupTypesPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddSubMenuGroupTypesPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubMenuGroupTypesPerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateSubMenuGroupTypePerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubMenuGroupTypePerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateSubMenuGroupTypePerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubMenuGroupTypePerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddSubMenuPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubMenuPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddSubMenuPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubMenuPerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateSubMenuPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubMenuPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateSubMenuPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubMenuPerProviderResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
   </wsdl:message>
@@ -254,6 +362,78 @@
     <wsdl:operation name="TableAlertPerEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployee" message="tns:IHandUpService_TableAlertPerEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployeeResponse" message="tns:IHandUpService_TableAlertPerEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MenuPerProviderAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuPerProviderAdminFull" message="tns:IHandUpService_MenuPerProviderAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/MenuPerProviderAdminFullResponse" message="tns:IHandUpService_MenuPerProviderAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EmployeeListPerProvireAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/EmployeeListPerProvireAdminFull" message="tns:IHandUpService_EmployeeListPerProvireAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/EmployeeListPerProvireAdminFullResponse" message="tns:IHandUpService_EmployeeListPerProvireAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployeePerProviderAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployeePerProviderAdminFull" message="tns:IHandUpService_AddEmployeePerProviderAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddEmployeePerProviderAdminFullResponse" message="tns:IHandUpService_AddEmployeePerProviderAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmployeePerProviderAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateEmployeePerProviderAdminFull" message="tns:IHandUpService_UpdateEmployeePerProviderAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateEmployeePerProviderAdminFullResponse" message="tns:IHandUpService_UpdateEmployeePerProviderAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TablesPerProviderAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TablesPerProviderAdminFull" message="tns:IHandUpService_TablesPerProviderAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/TablesPerProviderAdminFullResponse" message="tns:IHandUpService_TablesPerProviderAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReOpenTablesPerProviderAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ReOpenTablesPerProviderAdmin" message="tns:IHandUpService_ReOpenTablesPerProviderAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ReOpenTablesPerProviderAdminResponse" message="tns:IHandUpService_ReOpenTablesPerProviderAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveOrderBetweenTablesPerProviderAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MoveOrderBetweenTablesPerProviderAdmin" message="tns:IHandUpService_MoveOrderBetweenTablesPerProviderAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/MoveOrderBetweenTablesPerProviderAdminResponse" message="tns:IHandUpService_MoveOrderBetweenTablesPerProviderAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveTableBetweenEmployeePerProviderAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MoveTableBetweenEmployeePerProviderAdmin" message="tns:IHandUpService_MoveTableBetweenEmployeePerProviderAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/MoveTableBetweenEmployeePerProviderAdminResponse" message="tns:IHandUpService_MoveTableBetweenEmployeePerProviderAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderValuePerOrderPerProviderAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ChangeOrderValuePerOrderPerProviderAdmin" message="tns:IHandUpService_ChangeOrderValuePerOrderPerProviderAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ChangeOrderValuePerOrderPerProviderAdminResponse" message="tns:IHandUpService_ChangeOrderValuePerOrderPerProviderAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TablesPerProviderPerStatusAdminFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TablesPerProviderPerStatusAdminFull" message="tns:IHandUpService_TablesPerProviderPerStatusAdminFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/TablesPerProviderPerStatusAdminFullResponse" message="tns:IHandUpService_TablesPerProviderPerStatusAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewMenuItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddNewMenuItem" message="tns:IHandUpService_AddNewMenuItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddNewMenuItemResponse" message="tns:IHandUpService_AddNewMenuItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuItem" message="tns:IHandUpService_UpdateMenuItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuItemResponse" message="tns:IHandUpService_UpdateMenuItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuGroupPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddMenuGroupPerProvider" message="tns:IHandUpService_AddMenuGroupPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddMenuGroupPerProviderResponse" message="tns:IHandUpService_AddMenuGroupPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuGroupTypesPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuGroupTypesPerProvider" message="tns:IHandUpService_UpdateMenuGroupTypesPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuGroupTypesPerProviderResponse" message="tns:IHandUpService_UpdateMenuGroupTypesPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubMenuGroupTypesPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddSubMenuGroupTypesPerProvider" message="tns:IHandUpService_AddSubMenuGroupTypesPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddSubMenuGroupTypesPerProviderResponse" message="tns:IHandUpService_AddSubMenuGroupTypesPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubMenuGroupTypePerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateSubMenuGroupTypePerProvider" message="tns:IHandUpService_UpdateSubMenuGroupTypePerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateSubMenuGroupTypePerProviderResponse" message="tns:IHandUpService_UpdateSubMenuGroupTypePerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubMenuPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddSubMenuPerProvider" message="tns:IHandUpService_AddSubMenuPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddSubMenuPerProviderResponse" message="tns:IHandUpService_AddSubMenuPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubMenuPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateSubMenuPerProvider" message="tns:IHandUpService_UpdateSubMenuPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateSubMenuPerProviderResponse" message="tns:IHandUpService_UpdateSubMenuPerProvider_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployee" message="tns:IHandUpService_AddEmployee_InputMessage" />
@@ -457,6 +637,168 @@
     </wsdl:operation>
     <wsdl:operation name="TableAlertPerEmployee">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/TableAlertPerEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MenuPerProviderAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/MenuPerProviderAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmployeeListPerProvireAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/EmployeeListPerProvireAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployeePerProviderAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddEmployeePerProviderAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmployeePerProviderAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateEmployeePerProviderAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TablesPerProviderAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/TablesPerProviderAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReOpenTablesPerProviderAdmin">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ReOpenTablesPerProviderAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveOrderBetweenTablesPerProviderAdmin">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/MoveOrderBetweenTablesPerProviderAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveTableBetweenEmployeePerProviderAdmin">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/MoveTableBetweenEmployeePerProviderAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderValuePerOrderPerProviderAdmin">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ChangeOrderValuePerOrderPerProviderAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TablesPerProviderPerStatusAdminFull">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/TablesPerProviderPerStatusAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewMenuItem">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddNewMenuItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuItem">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateMenuItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuGroupPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddMenuGroupPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuGroupTypesPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateMenuGroupTypesPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSubMenuGroupTypesPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddSubMenuGroupTypesPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubMenuGroupTypePerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateSubMenuGroupTypePerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSubMenuPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddSubMenuPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubMenuPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateSubMenuPerProvider" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
