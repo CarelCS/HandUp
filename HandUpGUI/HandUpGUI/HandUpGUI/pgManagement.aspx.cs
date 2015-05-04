@@ -13,9 +13,11 @@ namespace HandUpGUI {
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
             PKiProviderID = dsE.Tables[0].Rows[0]["FKiProviderID"].ToString();
-            PopulateEmployees();
-            PopulateTables();
-            PopulateMenu();
+            if (!IsPostBack) {
+                PopulateEmployees();
+                PopulateTables();
+                PopulateMenu();
+            }
         }
 
         protected void PopulateEmployees() {
@@ -23,7 +25,7 @@ namespace HandUpGUI {
             DataSet ds = WSNew.EmployeeListPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
             string sOrderList = "<table border='1'>";
             foreach (DataRow dr in ds.Tables[0].Rows) {
-                sOrderList = "<tr><td>Waiter</td><td>Carel</td><td><div id=\"order3C\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '0')\">Update</div></td><td><div id=\"order3Ca\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '1', '0')\">Delete</div></td><td><div id=\"order3T\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '1')\">Set Active</div></td></tr>";
+                sOrderList += "<tr><td>Waiter</td><td>" + dr["sEmployeeName"].ToString() + "</td><td>" + dr["sEmployeeSurname"].ToString() + "</td><td>" + dr["sUserName"].ToString() + "</td><td><div id=\"order3C\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '0')\">Update</div></td><td><div id=\"order3Ca\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '1', '0')\">Delete</div></td><td><div id=\"order3T\" onclick=\"EditDeleteEmployee('" + dr["PKiEmployeeID"].ToString() + "', '0', '1')\">Set Active</div></td></tr>";
             }
             sOrderList += "</table>";
             dvEmployeeList.InnerHtml = sOrderList;
@@ -141,11 +143,14 @@ namespace HandUpGUI {
                         txtPassword.Text = dr["sPassword"].ToString();
                         txtSurname.Text = dr["sEmployeeSurname"].ToString();
                         txtUsername.Text = dr["sUserName"].ToString();
-                        calStartDate.TodaysDate = Convert.ToDateTime(dr["dtStartDate"].ToString());
-                        calEndDate.TodaysDate = Convert.ToDateTime(dr["dtEndDate"].ToString());
-                        ddlEmpStatus.SelectedIndex = Convert.ToInt32(dr["bActiveStatus"].ToString());
-                        ddlEmpType.SelectedIndex = Convert.ToInt32(dr["FKiEmployeeType"].ToString());
-                        rbtnGender.SelectedIndex = Convert.ToInt32(dr["bGender"].ToString());
+                        try {
+                            calStartDate.TodaysDate = Convert.ToDateTime(dr["dtStartDate"].ToString());
+                            calEndDate.TodaysDate = Convert.ToDateTime(dr["dtEndDate"].ToString());
+                            ddlEmpStatus.SelectedIndex = Convert.ToInt32(dr["bActiveStatus"].ToString());
+                            ddlEmpType.SelectedIndex = Convert.ToInt32(dr["FKiEmployeeType"].ToString());
+                            rbtnGender.SelectedIndex = Convert.ToInt32(dr["bGender"].ToString());
+                        }
+                        catch{}
                     }
                 }
             }
@@ -176,7 +181,7 @@ namespace HandUpGUI {
         /// <param name="e"></param>
         protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
+            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex) + 1, true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
         }
 
         /// <summary>

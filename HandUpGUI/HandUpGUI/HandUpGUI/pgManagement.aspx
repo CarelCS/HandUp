@@ -50,11 +50,16 @@
     }
 
     function EditDeleteEmployee(Employee, Status, Active) {
-        document.getElementById("<%= hdnEmployeeID.ClientID %>").value = MenuID;
+        //alert(Employee);
+        //alert(Status);
+        //alert(Active);
+        document.getElementById("<%= hdnEmployeeID.ClientID %>").value = Employee;
         document.getElementById("<%= hdnEmployeeStatus.ClientID %>").value = Status;
         document.getElementById("<%= hdnEmployeeActive.ClientID %>").value = Active;
+        //alert("DO EDIT");
         var ClickChangeAlert = document.getElementById("<%= btnEditEmployee.ClientID %>");
         ClickChangeAlert.click();
+        //alert("EDIT DONE");
     }
 
     function EditDeleteTable(TableID) {
@@ -97,8 +102,8 @@
     }
 
 </script>
-<body>
-    <form id="form1" runat="server" enableviewstate="true" style="background-image:url(Images/Icons/BG.jpg); background-repeat:repeat">
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
+    <form id="form1" runat="server" enableviewstate="true" >
     <div>
     <table border="1">
         <tr>
@@ -283,14 +288,12 @@
         <tr><td><div id="dvEditTableOrders" runat="server"></div></td></tr>
     </table>
     </div>
-    <div id="dvHiddenFields" style="visibility: hidden">
+    <div style="visibility:collapse">
         <asp:HiddenField ID="hdnMaxSubs" runat="server" />
         <asp:Button ID="btnEditEmployee" runat="server" Text="Button" onclick="btnEditEmployee_Click" />
         <asp:Button ID="btnEditMenuItem" runat="server" Text="Button" onclick="btnEditMenuItem_Click" />
-        <asp:Button ID="btnEditTable" runat="server" Text="Button" 
-            onclick="btnEditTable_Click" />
-        <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" 
-            onclick="btnUpdateTextValues_Click" />
+        <asp:Button ID="btnEditTable" runat="server" Text="Button" onclick="btnEditTable_Click" />
+        <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" onclick="btnUpdateTextValues_Click" />
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />
