@@ -68,21 +68,36 @@
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openOrderTextWindow();
     }
+
+    setInterval(myCheckAlert, 5000);
+
+    function myCheckAlert() {
+        var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
+        ClickChangeAlert.click();
+    }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server">
-    <table>
-        <tr>
-            <td>
-                THE ORDER LIST
-            </td>
-            <div id="dvTablesOrders" runat="server">
-            </div>
-        </tr>
-    </table>
+    
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <asp:UpdatePanel ID="updateAlerts" runat="server">
+        <ContentTemplate>
+            <table>
+                <tr>
+                    <td>
+                        THE ORDER LIST
+                    </td>
+                    <div id="dvTablesOrders" runat="server">
+                    </div>
+                </tr>
+            </table>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <div style="visibility: hidden">
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" OnClick="btnUpdateTextValues_Click" />
         <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
+        <asp:Button ID="btnRefresh" runat="server" Text="Button" OnClick="btnRefresh_Click"/>
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />

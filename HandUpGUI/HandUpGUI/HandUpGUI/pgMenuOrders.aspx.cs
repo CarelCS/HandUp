@@ -33,6 +33,8 @@ namespace HandUpGUI {
                 imgCloseBill.Width = Convert.ToInt32(ScreenWidth) / 6;
                 imgCloseTable.Width = Convert.ToInt32(ScreenWidth) / 6; 
                 localhost.HandUpService WSNew = new localhost.HandUpService();
+                DataSet dsAdds = new DataSet();
+                //dsAdds = WSNew.
                 DataSet ds = new DataSet();
                 DataSet dsE = new DataSet();
                 dsE = (DataSet)Session["SEmployee"];

@@ -36,11 +36,11 @@ namespace HandUpGUI {
                 string sCanConfirm = "";
                 foreach (DataRow drOrder in dsOrder.Tables[0].Rows) {
                     if (drOrder["sOrderStatus"].ToString() == "2") {
-                        sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"AcceptOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                        sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"AcceptOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Accept.png\"  width='" + IconWidth + "'/></div>";
                     }
                     else {
                         if (drOrder["sOrderStatus"].ToString() == "5") {
-                            sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"CompleteOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                            sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"CompleteOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Complete.png\"  width='" + IconWidth + "'/></div>";
                         }
                     }
                     if (drOrder["sOrderStatus"].ToString() == "2") {
@@ -79,7 +79,7 @@ namespace HandUpGUI {
                         //}
                     }
                     else {
-                        sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order" + drOrder["PKiOrderID"].ToString() + "\" onclick=\"ConfirmOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                        sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order" + drOrder["PKiOrderID"].ToString() + "\" onclick=\"ConfirmOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Process.png\"  width='" + IconWidth + "'/></div>";
                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"orderT" + drOrder["PKiOrderID"].ToString() + "\" onclick=\"AddTextTable('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"ImageT" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
                     }
                     if (drOrder["sOrderStatus"].ToString() == "4" || drOrder["sOrderStatus"].ToString() == "2") {
@@ -140,6 +140,17 @@ namespace HandUpGUI {
                 else {
                     PopulateTablesBarKitchen();
                 }
+            }
+        }
+
+        protected void btnRefresh_Click(object sender, EventArgs e) {
+            DataSet dsE = new DataSet();
+            dsE = (DataSet)Session["SEmployee"];
+            if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3") {
+                PopulateTableProcessor();
+            }
+            else {
+                PopulateTablesBarKitchen();
             }
         }
     }
