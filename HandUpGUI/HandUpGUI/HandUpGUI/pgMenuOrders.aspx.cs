@@ -307,10 +307,9 @@ namespace HandUpGUI {
             ds = WSNew.TableAlertPerEmployee(Convert.ToInt32(PKiEmployeeID), true);
             if (ds.Tables[0].Rows.Count > 0) {
                 foreach (DataRow dr in ds.Tables[0].Rows) {
-                    lblAlert.Text += dr["sAlertMessage"].ToString() + "|";
+                    lblAlert.Text += dr["sTableName"].ToString() + "\n" + dr["sAlertMessage"].ToString() + "|";
                 }
             }
-
         }
 
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
