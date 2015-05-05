@@ -8,6 +8,20 @@
 </head>
 
 <script type="text/javascript">
+    function AcceptOrder(orderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "5";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function CompleteOrder(orderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "6";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
     function ConfirmOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";

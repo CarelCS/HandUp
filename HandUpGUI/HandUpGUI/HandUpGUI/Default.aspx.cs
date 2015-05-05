@@ -40,7 +40,7 @@ namespace HandUpGUI {
                         }
                     }
                     Session.Add("SEmployee", ReturnValue);
-                    if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3")
+                    if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3" || ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "5" || ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "6")
                         Server.Transfer("pgOrderProcessing.aspx", false);
                     else {
                         if (ReturnValue.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "4")
