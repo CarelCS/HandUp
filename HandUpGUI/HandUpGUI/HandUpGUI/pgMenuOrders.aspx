@@ -63,7 +63,6 @@
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value);window.close();\" value=\"Add Text\" />");
         var TextValue = window.opener.document.getElementById("<%= hdnTextForOrder.ClientID %>").value;
-        //alert(TextValue);
         if (TextValue != "") {
             newWindow.close();
         }
@@ -114,9 +113,12 @@
 
     function myCheckAlert() {
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
-        if (CurrentAlert == "ALERT") {
-            //alert("ALERT RUNNING");
-            //document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+        if (CurrentAlert != "") {
+            var MyArray2 = CurrentAlert.split("|");
+            for (i = 0; i < MyArray2.length - 1; i++) {
+                alert(MyArray2[i]);
+            }
+            document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
         }
         var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
         ClickChangeAlert.click();
@@ -308,7 +310,7 @@
     <div style="visibility: hidden">
         <asp:UpdatePanel ID="updateAlerts" runat="server">
             <ContentTemplate>
-                <asp:Label ID="lblAlert" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
                 <asp:Button ID="btnAlertUpdate" runat="server" Text="Update" OnClick="btnAlertUpdate_Click" />
             </ContentTemplate>
         </asp:UpdatePanel>
