@@ -43,7 +43,7 @@ namespace HandUpGUI {
                             sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"CompleteOrder('" + drOrder["PKiOrderID"].ToString() + "')\"><img id=\"Image" + drOrder["PKiOrderID"].ToString() + "\" src=\"images/icons/Complete.png\"  width='" + IconWidth + "'/></div>";
                         }
                     }
-                    if (drOrder["sOrderStatus"].ToString() == "2") {
+                    if (drOrder["sOrderStatus"].ToString() == "2" || drOrder["sOrderStatus"].ToString() == "5") {
                         sOrderList += "<tr><td>" + dr["sTableName"].ToString() + "</td><td width='100%'>" + drOrder["sMenuItemDescription"].ToString() + drOrder["sMenuItemChanges"].ToString() + "</td><td>R " + drOrder["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
                     }
                 }
@@ -111,13 +111,11 @@ namespace HandUpGUI {
             WSNew.AddTextToOrder(Convert.ToInt32(OrderNumber), true, OrderText);
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
-            if (!IsPostBack) {
-                if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3") {
-                    PopulateTableProcessor();
-                }
-                else {
-                    PopulateTablesBarKitchen();
-                }
+            if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3") {
+                PopulateTableProcessor();
+            }
+            else {
+                PopulateTablesBarKitchen();
             }
         }
 
@@ -133,13 +131,11 @@ namespace HandUpGUI {
             string Success = WSNew.ConfirmOrder(Convert.ToInt32(OrderID), true, OrderStatus);
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
-            if (!IsPostBack) {
-                if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3") {
-                    PopulateTableProcessor();
-                }
-                else {
-                    PopulateTablesBarKitchen();
-                }
+            if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "3") {
+                PopulateTableProcessor();
+            }
+            else {
+                PopulateTablesBarKitchen();
             }
         }
 

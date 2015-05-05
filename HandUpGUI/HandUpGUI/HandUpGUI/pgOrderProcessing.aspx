@@ -9,14 +9,14 @@
 
 <script type="text/javascript">
     function AcceptOrder(orderID) {
-        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = orderID;
         document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "5";
         var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
         ClickChangeAlert.click();
     }
 
     function CompleteOrder(orderID) {
-        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = orderID;
         document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "6";
         var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
         ClickChangeAlert.click();
@@ -69,16 +69,15 @@
         openOrderTextWindow();
     }
 
-    setInterval(myCheckAlert, 5000);
+    setInterval(myCheckAlert, 10000);
 
     function myCheckAlert() {
-        var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
+        var ClickChangeAlert = document.getElementById("<%= btnRefresh.ClientID %>");
         ClickChangeAlert.click();
     }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server">
-    
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <asp:UpdatePanel ID="updateAlerts" runat="server">
