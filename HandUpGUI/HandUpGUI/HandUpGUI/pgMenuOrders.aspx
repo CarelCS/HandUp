@@ -74,6 +74,23 @@
         ClickChangeAlert.click();
     }
 
+    function openOrderConfirmAlertWindow(value) {
+        document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "OPEN";
+        newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
+        newWindow.document.write("<table><tr><td>" + value + "</td></tr><tr><td><textarea id=\"txtAddGUI\" cols=\"20\" rows=\"2\"></textarea></td></tr><tr><td><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setAlertValue(document.getElementById('txtAddGUI').value);window.close();\" value=\"Confirm the GUI\" /></td></tr></table>");
+        var TextValue = window.opener.document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value;
+        if (TextValue != "") {
+            newWindow.close();
+            document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "";
+        }
+    }
+
+    function setAlertValue(value) {
+        document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value;
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateAlertConfirmed.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
     function AddTextTable(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openOrderTextWindow();
@@ -109,14 +126,20 @@
         document.getElementById('dvAddTable').style.display = '';
     }
 
-    setInterval(myCheckAlert, 5000);
+    setInterval(myCheckAlert, 10000);
 
     function myCheckAlert() {
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
         if (CurrentAlert != "") {
             var MyArray2 = CurrentAlert.split("|");
             for (i = 0; i < MyArray2.length - 1; i++) {
-                alert(MyArray2[i]);
+                var ConfirmNow = confirm(MyArray2[i]);
+                if (ConfirmNow) {
+                    var IsOpen = document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
+                    if (IsOpen == "") {
+                        openOrderConfirmAlertWindow(MyArray2[i]);
+                    }
+                }
             }
             document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
         }
@@ -276,6 +299,7 @@
                             </td>
                             <td id="td1" onclick="ChangeDiv('Hide')">
                                 <img id="imgHide" src="Images/Icons/Hide.png" runat="server"  />
+  
                             </td>
                         </tr>
                     </table>
@@ -318,6 +342,7 @@
     <div style="visibility: hidden">
         <asp:Button ID="btnChangeTable" runat="server" Text="Change Table" OnClick="btnChangeTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="UPdateText" OnClick="btnUpdateTextValues_Click" />
+        <asp:Button ID="btnUpdateAlertConfirmed" runat="server" Text="Alert Confirm" onclick="btnUpdateAlertConfirmed_Click" />
         <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" onclick="btnPlaceOrder_Click" />
         <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
@@ -329,6 +354,8 @@
         <asp:HiddenField ID="hdnOrderStatus" runat="server" />
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
         <asp:HiddenField ID="hdnGroupCurrent" runat="server" />
+        <asp:HiddenField ID="hdnTextForAlertGUI" runat="server" />
+        <asp:HiddenField ID="hdnAlertWindowOpen" runat="server" />
     </div>
     </form>
 </body>

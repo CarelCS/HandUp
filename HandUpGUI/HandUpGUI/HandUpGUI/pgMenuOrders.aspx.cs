@@ -354,5 +354,9 @@ namespace HandUpGUI {
         /// </summary>
         protected void AddAdverts() {
         }
+
+        protected void btnUpdateAlertConfirmed_Click(object sender, EventArgs e) {
+            string GUI = hdnTextForAlertGUI.Value;
+        }
     }
 }
