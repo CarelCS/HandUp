@@ -30,6 +30,8 @@ namespace HandUpGUI.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IHandUpService", Namespace="http://tempuri.org/")]
     public partial class HandUpService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback AllAdvertsAvailableForProviderOperationCompleted;
+        
         private System.Threading.SendOrPostCallback LoginOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddOrderOperationCompleted;
@@ -161,6 +163,9 @@ namespace HandUpGUI.localhost {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event AllAdvertsAvailableForProviderCompletedEventHandler AllAdvertsAvailableForProviderCompleted;
         
         /// <remarks/>
         public event LoginCompletedEventHandler LoginCompleted;
@@ -302,6 +307,38 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event GetDataUsingDataContractCompletedEventHandler GetDataUsingDataContractCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AllAdvertsAvailableForProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AllAdvertsAvailableForProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("AllAdvertsAvailableForProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AllAdvertsAvailableForProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.AllAdvertsAvailableForProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void AllAdvertsAvailableForProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.AllAdvertsAvailableForProviderOperationCompleted == null)) {
+                this.AllAdvertsAvailableForProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllAdvertsAvailableForProviderOperationCompleted);
+            }
+            this.InvokeAsync("AllAdvertsAvailableForProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.AllAdvertsAvailableForProviderOperationCompleted, userState);
+        }
+        
+        private void OnAllAdvertsAvailableForProviderOperationCompleted(object arg) {
+            if ((this.AllAdvertsAvailableForProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AllAdvertsAvailableForProviderCompleted(this, new AllAdvertsAvailableForProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2063,6 +2100,32 @@ namespace HandUpGUI.localhost {
             }
             set {
                 this.stringValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AllAdvertsAvailableForProviderCompletedEventHandler(object sender, AllAdvertsAvailableForProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AllAdvertsAvailableForProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AllAdvertsAvailableForProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

@@ -80,8 +80,12 @@ namespace HandUpGUI {
                         dvTablesTop.InnerHtml = sTablesDisplay;
                     }
                 }
-                PopulateMenu();
-                AddAdverts();
+                if (!IsPostBack) {
+                    PopulateMenu();
+                    if (PKiEmployeeTypeID == "2") {
+                        Advertisement();
+                    }
+                }
             }
             catch { PKiEmployeeID = "0"; }
         }
@@ -90,6 +94,14 @@ namespace HandUpGUI {
         /// 
         /// </summary>
         protected void Advertisement() {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = WSNew.AllAdvertsAvailableForProvider(Convert.ToInt32(PKiProviderID), true);
+            string HTMLString = "<table cellpadding=\"0\" cellspacing=\"0\"><tr>";
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                HTMLString += "<td><img id=\"ImageAdv" + dr["PKiAdvertID"].ToString() + "\" src=\"" + dr["imgAdvertImage"].ToString() + "\" onclick=GoToAddSpace(\"" + dr["sAdvertURL"].ToString() + "\") /></td>";
+            }
+            HTMLString += "</tr></table>";
+            dvAddArea.InnerHtml = HTMLString;
         }
 
         /// <summary>

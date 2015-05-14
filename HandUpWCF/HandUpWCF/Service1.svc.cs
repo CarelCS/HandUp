@@ -12,6 +12,14 @@ namespace HandUpWCF {
     public class HandUpService : IHandUpService {
         //string MyConnectionString = "Server=localhost;Database=Handup;Uid=root;Pwd=Password1;";
 
+        #region Adverts
+
+        public DataSet AllAdvertsAvailableForProvider(int ProviderID) {
+            Adverts clsAdverts = new Adverts();
+            return clsAdverts.AllAdvertsAvailableForProvider(ProviderID);
+        }
+        #endregion
+
         #region Login
 
         public DataSet Login(string sUserName, string sPassword) {

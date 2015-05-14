@@ -9,6 +9,11 @@
 </head>
 <script type="text/javascript">
 
+    function GoToAddSpace(URL) {
+        var win = window.open(URL, '_blank');
+        win.focus();
+    }
+
     function OpenTable(Number) {
         document.getElementById("<%= hdnTableNumber.ClientID %>").value = Number;
         var ClickChangeTable = document.getElementById("<%= btnChangeTable.ClientID %>");
@@ -38,25 +43,19 @@
 
     function Order(OrderID) {
         var Counter = document.getElementById("<%= hdnMaxSubs.ClientID %>").value;
-        //alert(Counter);
         document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value = OrderID + "|";
         for (i = 0; i < Counter; i++) {
             try {
-                //alert(i);
                 var SelectID = OrderID + "_ddlFirstSub_" + i;
                 var LiStAsk = document.getElementById(SelectID);
                 var SelVal = LiStAsk.value;
-                //alert(SelVal);
-                //alert(SelVal);
                 document.getElementById("<%= hdnOrderSelectValues.ClientID %>").value += "~ " + SelVal + " ";
             }
-            catch (ex) { //alert(SelVal); 
+            catch (ex) { 
             }
         }
-        //alert("ORDER THE SHIT");
         var ClickChangeAlert = document.getElementById("<%= btnPlaceOrder.ClientID %>");
         ClickChangeAlert.click();
-        //alert("ORDER THE SHIT CLICKED");
     }
 
     function openOrderTextWindow() {
@@ -175,9 +174,8 @@
     </asp:ScriptManager>
     <div>
         <table width="100%" style="background-color:transparent; height:100%">
-            <tr>
-                <td>
-                    ADD SPACE
+            <tr align="center">
+                <td align="center">
                     <div id="dvAddArea" runat="server"></div>
                 </td>
             </tr>
