@@ -74,7 +74,7 @@ namespace HandUpGUI {
                                 dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
                                 PopulateTable(dr["sTableName"].ToString());
                             }
-                            sTablesDisplay += "<td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td>";
+                            sTablesDisplay += "<td><table><tr><td><img id=\"Image1\" src=\"images/Icons/TopLeft.png\"  width='" + IconWidth / 2 + "'/></td><td></td><td><img id=\"Image1\" src=\"images/Icons/TopRight.png\"  width='" + IconWidth / 2 + "'/></td></tr><tr><td></td><td><div style=\"cursor:pointer;\" id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td><td></td></tr><tr><td><img id=\"Image1\" src=\"images/Icons/BottomLeft.png\"  width='" + IconWidth / 2 + "'/></td><td></td><td><img id=\"Image1\" src=\"images/Icons/BottomRight.png\"  width='" + IconWidth / 2 + "'/></td></tr></table></td>";
                         }
                         sTablesDisplay += "</tr></table>";
                         dvTablesTop.InnerHtml = sTablesDisplay;
@@ -119,7 +119,7 @@ namespace HandUpGUI {
                 if (MenuGroupDefault == "")
                     MenuGroupDefault = "dvGroup" + drGroups["PKiMenuGroupID"].ToString();
                 menuHeaderCollection += drGroups["PKiMenuGroupID"].ToString() + "|";
-                MenuHeaders += "<td><div  style='color:White; font-weight:bolder' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td>";
+                MenuHeaders += "<td><table><tr><td><img id=\"Image1\" src=\"images/Icons/TopLeft.png\"  width='" + IconWidth / 2 + "'/></td><td></td><td><img id=\"Image1\" src=\"images/Icons/TopRight.png\"  width='" + IconWidth / 2 + "'/></td></tr><tr><td></td><td><div  style='color:White; font-weight:bolder' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuArea(\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td><td></td></tr><tr><td><img id=\"Image1\" src=\"images/Icons/BottomLeft.png\"  width='" + IconWidth / 2 + "'/></td><td></td><td><img id=\"Image1\" src=\"images/Icons/BottomRight.png\"  width='" + IconWidth / 2 + "'/></td></tr></table></td>";
                 MenuTotal += "<div id=\"dvGroup" + drGroups["PKiMenuGroupID"].ToString() + "\"><table border='1'  width=\"100%\">";
                 string CurrentMenuID = "";
                 int ItemRow = 0;

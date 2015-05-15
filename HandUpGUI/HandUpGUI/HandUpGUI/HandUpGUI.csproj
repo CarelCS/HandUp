@@ -61,6 +61,8 @@
     <Content Include="Images\Icons\All.png" />
     <Content Include="Images\Icons\BG-01.png" />
     <Content Include="Images\Icons\BG.jpg" />
+    <Content Include="Images\Icons\BottomLeft.png" />
+    <Content Include="Images\Icons\BottomRight.png" />
     <Content Include="Images\Icons\CallWaiter.png" />
     <Content Include="Images\Icons\Cancel.png" />
     <Content Include="Images\Icons\Change.png" />
@@ -79,6 +81,8 @@
     <Content Include="Images\Icons\Processed.png" />
     <Content Include="Images\Icons\Register-01.png" />
     <Content Include="Images\Icons\Text.png" />
+    <Content Include="Images\Icons\TopLeft.png" />
+    <Content Include="Images\Icons\TopRight.png" />
     <Content Include="Images\Icons\Waiter.png" />
     <Content Include="Images\MenuImages\Burger.jpg" />
     <Content Include="Images\MenuImages\Steak.jpg" />
