@@ -12,7 +12,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTALERTCONFIMTIME="dtAlertConfimTime";
 		public const string _SALERTMESSAGE="sAlertMessage";
 		public const string _BACTIVESTATUS="bActiveStatus";
-        public const string _SALERTGUI = "sAlertGUI";
+		public const string _SALERTGUI="sAlertGUI";
 		public const string _tblTablealerts="tbltablealerts";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -82,13 +82,13 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
-        private string _sAlertGUI;
-        public string sAlertGUI {
+		private string _sAlertGUI;
+		public string sAlertGUI{
 			get {
-                return _sAlertGUI;
+				return _sAlertGUI;
 			}
 			set {
-                _sAlertGUI = value;
+				_sAlertGUI = value;
 			}
 		}
 		private string sOrderBy="PKiTableAlertsID";
@@ -105,7 +105,7 @@ namespace HandUpWCF.DBClasses{
 			this.dtAlertConfimTime=atblTablealerts.dtAlertConfimTime;
 			this.sAlertMessage=atblTablealerts.sAlertMessage;
 			this.bActiveStatus=atblTablealerts.bActiveStatus;
-            this.sAlertGUI = atblTablealerts.sAlertGUI;
+			this.sAlertGUI=atblTablealerts.sAlertGUI;
 		}
 
 		public tblTablealerts(){
@@ -155,6 +155,8 @@ namespace HandUpWCF.DBClasses{
 					atblTablealerts.sAlertMessage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
 					atblTablealerts.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sAlertGUI");
+					atblTablealerts.sAlertGUI=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					listtblTablealerts.Add(atblTablealerts);
 					}
 			}
@@ -335,6 +337,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dtAlertConfimTime",dtAlertConfimTime);
 				insertCommand.Parameters.AddWithValue("@sAlertMessage",sAlertMessage);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
+				insertCommand.Parameters.AddWithValue("@sAlertGUI",sAlertGUI);
 				insertCommand.ExecuteNonQuery();
              PKiTableAlertsID= (Int32)insertCommand.Parameters["@outPKiTableAlertsID"].Value;
 				return this;
@@ -350,6 +353,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indtAlertConfimTime", dtAlertConfimTime);
 				updateCommand.Parameters.AddWithValue("@insAlertMessage", sAlertMessage);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
+				updateCommand.Parameters.AddWithValue("@insAlertGUI", sAlertGUI);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

@@ -6,6 +6,7 @@ using System.Data;
 namespace HandUpWCF.DBClasses{
 	class tblluEmployeetype{
 		public const string _PKIEMPLOYEETYPEID="PKiEmployeeTypeID";
+		public const string _FKISERVICESTATIONID="FKiServiceStationID";
 		public const string _SEMPLOYEETYPENAME="sEmployeeTypeName";
 		public const string _SEMPLOYEETYPEDESCRIPTION="sEmployeeTypeDescription";
 		public const string _tblluEmployeetype="tblluemployeetype";
@@ -21,6 +22,15 @@ namespace HandUpWCF.DBClasses{
 			}
 			set {
 				_PKiEmployeeTypeID = value;
+			}
+		}
+		private int _FKiServiceStationID;
+		public int FKiServiceStationID{
+			get {
+				return _FKiServiceStationID;
+			}
+			set {
+				_FKiServiceStationID = value;
 			}
 		}
 		private string _sEmployeeTypeName;
@@ -49,6 +59,7 @@ namespace HandUpWCF.DBClasses{
 			List<tblluEmployeetype> listtblluEmployeetype=executeSelect();
 			tblluEmployeetype atblluEmployeetype=listtblluEmployeetype[0];
 			this.PKiEmployeeTypeID=atblluEmployeetype.PKiEmployeeTypeID;
+			this.FKiServiceStationID=atblluEmployeetype.FKiServiceStationID;
 			this.sEmployeeTypeName=atblluEmployeetype.sEmployeeTypeName;
 			this.sEmployeeTypeDescription=atblluEmployeetype.sEmployeeTypeDescription;
 		}
@@ -88,6 +99,8 @@ namespace HandUpWCF.DBClasses{
 					tblluEmployeetype atblluEmployeetype= new tblluEmployeetype();
 					iIndex=aSqlReader.GetOrdinal("PKiEmployeeTypeID");
 					atblluEmployeetype.PKiEmployeeTypeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiServiceStationID");
+					atblluEmployeetype.FKiServiceStationID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sEmployeeTypeName");
 					atblluEmployeetype.sEmployeeTypeName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sEmployeeTypeDescription");
@@ -253,6 +266,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiEmployeeTypeID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiEmployeeTypeID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@FKiServiceStationID",FKiServiceStationID);
 				insertCommand.Parameters.AddWithValue("@sEmployeeTypeName",sEmployeeTypeName);
 				insertCommand.Parameters.AddWithValue("@sEmployeeTypeDescription",sEmployeeTypeDescription);
 				insertCommand.ExecuteNonQuery();
@@ -264,6 +278,7 @@ namespace HandUpWCF.DBClasses{
 				MySqlCommand updateCommand = new MySqlCommand("tblluemployeetype_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiEmployeeTypeID", PKiEmployeeTypeID);
+				updateCommand.Parameters.AddWithValue("@inFKiServiceStationID", FKiServiceStationID);
 				updateCommand.Parameters.AddWithValue("@insEmployeeTypeName", sEmployeeTypeName);
 				updateCommand.Parameters.AddWithValue("@insEmployeeTypeDescription", sEmployeeTypeDescription);
 				updateCommand.ExecuteNonQuery();
