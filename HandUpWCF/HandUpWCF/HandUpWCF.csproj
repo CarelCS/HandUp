@@ -81,6 +81,7 @@
     <Compile Include="DBClasses\tblOrderssubitems.cs" />
     <Compile Include="DBClasses\tblPatrons.cs" />
     <Compile Include="DBClasses\tblProviders.cs" />
+    <Compile Include="DBClasses\tblServicestation.cs" />
     <Compile Include="DBClasses\tblSpecials.cs" />
     <Compile Include="DBClasses\tblTablealerts.cs" />
     <Compile Include="DBClasses\tblTables.cs" />
