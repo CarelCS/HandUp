@@ -78,7 +78,8 @@ namespace HandUpWCF {
 
         [OperationContract]
         DataSet TableAlertPerEmployee(int EmployeeID);
-
+        [OperationContract]
+        void ConfirmAlert(string sCode);
         #endregion
 
         #region Managment

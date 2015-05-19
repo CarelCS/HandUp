@@ -157,15 +157,21 @@
     }
 
     function CallWaiter() {
-        alert("Call waiter");
+        document.getElementById("<%= hdnAlertText.ClientID %>").value = "Call waiter";
+        var ClickChangeAlert = document.getElementById("<%= btnAlertSent.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function CloseBill() {
-        alert("Close Bill");
+        document.getElementById("<%= hdnAlertText.ClientID %>").value = "Close Bill";
+        var ClickChangeAlert = document.getElementById("<%= btnAlertSent.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function CloseTable() {
-        alert("Close Table");
+        document.getElementById("<%= hdnAlertText.ClientID %>").value = "Close Table";
+        var ClickChangeAlert = document.getElementById("<%= btnAlertSent.ClientID %>");
+        ClickChangeAlert.click();
     }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
@@ -298,6 +304,7 @@
                             <td id="td1" onclick="ChangeDiv('Hide')">
                                 <img id="imgHide" src="Images/Icons/Hide.png" runat="server"  />
   
+  
                             </td>
                         </tr>
                     </table>
@@ -343,6 +350,7 @@
         <asp:Button ID="btnUpdateAlertConfirmed" runat="server" Text="Alert Confirm" onclick="btnUpdateAlertConfirmed_Click" />
         <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" onclick="btnPlaceOrder_Click" />
         <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
+        <asp:Button ID="btnAlertSent" runat="server" Text="ALERT" onclick="btnAlertSent_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
@@ -354,6 +362,7 @@
         <asp:HiddenField ID="hdnGroupCurrent" runat="server" />
         <asp:HiddenField ID="hdnTextForAlertGUI" runat="server" />
         <asp:HiddenField ID="hdnAlertWindowOpen" runat="server" />
+        <asp:HiddenField ID="hdnAlertText" runat="server" />
     </div>
     </form>
 </body>

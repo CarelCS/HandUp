@@ -68,6 +68,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ConfirmAlertOperationCompleted;
+        
         private System.Threading.SendOrPostCallback MenuPerProviderAdminFullOperationCompleted;
         
         private System.Threading.SendOrPostCallback EmployeeListPerProvireAdminFullOperationCompleted;
@@ -220,6 +222,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event TableAlertPerEmployeeCompletedEventHandler TableAlertPerEmployeeCompleted;
+        
+        /// <remarks/>
+        public event ConfirmAlertCompletedEventHandler ConfirmAlertCompleted;
         
         /// <remarks/>
         public event MenuPerProviderAdminFullCompletedEventHandler MenuPerProviderAdminFullCompleted;
@@ -949,6 +954,34 @@ namespace HandUpGUI.localhost {
             if ((this.TableAlertPerEmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TableAlertPerEmployeeCompleted(this, new TableAlertPerEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ConfirmAlert", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ConfirmAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sCode) {
+            this.Invoke("ConfirmAlert", new object[] {
+                        sCode});
+        }
+        
+        /// <remarks/>
+        public void ConfirmAlertAsync(string sCode) {
+            this.ConfirmAlertAsync(sCode, null);
+        }
+        
+        /// <remarks/>
+        public void ConfirmAlertAsync(string sCode, object userState) {
+            if ((this.ConfirmAlertOperationCompleted == null)) {
+                this.ConfirmAlertOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConfirmAlertOperationCompleted);
+            }
+            this.InvokeAsync("ConfirmAlert", new object[] {
+                        sCode}, this.ConfirmAlertOperationCompleted, userState);
+        }
+        
+        private void OnConfirmAlertOperationCompleted(object arg) {
+            if ((this.ConfirmAlertCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ConfirmAlertCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2597,6 +2630,10 @@ namespace HandUpGUI.localhost {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void ConfirmAlertCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]

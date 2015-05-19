@@ -12,6 +12,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTALERTCONFIMTIME="dtAlertConfimTime";
 		public const string _SALERTMESSAGE="sAlertMessage";
 		public const string _BACTIVESTATUS="bActiveStatus";
+        public const string _SALERTGUI = "sAlertGUI";
 		public const string _tblTablealerts="tbltablealerts";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -81,6 +82,15 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
+        private string _sAlertGUI;
+        public string sAlertGUI {
+			get {
+                return _sAlertGUI;
+			}
+			set {
+                _sAlertGUI = value;
+			}
+		}
 		private string sOrderBy="PKiTableAlertsID";
 		private string sOrderType="ASC";
 
@@ -95,6 +105,7 @@ namespace HandUpWCF.DBClasses{
 			this.dtAlertConfimTime=atblTablealerts.dtAlertConfimTime;
 			this.sAlertMessage=atblTablealerts.sAlertMessage;
 			this.bActiveStatus=atblTablealerts.bActiveStatus;
+            this.sAlertGUI = atblTablealerts.sAlertGUI;
 		}
 
 		public tblTablealerts(){

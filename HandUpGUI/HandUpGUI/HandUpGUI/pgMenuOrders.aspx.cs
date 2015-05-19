@@ -368,7 +368,13 @@ namespace HandUpGUI {
         }
 
         protected void btnUpdateAlertConfirmed_Click(object sender, EventArgs e) {
-            string GUI = hdnTextForAlertGUI.Value;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            WSNew.ConfirmAlert(hdnTextForAlertGUI.Value);
+        }
+
+        protected void btnAlertSent_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            string Returned = WSNew.CallWaiter(Convert.ToInt32(hdnTableNumber.Value), true, hdnAlertText.Value);
         }
     }
 }

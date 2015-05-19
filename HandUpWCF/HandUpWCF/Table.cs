@@ -55,7 +55,7 @@ namespace HandUpWCF {
             aAlert.executeINSERT();
             return "";
         }
-
+        
         public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber, string sTableName, string sDescription) {
             tblTables aTable = new tblTables();
             aTable.bActiveStatus = 1;

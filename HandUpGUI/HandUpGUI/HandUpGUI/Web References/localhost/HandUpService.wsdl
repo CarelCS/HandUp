@@ -122,6 +122,12 @@
   <wsdl:message name="IHandUpService_TableAlertPerEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:TableAlertPerEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_ConfirmAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmAlert" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_ConfirmAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmAlertResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_MenuPerProviderAdminFull_InputMessage">
     <wsdl:part name="parameters" element="tns:MenuPerProviderAdminFull" />
   </wsdl:message>
@@ -372,6 +378,10 @@
     <wsdl:operation name="TableAlertPerEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployee" message="tns:IHandUpService_TableAlertPerEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployeeResponse" message="tns:IHandUpService_TableAlertPerEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ConfirmAlert" message="tns:IHandUpService_ConfirmAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ConfirmAlertResponse" message="tns:IHandUpService_ConfirmAlert_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MenuPerProviderAdminFull">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuPerProviderAdminFull" message="tns:IHandUpService_MenuPerProviderAdminFull_InputMessage" />
@@ -656,6 +666,15 @@
     </wsdl:operation>
     <wsdl:operation name="TableAlertPerEmployee">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/TableAlertPerEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmAlert">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/ConfirmAlert" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

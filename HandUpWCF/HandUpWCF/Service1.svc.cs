@@ -123,6 +123,11 @@ namespace HandUpWCF {
             return clsEmployees.TableAlertPerEmployee(EmployeeID);
         }
 
+        public void ConfirmAlert(string sCode) {
+            Employees clsEmployee = new Employees();
+            clsEmployee.ConfirmAlert(sCode);
+        }
+
         #endregion
 
         public string AddEmployee() { return string.Format("AddEmployee"); }

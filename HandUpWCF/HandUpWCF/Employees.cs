@@ -48,5 +48,13 @@ namespace HandUpWCF {
             * */
             return aDataset;
         }
+
+        public void ConfirmAlert(string sCode) {
+            tblTablealerts aTableAlert = new tblTablealerts();
+            aTableAlert.sAlertGUI = sCode;
+            aTableAlert.bActiveStatus = 0;
+            string sSql = "UPDATE tblTableAlerts SET bActiveStatus = 0, dtAlertConfirmTime = " + DateTime.Now + " WHERE bActiveStatus = 1 AND sAlertGUI = '" + sCode + "'";
+            DataSet DS = aTableAlert.executeCustomSQLDataSet(sSql);
+        }
     }
 }
