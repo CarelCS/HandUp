@@ -18,6 +18,8 @@ namespace HandUpGUI {
                 PopulateTables();
                 PopulateMenu();
             //}
+                if (!IsPostBack)
+                    hdnChangeDisplay.Value = "1";
         }
 
         protected void PopulateEmployees() {
@@ -122,6 +124,8 @@ namespace HandUpGUI {
                 ds = WSNew.getMenuItemByID(Convert.ToInt32(hdnMenuID.Value), true);
                 string GroupID = ds.Tables[0].Rows[0]["FKiMenuGroupID"].ToString();
                 string ServiceStationID = ds.Tables[0].Rows[0]["FKiServicestationID"].ToString();
+                ddlMenuGroup.Items.Clear();
+                ddlServiceStation.Items.Clear();
                 foreach (DataRow dr in dsMG.Tables[0].Rows) {
                     ListItem li = new ListItem();
                     li.Text = dr["sMenuGroupName"].ToString();
@@ -140,6 +144,8 @@ namespace HandUpGUI {
                 }
                 txtMenuDescription.Text = ds.Tables[0].Rows[0]["sMenuItemName"].ToString();
                 txtMenuName.Text = ds.Tables[0].Rows[0]["sMenuItemDescription"].ToString();
+                txtMenuPrice.Text = ds.Tables[0].Rows[0]["dblMenuItemPrice"].ToString();
+                ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "ChangePage", "ChangePage(2);", true);
             }
         }
 

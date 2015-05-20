@@ -9,11 +9,13 @@
 <script language="javascript" type="text/javascript">
 
     function ChangePage(Option) {
+        document.getElementById("<%= hdnChangeDisplay.ClientID %>").value = Option;
         switch (Option) {
             case "1":
                 document.getElementById('dvEmployeeDetails').style.display = '';
                 document.getElementById('dvEmployee').style.display = '';
                 document.getElementById('dvMenu').style.display = 'none';
+                document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
@@ -21,6 +23,7 @@
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = '';
+                document.getElementById('dvMenuEdit').style.display = '';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
@@ -28,6 +31,7 @@
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = 'none';
+                document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = '';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 break;
@@ -35,6 +39,7 @@
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
                 document.getElementById('dvEmployee').style.display = 'none';
                 document.getElementById('dvMenu').style.display = 'none';
+                document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = '';
                 break;
@@ -291,7 +296,7 @@
         </tr>
         <tr>
             <td><asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label></td>
-            <td colspan=2><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+            <td colspan=2><asp:TextBox ID="txtMenuPrice" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td><asp:Label ID="lblServiceStation" runat="server" Text="Service Station"></asp:Label></td>
@@ -338,7 +343,11 @@
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
+        <asp:HiddenField ID="hdnChangeDisplay" runat="server" />
     </div>
     </form>
 </body>
+<script language="javascript" type="text/javascript">
+    ChangePage(document.getElementById("<%= hdnChangeDisplay.ClientID %>").value);
+</script>
 </html>

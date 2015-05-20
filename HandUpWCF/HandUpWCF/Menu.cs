@@ -71,8 +71,8 @@ namespace HandUpWCF {
         }
         
         public DataSet getServiceStationsPerProvider(int ProviderID) {
-            tblServicestation aMenuSS = new tblServicestation();
-            aMenuSS.addEquals(tblServicestation._FKIPROVIDERID, ProviderID);
+            tblServicestaion aMenuSS = new tblServicestaion();
+            aMenuSS.addEquals(tblServicestaion._FKIPROVIDERID, ProviderID);
             DataSet aDataSet = aMenuSS.executeSelectDataSet();
             return aDataSet;
         }

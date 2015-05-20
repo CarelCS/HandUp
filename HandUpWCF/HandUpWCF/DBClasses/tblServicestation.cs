@@ -6,25 +6,25 @@ using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace HandUpWCF.DBClasses {
-    public class tblServicestation {
+    public class tblServicestaion {
         public const string _PKISERVICESTATIONID="PKiServiceStaionID";
 		public const string _FKIPROVIDERID="FKiProvideID";
 		public const string _SNAME="sName";
 		public const string _SDESCRIPTION="sDescription";
 		public const string _SACTIVESTATUS="bActiveStatus";
-		public const string _tblServiceStation="tblservicestation";
+		public const string _tblServiceStation="tblservicestaion";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
 
 		private string sSqlWhere="";
 
-		private int _PKiServiceStationID;
-		public int PKiServiceStationID{
+		private int _PKiServiceStaionID;
+		public int PKiServiceStaionID{
 			get {
-				return _PKiServiceStationID;
+				return _PKiServiceStaionID;
 			}
 			set {
-				_PKiServiceStationID = value;
+				_PKiServiceStaionID = value;
 			}
 		}
 		private int _FKiProviderID;
@@ -63,21 +63,21 @@ namespace HandUpWCF.DBClasses {
 				_bActiveStatus = value;
 			}
 		}
-		private string sOrderBy="PKiPatronID";
+		private string sOrderBy="PKiServicestaionID";
 		private string sOrderType="ASC";
 
-		public tblServicestation(int initPKiServiceStationID){
+		public tblServicestaion(int initPKiServiceStationID){
 			addEquals(_PKISERVICESTATIONID,initPKiServiceStationID);
-			List<tblServicestation> listtblServiceStation=executeSelect();
-			tblServicestation atblServiceStation=listtblServiceStation[0];
-			this.PKiServiceStationID=atblServiceStation.PKiServiceStationID;
+			List<tblServicestaion> listtblServiceStation=executeSelect();
+			tblServicestaion atblServiceStation=listtblServiceStation[0];
+			this.PKiServiceStaionID=atblServiceStation.PKiServiceStaionID;
 			this.FKiProviderID=atblServiceStation.FKiProviderID;
 			this.sName=atblServiceStation.sName;
 			this.sDescription=atblServiceStation.sDescription;
 			this.bActiveStatus=atblServiceStation.bActiveStatus;
 		}
 
-		public tblServicestation(){
+		public tblServicestaion(){
 			sSqlWhere="";
 		}
 
@@ -90,18 +90,18 @@ namespace HandUpWCF.DBClasses {
 			return sSqlWhere;
 		}
 
-		public List<tblServicestation> executeSelect(){
+		public List<tblServicestaion> executeSelect(){
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		public List<tblServicestation> executeSelect(string localsOrderBy,string localsOrderType){
+		public List<tblServicestaion> executeSelect(string localsOrderBy,string localsOrderType){
 			sOrderBy=localsOrderBy;
 			sOrderType=localsOrderType;
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		private List<tblServicestation> getConnectionAndExecuteSelect(string sSelectStmt){
-			List<tblServicestation> listtblServiceStation=new List<tblServicestation>();
+		private List<tblServicestaion> getConnectionAndExecuteSelect(string sSelectStmt){
+			List<tblServicestaion> listtblServiceStation=new List<tblServicestaion>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -109,9 +109,9 @@ namespace HandUpWCF.DBClasses {
          int iIndex=0;
 			if (aSqlReader.HasRows) {
 				while (aSqlReader.Read()) {
-					tblServicestation atblServiceStation= new tblServicestation();
+					tblServicestaion atblServiceStation= new tblServicestaion();
 					iIndex=aSqlReader.GetOrdinal("PKiServiceStaionID");
-					atblServiceStation.PKiServiceStationID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					atblServiceStation.PKiServiceStaionID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
 					atblServiceStation.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sName");
@@ -127,7 +127,7 @@ namespace HandUpWCF.DBClasses {
 		}
 
 		public string getCompleteSQL(){
-			string sCompleteSQL="SELECT * FROM tblServicestation WHERE "+ sSqlWhere;
+			string sCompleteSQL="SELECT * FROM tblServicestaion WHERE "+ sSqlWhere;
 			sCompleteSQL+=" ORDER BY " + sOrderBy + " " + sOrderType;
 			return sCompleteSQL;
 		}
@@ -153,7 +153,7 @@ namespace HandUpWCF.DBClasses {
 		}
 
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
-            List<tblServicestation> listtblServiceStation = new List<tblServicestation>();
+            List<tblServicestaion> listtblServiceStation = new List<tblServicestaion>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -278,8 +278,8 @@ namespace HandUpWCF.DBClasses {
 				return "DESC";
 			}
 
-			public tblServicestation executeINSERT(){
-				MySqlCommand insertCommand = new MySqlCommand("tblservicestation_INSERT", clsDatabase.getPooledConnection());
+			public tblServicestaion executeINSERT(){
+				MySqlCommand insertCommand = new MySqlCommand("tblservicestaion_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				insertCommand.Parameters.AddWithValue("@outPKiServicestationID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiServicestationID"].Direction = System.Data.ParameterDirection.Output;
@@ -288,14 +288,14 @@ namespace HandUpWCF.DBClasses {
 				insertCommand.Parameters.AddWithValue("@sDescription",sDescription);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
-             PKiServiceStationID= (Int32)insertCommand.Parameters["@outPKiServicestationID"].Value;
+             PKiServiceStaionID= (Int32)insertCommand.Parameters["@outPKiServicestationID"].Value;
 				return this;
 			}
 
 			public bool executeUPDATE(){
-				MySqlCommand updateCommand = new MySqlCommand("tblservicestation_UPDATE", clsDatabase.getPooledConnection());
+				MySqlCommand updateCommand = new MySqlCommand("tblservicestaion_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				updateCommand.Parameters.AddWithValue("@inPKiServicestationID", PKiServiceStationID);
+				updateCommand.Parameters.AddWithValue("@inPKiServicestationID", PKiServiceStaionID);
 				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@insName", sName);
 				updateCommand.Parameters.AddWithValue("@insDescription", sDescription);

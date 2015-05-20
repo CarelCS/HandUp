@@ -416,27 +416,27 @@ namespace HandUpWCF.DBClasses{
 				return atblOrders.executeSelect();
 			}
 
-			public List<tblServicestation> gettblServicestaion_FKiProvideIDList(){
-                tblServicestation atblServicestaion = new tblServicestation();
+			public List<tblServicestaion> gettblServicestaion_FKiProvideIDList(){
+                tblServicestaion atblServicestaion = new tblServicestaion();
 				atblServicestaion.addEquals("FKiProvideID",PKiProviderID);
 				return atblServicestaion.executeSelect();
 			}
 
-            public List<tblServicestation> gettblServicestaion_FKiProvideIDList(string localsOrderBy, string localsOrderType) {
-                tblServicestation atblServicestaion = new tblServicestation();
+            public List<tblServicestaion> gettblServicestaion_FKiProvideIDList(string localsOrderBy, string localsOrderType) {
+                tblServicestaion atblServicestaion = new tblServicestaion();
 				atblServicestaion.addEquals("FKiProvideID",PKiProviderID);
 				return atblServicestaion.executeSelect(localsOrderBy,localsOrderType);
 			}
 
-            public List<tblServicestation> gettblServicestaion_FKiProvideIDList(string sAddToSqlWhere, string localsOrderBy, string localsOrderType) {
-                tblServicestation atblServicestaion = new tblServicestation();
+            public List<tblServicestaion> gettblServicestaion_FKiProvideIDList(string sAddToSqlWhere, string localsOrderBy, string localsOrderType) {
+                tblServicestaion atblServicestaion = new tblServicestaion();
 				atblServicestaion.addToSqlWhere(sAddToSqlWhere);
 				atblServicestaion.addEquals("FKiProvideID",PKiProviderID);
 				return atblServicestaion.executeSelect(localsOrderBy,localsOrderType);
 			}
 
-            public List<tblServicestation> gettblServicestaion_FKiProvideIDList(string sAddToSqlWhere) {
-                tblServicestation atblServicestaion = new tblServicestation();
+            public List<tblServicestaion> gettblServicestaion_FKiProvideIDList(string sAddToSqlWhere) {
+                tblServicestaion atblServicestaion = new tblServicestaion();
 				atblServicestaion.addToSqlWhere(sAddToSqlWhere);
 				return atblServicestaion.executeSelect();
 			}
