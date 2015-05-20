@@ -80,10 +80,30 @@
         }
     }
 
+    function openOrderRandValueWindow() {
+        newWindowRand = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
+        newWindowRand.document.write("<textarea id=\"txtRandValue\" cols=\"20\" rows=\"1\"></textarea><br /><input id=\"btnRandValueChanged\" type=\"button\" onclick=\"window.opener.setRandValue(document.getElementById('txtRandValue').value);window.close();\" value=\"Change Value\" />");
+        var TextValue = window.opener.document.getElementById("<%= hdnRandValueForOrder.ClientID %>").value;
+        if (TextValue != "") {
+            newWindowRand.close();
+        }
+    }
+
     function setValue(value) {
         document.getElementById("<%= hdnTextForOrder.ClientID %>").value = value;
         var ClickChangeAlert = document.getElementById("<%= btnUpdateTextValues.ClientID %>");
         ClickChangeAlert.click();
+    }
+
+    function setRandValue(value) {
+        document.getElementById("<%= hdnRandValueForOrder.ClientID %>").value = value;
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateRandValues.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function ChangeValue(OrderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
+        openOrderRandValueWindow();
     }
 
     function AddTextTable(OrderID) {
@@ -324,8 +344,11 @@
     <div id="dvTableManagement">
     <table width="100%">
         <tr><td>Table Management</td></tr>
-        <tr><td><div id="dvTableList" runat="server"></div></td></tr>
-        <tr><td><div id="dvEditTableOrders" runat="server"></div></td></tr>
+        <tr><td><div id="dvTableList" runat="server">
+            <asp:DropDownList ID="ddlTables" runat="server" AutoPostBack="True" onselectedindexchanged="ddlTables_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div></td></tr>
+        <tr><td><div id="dvTablesOrders" runat="server"></div></td></tr>
     </table>
     </div>
     <div style="visibility:collapse">
@@ -334,6 +357,8 @@
         <asp:Button ID="btnEditMenuItem" runat="server" Text="Button" onclick="btnEditMenuItem_Click" />
         <asp:Button ID="btnEditTable" runat="server" Text="Button" onclick="btnEditTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" onclick="btnUpdateTextValues_Click" />
+        <asp:Button ID="btnUpdateRandValues" runat="server" Text="Button" 
+            onclick="btnUpdateRandValues_Click" />
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />
@@ -341,6 +366,7 @@
         <asp:HiddenField ID="hdnEmployeeActive" runat="server" />
         <asp:HiddenField ID="hdnTableID" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
+        <asp:HiddenField ID="hdnRandValueForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
         <asp:HiddenField ID="hdnChangeDisplay" runat="server" />

@@ -22,6 +22,9 @@ namespace HandUpGUI {
                     hdnChangeDisplay.Value = "1";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void PopulateEmployees() {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.EmployeeListPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
@@ -33,6 +36,9 @@ namespace HandUpGUI {
             dvEmployeeList.InnerHtml = sOrderList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void PopulateMenu() {
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
@@ -85,26 +91,21 @@ namespace HandUpGUI {
         }
 
         protected void PopulateTables() {
-            string sOrderList = "<table border='1'><tr><td>Waiter 1</td><td>Table Name 1</td><td><div id=\"order3C\" onclick=\"EditDeleteTable('Table3')\">CONFIRM</div></td></tr>";
-            sOrderList += "<tr><td>Waiter 2</td><td>Table Name 1</td><td><div id=\"order4C\" onclick=\"EditDeleteTable('Table4')\">CONFIRM</div></td></tr>";
-            sOrderList += "</table>";
-            dvEditTableOrders.InnerHtml = sOrderList;
+            DataSet ds = new DataSet();
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            ds = WSNew.ActiveTablesForProvider(Convert.ToInt32(PKiProviderID), true);
+            ListItem liBase = new ListItem();
+            liBase.Text = "SELECT TABLE";
+            liBase.Value = "0";
+            ddlTables.Items.Add(liBase);
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                ListItem li = new ListItem();
+                li.Text = dr["sTableName"].ToString();
+                li.Value = dr["PKiTableID"].ToString();
+                ddlTables.Items.Add(li);
+            }
         }
-
-        protected void PopulateSingleTable() {
-            string CurrentOrderID = "111";
-            string TableListStart = "<select name=\"" + CurrentOrderID + "\" id=\"" + CurrentOrderID + "\">";
-            string TableSList = "<option value='1'>--</option>";
-            TableSList += "<option value='1'>Table 1</option>";
-            TableSList += "<option value='1'>Table 2</option>";
-            string TableListEnd = "</select>";
-
-            string sOrderList = "<table border='1'><tr><td>Table 1</td><td>Patron 1</td><td>Hamburger and Chips</td><td>><div id=\"order3T\" onclick=\"AddTextTable('ORDER3')\">TEXT</div></td><td>" + TableListStart + TableSList + TableListEnd + "</td><td><input id='Order1' type='text' value='99.99' /></td><td><div id=\"order3T\" onclick=\"UpdateOrder('ORDER3')\">Update</div></td></tr>";
-            sOrderList += "<tr><td>Table 1</td><td>Patron 2</td><td>Steak egg and chips</td><td>><div id=\"order3T\" onclick=\"AddTextTable('ORDER4')\">TEXT</div></td><td>" + TableListStart + TableSList + TableListEnd + "</td><td><input id='Order1' type='text' value='25.00' /></td><td><div id=\"order4T\" onclick=\"UpdateOrder('ORDER4')\">Update</div></td></tr>";
-            sOrderList += "</table>";
-            dvEditTableOrders.InnerHtml = sOrderList;
-        }
-
+        
         /// <summary>
         /// Edit a menu item
         /// </summary>
@@ -237,6 +238,54 @@ namespace HandUpGUI {
             calEndDate.TodaysDate = DateTime.Today;
             ddlEmpStatus.SelectedIndex = 0;
             ddlEmpType.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlTables_SelectedIndexChanged(object sender, EventArgs e) {
+            string ScreenWidth = Session["ScreenWidth"].ToString();
+            int IconWidth = Convert.ToInt32(ScreenWidth) / 20;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = new DataSet();
+            ds = WSNew.OrdersPerTable(Convert.ToInt32(ddlTables.SelectedValue), true);
+            string sOrderList = "<table border='1' width=\"100%\">";
+            string sCapableOption = "";
+            string sCanConfirm = "";
+            double TotalCost = 0;
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3C\" onclick=\"ConfirmOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Confirm.png\"  width='" + IconWidth + "'/></div>";
+                sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
+                if (dr["sOrderStatus"].ToString() == "4" || dr["sOrderStatus"].ToString() == "2") {
+                    if (dr["sOrderStatus"].ToString() == "4") {
+                        //sOrderList += "<tr style=\"text-decoration:line-through\"><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                    }
+                    else {
+                        sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"ChangeValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                    }
+                }
+                else {
+                    sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                }
+                if (dr["sOrderStatus"].ToString() != "4")
+                    TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
+            }
+            sOrderList += "<tr><td>Bill till now.</td><td>R " + TotalCost + "</td></tr></table>";
+            dvTablesOrders.InnerHtml = sOrderList;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnUpdateRandValues_Click(object sender, EventArgs e) {
+            string NewRandValue = hdnRandValueForOrder.Value;
+            string OrderID = hdnOrderNumber.Value;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            //WSNew.OverrideOrderValue();
         }
     }
 }

@@ -481,13 +481,22 @@ namespace HandUpGUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTableList;
         
         /// <summary>
-        /// dvEditTableOrders control.
+        /// ddlTables control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvEditTableOrders;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTables;
+        
+        /// <summary>
+        /// dvTablesOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTablesOrders;
         
         /// <summary>
         /// hdnMaxSubs control.
@@ -533,6 +542,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateTextValues;
+        
+        /// <summary>
+        /// btnUpdateRandValues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateRandValues;
         
         /// <summary>
         /// hdnMenuID control.
@@ -596,6 +614,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnTextForOrder;
+        
+        /// <summary>
+        /// hdnRandValueForOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRandValueForOrder;
         
         /// <summary>
         /// hdnOrderNumber control.
