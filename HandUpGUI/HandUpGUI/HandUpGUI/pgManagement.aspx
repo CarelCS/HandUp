@@ -41,7 +41,7 @@
             default:
         }
     }
-
+    
     function EditDeleteMenuItem(MenuID, Status) {
         document.getElementById("<%= hdnMenuID.ClientID %>").value = MenuID;
         document.getElementById("<%= hdnMenuStatus.ClientID %>").value = Status;
@@ -50,16 +50,11 @@
     }
 
     function EditDeleteEmployee(Employee, Status, Active) {
-        //alert(Employee);
-        //alert(Status);
-        //alert(Active);
         document.getElementById("<%= hdnEmployeeID.ClientID %>").value = Employee;
         document.getElementById("<%= hdnEmployeeStatus.ClientID %>").value = Status;
         document.getElementById("<%= hdnEmployeeActive.ClientID %>").value = Active;
-        //alert("DO EDIT");
         var ClickChangeAlert = document.getElementById("<%= btnEditEmployee.ClientID %>");
         ClickChangeAlert.click();
-        //alert("EDIT DONE");
     }
 
     function EditDeleteTable(TableID) {
@@ -75,7 +70,6 @@
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         newWindow.document.write("<textarea id=\"txtAddArea\" cols=\"20\" rows=\"2\"></textarea><br /><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setValue(document.getElementById('txtAddArea').value);window.close();\" value=\"Add Text\" />");
         var TextValue = window.opener.document.getElementById("<%= hdnTextForOrder.ClientID %>").value;
-        //alert(TextValue);
         if (TextValue != "") {
             newWindow.close();
         }
@@ -126,7 +120,6 @@
     <table width="100%">
         <tr><td>Employees</td></tr>
         <tr><td><div id="dvEmployeeList" runat="server"></div></td></tr>
-        <tr><td><div id="dvEmployeeEditAdd" runat="server"></div></td></tr>
     </table>
     </div>
     <div id="dvEmployeeDetails">
@@ -269,19 +262,61 @@
         </tr>
     </table>
     </div>
-    <div id="dvMenu" style="visibility: hidden">
+    <div id="dvMenu">
     <table width="100%">
         <tr><td>Menu<div id="dvMenuGroup" runat="server"></div></td></tr>
         <tr><td><div id="dvMenulist" runat="server"></div></td></tr>
-        <tr><td><div id="dvMenuItemEditAdd" runat="server"></div></td></tr>
+        <tr><td></td></tr>
     </table>
     </div>
-    <div id="dvReports" style="visibility: hidden">
+    <div id="dvMenuEdit">
+    <table width="100%">
+        <tr>
+            <td>
+                <asp:Label ID="lblMenuGroup" runat="server" Text="Menu Group"></asp:Label></td>
+            <td>
+                <asp:DropDownList ID="ddlMenuGroup" runat="server">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:TextBox ID="txtNewMenuGroup" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lblMenuName" runat="server" Text="Name"></asp:Label></td>
+            <td colspan=2><asp:TextBox ID="txtMenuName" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lblMenuDescription" runat="server" Text="Description"></asp:Label></td>
+            <td colspan=2><asp:TextBox ID="txtMenuDescription" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label></td>
+            <td colspan=2><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lblServiceStation" runat="server" Text="Service Station"></asp:Label></td>
+            <td>
+                <asp:DropDownList ID="ddlServiceStation" runat="server">
+                </asp:DropDownList>
+            </td>
+            <td><asp:TextBox ID="txtAddNewServicestation" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lblImage" runat="server" Text="Image"></asp:Label></td>
+            <td colspan=2><asp:FileUpload ID="fuMenuImage" runat="server" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan=2><asp:Button ID="btnUpdateAddMenuItem" runat="server" Text="Submit" /></td>
+        </tr>
+    </table>
+    </div>
+    <div id="dvReports">
     <table width="100%">
         <tr><td>Reports</td></tr>
     </table>
     </div>
-    <div id="dvTableManagement" style="visibility: hidden">
+    <div id="dvTableManagement">
     <table width="100%">
         <tr><td>Table Management</td></tr>
         <tr><td><div id="dvTableList" runat="server"></div></td></tr>

@@ -66,6 +66,12 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback MenuForProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getMenuItemByIDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getMenuGroupsPerProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getServiceStationsPerProviderOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConfirmAlertOperationCompleted;
@@ -219,6 +225,15 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event MenuForProviderCompletedEventHandler MenuForProviderCompleted;
+        
+        /// <remarks/>
+        public event getMenuItemByIDCompletedEventHandler getMenuItemByIDCompleted;
+        
+        /// <remarks/>
+        public event getMenuGroupsPerProviderCompletedEventHandler getMenuGroupsPerProviderCompleted;
+        
+        /// <remarks/>
+        public event getServiceStationsPerProviderCompletedEventHandler getServiceStationsPerProviderCompleted;
         
         /// <remarks/>
         public event TableAlertPerEmployeeCompletedEventHandler TableAlertPerEmployeeCompleted;
@@ -922,6 +937,102 @@ namespace HandUpGUI.localhost {
             if ((this.MenuForProviderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MenuForProviderCompleted(this, new MenuForProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getMenuItemByID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getMenuItemByID(int PKiMenuID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool PKiMenuIDSpecified) {
+            object[] results = this.Invoke("getMenuItemByID", new object[] {
+                        PKiMenuID,
+                        PKiMenuIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getMenuItemByIDAsync(int PKiMenuID, bool PKiMenuIDSpecified) {
+            this.getMenuItemByIDAsync(PKiMenuID, PKiMenuIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getMenuItemByIDAsync(int PKiMenuID, bool PKiMenuIDSpecified, object userState) {
+            if ((this.getMenuItemByIDOperationCompleted == null)) {
+                this.getMenuItemByIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetMenuItemByIDOperationCompleted);
+            }
+            this.InvokeAsync("getMenuItemByID", new object[] {
+                        PKiMenuID,
+                        PKiMenuIDSpecified}, this.getMenuItemByIDOperationCompleted, userState);
+        }
+        
+        private void OngetMenuItemByIDOperationCompleted(object arg) {
+            if ((this.getMenuItemByIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getMenuItemByIDCompleted(this, new getMenuItemByIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getMenuGroupsPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getMenuGroupsPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("getMenuGroupsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getMenuGroupsPerProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.getMenuGroupsPerProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getMenuGroupsPerProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.getMenuGroupsPerProviderOperationCompleted == null)) {
+                this.getMenuGroupsPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetMenuGroupsPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("getMenuGroupsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.getMenuGroupsPerProviderOperationCompleted, userState);
+        }
+        
+        private void OngetMenuGroupsPerProviderOperationCompleted(object arg) {
+            if ((this.getMenuGroupsPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getMenuGroupsPerProviderCompleted(this, new getMenuGroupsPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getServiceStationsPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getServiceStationsPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("getServiceStationsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getServiceStationsPerProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.getServiceStationsPerProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getServiceStationsPerProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.getServiceStationsPerProviderOperationCompleted == null)) {
+                this.getServiceStationsPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetServiceStationsPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("getServiceStationsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.getServiceStationsPerProviderOperationCompleted, userState);
+        }
+        
+        private void OngetServiceStationsPerProviderOperationCompleted(object arg) {
+            if ((this.getServiceStationsPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getServiceStationsPerProviderCompleted(this, new getServiceStationsPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2592,6 +2703,84 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal MenuForProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getMenuItemByIDCompletedEventHandler(object sender, getMenuItemByIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getMenuItemByIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getMenuItemByIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getMenuGroupsPerProviderCompletedEventHandler(object sender, getMenuGroupsPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getMenuGroupsPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getMenuGroupsPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getServiceStationsPerProviderCompletedEventHandler(object sender, getServiceStationsPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getServiceStationsPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getServiceStationsPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

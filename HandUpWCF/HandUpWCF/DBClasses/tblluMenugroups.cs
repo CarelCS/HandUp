@@ -8,6 +8,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _PKIMENUGROUPID="PKiMenuGroupID";
 		public const string _SMENUGROUPNAME="sMenuGroupName";
 		public const string _SMENUGROUPDESCRIPTION="sMenuGroupDescription";
+        public const string _SFKIPROVIDERID = "FKiProviderID";
 		public const string _tblluMenugroups="tbllumenugroups";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -41,6 +42,15 @@ namespace HandUpWCF.DBClasses{
 				_sMenuGroupDescription = value;
 			}
 		}
+        private string _FKiProviderID;
+        public string FKiProviderID {
+            get {
+                return _FKiProviderID;
+            }
+            set {
+                _FKiProviderID = value;
+            }
+        }
 		private string sOrderBy="PKiMenuGroupID";
 		private string sOrderType="ASC";
 
@@ -51,6 +61,7 @@ namespace HandUpWCF.DBClasses{
 			this.PKiMenuGroupID=atblluMenugroups.PKiMenuGroupID;
 			this.sMenuGroupName=atblluMenugroups.sMenuGroupName;
 			this.sMenuGroupDescription=atblluMenugroups.sMenuGroupDescription;
+            this.FKiProviderID = atblluMenugroups.FKiProviderID;
 		}
 
 		public tblluMenugroups(){
@@ -91,7 +102,9 @@ namespace HandUpWCF.DBClasses{
 					iIndex=aSqlReader.GetOrdinal("sMenuGroupName");
 					atblluMenugroups.sMenuGroupName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("sMenuGroupDescription");
-					atblluMenugroups.sMenuGroupDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+                    atblluMenugroups.sMenuGroupDescription = aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("FKiProviderID");
+                    atblluMenugroups.FKiProviderID = aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					listtblluMenugroups.Add(atblluMenugroups);
 					}
 			}
@@ -254,7 +267,8 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@outPKiMenuGroupID",MySqlDbType.Int32);
 				insertCommand.Parameters["@outPKiMenuGroupID"].Direction = System.Data.ParameterDirection.Output;
 				insertCommand.Parameters.AddWithValue("@sMenuGroupName",sMenuGroupName);
-				insertCommand.Parameters.AddWithValue("@sMenuGroupDescription",sMenuGroupDescription);
+                insertCommand.Parameters.AddWithValue("@sMenuGroupDescription", sMenuGroupDescription);
+                insertCommand.Parameters.AddWithValue("@sFKiProviderID", FKiProviderID);
 				insertCommand.ExecuteNonQuery();
              PKiMenuGroupID= (Int32)insertCommand.Parameters["@outPKiMenuGroupID"].Value;
 				return this;
@@ -265,7 +279,8 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
 				updateCommand.Parameters.AddWithValue("@inPKiMenuGroupID", PKiMenuGroupID);
 				updateCommand.Parameters.AddWithValue("@insMenuGroupName", sMenuGroupName);
-				updateCommand.Parameters.AddWithValue("@insMenuGroupDescription", sMenuGroupDescription);
+                updateCommand.Parameters.AddWithValue("@insMenuGroupDescription", sMenuGroupDescription);
+                updateCommand.Parameters.AddWithValue("@insFKiProviderID", FKiProviderID);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

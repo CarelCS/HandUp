@@ -13,11 +13,11 @@ namespace HandUpGUI {
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
             PKiProviderID = dsE.Tables[0].Rows[0]["FKiProviderID"].ToString();
-            if (!IsPostBack) {
+            //if (!IsPostBack) {
                 PopulateEmployees();
                 PopulateTables();
                 PopulateMenu();
-            }
+            //}
         }
 
         protected void PopulateEmployees() {
@@ -70,7 +70,7 @@ namespace HandUpGUI {
 
                             }
                         }
-                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order_now.png\" height='50' /></div></td></tr>";
+                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"EditDeleteMenuItem('" + dr["PKiMenuID"].ToString() + "', 0)\"><img id=\"Image1\" src=\"images/icons/Order.png\" height='50' /></div></td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"EditDeleteMenuItem('" + dr["PKiMenuID"].ToString() + "', 1)\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" height='50' /></div></td></tr>";
                         ItemRow++;
                     }
                 }
@@ -109,11 +109,37 @@ namespace HandUpGUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnEditMenuItem_Click(object sender, EventArgs e) {
+            DataSet dsMG = new DataSet();
+            DataSet dsSS = new DataSet();
+            DataSet ds = new DataSet();
+            localhost.HandUpService WSNew = new localhost.HandUpService();
             if (hdnMenuStatus.Value == "1") {
                 //Send update to "delete" menu item
             }
             else {
-                //set the fields in the menu edit update add fields.
+                dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
+                dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
+                ds = WSNew.getMenuItemByID(Convert.ToInt32(hdnMenuID.Value), true);
+                string GroupID = ds.Tables[0].Rows[0]["FKiMenuGroupID"].ToString();
+                string ServiceStationID = ds.Tables[0].Rows[0]["FKiServicestationID"].ToString();
+                foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                    ListItem li = new ListItem();
+                    li.Text = dr["sMenuGroupName"].ToString();
+                    li.Value = dr["PKiMenuGroupID"].ToString();
+                    if (dr["PKiMenuGroupID"].ToString() == GroupID)
+                        li.Selected = true;
+                    ddlMenuGroup.Items.Add(li);
+                }
+                foreach (DataRow dr in dsSS.Tables[0].Rows) {
+                    ListItem li = new ListItem();
+                    li.Text = dr["sName"].ToString();
+                    li.Value = dr["PKiServiceStaionID"].ToString();
+                    if (dr["PKiServiceStaionID"].ToString() == ServiceStationID)
+                        li.Selected = true;
+                    ddlServiceStation.Items.Add(li);
+                }
+                txtMenuDescription.Text = ds.Tables[0].Rows[0]["sMenuItemName"].ToString();
+                txtMenuName.Text = ds.Tables[0].Rows[0]["sMenuItemDescription"].ToString();
             }
         }
 

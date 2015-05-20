@@ -116,6 +116,24 @@
   <wsdl:message name="IHandUpService_MenuForProvider_OutputMessage">
     <wsdl:part name="parameters" element="tns:MenuForProviderResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_getMenuItemByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMenuItemByID" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getMenuItemByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMenuItemByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getMenuGroupsPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMenuGroupsPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getMenuGroupsPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMenuGroupsPerProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getServiceStationsPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:getServiceStationsPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getServiceStationsPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getServiceStationsPerProviderResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_TableAlertPerEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:TableAlertPerEmployee" />
   </wsdl:message>
@@ -374,6 +392,18 @@
     <wsdl:operation name="MenuForProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuForProvider" message="tns:IHandUpService_MenuForProvider_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/MenuForProviderResponse" message="tns:IHandUpService_MenuForProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMenuItemByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getMenuItemByID" message="tns:IHandUpService_getMenuItemByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getMenuItemByIDResponse" message="tns:IHandUpService_getMenuItemByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMenuGroupsPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getMenuGroupsPerProvider" message="tns:IHandUpService_getMenuGroupsPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getMenuGroupsPerProviderResponse" message="tns:IHandUpService_getMenuGroupsPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceStationsPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getServiceStationsPerProvider" message="tns:IHandUpService_getServiceStationsPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getServiceStationsPerProviderResponse" message="tns:IHandUpService_getServiceStationsPerProvider_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="TableAlertPerEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployee" message="tns:IHandUpService_TableAlertPerEmployee_InputMessage" />
@@ -657,6 +687,33 @@
     </wsdl:operation>
     <wsdl:operation name="MenuForProvider">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/MenuForProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenuItemByID">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getMenuItemByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenuGroupsPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getMenuGroupsPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceStationsPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getServiceStationsPerProvider" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

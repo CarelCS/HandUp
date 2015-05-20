@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td align="right"><asp:Label ID="lblUser" runat="server" Text="User Name : "></asp:Label></td>
-            <td align="left"><asp:TextBox ID="txtUserName" runat="server" Text="Carine"></asp:TextBox></td>
+            <td align="left"><asp:TextBox ID="txtUserName" runat="server" Text="Admin"></asp:TextBox></td>
         </tr>
         <tr>
             <td align="right"><asp:Label ID="lblPassword" runat="server" Text="Password : "></asp:Label></td>

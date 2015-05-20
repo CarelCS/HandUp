@@ -55,5 +55,26 @@ namespace HandUpWCF {
             //DataSet da = newAdapter.RetrieveTable(SqlText);
             return aDataSet;
         }
+
+        public DataSet getMenuItemByID(int MenuID) {
+            tblMenu aMenu = new tblMenu();
+            aMenu.addEquals(tblMenu._PKIMENUID, MenuID);
+            DataSet aDataSet = aMenu.executeSelectDataSet();
+            return aDataSet;
+        }
+
+        public DataSet getMenuGroupsPerProvider(int ProviderID) {
+            tblluMenugroups aMenuGroup = new tblluMenugroups();
+            aMenuGroup.addEquals(tblluMenugroups._SFKIPROVIDERID, ProviderID);
+            DataSet aDataSet = aMenuGroup.executeSelectDataSet();
+            return aDataSet;
+        }
+        
+        public DataSet getServiceStationsPerProvider(int ProviderID) {
+            tblServicestation aMenuSS = new tblServicestation();
+            aMenuSS.addEquals(tblServicestation._FKIPROVIDERID, ProviderID);
+            DataSet aDataSet = aMenuSS.executeSelectDataSet();
+            return aDataSet;
+        }
     }
 }

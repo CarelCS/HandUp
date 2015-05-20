@@ -71,6 +71,12 @@ namespace HandUpWCF {
 
         [OperationContract]
         DataSet MenuForProvider(string ProviderID);
+        [OperationContract]
+        DataSet getMenuItemByID(int PKiMenuID);
+        [OperationContract]
+        DataSet getMenuGroupsPerProvider(int ProviderID);
+        [OperationContract]
+        DataSet getServiceStationsPerProvider(int ProviderID);
 
         #endregion
 

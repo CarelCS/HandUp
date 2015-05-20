@@ -64,6 +64,7 @@
     <Content Include="Images\Icons\BorderBlock.png" />
     <Content Include="Images\Icons\BottomLeft.png" />
     <Content Include="Images\Icons\BottomRight.png" />
+    <Content Include="Images\Icons\ButtonBorder.png" />
     <Content Include="Images\Icons\CallWaiter.png" />
     <Content Include="Images\Icons\Cancel.png" />
     <Content Include="Images\Icons\Change.png" />

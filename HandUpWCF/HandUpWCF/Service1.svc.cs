@@ -114,6 +114,22 @@ namespace HandUpWCF {
             return table.MenuForProvider(ProviderID);
 
         }
+
+        public DataSet getMenuItemByID(int PKiMenuID) {
+            Menu table = new Menu();
+            return table.getMenuItemByID(PKiMenuID);
+        }
+
+        public DataSet getMenuGroupsPerProvider(int ProviderID) {
+            Menu table = new Menu();
+            return table.getMenuGroupsPerProvider(ProviderID);
+        }
+
+        public DataSet getServiceStationsPerProvider(int ProviderID) {
+            Menu table = new Menu();
+            return table.getServiceStationsPerProvider(ProviderID);
+        }
+
         #endregion
 
         #region Employee
