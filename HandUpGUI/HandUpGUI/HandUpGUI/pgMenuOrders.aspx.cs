@@ -197,7 +197,8 @@ namespace HandUpGUI {
             UITable = PKiProviderID + GetUniqueKey(3) + DateTime.Now.Month + DateTime.Now.Day;
 
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            //WSNew.AddTable(
+            WSNew.AddTable(Convert.ToInt32(PKiEmployeeID), true, Convert.ToInt32(PKiProviderID), true, Convert.ToInt32(ddlPatronCount.SelectedValue), true, txtTableName.Text, "");
+            Page_Load(sender, e);
         }
 
         /// <summary>

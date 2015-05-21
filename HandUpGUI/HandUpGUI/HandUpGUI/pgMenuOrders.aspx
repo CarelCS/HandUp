@@ -226,7 +226,7 @@
                             <td>
                                 <asp:Label ID="tblTableName" runat="server" Text="Table Name"></asp:Label>
                                 <asp:TextBox ID="txtTableName" runat="server"></asp:TextBox><br />
-                                <asp:DropDownList ID="dlPatronCount" runat="server">
+                                <asp:DropDownList ID="ddlPatronCount" runat="server">
                                     <asp:ListItem Text="1" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="2" Value="2"></asp:ListItem>
                                     <asp:ListItem Text="3" Value="3"></asp:ListItem>
