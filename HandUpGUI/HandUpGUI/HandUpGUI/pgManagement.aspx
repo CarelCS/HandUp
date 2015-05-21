@@ -68,7 +68,17 @@
         ClickChangeAlert.click();
     }
 
-    function MoveOrder(OrderID) {
+    function moveOrderToTable(ThisIs) {
+        alert("START");
+        var idx = ThisIs.selectedIndex;
+        var which = ThisIs.options[idx].value;
+        var MyArray2 = which.split("|");
+        alert(MyArray2[0]);
+        alert(MyArray2[1]);
+        document.getElementById("<%= hdnMoveToTableID.ClientID %>").value = MyArray2[0];
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = MyArray2[1];
+        var ClickChangeAlert = document.getElementById("<%= btnMoveOrderToTable.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function openOrderTextWindow() {
@@ -347,6 +357,8 @@
         <tr><td><div id="dvTableList" runat="server">
             <asp:DropDownList ID="ddlTables" runat="server" AutoPostBack="True" onselectedindexchanged="ddlTables_SelectedIndexChanged">
             </asp:DropDownList>
+            <asp:DropDownList ID="ddlEmployees" runat="server" AutoPostBack="True" onselectedindexchanged="ddlEmployees_SelectedIndexChanged">
+            </asp:DropDownList>
         </div></td></tr>
         <tr><td><div id="dvTablesOrders" runat="server"></div></td></tr>
     </table>
@@ -357,8 +369,8 @@
         <asp:Button ID="btnEditMenuItem" runat="server" Text="Button" onclick="btnEditMenuItem_Click" />
         <asp:Button ID="btnEditTable" runat="server" Text="Button" onclick="btnEditTable_Click" />
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" onclick="btnUpdateTextValues_Click" />
-        <asp:Button ID="btnUpdateRandValues" runat="server" Text="Button" 
-            onclick="btnUpdateRandValues_Click" />
+        <asp:Button ID="btnUpdateRandValues" runat="server" Text="Button" onclick="btnUpdateRandValues_Click" />
+        <asp:Button ID="btnMoveOrderToTable" runat="server" Text="Button" onclick="btnMoveOrderToTable_Click" />
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />
@@ -370,6 +382,7 @@
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
         <asp:HiddenField ID="hdnChangeDisplay" runat="server" />
+        <asp:HiddenField ID="hdnMoveToTableID" runat="server" />
     </div>
     </form>
 </body>

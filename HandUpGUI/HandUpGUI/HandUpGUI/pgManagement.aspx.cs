@@ -17,6 +17,7 @@ namespace HandUpGUI {
                 PopulateEmployees();
                 PopulateTables();
                 PopulateMenu();
+                PopulateAvailableEmployees();
             //}
                 if (!IsPostBack)
                     hdnChangeDisplay.Value = "1";
@@ -91,21 +92,54 @@ namespace HandUpGUI {
         }
 
         protected void PopulateTables() {
+            if (ddlTables.Items.Count == 0) {
+                DataSet ds = new DataSet();
+                localhost.HandUpService WSNew = new localhost.HandUpService();
+                ds = WSNew.ActiveTablesForProvider(Convert.ToInt32(PKiProviderID), true);
+                ListItem liBase = new ListItem();
+                liBase.Text = "SELECT TABLE";
+                liBase.Value = "0";
+                ddlTables.Items.Add(liBase);
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    ListItem li = new ListItem();
+                    li.Text = dr["sTableName"].ToString();
+                    li.Value = dr["PKiTableID"].ToString();
+                    ddlTables.Items.Add(li);
+                }
+            }
+        }
+
+        protected void PopulateAvailableEmployees() {
+            if (ddlEmployees.Items.Count == 0) {
+                DataSet ds = new DataSet();
+                localhost.HandUpService WSNew = new localhost.HandUpService();
+                ds = WSNew.EmployeeListPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
+                ListItem liBase = new ListItem();
+                liBase.Text = "SELECT TABLE";
+                liBase.Value = "0";
+                ddlEmployees.Items.Add(liBase);
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    ListItem li = new ListItem();
+                    li.Text = dr["sUserName"].ToString();
+                    li.Value = dr["PKiEmployeeID"].ToString();
+                    ddlEmployees.Items.Add(li);
+                }
+            }
+        }
+
+        protected string PopulateMoveToTables(string OrderID) {
+            string OptionTable = "";
             DataSet ds = new DataSet();
             localhost.HandUpService WSNew = new localhost.HandUpService();
             ds = WSNew.ActiveTablesForProvider(Convert.ToInt32(PKiProviderID), true);
-            ListItem liBase = new ListItem();
-            liBase.Text = "SELECT TABLE";
-            liBase.Value = "0";
-            ddlTables.Items.Add(liBase);
+            OptionTable = "<select id='HTMLSelect" + OrderID + "' onchange=\"moveOrderToTable(this);\"><option value=\"0\">Select table</option>";
             foreach (DataRow dr in ds.Tables[0].Rows) {
-                ListItem li = new ListItem();
-                li.Text = dr["sTableName"].ToString();
-                li.Value = dr["PKiTableID"].ToString();
-                ddlTables.Items.Add(li);
+                OptionTable += "<option value=\"" + dr["PKiTableID"].ToString() +"|~\">" + dr["sTableName"].ToString() + "</option>";
             }
+            OptionTable += "</select>";
+            return OptionTable;
         }
-        
+
         /// <summary>
         /// Edit a menu item
         /// </summary>
@@ -263,11 +297,11 @@ namespace HandUpGUI {
                         //sOrderList += "<tr style=\"text-decoration:line-through\"><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
                     }
                     else {
-                        sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"ChangeValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                        sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"ChangeValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + PopulateMoveToTables(dr["PKiOrderID"].ToString()).Replace("~", dr["PKiOrderID"].ToString()) + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
                     }
                 }
                 else {
-                    sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
+                    sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelValue('" + dr["PKiOrderID"].ToString() + "')\">R " + dr["dblOrderValue"].ToString() + "</div></td><td>" + PopulateMoveToTables(dr["PKiOrderID"].ToString()).Replace("~", dr["PKiOrderID"].ToString()) + "</td><td>" + sCanConfirm + "</td><td><div style=\"cursor:pointer;\" id=\"order3Ca\" onclick=\"CancelOrder('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Cancel.png\"  width='" + IconWidth + "'/></div></td><td>" + sCapableOption + "</td></tr>";
                 }
                 if (dr["sOrderStatus"].ToString() != "4")
                     TotalCost += Convert.ToDouble(dr["dblOrderValue"].ToString());
@@ -286,6 +320,17 @@ namespace HandUpGUI {
             string OrderID = hdnOrderNumber.Value;
             localhost.HandUpService WSNew = new localhost.HandUpService();
             //WSNew.OverrideOrderValue();
+        }
+
+        protected void btnMoveOrderToTable_Click(object sender, EventArgs e) {
+            string MoveToID = hdnMoveToTableID.Value;
+            string MoveFromID = ddlTables.SelectedValue;
+            string OrderID = hdnOrderNumber.Value;
+        }
+
+        protected void ddlEmployees_SelectedIndexChanged(object sender, EventArgs e) {
+            string MoveTableID = ddlTables.SelectedValue;
+            string MoveTableToEmployeeID = ddlEmployees.SelectedValue;
         }
     }
 }

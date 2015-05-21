@@ -490,6 +490,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlTables;
         
         /// <summary>
+        /// ddlEmployees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployees;
+        
+        /// <summary>
         /// dvTablesOrders control.
         /// </summary>
         /// <remarks>
@@ -551,6 +560,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateRandValues;
+        
+        /// <summary>
+        /// btnMoveOrderToTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMoveOrderToTable;
         
         /// <summary>
         /// hdnMenuID control.
@@ -650,5 +668,14 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnChangeDisplay;
+        
+        /// <summary>
+        /// hdnMoveToTableID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnMoveToTableID;
     }
 }
