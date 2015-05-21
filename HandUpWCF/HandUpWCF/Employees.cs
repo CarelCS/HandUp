@@ -43,5 +43,12 @@ namespace HandUpWCF {
             string sSql = "UPDATE tblTableAlerts SET bActiveStatus = 0, dtAlertConfirmTime = " + DateTime.Now + " WHERE bActiveStatus = 1 AND sAlertGUI = '" + sCode + "'";
             DataSet DS = aTableAlert.executeCustomSQLDataSet(sSql);
         }
+
+        public DataSet getEmployeeByID(int EmployeeID) {
+            tblEmployees aEmployee = new tblEmployees();
+            string sSql = "SELECT * FROM tblemployees where tblemployees.PKiEmployeeID=" + EmployeeID;
+            DataSet aDataset = aEmployee.executeCustomSQLDataSet(sSql);
+            return aDataset;
+        }
     }
 }

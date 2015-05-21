@@ -55,6 +55,14 @@ namespace HandUpWCF {
             aAlert.executeINSERT();
             return "";
         }
+
+        public DataSet getEmployeeAssignedToTable(int PkiTableID) {
+            tblTables aTable = new tblTables(PkiTableID);
+            Employees aEmployee = new Employees();
+            DataSet ds = new DataSet();
+            ds = aEmployee.getEmployeeByID(aTable.FKiEmployeeID);
+            return ds;
+        }
         
         public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber, string sTableName, string sDescription) {
             tblTables aTable = new tblTables();

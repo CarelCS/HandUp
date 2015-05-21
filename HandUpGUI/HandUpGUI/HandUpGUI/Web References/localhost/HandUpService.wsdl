@@ -110,6 +110,12 @@
   <wsdl:message name="IHandUpService_AllTablesForProviderByDateStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:AllTablesForProviderByDateStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_getEmployeeAssignedToTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEmployeeAssignedToTable" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getEmployeeAssignedToTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEmployeeAssignedToTableResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_MenuForProvider_InputMessage">
     <wsdl:part name="parameters" element="tns:MenuForProvider" />
   </wsdl:message>
@@ -145,6 +151,12 @@
   </wsdl:message>
   <wsdl:message name="IHandUpService_ConfirmAlert_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConfirmAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getEmployeeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEmployeeByID" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getEmployeeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEmployeeByIDResponse" />
   </wsdl:message>
   <wsdl:message name="IHandUpService_MenuPerProviderAdminFull_InputMessage">
     <wsdl:part name="parameters" element="tns:MenuPerProviderAdminFull" />
@@ -389,6 +401,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatus" message="tns:IHandUpService_AllTablesForProviderByDateStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AllTablesForProviderByDateStatusResponse" message="tns:IHandUpService_AllTablesForProviderByDateStatus_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getEmployeeAssignedToTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeAssignedToTable" message="tns:IHandUpService_getEmployeeAssignedToTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeAssignedToTableResponse" message="tns:IHandUpService_getEmployeeAssignedToTable_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MenuForProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuForProvider" message="tns:IHandUpService_MenuForProvider_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/MenuForProviderResponse" message="tns:IHandUpService_MenuForProvider_OutputMessage" />
@@ -412,6 +428,10 @@
     <wsdl:operation name="ConfirmAlert">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/ConfirmAlert" message="tns:IHandUpService_ConfirmAlert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/ConfirmAlertResponse" message="tns:IHandUpService_ConfirmAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeByID" message="tns:IHandUpService_getEmployeeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeByIDResponse" message="tns:IHandUpService_getEmployeeByID_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MenuPerProviderAdminFull">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuPerProviderAdminFull" message="tns:IHandUpService_MenuPerProviderAdminFull_InputMessage" />
@@ -685,6 +705,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getEmployeeAssignedToTable">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getEmployeeAssignedToTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MenuForProvider">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/MenuForProvider" style="document" />
       <wsdl:input>
@@ -732,6 +761,15 @@
     </wsdl:operation>
     <wsdl:operation name="ConfirmAlert">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/ConfirmAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByID">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getEmployeeByID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

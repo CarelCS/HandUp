@@ -64,6 +64,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback AllTablesForProviderByDateStatusOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getEmployeeAssignedToTableOperationCompleted;
+        
         private System.Threading.SendOrPostCallback MenuForProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMenuItemByIDOperationCompleted;
@@ -75,6 +77,8 @@ namespace HandUpGUI.localhost {
         private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConfirmAlertOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getEmployeeByIDOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuPerProviderAdminFullOperationCompleted;
         
@@ -224,6 +228,9 @@ namespace HandUpGUI.localhost {
         public event AllTablesForProviderByDateStatusCompletedEventHandler AllTablesForProviderByDateStatusCompleted;
         
         /// <remarks/>
+        public event getEmployeeAssignedToTableCompletedEventHandler getEmployeeAssignedToTableCompleted;
+        
+        /// <remarks/>
         public event MenuForProviderCompletedEventHandler MenuForProviderCompleted;
         
         /// <remarks/>
@@ -240,6 +247,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event ConfirmAlertCompletedEventHandler ConfirmAlertCompleted;
+        
+        /// <remarks/>
+        public event getEmployeeByIDCompletedEventHandler getEmployeeByIDCompleted;
         
         /// <remarks/>
         public event MenuPerProviderAdminFullCompletedEventHandler MenuPerProviderAdminFullCompleted;
@@ -911,6 +921,38 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getEmployeeAssignedToTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getEmployeeAssignedToTable(int TableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool TableIDSpecified) {
+            object[] results = this.Invoke("getEmployeeAssignedToTable", new object[] {
+                        TableID,
+                        TableIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getEmployeeAssignedToTableAsync(int TableID, bool TableIDSpecified) {
+            this.getEmployeeAssignedToTableAsync(TableID, TableIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getEmployeeAssignedToTableAsync(int TableID, bool TableIDSpecified, object userState) {
+            if ((this.getEmployeeAssignedToTableOperationCompleted == null)) {
+                this.getEmployeeAssignedToTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEmployeeAssignedToTableOperationCompleted);
+            }
+            this.InvokeAsync("getEmployeeAssignedToTable", new object[] {
+                        TableID,
+                        TableIDSpecified}, this.getEmployeeAssignedToTableOperationCompleted, userState);
+        }
+        
+        private void OngetEmployeeAssignedToTableOperationCompleted(object arg) {
+            if ((this.getEmployeeAssignedToTableCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getEmployeeAssignedToTableCompleted(this, new getEmployeeAssignedToTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/MenuForProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public System.Data.DataSet MenuForProvider([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ProviderID) {
@@ -1093,6 +1135,38 @@ namespace HandUpGUI.localhost {
             if ((this.ConfirmAlertCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ConfirmAlertCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getEmployeeByID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getEmployeeByID(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
+            object[] results = this.Invoke("getEmployeeByID", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getEmployeeByIDAsync(int EmployeeID, bool EmployeeIDSpecified) {
+            this.getEmployeeByIDAsync(EmployeeID, EmployeeIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getEmployeeByIDAsync(int EmployeeID, bool EmployeeIDSpecified, object userState) {
+            if ((this.getEmployeeByIDOperationCompleted == null)) {
+                this.getEmployeeByIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEmployeeByIDOperationCompleted);
+            }
+            this.InvokeAsync("getEmployeeByID", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified}, this.getEmployeeByIDOperationCompleted, userState);
+        }
+        
+        private void OngetEmployeeByIDOperationCompleted(object arg) {
+            if ((this.getEmployeeByIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getEmployeeByIDCompleted(this, new getEmployeeByIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2692,6 +2766,32 @@ namespace HandUpGUI.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getEmployeeAssignedToTableCompletedEventHandler(object sender, getEmployeeAssignedToTableCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getEmployeeAssignedToTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getEmployeeAssignedToTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void MenuForProviderCompletedEventHandler(object sender, MenuForProviderCompletedEventArgs e);
     
     /// <remarks/>
@@ -2823,6 +2923,32 @@ namespace HandUpGUI.localhost {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void ConfirmAlertCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getEmployeeByIDCompletedEventHandler(object sender, getEmployeeByIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getEmployeeByIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getEmployeeByIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]

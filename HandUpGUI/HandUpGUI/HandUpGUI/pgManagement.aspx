@@ -360,6 +360,7 @@
             <asp:DropDownList ID="ddlEmployees" runat="server" AutoPostBack="True" onselectedindexchanged="ddlEmployees_SelectedIndexChanged">
             </asp:DropDownList>
         </div></td></tr>
+        <tr><td><asp:Label ID="lblTableAssingedEmployee" runat="server" Text=""></asp:Label></td></tr>
         <tr><td><div id="dvTablesOrders" runat="server"></div></td></tr>
     </table>
     </div>

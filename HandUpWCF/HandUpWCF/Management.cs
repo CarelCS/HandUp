@@ -174,13 +174,15 @@ namespace HandUpWCF {
             // update relevant db tables
             tblOrders aOrder = new tblOrders(OrderID);
             aOrder.sOrderStatus = "0";
+            aOrder.dblOrderValue = OrderValue;
             aOrder.sMenuItemChanges = "Change make to Order Value by Provider Admin";
             aOrder.executeUPDATE();
 
             aOrder.dblOrderValue = OrderValue;
             aOrder = aOrder.executeINSERT();
-            DataSet dsDataSet = aOrder.executeSelectDataSet();
-            return dsDataSet;
+            //DataSet dsDataSet = aOrder.executeSelectDataSet();
+            DataSet ds = new DataSet();
+            return ds;
         }
 
         public DataSet TablesPerProviderPerStatusAdminFull(int ProviderID, DateTime dtOpen, int StatusID) {

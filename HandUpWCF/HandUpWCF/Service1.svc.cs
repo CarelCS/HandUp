@@ -63,6 +63,12 @@ namespace HandUpWCF {
             return clsTable.JoinTableCode(sTableCode);
         }
 
+        public DataSet getEmployeeAssignedToTable(int TableID) {
+            DataSet ds = new DataSet();
+            Table clsTable = new Table();
+            return clsTable.getEmployeeAssignedToTable(TableID);
+        }
+
         public string AddTable(int FKiEmployeeID, int FKiProviderID, int iGuestNumber, string TableName, string Description) {
             Table clsTable = new Table();
             return clsTable.AddTable(FKiEmployeeID, FKiProviderID, iGuestNumber, TableName, Description);
@@ -163,7 +169,7 @@ namespace HandUpWCF {
             return string.Format(ThisValue);
 
         }
-
+        
         public CompositeType GetDataUsingDataContract(CompositeType composite) {
             if (composite == null) {
                 throw new ArgumentNullException("composite");
@@ -172,6 +178,12 @@ namespace HandUpWCF {
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        public DataSet getEmployeeByID(int EmployeeID) {
+            Employees newEmployee = new Employees();
+            DataSet ds = newEmployee.getEmployeeByID(EmployeeID);
+            return ds;
         }
 
         #region Management
