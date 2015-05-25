@@ -247,14 +247,14 @@ namespace HandUpWCF {
         }
 
 
-        public DataSet AddNewMenuItem(int ProviderID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
+        public DataSet AddNewMenuItem(int ProviderID, int ServiceSationID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
             Management clsManagement = new Management();
-            return clsManagement.AddNewMenuItem(ProviderID, MenuGroupID,MenuItemName, MenuItemDescription,MenuItemImage,MenuItemPrice);
+            return clsManagement.AddNewMenuItem(ProviderID, ServiceSationID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice);
         }
 
-        public DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
+        public DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus, int ProviderID, int ServiceSationID) {
             Management clsManagement = new Management();
-            return clsManagement.UpdateMenuItem(MenuItemID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, ActiveStatus);
+            return clsManagement.UpdateMenuItem(ProviderID, ServiceSationID, MenuItemID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, ActiveStatus);
         }
 
         public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
@@ -262,7 +262,15 @@ namespace HandUpWCF {
             return clsManagement.AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
         }
 
+        public DataSet AddNewServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            Management clsManagement = new Management();
+            return clsManagement.AddNewServiceStation(ProviderID, ServicestationID, ServiceStationName, ServiceNameDescription, ActiveStatus);
+        }
 
+        public DataSet UpdateServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateServiceStation(ProviderID, ServicestationID, ServiceStationName, ServiceNameDescription, ActiveStatus);
+        }
 
         public DataSet UpdateMenuGroupTypesPerProvider(int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
             Management clsManagement = new Management();

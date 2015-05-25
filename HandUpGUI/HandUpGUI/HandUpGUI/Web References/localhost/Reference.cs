@@ -106,6 +106,10 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback AddMenuGroupPerProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddNewServiceStationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateServiceStationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateMenuGroupTypesPerProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddSubMenuGroupTypesPerProviderOperationCompleted;
@@ -289,6 +293,12 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event AddMenuGroupPerProviderCompletedEventHandler AddMenuGroupPerProviderCompleted;
+        
+        /// <remarks/>
+        public event AddNewServiceStationCompletedEventHandler AddNewServiceStationCompleted;
+        
+        /// <remarks/>
+        public event UpdateServiceStationCompletedEventHandler UpdateServiceStationCompleted;
         
         /// <remarks/>
         public event UpdateMenuGroupTypesPerProviderCompletedEventHandler UpdateMenuGroupTypesPerProviderCompleted;
@@ -1617,10 +1627,12 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddNewMenuItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet AddNewMenuItem(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified) {
+        public System.Data.DataSet AddNewMenuItem(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int ServiceSationID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ServiceSationIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified) {
             object[] results = this.Invoke("AddNewMenuItem", new object[] {
                         ProviderID,
                         ProviderIDSpecified,
+                        ServiceSationID,
+                        ServiceSationIDSpecified,
                         MenuGroupID,
                         MenuGroupIDSpecified,
                         MenuItemName,
@@ -1632,18 +1644,20 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
-        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified) {
-            this.AddNewMenuItemAsync(ProviderID, ProviderIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, null);
+        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int ServiceSationID, bool ServiceSationIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified) {
+            this.AddNewMenuItemAsync(ProviderID, ProviderIDSpecified, ServiceSationID, ServiceSationIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, null);
         }
         
         /// <remarks/>
-        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, object userState) {
+        public void AddNewMenuItemAsync(int ProviderID, bool ProviderIDSpecified, int ServiceSationID, bool ServiceSationIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, object userState) {
             if ((this.AddNewMenuItemOperationCompleted == null)) {
                 this.AddNewMenuItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddNewMenuItemOperationCompleted);
             }
             this.InvokeAsync("AddNewMenuItem", new object[] {
                         ProviderID,
                         ProviderIDSpecified,
+                        ServiceSationID,
+                        ServiceSationIDSpecified,
                         MenuGroupID,
                         MenuGroupIDSpecified,
                         MenuItemName,
@@ -1663,7 +1677,7 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateMenuItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet UpdateMenuItem(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified, int ActiveStatus, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ActiveStatusSpecified) {
+        public System.Data.DataSet UpdateMenuItem(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItemImage, double MenuItemPrice, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemPriceSpecified, int ActiveStatus, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ActiveStatusSpecified, int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int ServiceSationID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ServiceSationIDSpecified) {
             object[] results = this.Invoke("UpdateMenuItem", new object[] {
                         MenuItemID,
                         MenuItemIDSpecified,
@@ -1675,17 +1689,37 @@ namespace HandUpGUI.localhost {
                         MenuItemPrice,
                         MenuItemPriceSpecified,
                         ActiveStatus,
-                        ActiveStatusSpecified});
+                        ActiveStatusSpecified,
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServiceSationID,
+                        ServiceSationIDSpecified});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void UpdateMenuItemAsync(int MenuItemID, bool MenuItemIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, int ActiveStatus, bool ActiveStatusSpecified) {
-            this.UpdateMenuItemAsync(MenuItemID, MenuItemIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, ActiveStatus, ActiveStatusSpecified, null);
+        public void UpdateMenuItemAsync(int MenuItemID, bool MenuItemIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, int ActiveStatus, bool ActiveStatusSpecified, int ProviderID, bool ProviderIDSpecified, int ServiceSationID, bool ServiceSationIDSpecified) {
+            this.UpdateMenuItemAsync(MenuItemID, MenuItemIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, MenuItemPriceSpecified, ActiveStatus, ActiveStatusSpecified, ProviderID, ProviderIDSpecified, ServiceSationID, ServiceSationIDSpecified, null);
         }
         
         /// <remarks/>
-        public void UpdateMenuItemAsync(int MenuItemID, bool MenuItemIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, bool MenuItemPriceSpecified, int ActiveStatus, bool ActiveStatusSpecified, object userState) {
+        public void UpdateMenuItemAsync(
+                    int MenuItemID, 
+                    bool MenuItemIDSpecified, 
+                    int MenuGroupID, 
+                    bool MenuGroupIDSpecified, 
+                    string MenuItemName, 
+                    string MenuItemDescription, 
+                    string MenuItemImage, 
+                    double MenuItemPrice, 
+                    bool MenuItemPriceSpecified, 
+                    int ActiveStatus, 
+                    bool ActiveStatusSpecified, 
+                    int ProviderID, 
+                    bool ProviderIDSpecified, 
+                    int ServiceSationID, 
+                    bool ServiceSationIDSpecified, 
+                    object userState) {
             if ((this.UpdateMenuItemOperationCompleted == null)) {
                 this.UpdateMenuItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateMenuItemOperationCompleted);
             }
@@ -1700,7 +1734,11 @@ namespace HandUpGUI.localhost {
                         MenuItemPrice,
                         MenuItemPriceSpecified,
                         ActiveStatus,
-                        ActiveStatusSpecified}, this.UpdateMenuItemOperationCompleted, userState);
+                        ActiveStatusSpecified,
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServiceSationID,
+                        ServiceSationIDSpecified}, this.UpdateMenuItemOperationCompleted, userState);
         }
         
         private void OnUpdateMenuItemOperationCompleted(object arg) {
@@ -1743,6 +1781,90 @@ namespace HandUpGUI.localhost {
             if ((this.AddMenuGroupPerProviderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddMenuGroupPerProviderCompleted(this, new AddMenuGroupPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddNewServiceStation", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AddNewServiceStation(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int ServicestationID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ServicestationIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ServiceStationName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ServiceNameDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ActiveStatus) {
+            object[] results = this.Invoke("AddNewServiceStation", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServicestationID,
+                        ServicestationIDSpecified,
+                        ServiceStationName,
+                        ServiceNameDescription,
+                        ActiveStatus});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddNewServiceStationAsync(int ProviderID, bool ProviderIDSpecified, int ServicestationID, bool ServicestationIDSpecified, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            this.AddNewServiceStationAsync(ProviderID, ProviderIDSpecified, ServicestationID, ServicestationIDSpecified, ServiceStationName, ServiceNameDescription, ActiveStatus, null);
+        }
+        
+        /// <remarks/>
+        public void AddNewServiceStationAsync(int ProviderID, bool ProviderIDSpecified, int ServicestationID, bool ServicestationIDSpecified, string ServiceStationName, string ServiceNameDescription, string ActiveStatus, object userState) {
+            if ((this.AddNewServiceStationOperationCompleted == null)) {
+                this.AddNewServiceStationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddNewServiceStationOperationCompleted);
+            }
+            this.InvokeAsync("AddNewServiceStation", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServicestationID,
+                        ServicestationIDSpecified,
+                        ServiceStationName,
+                        ServiceNameDescription,
+                        ActiveStatus}, this.AddNewServiceStationOperationCompleted, userState);
+        }
+        
+        private void OnAddNewServiceStationOperationCompleted(object arg) {
+            if ((this.AddNewServiceStationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddNewServiceStationCompleted(this, new AddNewServiceStationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateServiceStation", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateServiceStation(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int ServicestationID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ServicestationIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ServiceStationName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ServiceNameDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ActiveStatus) {
+            object[] results = this.Invoke("UpdateServiceStation", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServicestationID,
+                        ServicestationIDSpecified,
+                        ServiceStationName,
+                        ServiceNameDescription,
+                        ActiveStatus});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateServiceStationAsync(int ProviderID, bool ProviderIDSpecified, int ServicestationID, bool ServicestationIDSpecified, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            this.UpdateServiceStationAsync(ProviderID, ProviderIDSpecified, ServicestationID, ServicestationIDSpecified, ServiceStationName, ServiceNameDescription, ActiveStatus, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateServiceStationAsync(int ProviderID, bool ProviderIDSpecified, int ServicestationID, bool ServicestationIDSpecified, string ServiceStationName, string ServiceNameDescription, string ActiveStatus, object userState) {
+            if ((this.UpdateServiceStationOperationCompleted == null)) {
+                this.UpdateServiceStationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateServiceStationOperationCompleted);
+            }
+            this.InvokeAsync("UpdateServiceStation", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        ServicestationID,
+                        ServicestationIDSpecified,
+                        ServiceStationName,
+                        ServiceNameDescription,
+                        ActiveStatus}, this.UpdateServiceStationOperationCompleted, userState);
+        }
+        
+        private void OnUpdateServiceStationOperationCompleted(object arg) {
+            if ((this.UpdateServiceStationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateServiceStationCompleted(this, new UpdateServiceStationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3275,6 +3397,58 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal AddMenuGroupPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AddNewServiceStationCompletedEventHandler(object sender, AddNewServiceStationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddNewServiceStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddNewServiceStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateServiceStationCompletedEventHandler(object sender, UpdateServiceStationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateServiceStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateServiceStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

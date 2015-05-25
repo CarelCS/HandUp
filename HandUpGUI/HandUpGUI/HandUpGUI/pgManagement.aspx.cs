@@ -9,18 +9,39 @@ using System.Data;
 namespace HandUpGUI {
     public partial class pgManagement : System.Web.UI.Page {
         public string PKiProviderID;
+        public string sImageFileName;
         protected void Page_Load(object sender, EventArgs e) {
             DataSet dsE = new DataSet();
             dsE = (DataSet)Session["SEmployee"];
             PKiProviderID = dsE.Tables[0].Rows[0]["FKiProviderID"].ToString();
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet dsMG = new DataSet();
+            DataSet dsSS = new DataSet();
+            dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
+            dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
             //if (!IsPostBack) {
                 PopulateEmployees();
                 PopulateTables();
                 PopulateMenu();
                 PopulateAvailableEmployees();
             //}
-                if (!IsPostBack)
+                if (!IsPostBack) {
                     hdnChangeDisplay.Value = "1";
+                    ddlMenuGroup.Items.Clear();
+                    ddlServiceStation.Items.Clear();
+                    foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                        ListItem li = new ListItem();
+                        li.Text = dr["sMenuGroupName"].ToString();
+                        li.Value = dr["PKiMenuGroupID"].ToString();
+                        ddlMenuGroup.Items.Add(li);
+                    }
+                    foreach (DataRow dr in dsSS.Tables[0].Rows) {
+                        ListItem li = new ListItem();
+                        li.Text = dr["sName"].ToString();
+                        li.Value = dr["PKiServiceStaionID"].ToString();
+                        ddlServiceStation.Items.Add(li);
+                    }
+                }
         }
 
         /// <summary>
@@ -157,6 +178,7 @@ namespace HandUpGUI {
                 dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
                 dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
                 ds = WSNew.getMenuItemByID(Convert.ToInt32(hdnMenuID.Value), true);
+                sImageFileName = ds.Tables[0].Rows[0]["imgMenuItemImage"].ToString();
                 string GroupID = ds.Tables[0].Rows[0]["FKiMenuGroupID"].ToString();
                 string ServiceStationID = ds.Tables[0].Rows[0]["FKiServicestationID"].ToString();
                 ddlMenuGroup.Items.Clear();
@@ -341,6 +363,44 @@ namespace HandUpGUI {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.MoveTableBetweenEmployeePerProviderAdmin(Convert.ToInt32(PKiProviderID), true, Convert.ToInt32(MoveTableToEmployeeID), true, Convert.ToInt32(MoveTableID), true);
             ddlTables_SelectedIndexChanged(sender, e);
+        }
+
+        protected void btnUpdateAddMenuItem_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            
+            int MenuGroupID = 0;
+            int ServicestationID = 0;
+            if (txtNewMenuGroup.Text != "") {
+                MenuGroupID = Convert.ToInt32(WSNew.AddMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, txtNewMenuGroup.Text, "").Tables[0].Rows[0]["PKiMenuGroupID"].ToString());
+            }
+            else {
+                MenuGroupID = Convert.ToInt32(ddlMenuGroup.SelectedValue);
+            }
+            if (txtAddNewServicestation.Text != "") {
+                MenuGroupID = Convert.ToInt32(WSNew.AddNewServiceStation(Convert.ToInt32(PKiProviderID), true, 0, true, txtAddNewServicestation.Text, "", "1").Tables[0].Rows[0]["PKiServicestaionID"].ToString());
+            }
+            else {
+                ServicestationID = Convert.ToInt32(ddlServiceStation.SelectedValue);
+            }
+            DataSet ds = WSNew.UpdateMenuItem(Convert.ToInt32(hdnMenuID.Value), true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, sImageFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
+            if (hdnMenuID.Value == "" || fuMenuImage.PostedFile != null)
+            {
+                string ThisNewID = ds.Tables[0].Rows[0]["FKiMenuID"].ToString();
+                string NewFileName = "";
+                if (fuMenuImage.PostedFile != null) {
+                    NewFileName = uploadMenuImage(fuMenuImage.PostedFile, ThisNewID);
+                }
+                ds = WSNew.UpdateMenuItem(Convert.ToInt32(ThisNewID), true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, NewFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
+            }
+        }
+
+        protected string uploadMenuImage(HttpPostedFile file, string FKiMenuID) {
+            string[] Substrings = file.FileName.Split('.');
+            int Length = Substrings.Length;
+            string Exten = Substrings[Length];
+            string savePath = "C:\\Development\\HandUp\\HandUpGUI\\HandUpGUI\\HandUpGUI\\Images\\MenuImages" + PKiProviderID.ToString() + "_" + FKiMenuID + "." + Exten;
+            file.SaveAs(savePath);
+            return PKiProviderID.ToString() + "_" + FKiMenuID + "." + Exten;
         }
     }
 }

@@ -195,9 +195,20 @@ namespace HandUpWCF {
 
         #endregion
 
+        public DataSet AddNewServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            tblServicestaion aSSItem = new tblServicestaion();
+            aSSItem.bActiveStatus = "1";
+            aSSItem.FKiProviderID = ProviderID;
+            aSSItem.sDescription = ServiceNameDescription;
+            aSSItem.sName = ServiceStationName;
+            aSSItem = aSSItem.executeINSERT();
 
+            aSSItem.addEquals(tblServicestaion._PKISERVICESTATIONID, aSSItem.PKiServiceStaionID);
+            DataSet dsDataSet = aSSItem.executeSelectDataSet();
+            return dsDataSet;
+        }
 
-        public DataSet AddNewMenuItem(int ProviderID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
+        public DataSet AddNewMenuItem(int ProviderID, int ServiceStationID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
             tblMenu aMenuItem = new tblMenu();
             aMenuItem.bActiveStatus = 1;
             aMenuItem.dtMenuItemModified = DateTime.Now;
@@ -207,6 +218,7 @@ namespace HandUpWCF {
             aMenuItem.imgMenuItemImage = MenuItemImage;
             aMenuItem.sMenuItemDescription = MenuItemDescription;
             aMenuItem.sMenuItemName = MenuItemName;
+            aMenuItem.fkiServicestationID = ServiceStationID;
             aMenuItem = aMenuItem.executeINSERT();
 
             aMenuItem.addEquals(tblMenu._PKIMENUID, aMenuItem.PKiMenuID);
@@ -214,24 +226,51 @@ namespace HandUpWCF {
             return dsDataSet;
         }
 
-        public DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
-            tblMenu aMenuItem = new tblMenu(MenuItemID);
-            aMenuItem.bActiveStatus = ActiveStatus;
-            aMenuItem.dtMenuItemModified = DateTime.Now;
-            aMenuItem.dblMenuItemPrice = MenuItemPrice;
-            aMenuItem.FKiMenuGroupID = MenuGroupID;
-            aMenuItem.imgMenuItemImage = MenuItemImage;
-            aMenuItem.sMenuItemDescription = MenuItemDescription;
-            aMenuItem.sMenuItemName = MenuItemName;
-            aMenuItem.executeUPDATE();
+        public DataSet UpdateServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
+            tblServicestaion aSSItem = new tblServicestaion(ServicestationID);
+            DataSet dsDataSet = new DataSet();
+            if (ServicestationID == 0) {
+                dsDataSet = AddNewServiceStation(ProviderID, ServicestationID, ServiceStationName, ServiceNameDescription, ActiveStatus);
+            }
+            else {
+                aSSItem.bActiveStatus = ActiveStatus;
+                aSSItem.sName = ServiceStationName;
+                aSSItem.sDescription = ServiceNameDescription;
+                aSSItem.PKiServiceStaionID = ServicestationID;
+                aSSItem.FKiProviderID = ProviderID;
+                aSSItem.executeUPDATE();
 
-            DataSet dsDataSet = aMenuItem.executeSelectDataSet();
+                dsDataSet = aSSItem.executeSelectDataSet();
+            }
+            return dsDataSet;
+        }
+
+        public DataSet UpdateMenuItem(int ProviderID, int ServiceStationID, int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
+            tblMenu aMenuItem = new tblMenu(MenuItemID);
+            DataSet dsDataSet = new DataSet();
+            if (MenuItemID == 0) {
+                dsDataSet = AddNewMenuItem(ProviderID, ServiceStationID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice);
+            }
+            else {
+                aMenuItem.bActiveStatus = ActiveStatus;
+                aMenuItem.dtMenuItemModified = DateTime.Now;
+                aMenuItem.dblMenuItemPrice = MenuItemPrice;
+                aMenuItem.FKiMenuGroupID = MenuGroupID;
+                aMenuItem.imgMenuItemImage = MenuItemImage;
+                aMenuItem.sMenuItemDescription = MenuItemDescription;
+                aMenuItem.sMenuItemName = MenuItemName;
+                aMenuItem.fkiServicestationID = ServiceStationID;
+                aMenuItem.executeUPDATE();
+            
+                dsDataSet = aMenuItem.executeSelectDataSet();
+            }
             return dsDataSet;
         }
 
         public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
             tblluMenugroups aMenuGroup = new tblluMenugroups();
-            
+
+            aMenuGroup.FKiProviderID = ProviderID.ToString();
             aMenuGroup.sMenuGroupDescription = MenuGroupDescription;
             aMenuGroup.sMenuGroupName = MenuGroupName;
             aMenuGroup = aMenuGroup.executeINSERT();

@@ -128,15 +128,20 @@ namespace HandUpWCF {
 
 
         [OperationContract]
-        DataSet AddNewMenuItem(int ProviderID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice);
+        DataSet AddNewMenuItem(int ProviderID, int ServiceSationID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice);
 
         [OperationContract]
-        DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus)
+        DataSet UpdateMenuItem(int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus, int ProviderID, int ServiceSationID)
            ;
 
         [OperationContract]
         DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription);
 
+        [OperationContract]
+        DataSet AddNewServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus);
+
+        [OperationContract]
+        DataSet UpdateServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus);
 
 
         [OperationContract]

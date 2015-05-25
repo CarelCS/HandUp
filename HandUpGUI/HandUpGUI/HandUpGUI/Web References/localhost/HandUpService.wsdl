@@ -236,6 +236,18 @@
   <wsdl:message name="IHandUpService_AddMenuGroupPerProvider_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddMenuGroupPerProviderResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_AddNewServiceStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewServiceStation" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_AddNewServiceStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewServiceStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateServiceStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateServiceStation" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateServiceStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateServiceStationResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_UpdateMenuGroupTypesPerProvider_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMenuGroupTypesPerProvider" />
   </wsdl:message>
@@ -484,6 +496,14 @@
     <wsdl:operation name="AddMenuGroupPerProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddMenuGroupPerProvider" message="tns:IHandUpService_AddMenuGroupPerProvider_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddMenuGroupPerProviderResponse" message="tns:IHandUpService_AddMenuGroupPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewServiceStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddNewServiceStation" message="tns:IHandUpService_AddNewServiceStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/AddNewServiceStationResponse" message="tns:IHandUpService_AddNewServiceStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateServiceStation" message="tns:IHandUpService_UpdateServiceStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateServiceStationResponse" message="tns:IHandUpService_UpdateServiceStation_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateMenuGroupTypesPerProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuGroupTypesPerProvider" message="tns:IHandUpService_UpdateMenuGroupTypesPerProvider_InputMessage" />
@@ -887,6 +907,24 @@
     </wsdl:operation>
     <wsdl:operation name="AddMenuGroupPerProvider">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/AddMenuGroupPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewServiceStation">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/AddNewServiceStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceStation">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateServiceStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

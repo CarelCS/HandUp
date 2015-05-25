@@ -15,6 +15,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _DBLMENUITEMPRICE="dblMenuItemPrice";
 		public const string _IMGMENUITEMIMAGE="imgMenuItemImage";
 		public const string _BACTIVESTATUS="bActiveStatus";
+        public const string _FKIMENUSERVICESTATIONID = "FKiServicestationID";
 		public const string _tblMenu="tblmenu";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -111,6 +112,17 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
+
+        private int _fkiServicestationID;
+        public int fkiServicestationID {
+            get {
+                return _fkiServicestationID;
+            }
+            set {
+                _fkiServicestationID = value;
+            }
+        }
+
 		private string sOrderBy="PKiMenuID";
 		private string sOrderType="ASC";
 
@@ -128,6 +140,7 @@ namespace HandUpWCF.DBClasses{
 			this.dblMenuItemPrice=atblMenu.dblMenuItemPrice;
 			this.imgMenuItemImage=atblMenu.imgMenuItemImage;
 			this.bActiveStatus=atblMenu.bActiveStatus;
+            this._fkiServicestationID = atblMenu.fkiServicestationID;
 		}
 
 		public tblMenu(){
@@ -182,7 +195,9 @@ namespace HandUpWCF.DBClasses{
 					iIndex=aSqlReader.GetOrdinal("imgMenuItemImage");
 					atblMenu.imgMenuItemImage=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
-					atblMenu.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+                    atblMenu.bActiveStatus = aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("FKiServicestationID");
+                    atblMenu.fkiServicestationID = aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblMenu.Add(atblMenu);
 					}
 			}
@@ -444,6 +459,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dblMenuItemPrice",dblMenuItemPrice);
 				insertCommand.Parameters.AddWithValue("@imgMenuItemImage",imgMenuItemImage);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
+                insertCommand.Parameters.AddWithValue("@fkiServicestationID", fkiServicestationID);
 				insertCommand.ExecuteNonQuery();
              PKiMenuID= (Int32)insertCommand.Parameters["@outPKiMenuID"].Value;
 				return this;
@@ -462,6 +478,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indblMenuItemPrice", dblMenuItemPrice);
 				updateCommand.Parameters.AddWithValue("@inimgMenuItemImage", imgMenuItemImage);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
+                updateCommand.Parameters.AddWithValue("@infkiServicestationID", fkiServicestationID);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

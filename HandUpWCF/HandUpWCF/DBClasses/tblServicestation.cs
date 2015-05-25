@@ -281,21 +281,21 @@ namespace HandUpWCF.DBClasses {
 			public tblServicestaion executeINSERT(){
 				MySqlCommand insertCommand = new MySqlCommand("tblservicestaion_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				insertCommand.Parameters.AddWithValue("@outPKiServicestationID",MySqlDbType.Int32);
-				insertCommand.Parameters["@outPKiServicestationID"].Direction = System.Data.ParameterDirection.Output;
-				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
+				insertCommand.Parameters.AddWithValue("@outPKiServicestaionID",MySqlDbType.Int32);
+				insertCommand.Parameters["@outPKiServicestaionID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@sFKiProvideID",FKiProviderID);
 				insertCommand.Parameters.AddWithValue("@sName",sName);
 				insertCommand.Parameters.AddWithValue("@sDescription",sDescription);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
 				insertCommand.ExecuteNonQuery();
-             PKiServiceStaionID= (Int32)insertCommand.Parameters["@outPKiServicestationID"].Value;
+             PKiServiceStaionID= (Int32)insertCommand.Parameters["@outPKiServicestaionID"].Value;
 				return this;
 			}
 
 			public bool executeUPDATE(){
 				MySqlCommand updateCommand = new MySqlCommand("tblservicestaion_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				updateCommand.Parameters.AddWithValue("@inPKiServicestationID", PKiServiceStaionID);
+				updateCommand.Parameters.AddWithValue("@inPKiServicestaionID", PKiServiceStaionID);
 				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.Parameters.AddWithValue("@insName", sName);
 				updateCommand.Parameters.AddWithValue("@insDescription", sDescription);

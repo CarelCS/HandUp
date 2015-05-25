@@ -134,19 +134,19 @@
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
     <div>
-    <table border="1">
-        <tr>
+    <table border="1" width="100%">
+        <tr align="center">
             <td>
-            <div id="dvEmployeeOption" onclick="ChangePage('1')">Employees</div>
+            <div id="dvEmployeeOption" onclick="ChangePage('1')" style="cursor:pointer">Employees</div>
             </td>
             <td>
-            <div id="dvMenuOption" onclick="ChangePage('2')">Menu</div>
+            <div id="dvMenuOption" onclick="ChangePage('2')" style="cursor:pointer">Menu</div>
             </td>
             <td>
-            <div id="dvReportOption" onclick="ChangePage('3')">Reports</div>
+            <div id="dvReportOption" onclick="ChangePage('3')" style="cursor:pointer">Reports</div>
             </td>
             <td>
-            <div id="dvTableManagementOption" onclick="ChangePage('4')">Table Management</div>
+            <div id="dvTableManagementOption" onclick="ChangePage('4')" style="cursor:pointer">Table Management</div>
             </td>
         </tr>
     </table>
@@ -342,7 +342,8 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan=2><asp:Button ID="btnUpdateAddMenuItem" runat="server" Text="Submit" /></td>
+            <td colspan=2><asp:Button ID="btnUpdateAddMenuItem" runat="server" Text="Submit" 
+                    onclick="btnUpdateAddMenuItem_Click" /></td>
         </tr>
     </table>
     </div>
@@ -353,15 +354,15 @@
     </div>
     <div id="dvTableManagement">
     <table width="100%">
-        <tr><td>Table Management</td></tr>
-        <tr><td><div id="dvTableList" runat="server">
+        <tr align="center"><td>Table Management</td></tr>
+        <tr align="center"><td><div id="dvTableList" runat="server">
             <asp:DropDownList ID="ddlTables" runat="server" AutoPostBack="True" onselectedindexchanged="ddlTables_SelectedIndexChanged">
             </asp:DropDownList>
             <asp:DropDownList ID="ddlEmployees" runat="server" AutoPostBack="True" onselectedindexchanged="ddlEmployees_SelectedIndexChanged">
             </asp:DropDownList>
         </div></td></tr>
-        <tr><td><asp:Label ID="lblTableAssingedEmployee" runat="server" Text=""></asp:Label></td></tr>
-        <tr><td><div id="dvTablesOrders" runat="server"></div></td></tr>
+        <tr align="center"><td><asp:Label ID="lblTableAssingedEmployee" runat="server" Text=""></asp:Label></td></tr>
+        <tr align="center"><td><div id="dvTablesOrders" runat="server"></div></td></tr>
     </table>
     </div>
     <div style="visibility:collapse">

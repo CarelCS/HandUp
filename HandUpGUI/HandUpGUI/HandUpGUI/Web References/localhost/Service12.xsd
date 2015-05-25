@@ -877,6 +877,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServiceSationID" type="xs:int" />
         <xs:element minOccurs="0" name="MenuGroupID" type="xs:int" />
         <xs:element minOccurs="0" name="MenuItemName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="MenuItemDescription" nillable="true" type="xs:string" />
@@ -914,6 +915,8 @@
         <xs:element minOccurs="0" name="MenuItemImage" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="MenuItemPrice" type="xs:double" />
         <xs:element minOccurs="0" name="ActiveStatus" type="xs:int" />
+        <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServiceSationID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -949,6 +952,66 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddMenuGroupPerProviderResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddNewServiceStation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServicestationID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServiceStationName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceNameDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ActiveStatus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddNewServiceStationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddNewServiceStationResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateServiceStation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServicestationID" type="xs:int" />
+        <xs:element minOccurs="0" name="ServiceStationName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceNameDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ActiveStatus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateServiceStationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateServiceStationResult" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
