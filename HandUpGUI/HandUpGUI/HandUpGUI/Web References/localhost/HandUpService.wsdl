@@ -230,6 +230,12 @@
   <wsdl:message name="IHandUpService_UpdateMenuItem_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMenuItemResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuGroupPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuGroupPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateMenuGroupPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuGroupPerProviderResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddMenuGroupPerProvider_InputMessage">
     <wsdl:part name="parameters" element="tns:AddMenuGroupPerProvider" />
   </wsdl:message>
@@ -492,6 +498,10 @@
     <wsdl:operation name="UpdateMenuItem">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuItem" message="tns:IHandUpService_UpdateMenuItem_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuItemResponse" message="tns:IHandUpService_UpdateMenuItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuGroupPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuGroupPerProvider" message="tns:IHandUpService_UpdateMenuGroupPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateMenuGroupPerProviderResponse" message="tns:IHandUpService_UpdateMenuGroupPerProvider_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddMenuGroupPerProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddMenuGroupPerProvider" message="tns:IHandUpService_AddMenuGroupPerProvider_InputMessage" />
@@ -898,6 +908,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateMenuItem">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateMenuItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenuGroupPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateMenuGroupPerProvider" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

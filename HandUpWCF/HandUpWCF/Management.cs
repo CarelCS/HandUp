@@ -267,6 +267,23 @@ namespace HandUpWCF {
             return dsDataSet;
         }
 
+
+        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
+            tblluMenugroups aMenuGroup = new tblluMenugroups(MenuGroupID);
+            DataSet dsDataSet = new DataSet();
+            if (MenuGroupID == 0) {
+                dsDataSet = AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
+            }
+            else {
+                aMenuGroup.FKiProviderID = ProviderID.ToString();
+                aMenuGroup.sMenuGroupDescription = MenuGroupDescription;
+                aMenuGroup.sMenuGroupName = MenuGroupName;
+                aMenuGroup.executeUPDATE();
+                dsDataSet = aMenuGroup.executeSelectDataSet();
+            }
+            return dsDataSet;
+        }
+
         public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
             tblluMenugroups aMenuGroup = new tblluMenugroups();
 

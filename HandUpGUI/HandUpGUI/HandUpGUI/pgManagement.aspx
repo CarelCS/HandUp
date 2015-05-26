@@ -18,6 +18,7 @@
                 document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
+                document.getElementById('dvGroups').style.display = 'none';
                 break;
             case "2":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -26,6 +27,7 @@
                 document.getElementById('dvMenuEdit').style.display = '';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
+                document.getElementById('dvGroups').style.display = 'none';
                 break;
             case "3":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -34,6 +36,7 @@
                 document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = '';
                 document.getElementById('dvTableManagement').style.display = 'none';
+                document.getElementById('dvGroups').style.display = 'none';
                 break;
             case "4":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -42,6 +45,16 @@
                 document.getElementById('dvMenuEdit').style.display = 'none';
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = '';
+                document.getElementById('dvGroups').style.display = 'none';
+                break;
+            case "5":
+                document.getElementById('dvEmployeeDetails').style.display = 'none';
+                document.getElementById('dvEmployee').style.display = 'none';
+                document.getElementById('dvMenu').style.display = 'none';
+                document.getElementById('dvMenuEdit').style.display = 'none';
+                document.getElementById('dvReports').style.display = 'none';
+                document.getElementById('dvTableManagement').style.display = 'none';
+                document.getElementById('dvGroups').style.display = '';
                 break;
             default:
         }
@@ -148,6 +161,57 @@
             <td>
             <div id="dvTableManagementOption" onclick="ChangePage('4')" style="cursor:pointer">Table Management</div>
             </td>
+            <td>
+            <div id="dvGroupsArea" onclick="ChangePage('5')" style="cursor:pointer">Group Management</div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div id="dvGroups">
+    <table>
+        <tr>
+            <td colspan="4"><div id="dvMenuGroupEdit"></div>
+                <asp:DropDownList ID="ddlEditMenuGroup" runat="server" 
+                    onselectedindexchanged="ddlEditMenuGroup_SelectedIndexChanged">
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <asp:TextBox ID="txtMenuGroupEditName" runat="server"></asp:TextBox>
+            </td>
+            <td>Description</td>
+            <td>
+                <asp:TextBox ID="txtMenuGroupEditDescription" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+        <td colspan="4">
+            <asp:Button ID="btnMenuGroupSubmit" runat="server" Text="Submit" 
+                onclick="btnMenuGroupSubmit_Click" /></td>
+        </tr>
+        <tr>
+            <td colspan="4"><div id="dvServiceStationEdit"></div>
+                <asp:DropDownList ID="ddlEditServiceStation" runat="server" 
+                    onselectedindexchanged="ddlEditServiceStation_SelectedIndexChanged">
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <asp:TextBox ID="txtServiceStationEditName" runat="server"></asp:TextBox>
+            </td>
+            <td>Description</td>
+            <td>
+                <asp:TextBox ID="txtServiceStationEditDescription" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+        <td colspan="4">
+            <asp:Button ID="btnServiceStationEdit" runat="server" Text="Submit" 
+                onclick="btnServiceStationEdit_Click" /></td>
         </tr>
     </table>
     </div>

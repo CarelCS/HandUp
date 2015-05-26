@@ -104,6 +104,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback UpdateMenuItemOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateMenuGroupPerProviderOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddMenuGroupPerProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddNewServiceStationOperationCompleted;
@@ -290,6 +292,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event UpdateMenuItemCompletedEventHandler UpdateMenuItemCompleted;
+        
+        /// <remarks/>
+        public event UpdateMenuGroupPerProviderCompletedEventHandler UpdateMenuGroupPerProviderCompleted;
         
         /// <remarks/>
         public event AddMenuGroupPerProviderCompletedEventHandler AddMenuGroupPerProviderCompleted;
@@ -1780,6 +1785,46 @@ namespace HandUpGUI.localhost {
             if ((this.UpdateMenuItemCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateMenuItemCompleted(this, new UpdateMenuItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateMenuGroupPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet UpdateMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription) {
+            object[] results = this.Invoke("UpdateMenuGroupPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription) {
+            this.UpdateMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuGroupName, MenuGroupDescription, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription, object userState) {
+            if ((this.UpdateMenuGroupPerProviderOperationCompleted == null)) {
+                this.UpdateMenuGroupPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateMenuGroupPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("UpdateMenuGroupPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified,
+                        MenuGroupID,
+                        MenuGroupIDSpecified,
+                        MenuGroupName,
+                        MenuGroupDescription}, this.UpdateMenuGroupPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnUpdateMenuGroupPerProviderOperationCompleted(object arg) {
+            if ((this.UpdateMenuGroupPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateMenuGroupPerProviderCompleted(this, new UpdateMenuGroupPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3406,6 +3451,32 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal UpdateMenuItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateMenuGroupPerProviderCompletedEventHandler(object sender, UpdateMenuGroupPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateMenuGroupPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateMenuGroupPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

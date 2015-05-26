@@ -257,6 +257,11 @@ namespace HandUpWCF {
             return clsManagement.UpdateMenuItem(ProviderID, ServiceSationID, MenuItemID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice, ActiveStatus);
         }
 
+        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
+            Management clsManagement = new Management();
+            return clsManagement.UpdateMenuGroupPerProvider(ProviderID, MenuGroupID, MenuGroupName, MenuGroupDescription);
+        }
+
         public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
             Management clsManagement = new Management();
             return clsManagement.AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
