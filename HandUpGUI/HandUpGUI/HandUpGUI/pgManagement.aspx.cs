@@ -29,6 +29,7 @@ namespace HandUpGUI {
                     hdnChangeDisplay.Value = "1";
                     ddlMenuGroup.Items.Clear();
                     ddlServiceStation.Items.Clear();
+                    ddlEmpServiceStation.Items.Clear();
                     foreach (DataRow dr in dsMG.Tables[0].Rows) {
                         ListItem li = new ListItem();
                         li.Text = dr["sMenuGroupName"].ToString();
@@ -40,6 +41,7 @@ namespace HandUpGUI {
                         li.Text = dr["sName"].ToString();
                         li.Value = dr["PKiServiceStaionID"].ToString();
                         ddlServiceStation.Items.Add(li);
+                        ddlEmpServiceStation.Items.Add(li);
                     }
                 }
         }
@@ -232,6 +234,18 @@ namespace HandUpGUI {
                         txtPassword.Text = dr["sPassword"].ToString();
                         txtSurname.Text = dr["sEmployeeSurname"].ToString();
                         txtUsername.Text = dr["sUserName"].ToString();
+                        DataSet dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
+                        ddlEmpServiceStation.Items.Clear();
+                        foreach (DataRow drSS in dsSS.Tables[0].Rows) {
+                            ListItem li = new ListItem();
+                            li.Text = drSS["sName"].ToString();
+                            li.Value = drSS["PKiServiceStaionID"].ToString();
+                            if (dr["FKiServicestaionID"].ToString() == li.Value)
+                            {
+                                li.Selected = true;
+                            }
+                            ddlEmpServiceStation.Items.Add(li);
+                        }
                         try {
                             calStartDate.TodaysDate = Convert.ToDateTime(dr["dtStartDate"].ToString());
                             calEndDate.TodaysDate = Convert.ToDateTime(dr["dtEndDate"].ToString());
@@ -260,7 +274,11 @@ namespace HandUpGUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {
-
+            string OrderNumber = hdnOrderNumber.Value;
+            string OrderText = hdnTextForOrder.Value;
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            ddlTables_SelectedIndexChanged(sender, e);
+            //PopulateNewOrderForTable(WSNew.AddTextToOrder(Convert.ToInt32(OrderNumber), true, OrderText));
         }
 
         /// <summary>
@@ -270,7 +288,7 @@ namespace HandUpGUI {
         /// <param name="e"></param>
         protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text);
+            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text, ddlEmpServiceStation.SelectedValue);
         }
 
         /// <summary>

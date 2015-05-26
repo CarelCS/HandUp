@@ -269,16 +269,26 @@
         </tr>
         <tr>
             <td>
+                <asp:Label ID="lblEmpServiceStation" runat="server" Text="Service Station"></asp:Label></td>
+            <td>
+                <asp:DropDownList ID="ddlEmpServiceStation" runat="server">
+                </asp:DropDownList>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
                 <asp:Label ID="lblStartDate" runat="server" Text="Start Date"></asp:Label>
             </td>
             <td>
-                <asp:Calendar ID="calStartDate" runat="server"></asp:Calendar>
+                <asp:Calendar ID="calStartDate" runat="server" Font-Size="XX-Small"></asp:Calendar>
             </td>
             <td>
                 <asp:Label ID="lblEndDate" runat="server" Text="End Date"></asp:Label>
             </td>
             <td>
-                <asp:Calendar ID="calEndDate" runat="server"></asp:Calendar>
+                <asp:Calendar ID="calEndDate" runat="server" Font-Size="XX-Small"></asp:Calendar>
             </td>
         </tr>
         <tr>

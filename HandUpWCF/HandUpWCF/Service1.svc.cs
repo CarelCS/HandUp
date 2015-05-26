@@ -207,9 +207,9 @@ namespace HandUpWCF {
         }
 
         public DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
-           string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+           string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName, string ServiceStation) {
             Management clsManagement = new Management();
-            return clsManagement.UpdateEmployeePerProviderAdminFull(EmployeeID, EmployeeType, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName);
+            return clsManagement.UpdateEmployeePerProviderAdminFull(EmployeeID, EmployeeType, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName, ServiceStation);
         }
 
         #endregion

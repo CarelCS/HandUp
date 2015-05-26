@@ -265,6 +265,24 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpStatus;
         
         /// <summary>
+        /// lblEmpServiceStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmpServiceStation;
+        
+        /// <summary>
+        /// ddlEmpServiceStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpServiceStation;
+        
+        /// <summary>
         /// lblStartDate control.
         /// </summary>
         /// <remarks>

@@ -685,6 +685,7 @@
         <xs:element minOccurs="0" name="EmployeeTel" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceStation" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

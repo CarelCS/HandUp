@@ -22,7 +22,8 @@ namespace HandUpWCF.DBClasses{
 		public const string _DTSTARTDATE="dtStartDate";
 		public const string _DTENDDATE="dtEndDate";
 		public const string _BGENDER="bGender";
-		public const string _BACTIVESTATUS="bActiveStatus";
+        public const string _BACTIVESTATUS = "bActiveStatus";
+        public const string _FKISERVICESTAIONID = "FKiServiestaionID";
 		public const string _tblEmployees="tblemployees";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -191,6 +192,17 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
+        private string _FKiServiestaionID;
+        private string FKiServiestaionID {
+            get {
+                return _FKiServiestaionID;
+            }
+            set {
+                _FKiServiestaionID = value;
+            }
+        }
+
+
 		private string sOrderBy="PKiEmployeeID";
 		private string sOrderType="ASC";
 
@@ -216,6 +228,7 @@ namespace HandUpWCF.DBClasses{
 			this.dtEndDate=atblEmployees.dtEndDate;
 			this.bGender=atblEmployees.bGender;
 			this.bActiveStatus=atblEmployees.bActiveStatus;
+            this.FKiServiestaionID = atblEmployees.FKiServiestaionID;
 		}
 
 		public tblEmployees(){
@@ -286,7 +299,9 @@ namespace HandUpWCF.DBClasses{
 					iIndex=aSqlReader.GetOrdinal("bGender");
 					atblEmployees.bGender=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
-					atblEmployees.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+                    atblEmployees.bActiveStatus = aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("FKiServiestaionID");
+                    atblEmployees.FKiServiestaionID = aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					listtblEmployees.Add(atblEmployees);
 					}
 			}
@@ -527,7 +542,8 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@dtStartDate",dtStartDate);
 				insertCommand.Parameters.AddWithValue("@dtEndDate",dtEndDate);
 				insertCommand.Parameters.AddWithValue("@bGender",bGender);
-				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
+                insertCommand.Parameters.AddWithValue("@bActiveStatus", bActiveStatus);
+                insertCommand.Parameters.AddWithValue("@FKiServicestaionID", FKiServiestaionID);
 				insertCommand.ExecuteNonQuery();
              PKiEmployeeID= (Int32)insertCommand.Parameters["@outPKiEmployeeID"].Value;
 				return this;
@@ -553,7 +569,8 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@indtStartDate", dtStartDate);
 				updateCommand.Parameters.AddWithValue("@indtEndDate", dtEndDate);
 				updateCommand.Parameters.AddWithValue("@inbGender", bGender);
-				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
+                updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
+                updateCommand.Parameters.AddWithValue("@inFKiServicestaionID", FKiServiestaionID);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

@@ -86,7 +86,7 @@ namespace HandUpWCF {
         }
 
         public DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
-            string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
+            string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName, string ServiceStationID) {
             tblEmployees aEmployees = new tblEmployees(EmployeeID);
             aEmployees.FKiEmployeeType = EmployeeType;
             aEmployees.sEmployeeAddress1 = EmployeeAddress1;

@@ -1321,7 +1321,23 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateEmployeePerProviderAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet UpdateEmployeePerProviderAdminFull(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified, int EmployeeType, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeTypeSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress1, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress2, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress3, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeEmail, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sEmployeeID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeNationality, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeSurname, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeTel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string UserName) {
+        public System.Data.DataSet UpdateEmployeePerProviderAdminFull(
+                    int EmployeeID, 
+                    [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified, 
+                    int EmployeeType, 
+                    [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeTypeSpecified, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress1, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress2, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeAddress3, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeEmail, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sEmployeeID, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeName, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeNationality, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeSurname, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string EmployeeTel, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string UserName, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ServiceStation) {
             object[] results = this.Invoke("UpdateEmployeePerProviderAdminFull", new object[] {
                         EmployeeID,
                         EmployeeIDSpecified,
@@ -1337,13 +1353,9 @@ namespace HandUpGUI.localhost {
                         EmployeeSurname,
                         EmployeeTel,
                         Password,
-                        UserName});
+                        UserName,
+                        ServiceStation});
             return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void UpdateEmployeePerProviderAdminFullAsync(int EmployeeID, bool EmployeeIDSpecified, int EmployeeType, bool EmployeeTypeSpecified, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail, string sEmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
-            this.UpdateEmployeePerProviderAdminFullAsync(EmployeeID, EmployeeIDSpecified, EmployeeType, EmployeeTypeSpecified, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName, null);
         }
         
         /// <remarks/>
@@ -1363,6 +1375,28 @@ namespace HandUpGUI.localhost {
                     string EmployeeTel, 
                     string Password, 
                     string UserName, 
+                    string ServiceStation) {
+            this.UpdateEmployeePerProviderAdminFullAsync(EmployeeID, EmployeeIDSpecified, EmployeeType, EmployeeTypeSpecified, EmployeeAddress1, EmployeeAddress2, EmployeeAddress3, EmployeeEmail, sEmployeeID, EmployeeName, EmployeeNationality, EmployeeSurname, EmployeeTel, Password, UserName, ServiceStation, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateEmployeePerProviderAdminFullAsync(
+                    int EmployeeID, 
+                    bool EmployeeIDSpecified, 
+                    int EmployeeType, 
+                    bool EmployeeTypeSpecified, 
+                    string EmployeeAddress1, 
+                    string EmployeeAddress2, 
+                    string EmployeeAddress3, 
+                    string EmployeeEmail, 
+                    string sEmployeeID, 
+                    string EmployeeName, 
+                    string EmployeeNationality, 
+                    string EmployeeSurname, 
+                    string EmployeeTel, 
+                    string Password, 
+                    string UserName, 
+                    string ServiceStation, 
                     object userState) {
             if ((this.UpdateEmployeePerProviderAdminFullOperationCompleted == null)) {
                 this.UpdateEmployeePerProviderAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateEmployeePerProviderAdminFullOperationCompleted);
@@ -1382,7 +1416,8 @@ namespace HandUpGUI.localhost {
                         EmployeeSurname,
                         EmployeeTel,
                         Password,
-                        UserName}, this.UpdateEmployeePerProviderAdminFullOperationCompleted, userState);
+                        UserName,
+                        ServiceStation}, this.UpdateEmployeePerProviderAdminFullOperationCompleted, userState);
         }
         
         private void OnUpdateEmployeePerProviderAdminFullOperationCompleted(object arg) {
