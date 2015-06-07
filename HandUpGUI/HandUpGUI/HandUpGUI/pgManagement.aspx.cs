@@ -447,12 +447,26 @@ namespace HandUpGUI {
 
         protected void ddlEditMenuGroup_SelectedIndexChanged(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            //WSNew.menugr
+            DataSet dsMG = new DataSet();
+            dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
+            foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                if (ddlEditMenuGroup.SelectedValue == dr["PKiMenuGroupID"].ToString()) {
+                    txtMenuGroupEditName.Text = dr["sMenuGroupName"].ToString();
+                    txtMenuGroupEditDescription.Text = dr["sMenuGroupDescription"].ToString();
+                }
+            }
         }
 
         protected void ddlEditServiceStation_SelectedIndexChanged(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            //WSNew.ser
+            DataSet dsSS = new DataSet();
+            dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
+            foreach (DataRow dr in dsSS.Tables[0].Rows) {
+                if (ddlEditServiceStation.SelectedValue == dr["PKiServiceStaionID"].ToString()) {
+                    txtServiceStationEditName.Text = dr["sName"].ToString();
+                    txtServiceStationEditDescription.Text = dr["sDescription"].ToString();
+                }
+            }
         }
     }
 }

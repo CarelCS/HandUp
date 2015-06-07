@@ -143,6 +143,20 @@
         document.getElementById(GroupID).style.display = '';
     }
 
+    function ClearMenuGroup() {
+        var DDL = document.getElementById("<%= ddlEditMenuGroup.ClientID %>");
+        DDL.selectedIndex = 0;
+        document.getElementById("<%= txtMenuGroupEditName.ClientID %>").value = "";
+        document.getElementById("<%= txtMenuGroupEditDescription.ClientID %>").value = "";
+    }
+
+    function ClearServiceStation() {
+        var DDL = document.getElementById("<%= ddlEditServiceStation.ClientID %>");
+        DDL.selectedIndex = 0;
+        document.getElementById("<%= txtServiceStationEditName.ClientID %>").value = "";
+        document.getElementById("<%= txtServiceStationEditDescription.ClientID %>").value = "";
+    }
+
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
@@ -171,7 +185,7 @@
     <table>
         <tr>
             <td colspan="4"><div id="dvMenuGroupEdit"></div>
-                <asp:DropDownList ID="ddlEditMenuGroup" runat="server" 
+                <asp:DropDownList ID="ddlEditMenuGroup" runat="server"  AutoPostBack="true"
                     onselectedindexchanged="ddlEditMenuGroup_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
@@ -187,13 +201,16 @@
             </td>
         </tr>
         <tr>
-        <td colspan="4">
+        <td colspan="2">
+            <input id="btnClearMenuGroup" type="button" value="Clear" onclick="ClearMenuGroup()" />
+        </td>
+        <td colspan="2">
             <asp:Button ID="btnMenuGroupSubmit" runat="server" Text="Submit" 
                 onclick="btnMenuGroupSubmit_Click" /></td>
         </tr>
         <tr>
             <td colspan="4"><div id="dvServiceStationEdit"></div>
-                <asp:DropDownList ID="ddlEditServiceStation" runat="server" 
+                <asp:DropDownList ID="ddlEditServiceStation" runat="server" AutoPostBack="true"
                     onselectedindexchanged="ddlEditServiceStation_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
@@ -209,7 +226,10 @@
             </td>
         </tr>
         <tr>
-        <td colspan="4">
+        <td colspan="2">
+            <input id="Button1" type="button" value="Clear" onclick="ClearServiceStation()" />
+        </td>
+        <td colspan="2">
             <asp:Button ID="btnServiceStationEdit" runat="server" Text="Submit" 
                 onclick="btnServiceStationEdit_Click" /></td>
         </tr>
