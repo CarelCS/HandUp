@@ -302,7 +302,12 @@ namespace HandUpGUI {
         /// <param name="e"></param>
         protected void btnUpdateAddEmp_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.UpdateEmployeePerProviderAdminFull(Convert.ToInt32(hdnEmployeeID.Value), true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text, ddlEmpServiceStation.SelectedValue);
+            int EmpID = 0;
+            try {
+                EmpID = Convert.ToInt32(hdnEmployeeID.Value);
+            }
+            catch { }
+            WSNew.UpdateEmployeePerProviderAdminFull(EmpID, true, Convert.ToInt32(ddlEmpType.SelectedIndex), true, txtAdress1.Text, txtAddress2.Text, txtAddress3.Text, txtEmail.Text, txtID.Text, txtName.Text, "", txtSurname.Text, txtContactNumber.Text, txtPassword.Text, txtUsername.Text, ddlEmpServiceStation.SelectedValue);
         }
 
         /// <summary>
@@ -414,23 +419,28 @@ namespace HandUpGUI {
             else {
                 ServicestationID = Convert.ToInt32(ddlServiceStation.SelectedValue);
             }
-            DataSet ds = WSNew.UpdateMenuItem(Convert.ToInt32(hdnMenuID.Value), true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, sImageFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
+            int intMenuID = 0;
+            try {
+                intMenuID = Convert.ToInt32(hdnMenuID.Value);
+            }
+            catch { }
+            DataSet ds = WSNew.UpdateMenuItem(intMenuID, true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, sImageFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
             if (hdnMenuID.Value == "" || fuMenuImage.PostedFile != null)
             {
-                string ThisNewID = ds.Tables[0].Rows[0]["FKiMenuID"].ToString();
+                string ThisNewID = ds.Tables[0].Rows[0]["PKiMenuID"].ToString();
                 string NewFileName = "";
                 if (fuMenuImage.PostedFile != null) {
                     NewFileName = uploadMenuImage(fuMenuImage.PostedFile, ThisNewID);
                 }
-                ds = WSNew.UpdateMenuItem(Convert.ToInt32(ThisNewID), true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, NewFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
+                ds = WSNew.UpdateMenuItem(Convert.ToInt32(ThisNewID), true, Convert.ToInt32(MenuGroupID), true, txtMenuName.Text, txtMenuDescription.Text, "images\\MenuImages\\" + NewFileName, Convert.ToDouble(txtMenuPrice.Text), true, 1, true, Convert.ToInt32(PKiProviderID), true, ServicestationID, true);
             }
         }
 
         protected string uploadMenuImage(HttpPostedFile file, string FKiMenuID) {
             string[] Substrings = file.FileName.Split('.');
-            int Length = Substrings.Length;
+            int Length = Substrings.Length - 1;
             string Exten = Substrings[Length];
-            string savePath = "C:\\Development\\HandUp\\HandUpGUI\\HandUpGUI\\HandUpGUI\\Images\\MenuImages" + PKiProviderID.ToString() + "_" + FKiMenuID + "." + Exten;
+            string savePath = "C:\\Development\\HandUp\\HandUpGUI\\HandUpGUI\\HandUpGUI\\Images\\MenuImages\\" + PKiProviderID.ToString() + "_" + FKiMenuID + "." + Exten;
             file.SaveAs(savePath);
             return PKiProviderID.ToString() + "_" + FKiMenuID + "." + Exten;
         }

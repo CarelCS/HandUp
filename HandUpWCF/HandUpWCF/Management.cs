@@ -209,21 +209,25 @@ namespace HandUpWCF {
         }
 
         public DataSet AddNewMenuItem(int ProviderID, int ServiceStationID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
-            tblMenu aMenuItem = new tblMenu();
-            aMenuItem.FKiMenuID = 0;
-            aMenuItem.bActiveStatus = 1;
-            aMenuItem.dtMenuItemModified = DateTime.Now;
-            aMenuItem.dblMenuItemPrice = MenuItemPrice;
-            aMenuItem.FKiMenuGroupID = MenuGroupID;
-            aMenuItem.FKiProviderID = ProviderID;
-            aMenuItem.imgMenuItemImage = MenuItemImage;
-            aMenuItem.sMenuItemDescription = MenuItemDescription;
-            aMenuItem.sMenuItemName = MenuItemName;
-            aMenuItem.fkiServicestationID = ServiceStationID;
-            aMenuItem = aMenuItem.executeINSERT();
+            DataSet dsDataSet = new DataSet();
+            try {
+                tblMenu aMenuItem = new tblMenu();
+                aMenuItem.FKiMenuID = 0;
+                aMenuItem.bActiveStatus = 1;
+                aMenuItem.dtMenuItemModified = DateTime.Now;
+                aMenuItem.dblMenuItemPrice = MenuItemPrice;
+                aMenuItem.FKiMenuGroupID = MenuGroupID;
+                aMenuItem.FKiProviderID = ProviderID;
+                aMenuItem.imgMenuItemImage = MenuItemImage;
+                aMenuItem.sMenuItemDescription = MenuItemDescription;
+                aMenuItem.sMenuItemName = MenuItemName;
+                aMenuItem.fkiServicestationID = ServiceStationID;
+                aMenuItem = aMenuItem.executeINSERT();
 
-            aMenuItem.addEquals(tblMenu._PKIMENUID, aMenuItem.PKiMenuID);
-            DataSet dsDataSet = aMenuItem.executeSelectDataSet();
+                aMenuItem.addEquals(tblMenu._PKIMENUID, aMenuItem.PKiMenuID);
+                dsDataSet = aMenuItem.executeSelectDataSet();
+            }
+            catch { }
             return dsDataSet;
         }
 
@@ -249,23 +253,26 @@ namespace HandUpWCF {
 
         public DataSet UpdateMenuItem(int ProviderID, int ServiceStationID, int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
             DataSet dsDataSet = new DataSet();
-            if (MenuItemID == 0) {
-                dsDataSet = AddNewMenuItem(ProviderID, ServiceStationID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice);
+            try {
+                if (MenuItemID == 0) {
+                    dsDataSet = AddNewMenuItem(ProviderID, ServiceStationID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice);
+                }
+                else {
+                    tblMenu aMenuItem = new tblMenu(MenuItemID);
+                    aMenuItem.bActiveStatus = ActiveStatus;
+                    aMenuItem.dtMenuItemModified = DateTime.Now;
+                    aMenuItem.dblMenuItemPrice = MenuItemPrice;
+                    aMenuItem.FKiMenuGroupID = MenuGroupID;
+                    aMenuItem.imgMenuItemImage = MenuItemImage;
+                    aMenuItem.sMenuItemDescription = MenuItemDescription;
+                    aMenuItem.sMenuItemName = MenuItemName;
+                    aMenuItem.fkiServicestationID = ServiceStationID;
+                    aMenuItem.executeUPDATE();
+
+                    dsDataSet = aMenuItem.executeSelectDataSet();
+                }
             }
-            else {
-                tblMenu aMenuItem = new tblMenu(MenuItemID);
-                aMenuItem.bActiveStatus = ActiveStatus;
-                aMenuItem.dtMenuItemModified = DateTime.Now;
-                aMenuItem.dblMenuItemPrice = MenuItemPrice;
-                aMenuItem.FKiMenuGroupID = MenuGroupID;
-                aMenuItem.imgMenuItemImage = MenuItemImage;
-                aMenuItem.sMenuItemDescription = MenuItemDescription;
-                aMenuItem.sMenuItemName = MenuItemName;
-                aMenuItem.fkiServicestationID = ServiceStationID;
-                aMenuItem.executeUPDATE();
-            
-                dsDataSet = aMenuItem.executeSelectDataSet();
-            }
+            catch { }
             return dsDataSet;
         }
 
