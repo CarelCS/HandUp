@@ -210,6 +210,7 @@ namespace HandUpWCF {
 
         public DataSet AddNewMenuItem(int ProviderID, int ServiceStationID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice) {
             tblMenu aMenuItem = new tblMenu();
+            aMenuItem.FKiMenuID = 0;
             aMenuItem.bActiveStatus = 1;
             aMenuItem.dtMenuItemModified = DateTime.Now;
             aMenuItem.dblMenuItemPrice = MenuItemPrice;
@@ -227,12 +228,13 @@ namespace HandUpWCF {
         }
 
         public DataSet UpdateServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {
-            tblServicestaion aSSItem = new tblServicestaion(ServicestationID);
+            
             DataSet dsDataSet = new DataSet();
             if (ServicestationID == 0) {
                 dsDataSet = AddNewServiceStation(ProviderID, ServicestationID, ServiceStationName, ServiceNameDescription, ActiveStatus);
             }
             else {
+                tblServicestaion aSSItem = new tblServicestaion(ServicestationID);
                 aSSItem.bActiveStatus = ActiveStatus;
                 aSSItem.sName = ServiceStationName;
                 aSSItem.sDescription = ServiceNameDescription;
@@ -246,12 +248,12 @@ namespace HandUpWCF {
         }
 
         public DataSet UpdateMenuItem(int ProviderID, int ServiceStationID, int MenuItemID, int MenuGroupID, string MenuItemName, string MenuItemDescription, string MenuItemImage, double MenuItemPrice, int ActiveStatus) {
-            tblMenu aMenuItem = new tblMenu(MenuItemID);
             DataSet dsDataSet = new DataSet();
             if (MenuItemID == 0) {
                 dsDataSet = AddNewMenuItem(ProviderID, ServiceStationID, MenuGroupID, MenuItemName, MenuItemDescription, MenuItemImage, MenuItemPrice);
             }
             else {
+                tblMenu aMenuItem = new tblMenu(MenuItemID);
                 aMenuItem.bActiveStatus = ActiveStatus;
                 aMenuItem.dtMenuItemModified = DateTime.Now;
                 aMenuItem.dblMenuItemPrice = MenuItemPrice;
@@ -269,12 +271,12 @@ namespace HandUpWCF {
 
 
         public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
-            tblluMenugroups aMenuGroup = new tblluMenugroups(MenuGroupID);
             DataSet dsDataSet = new DataSet();
             if (MenuGroupID == 0) {
                 dsDataSet = AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
             }
             else {
+                tblluMenugroups aMenuGroup = new tblluMenugroups(MenuGroupID);
                 aMenuGroup.FKiProviderID = ProviderID.ToString();
                 aMenuGroup.sMenuGroupDescription = MenuGroupDescription;
                 aMenuGroup.sMenuGroupName = MenuGroupName;

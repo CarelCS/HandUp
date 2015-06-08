@@ -88,7 +88,7 @@ namespace HandUpGUI {
                 int ItemRow = 0;
                 hdnMaxSubs.Value = (ds.Tables.Count - 1).ToString();
                 foreach (DataRow dr in ds.Tables[0].Rows) {
-                    if (dr["FKiMenuID"].ToString() == "" && dr["FKiMenuGroupID"].ToString() == drGroups["PKiMenuGroupID"].ToString()) {
+                    if (dr["FKiMenuID"].ToString() == "0" && dr["FKiMenuGroupID"].ToString() == drGroups["PKiMenuGroupID"].ToString()) {
                         MenuTotal += "<tr><td><img id=\"MenuImage " + dr["FKiMenuID"].ToString() + "\" src=\"" + dr["imgMenuItemImage"].ToString() + "\" height='50' /></td><td>" + dr["sMenuItemName"].ToString() + "</td><td>" + dr["sMenuItemDescription"].ToString();
                         CurrentMenuID = dr["PKiMenuID"].ToString();
                         int ItemColumn = 0;
