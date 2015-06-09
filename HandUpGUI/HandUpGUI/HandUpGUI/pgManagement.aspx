@@ -175,6 +175,12 @@
         var ClickChangeAlert = document.getElementById("<%= btnDeleteSubmenuItem.ClientID %>");
         ClickChangeAlert.click();
     }
+
+    function LoadReport() {
+        ChangePage('3');
+        var ClickChangeAlert = document.getElementById("<%= btnShowReports.ClientID %>");
+        ClickChangeAlert.click();
+    }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
@@ -188,7 +194,7 @@
             <div id="dvMenuOption" onclick="ChangePage('2')" style="cursor:pointer">Menu</div>
             </td>
             <td>
-            <div id="dvReportOption" onclick="ChangePage('3')" style="cursor:pointer">Reports</div>
+            <div id="dvReportOption" onclick="LoadReport()" style="cursor:pointer">Reports</div>
             </td>
             <td>
             <div id="dvTableManagementOption" onclick="ChangePage('4')" style="cursor:pointer">Table Management</div>
@@ -487,7 +493,7 @@
     </div>
     <div id="dvReports">
     <table width="100%">
-        <tr><td>Reports</td></tr>
+        <tr><td><div id="dvReportDisplay" runat="server"></div></td></tr>
     </table>
     </div>
     <div id="dvTableManagement">
@@ -513,6 +519,7 @@
         <asp:Button ID="btnMoveOrderToTable" runat="server" Text="Button" onclick="btnMoveOrderToTable_Click" />
         <asp:Button ID="btnFillSubMenus" runat="server" Text="SM" onclick="btnFillSubMenus_Click"/>
         <asp:Button ID="btnDeleteSubmenuItem" runat="server" Text="DSM" onclick="btnDeleteSubmenuItem_Click"/>
+        <asp:Button ID="btnShowReports" runat="server" Text="report" onclick="btnShowReports_Click" />
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />

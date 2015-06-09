@@ -167,6 +167,8 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet SubmenuGroupTypesPerProvireAdminFull(int ProviderID);
 
+        [OperationContract]
+        DataSet DefaultReportPerProvider(int ProviderID);
 
         #endregion
 

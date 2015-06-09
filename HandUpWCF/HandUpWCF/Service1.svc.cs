@@ -314,5 +314,10 @@ namespace HandUpWCF {
             Management clsManagement = new Management();
             return clsManagement.SubmenuGroupTypesPerProvireAdminFull(ProviderID);
         }
+
+        public DataSet DefaultReportPerProvider(int ProviderID) {
+            Management clsManagement = new Management();
+            return clsManagement.DefaultReportPerProvider(ProviderID);
+        }
     }
 }

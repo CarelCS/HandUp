@@ -502,8 +502,23 @@ namespace HandUpGUI {
 
         protected void btnDeleteSubmenuItem_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.UpdateSubMenuPerProvider(Convert.ToInt32(hdnDeleteSubmenuId), true, 0, true, 0, true, "", "");
+            WSNew.UpdateSubMenuPerProvider(Convert.ToInt32(hdnDeleteSubmenuId.Value), true, 0, true, 0, true, "", "");
             btnFillSubMenus_Click(sender, e);
+        }
+
+        protected void btnShowReports_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = WSNew.DefaultReportPerProvider(Convert.ToInt32(PKiProviderID), true);
+            string ReportString = "<table>";
+            int reportcount = 0;
+            foreach (DataTable dt in ds.Tables) {
+                ReportString += "<tr><td colspan='3'>Report " + reportcount++ + "</td></tr>";
+                foreach (DataRow dr in dt.Rows) {
+                    ReportString += "<tr><td>" + dr[0].ToString() + "</td><td>" + dr[1].ToString() + "</td><td>" + dr[2].ToString() + "</td></tr>";
+                }
+            }
+            ReportString += "</table>";
+            dvReportDisplay.InnerHtml = ReportString;
         }
     }
 }

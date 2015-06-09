@@ -296,6 +296,12 @@
   <wsdl:message name="IHandUpService_SubmenuGroupTypesPerProvireAdminFull_OutputMessage">
     <wsdl:part name="parameters" element="tns:SubmenuGroupTypesPerProvireAdminFullResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_DefaultReportPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultReportPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_DefaultReportPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultReportPerProviderResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
   </wsdl:message>
@@ -554,6 +560,10 @@
     <wsdl:operation name="SubmenuGroupTypesPerProvireAdminFull">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/SubmenuGroupTypesPerProvireAdminFull" message="tns:IHandUpService_SubmenuGroupTypesPerProvireAdminFull_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/SubmenuGroupTypesPerProvireAdminFullResponse" message="tns:IHandUpService_SubmenuGroupTypesPerProvireAdminFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DefaultReportPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/DefaultReportPerProvider" message="tns:IHandUpService_DefaultReportPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/DefaultReportPerProviderResponse" message="tns:IHandUpService_DefaultReportPerProvider_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployee" message="tns:IHandUpService_AddEmployee_InputMessage" />
@@ -1027,6 +1037,15 @@
     </wsdl:operation>
     <wsdl:operation name="SubmenuGroupTypesPerProvireAdminFull">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/SubmenuGroupTypesPerProvireAdminFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultReportPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/DefaultReportPerProvider" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

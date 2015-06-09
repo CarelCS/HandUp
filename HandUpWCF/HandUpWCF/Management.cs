@@ -392,6 +392,16 @@ namespace HandUpWCF {
         
         public DataSet DefaultReportPerProvider(int ProviderID) {
             DataSet dsDataSet = new DataSet();
+            tblMenu aMenuReport = new tblMenu();
+            DataSet dsMostOrdered = aMenuReport.executeCustomSQLDataSet("select count(Orders.FKiMenuID) amount, Orders.FKiMenuID, (select sMenuItemName from tblmenu where PKiMenuID = Orders.FKiMenuID) as Named from tblOrders Orders where FKiProviderID = " + ProviderID + " group by Orders.FKiMenuID");
+            DataSet dsSalesPerWaiterAndTables = aMenuReport.executeCustomSQLDataSet("select sum(dblOrderValue), count(FKiTableID) Tablesdone, (select Emp.sUserName from tblEmployees as Emp inner join tblTables as Tbl on Tbl.FKiEmployeeID = Emp.PKiEmployeeID where Tbl.PKiTableID = Orders.FKiTableID) as Named from tblOrders Orders where FKiProviderID = " + ProviderID + " group by Named");
+            DataSet dsNumebrOfGuestsPerWaiter = aMenuReport.executeCustomSQLDataSet("select sum(iGuestNumber), count(tbls.PKiTableID) tabless, emp.sUserName  from tbltables tbls inner join tblEmployees emp on emp.PKiEmployeeID = tbls.FKiEmployeeID where tbls.FKiProviderID = " + ProviderID + " group by emp.sUserName");
+            dsMostOrdered.Tables[0].TableName = "MostOrdered";
+            dsSalesPerWaiterAndTables.Tables[0].TableName = "SalesPerWaiterAndTables";
+            dsNumebrOfGuestsPerWaiter.Tables[0].TableName = "NumebrOfGuestsPerWaiter";
+            dsDataSet.Tables.Add(dsMostOrdered.Tables[0].Copy());
+            dsDataSet.Tables.Add(dsSalesPerWaiterAndTables.Tables[0].Copy());
+            dsDataSet.Tables.Add(dsNumebrOfGuestsPerWaiter.Tables[0].Copy());
             return dsDataSet;
         }
 

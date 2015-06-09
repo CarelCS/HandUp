@@ -634,6 +634,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnSubmitSingleSubMenuItem;
         
         /// <summary>
+        /// dvReportDisplay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvReportDisplay;
+        
+        /// <summary>
         /// dvTableList control.
         /// </summary>
         /// <remarks>
@@ -758,6 +767,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeleteSubmenuItem;
+        
+        /// <summary>
+        /// btnShowReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowReports;
         
         /// <summary>
         /// hdnMenuID control.
