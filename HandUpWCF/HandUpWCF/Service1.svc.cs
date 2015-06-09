@@ -304,5 +304,10 @@ namespace HandUpWCF {
             Management clsManagement = new Management();
             return clsManagement.UpdateSubMenuPerProvider(SubMenuID, MenuItemID, SubMenuGroupTypeID, SubMenuName, SubMenuDescription);
         }
+
+        public DataSet GetSubMenusPerProvider(int ProviderID) {
+            Management clsManagement = new Management();
+            return clsManagement.GetSubMenusPerProvider(ProviderID);
+        }
     }
 }

@@ -122,6 +122,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback UpdateSubMenuPerProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetSubMenusPerProviderOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback EditEmployeeOperationCompleted;
@@ -319,6 +321,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event UpdateSubMenuPerProviderCompletedEventHandler UpdateSubMenuPerProviderCompleted;
+        
+        /// <remarks/>
+        public event GetSubMenusPerProviderCompletedEventHandler GetSubMenusPerProviderCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -2149,6 +2154,38 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/GetSubMenusPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet GetSubMenusPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("GetSubMenusPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetSubMenusPerProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.GetSubMenusPerProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void GetSubMenusPerProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.GetSubMenusPerProviderOperationCompleted == null)) {
+                this.GetSubMenusPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetSubMenusPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("GetSubMenusPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.GetSubMenusPerProviderOperationCompleted, userState);
+        }
+        
+        private void OnGetSubMenusPerProviderOperationCompleted(object arg) {
+            if ((this.GetSubMenusPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetSubMenusPerProviderCompleted(this, new GetSubMenusPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AddEmployee() {
@@ -3685,6 +3722,32 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal UpdateSubMenuPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void GetSubMenusPerProviderCompletedEventHandler(object sender, GetSubMenusPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetSubMenusPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetSubMenusPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

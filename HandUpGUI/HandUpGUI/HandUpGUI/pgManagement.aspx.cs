@@ -30,6 +30,7 @@ namespace HandUpGUI {
                     ddlMenuGroup.Items.Clear();
                     ddlServiceStation.Items.Clear();
                     ddlEmpServiceStation.Items.Clear();
+                    ddlSubmenuGroup.Items.Clear();
                     ListItem liF = new ListItem();
                     liF.Text = "Please select";
                     liF.Value = "0";
@@ -37,6 +38,7 @@ namespace HandUpGUI {
                     ddlServiceStation.Items.Add(liF);
                     ddlEditMenuGroup.Items.Add(liF);
                     ddlEditServiceStation.Items.Add(liF);
+                    ddlSubmenuGroup.Items.Add(liF);
                     foreach (DataRow dr in dsMG.Tables[0].Rows) {
                         ListItem li = new ListItem();
                         li.Text = dr["sMenuGroupName"].ToString();
@@ -51,6 +53,12 @@ namespace HandUpGUI {
                         ddlServiceStation.Items.Add(li);
                         ddlEmpServiceStation.Items.Add(li);
                         ddlEditServiceStation.Items.Add(li);
+                    }
+                    foreach (DataRow dr in dsSS.Tables[0].Rows) {
+                        ListItem li = new ListItem();
+                        li.Text = dr["sName"].ToString();
+                        li.Value = dr["PKiSubMenuGroupTypeID"].ToString();
+                        ddlSubmenuGroup.Items.Add(li);
                     }
                 }
         }
@@ -477,6 +485,12 @@ namespace HandUpGUI {
                     txtServiceStationEditDescription.Text = dr["sDescription"].ToString();
                 }
             }
+        }
+
+        protected void btnFillSubMenus_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet ds = WSNew.GetSubMenusPerProvider(Convert.ToInt32(PKiProviderID), true);
+
         }
     }
 }

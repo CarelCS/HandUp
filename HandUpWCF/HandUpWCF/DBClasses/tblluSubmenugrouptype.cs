@@ -9,6 +9,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _SSUBMENUGROUPTYPENAME="sSubMenuGroupTypeName";
 		public const string _SSUBMENUGROUPTYPEDESCRIPTION="sSubMenuGroupTypeDescription";
 		public const string _BACTIVESTATUS="bActiveStatus";
+        public const string _FKIPROVIDERID = "FKiProviderID";
 		public const string _tblluSubmenugrouptype="tbllusubmenugrouptype";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -51,6 +52,15 @@ namespace HandUpWCF.DBClasses{
 				_bActiveStatus = value;
 			}
 		}
+        private int _iFKiProviderID;
+        public int iFKiProviderID {
+            get {
+                return _iFKiProviderID;
+            }
+            set {
+                _iFKiProviderID = value;
+            }
+        }
 		private string sOrderBy="PKiSubMenuGroupTypeID";
 		private string sOrderType="ASC";
 
@@ -62,6 +72,7 @@ namespace HandUpWCF.DBClasses{
 			this.sSubMenuGroupTypeName=atblluSubmenugrouptype.sSubMenuGroupTypeName;
 			this.sSubMenuGroupTypeDescription=atblluSubmenugrouptype.sSubMenuGroupTypeDescription;
 			this.bActiveStatus=atblluSubmenugrouptype.bActiveStatus;
+            this.iFKiProviderID = atblluSubmenugrouptype.iFKiProviderID;
 		}
 
 		public tblluSubmenugrouptype(){
@@ -105,6 +116,8 @@ namespace HandUpWCF.DBClasses{
 					atblluSubmenugrouptype.sSubMenuGroupTypeDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					iIndex=aSqlReader.GetOrdinal("bActiveStatus");
 					atblluSubmenugrouptype.bActiveStatus=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("FKiProviderID");
+                    atblluSubmenugrouptype.iFKiProviderID = aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblluSubmenugrouptype.Add(atblluSubmenugrouptype);
 					}
 			}
@@ -269,6 +282,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@sSubMenuGroupTypeName",sSubMenuGroupTypeName);
 				insertCommand.Parameters.AddWithValue("@sSubMenuGroupTypeDescription",sSubMenuGroupTypeDescription);
 				insertCommand.Parameters.AddWithValue("@bActiveStatus",bActiveStatus);
+                insertCommand.Parameters.AddWithValue("@FKiProviderID", iFKiProviderID);
 				insertCommand.ExecuteNonQuery();
              PKiSubMenuGroupTypeID= (Int32)insertCommand.Parameters["@outPKiSubMenuGroupTypeID"].Value;
 				return this;
@@ -281,6 +295,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@insSubMenuGroupTypeName", sSubMenuGroupTypeName);
 				updateCommand.Parameters.AddWithValue("@insSubMenuGroupTypeDescription", sSubMenuGroupTypeDescription);
 				updateCommand.Parameters.AddWithValue("@inbActiveStatus", bActiveStatus);
+                updateCommand.Parameters.AddWithValue("@inFKiProviderID", iFKiProviderID);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

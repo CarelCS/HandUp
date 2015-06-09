@@ -157,6 +157,16 @@
         document.getElementById("<%= txtServiceStationEditDescription.ClientID %>").value = "";
     }
 
+    function EditSubMenu() {
+        document.getElementById('dvEmployeeDetails').style.display = 'none';
+        document.getElementById('dvEmployee').style.display = 'none';
+        document.getElementById('dvMenu').style.display = 'none';
+        document.getElementById('dvMenuEdit').style.display = 'none';
+        document.getElementById('dvReports').style.display = 'none';
+        document.getElementById('dvTableManagement').style.display = 'none';
+        document.getElementById('dvGroups').style.display = 'none';
+        document.getElementById('dvSubmenu').style.display = '';
+    }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
@@ -435,9 +445,35 @@
             <td colspan=2><asp:FileUpload ID="fuMenuImage" runat="server" /></td>
         </tr>
         <tr>
-            <td></td>
+            <td>
+                <input id="btnEditSubmenuItems" type="button" value="Sub Menu Items" onclick="EditSubMenu()" />
+                </td>
             <td colspan=2><asp:Button ID="btnUpdateAddMenuItem" runat="server" Text="Submit" 
                     onclick="btnUpdateAddMenuItem_Click" /></td>
+        </tr>
+        
+    </table>
+    </div>
+    <div id="dvSubmenu" runat="server">
+    <table>
+        <tr>
+            <td colspan="3"><div id="dvSubmenuList" runat="server"></div></td>
+        </tr>
+        <tr>
+            <td>
+                <asp:DropDownList ID="ddlSubmenuGroup" runat="server">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:Label ID="lblSubmenuItemName" runat="server" Text="Name"></asp:Label><asp:TextBox ID="txtSubmenuName"
+                    runat="server"></asp:TextBox></td>
+            <td>
+                <asp:Label ID="lblSubmenuItemDesc" runat="server" Text="Description"></asp:Label><asp:TextBox ID="txtSubmenuDescription"
+                    runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <asp:Button ID="btnSubmitSingleSubMenuItem" runat="server" Text="Submit" /></td>
         </tr>
     </table>
     </div>
@@ -467,6 +503,7 @@
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" onclick="btnUpdateTextValues_Click" />
         <asp:Button ID="btnUpdateRandValues" runat="server" Text="Button" onclick="btnUpdateRandValues_Click" />
         <asp:Button ID="btnMoveOrderToTable" runat="server" Text="Button" onclick="btnMoveOrderToTable_Click" />
+        <asp:Button ID="btnFillSubMenus" runat="server" Text="Button" onclick="btnFillSubMenus_Click"/>
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />

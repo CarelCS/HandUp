@@ -562,6 +562,78 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnUpdateAddMenuItem;
         
         /// <summary>
+        /// dvSubmenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSubmenu;
+        
+        /// <summary>
+        /// dvSubmenuList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSubmenuList;
+        
+        /// <summary>
+        /// ddlSubmenuGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubmenuGroup;
+        
+        /// <summary>
+        /// lblSubmenuItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubmenuItemName;
+        
+        /// <summary>
+        /// txtSubmenuName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubmenuName;
+        
+        /// <summary>
+        /// lblSubmenuItemDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubmenuItemDesc;
+        
+        /// <summary>
+        /// txtSubmenuDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubmenuDescription;
+        
+        /// <summary>
+        /// btnSubmitSingleSubMenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitSingleSubMenuItem;
+        
+        /// <summary>
         /// dvTableList control.
         /// </summary>
         /// <remarks>
@@ -668,6 +740,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMoveOrderToTable;
+        
+        /// <summary>
+        /// btnFillSubMenus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFillSubMenus;
         
         /// <summary>
         /// hdnMenuID control.

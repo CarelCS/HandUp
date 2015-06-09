@@ -363,6 +363,16 @@ namespace HandUpWCF {
             DataSet dsDataSet = aSubMenu.executeSelectDataSet();
             return dsDataSet;
         }
+
+        public DataSet GetSubMenusPerProvider(int ProviderID) {
+            DataSet ds = new DataSet();
+            tblluSubmenugrouptype sSubMenuGroup = new tblluSubmenugrouptype();
+            tblluSubmenus aSubMenu = new tblluSubmenus();
+            ds = sSubMenuGroup.executeCustomSQLDataSet("SELECT distinct " + tblluMenugroups._PKIMENUGROUPID + "," + tblluMenugroups._SMENUGROUPNAME + "," + tblluMenugroups._SMENUGROUPDESCRIPTION +
+                " FROM tbllumenugroups,tblmenu" +
+                " WHERE tbllumenugroups.PKiMenuGroupID=tblmenu.FKiMenuGroupID and handup.tblmenu.FKiProviderID=" + ProviderID);
+            return ds;
+        }
            
         
 

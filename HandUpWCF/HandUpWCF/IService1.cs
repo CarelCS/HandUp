@@ -161,7 +161,8 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet UpdateSubMenuPerProvider(int SubMenuID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription);
 
-
+        [OperationContract]
+        DataSet GetSubMenusPerProvider(int ProviderID);
 
 
         #endregion
