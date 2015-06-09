@@ -124,6 +124,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback GetSubMenusPerProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SubmenuGroupTypesPerProvireAdminFullOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback EditEmployeeOperationCompleted;
@@ -324,6 +326,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event GetSubMenusPerProviderCompletedEventHandler GetSubMenusPerProviderCompleted;
+        
+        /// <remarks/>
+        public event SubmenuGroupTypesPerProvireAdminFullCompletedEventHandler SubmenuGroupTypesPerProvireAdminFullCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -2186,6 +2191,38 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/SubmenuGroupTypesPerProvireAdminFull", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet SubmenuGroupTypesPerProvireAdminFull(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("SubmenuGroupTypesPerProvireAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SubmenuGroupTypesPerProvireAdminFullAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.SubmenuGroupTypesPerProvireAdminFullAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void SubmenuGroupTypesPerProvireAdminFullAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.SubmenuGroupTypesPerProvireAdminFullOperationCompleted == null)) {
+                this.SubmenuGroupTypesPerProvireAdminFullOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSubmenuGroupTypesPerProvireAdminFullOperationCompleted);
+            }
+            this.InvokeAsync("SubmenuGroupTypesPerProvireAdminFull", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.SubmenuGroupTypesPerProvireAdminFullOperationCompleted, userState);
+        }
+        
+        private void OnSubmenuGroupTypesPerProvireAdminFullOperationCompleted(object arg) {
+            if ((this.SubmenuGroupTypesPerProvireAdminFullCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SubmenuGroupTypesPerProvireAdminFullCompleted(this, new SubmenuGroupTypesPerProvireAdminFullCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AddEmployee() {
@@ -3748,6 +3785,32 @@ namespace HandUpGUI.localhost {
         private object[] results;
         
         internal GetSubMenusPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void SubmenuGroupTypesPerProvireAdminFullCompletedEventHandler(object sender, SubmenuGroupTypesPerProvireAdminFullCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SubmenuGroupTypesPerProvireAdminFullCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SubmenuGroupTypesPerProvireAdminFullCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

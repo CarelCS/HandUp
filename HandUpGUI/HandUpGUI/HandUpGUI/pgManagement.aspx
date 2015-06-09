@@ -166,6 +166,14 @@
         document.getElementById('dvTableManagement').style.display = 'none';
         document.getElementById('dvGroups').style.display = 'none';
         document.getElementById('dvSubmenu').style.display = '';
+        var ClickChangeAlert = document.getElementById("<%= btnFillSubMenus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function EditDeleteSubMenuItem(SubID) {
+        document.getElementById("<%= hdnDeleteSubmenuId.ClientID %>").value = SubID;
+        var ClickChangeAlert = document.getElementById("<%= btnDeleteSubmenuItem.ClientID %>");
+        ClickChangeAlert.click();
     }
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
@@ -503,7 +511,8 @@
         <asp:Button ID="btnUpdateTextValues" runat="server" Text="Button" onclick="btnUpdateTextValues_Click" />
         <asp:Button ID="btnUpdateRandValues" runat="server" Text="Button" onclick="btnUpdateRandValues_Click" />
         <asp:Button ID="btnMoveOrderToTable" runat="server" Text="Button" onclick="btnMoveOrderToTable_Click" />
-        <asp:Button ID="btnFillSubMenus" runat="server" Text="Button" onclick="btnFillSubMenus_Click"/>
+        <asp:Button ID="btnFillSubMenus" runat="server" Text="SM" onclick="btnFillSubMenus_Click"/>
+        <asp:Button ID="btnDeleteSubmenuItem" runat="server" Text="DSM" onclick="btnDeleteSubmenuItem_Click"/>
         <asp:HiddenField ID="hdnMenuID" runat="server" />
         <asp:HiddenField ID="hdnMenuStatus" runat="server" />
         <asp:HiddenField ID="hdnEmployeeID" runat="server" />
@@ -516,6 +525,7 @@
         <asp:HiddenField ID="hdnGroupHeaders" runat="server" />
         <asp:HiddenField ID="hdnChangeDisplay" runat="server" />
         <asp:HiddenField ID="hdnMoveToTableID" runat="server" />
+        <asp:HiddenField ID="hdnDeleteSubmenuId" runat="server" />
     </div>
     </form>
 </body>

@@ -751,6 +751,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Button btnFillSubMenus;
         
         /// <summary>
+        /// btnDeleteSubmenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteSubmenuItem;
+        
+        /// <summary>
         /// hdnMenuID control.
         /// </summary>
         /// <remarks>
@@ -857,5 +866,14 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMoveToTableID;
+        
+        /// <summary>
+        /// hdnDeleteSubmenuId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDeleteSubmenuId;
     }
 }

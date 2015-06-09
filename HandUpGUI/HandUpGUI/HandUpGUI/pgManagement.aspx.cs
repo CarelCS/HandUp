@@ -17,8 +17,10 @@ namespace HandUpGUI {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet dsMG = new DataSet();
             DataSet dsSS = new DataSet();
+            DataSet dsSM = new DataSet();
             dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
             dsSS = WSNew.getServiceStationsPerProvider(Convert.ToInt32(PKiProviderID), true);
+            dsSM = WSNew.SubmenuGroupTypesPerProvireAdminFull(Convert.ToInt32(PKiProviderID), true);
             //if (!IsPostBack) {
                 PopulateEmployees();
                 PopulateTables();
@@ -54,9 +56,9 @@ namespace HandUpGUI {
                         ddlEmpServiceStation.Items.Add(li);
                         ddlEditServiceStation.Items.Add(li);
                     }
-                    foreach (DataRow dr in dsSS.Tables[0].Rows) {
+                    foreach (DataRow dr in dsSM.Tables[0].Rows) {
                         ListItem li = new ListItem();
-                        li.Text = dr["sName"].ToString();
+                        li.Text = dr["sSubMenuGroupTypeName"].ToString();
                         li.Value = dr["PKiSubMenuGroupTypeID"].ToString();
                         ddlSubmenuGroup.Items.Add(li);
                     }
@@ -490,7 +492,18 @@ namespace HandUpGUI {
         protected void btnFillSubMenus_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.GetSubMenusPerProvider(Convert.ToInt32(PKiProviderID), true);
+            string SubMenuTable = "<table>";
+            foreach (DataRow dr in ds.Tables[0].Rows) {
+                SubMenuTable += "<tr><td>" + dr["sSubMenuGroupTypeName"].ToString() + "</td><td>" + dr["sSubMenuName"].ToString() + "</td><td>" + dr["sSubMenuDescription"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiSubMenuID"].ToString() + "\" onclick=\"EditDeleteSubMenuItem('" + dr["PKiSubMenuID"].ToString() + "', 0)\"><img id=\"Image1\" src=\"images/icons/Cancel.png\" height='50' /></div></td></tr>";
+            }
+            SubMenuTable += "</table>";
+            dvSubmenuList.InnerHtml = SubMenuTable;
+        }
 
+        protected void btnDeleteSubmenuItem_Click(object sender, EventArgs e) {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            WSNew.UpdateSubMenuPerProvider(Convert.ToInt32(hdnDeleteSubmenuId), true, 0, true, 0, true, "", "");
+            btnFillSubMenus_Click(sender, e);
         }
     }
 }

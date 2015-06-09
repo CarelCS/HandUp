@@ -353,14 +353,21 @@ namespace HandUpWCF {
         }
 
         public DataSet UpdateSubMenuPerProvider(int SubMenuID, int MenuItemID, int SubMenuGroupTypeID, string SubMenuName, string SubMenuDescription) {
-            tblluSubmenus aSubMenu = new tblluSubmenus(SubMenuID);
+            DataSet dsDataSet = new DataSet();
+            if (MenuItemID == 0 && SubMenuID != 0 && SubMenuGroupTypeID == 0 && SubMenuName == "" && SubMenuDescription == "") {
+                tblluSubmenus aSubMenu = new tblluSubmenus(SubMenuID);
+                dsDataSet = aSubMenu.executeCustomSQLDataSet("delete from tbllusubmenus where PKiSubMenuID = " + SubMenuID);
+            }
+            else {
+                tblluSubmenus aSubMenu = new tblluSubmenus(SubMenuID);
                 aSubMenu.FKiMenuID = MenuItemID;
-            aSubMenu.FKiSubMenuGroupTypeID = SubMenuGroupTypeID;
-            aSubMenu.sSubMenuDescription = SubMenuDescription;
-            aSubMenu.sSubMenuName = SubMenuName;
-            aSubMenu.executeUPDATE();
+                aSubMenu.FKiSubMenuGroupTypeID = SubMenuGroupTypeID;
+                aSubMenu.sSubMenuDescription = SubMenuDescription;
+                aSubMenu.sSubMenuName = SubMenuName;
+                aSubMenu.executeUPDATE();
 
-            DataSet dsDataSet = aSubMenu.executeSelectDataSet();
+                dsDataSet = aSubMenu.executeSelectDataSet();
+            }
             return dsDataSet;
         }
 
@@ -368,13 +375,18 @@ namespace HandUpWCF {
             DataSet ds = new DataSet();
             tblluSubmenugrouptype sSubMenuGroup = new tblluSubmenugrouptype();
             tblluSubmenus aSubMenu = new tblluSubmenus();
-            ds = sSubMenuGroup.executeCustomSQLDataSet("SELECT distinct " + tblluMenugroups._PKIMENUGROUPID + "," + tblluMenugroups._SMENUGROUPNAME + "," + tblluMenugroups._SMENUGROUPDESCRIPTION +
-                " FROM tbllumenugroups,tblmenu" +
-                " WHERE tbllumenugroups.PKiMenuGroupID=tblmenu.FKiMenuGroupID and handup.tblmenu.FKiProviderID=" + ProviderID);
+            ds = sSubMenuGroup.executeCustomSQLDataSet("select * from tbllusubmenugrouptype " +
+            "inner join tbllusubmenus on FKiSubMenuGroupTypeID = PKiSubMenuGroupTypeID " +
+            "where FKiProviderID = " + ProviderID);
             return ds;
         }
-           
-        
+
+        public DataSet SubmenuGroupTypesPerProvireAdminFull(int ProviderID) {
+            tblluSubmenugrouptype aSMT = new tblluSubmenugrouptype();
+            aSMT.addEquals(tblluSubmenugrouptype._FKIPROVIDERID, ProviderID);
+            DataSet dsDataSet = aSMT.executeSelectDataSet();
+            return dsDataSet;
+        }
 
         #region Reports
         
