@@ -14,7 +14,7 @@ namespace HandUpWCF {
             aDataSet.Tables[0].TableName = "Menu";
 
             tblluMenugroups aMenuGroup = new tblluMenugroups();
-            DataSet dsGroupNames = aMenuGroup.executeCustomSQLDataSet("SELECT distinct " + tblluMenugroups._PKIMENUGROUPID + "," + tblluMenugroups._SMENUGROUPNAME + "," + tblluMenugroups._SMENUGROUPDESCRIPTION +
+            DataSet dsGroupNames = aMenuGroup.executeCustomSQLDataSet("SELECT distinct " + tblluMenugroups._PKIMENUGROUPID + "," + tblluMenugroups._SMENUGROUPNAME + "," + tblluMenugroups._SMENUGROUPDESCRIPTION + ",tblluMenugroups." + tblluMenugroups._FKIMENUGROUPID +
                 " FROM tbllumenugroups,tblmenu" +
                 " WHERE tbllumenugroups.PKiMenuGroupID=tblmenu.FKiMenuGroupID and handup.tblmenu.FKiProviderID=" + sProviderID);
             dsGroupNames.Tables[0].TableName = "MenuGroup";

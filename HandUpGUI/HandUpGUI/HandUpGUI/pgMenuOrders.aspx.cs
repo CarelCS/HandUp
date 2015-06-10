@@ -63,7 +63,8 @@ namespace HandUpGUI {
                     DataSet dsTables = new DataSet();
                     dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
                     if (dsTables.Tables.Count > 0) {
-                        string sTablesDisplay = "<table border='0' width=\"100%\"><tr>";
+                        string sTableSelectDDL = "<select name=\"TableSelectDDL\" id=\"TableSelectDDL\">";
+                        //string sTablesDisplay = "<table border='0' width=\"100%\"><tr>";
                         foreach (DataRow dr in dsTables.Tables[0].Rows) {
                             if (hdnTableNumber.Value == "") 
                             {
@@ -74,14 +75,18 @@ namespace HandUpGUI {
                                 dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
                                 PopulateTable(dr["sTableName"].ToString());
                             }
-                            sTablesDisplay += "<td><table cellpadding=\"0\" cellspacing=\"0\"><tr><td><img id=\"Image1\" src=\"images/Icons/TopLeft.png\"  width='" + IconWidth / 2 + "'/></td><td valign=\"top\"><img id=\"Image1\" src=\"images/Icons/BorderBlock.png\"  width='100%' height='4.5px'/></td><td><img id=\"Image1\" src=\"images/Icons/TopRight.png\"  width='" + IconWidth / 2 + "'/></td></tr><tr><td align=\"left\"><img id=\"Image1\" src=\"images/Icons/BorderBlock.png\"  width='4.5px' height='100%'/></td><td align=\"center\"><div style='cursor:pointer; color:White; font-weight:bolder; font-family:Arial' id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td><td align=\"right\"><img id=\"Image1\" src=\"images/Icons/BorderBlock.png\"  width='4.5px' height='100%'/></td></tr><tr><td><img id=\"Image1\" src=\"images/Icons/BottomLeft.png\"  width='" + IconWidth / 2 + "'/></td><td valign=\"bottom\"><img id=\"Image1\" src=\"images/Icons/BorderBlock.png\"  width='100%' height='4.5px'/></td><td><img id=\"Image1\" src=\"images/Icons/BottomRight.png\"  width='" + IconWidth / 2 + "'/></td></tr></table></td>";
+                            sTableSelectDDL += "<option value=\"" + dr["PKiTableID"].ToString() + "\">" + dr["sTableName"].ToString() + "</option>";
+                            //sTablesDisplay += "<td><table cellpadding=\"0\" cellspacing=\"0\"><tr><td align=\"center\"><div style='cursor:pointer; color:White; font-weight:bolder; font-family:Arial' id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td></table></td>";
                         }
-                        sTablesDisplay += "</tr></table>";
-                        dvTablesTop.InnerHtml = sTablesDisplay;
+                        sTableSelectDDL += "</select>";
+                        //sTablesDisplay += "</tr></table>";
+                        //dvTablesTop.InnerHtml = sTablesDisplay + "</br>" + sTableSelectDDL;
+                        dvTablesTop.InnerHtml = sTableSelectDDL;
                     }
                 }
                 if (!IsPostBack) {
-                    PopulateMenu();
+                    //PopulateMenu();
+                    PopulateMenuBase("0");
                     if (PKiEmployeeTypeID == "2") {
                         Advertisement();
                     }
@@ -102,6 +107,56 @@ namespace HandUpGUI {
             }
             HTMLString += "</tr></table>";
             dvAddArea.InnerHtml = HTMLString;
+        }
+
+        protected void PopulateMenuBase(string GroupCurrent) {
+            DataSet ds = new DataSet();
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            ds = WSNew.MenuForProvider(PKiProviderID);
+            string BaseMenu = "<table width='100%' align='center'>";
+            bool DoesHavemenu = false;
+            foreach (DataRow drGroups in ds.Tables["MenuGroup"].Rows) {
+                if (drGroups["FKiMenuGroupID"].ToString() == GroupCurrent) {
+                    DoesHavemenu = true;
+                    BaseMenu += "<tr><td><div style='border-width:thin; background-color:transparent; cursor:pointer; color:White; font-weight:bolder; font-family:Arial; background-color:Lime' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuAreaByID(\"" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td></tr>";
+                }
+            }
+            BaseMenu += "</table>";
+            if (!DoesHavemenu) {
+                string MenuTotal = "<table>";
+                string CurrentMenuID = "";
+                int ItemRow = 0;
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    if (dr["FKiMenuID"].ToString() == "0" && dr["FKiMenuGroupID"].ToString() == GroupCurrent) {
+                        MenuTotal += "<tr><td>" + dr["sMenuItemName"].ToString() + "</td><td width='100%'>" + dr["sMenuItemDescription"].ToString();
+                        CurrentMenuID = dr["PKiMenuID"].ToString();
+                        int ItemColumn = 0;
+                        foreach (DataTable dt in ds.Tables) {
+                            if (dt.TableName != "Menu" && dt.TableName != "MenuGroup") {
+                                string MenuTotalSUB = "<select name=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\" id=\"" + CurrentMenuID + "_ddlFirstSub_" + ItemColumn + "\">";
+                                ItemColumn++;
+                                MenuTotalSUB += "<option value='1'>--</option>";
+                                bool IsItem = false;
+                                foreach (DataRow drInner in dt.Rows) {
+                                    if (drInner["FKiMenuID"].ToString() == CurrentMenuID) {
+                                        MenuTotalSUB += "<option value=\"" + drInner["sSubMenuName"].ToString() + "\">" + drInner["sSubMenuName"].ToString() + "</option>";
+                                        IsItem = true;
+                                    }
+                                }
+                                MenuTotalSUB += "</select>";
+                                if (IsItem) {
+                                    MenuTotal += MenuTotalSUB;
+                                }
+                            }
+                        }
+                        MenuTotal += "</td><td>" + dr["dblMenuItemPrice"].ToString() + "</td><td><div style=\"cursor:pointer;\" id=\"" + dr["PKiMenuID"].ToString() + "\" onclick=\"Order('" + dr["PKiMenuID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/order.png\" width='" + IconWidth + "' /></div></td></tr>";
+                        ItemRow++;
+                    }
+                }
+                MenuTotal += "</table>";
+                BaseMenu = MenuTotal;
+            }
+            dvMenuMain.InnerHtml = BaseMenu;
         }
 
         /// <summary>
@@ -376,6 +431,12 @@ namespace HandUpGUI {
         protected void btnAlertSent_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string Returned = WSNew.CallWaiter(Convert.ToInt32(hdnTableNumber.Value), true, hdnAlertText.Value);
+        }
+
+        protected void btnChangeGroup_Click(object sender, EventArgs e) {
+            if (hdnGroupCurrent.Value != "") {
+                PopulateMenuBase(hdnGroupCurrent.Value);
+            }
         }
     }
 }

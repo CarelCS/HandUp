@@ -20,6 +20,13 @@
         ClickChangeTable.click();
     }
 
+    function OpenTableDDL() {
+        var CurrentTable = document.getElementById("TableSelectDDL");
+        document.getElementById("<%= hdnTableNumber.ClientID %>").value = CurrentTable.value;
+        var ClickChangeTable = document.getElementById("<%= btnChangeTable.ClientID %>");
+        ClickChangeTable.click();
+    }
+
     function ConfirmOrder(OrderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "2";
@@ -125,7 +132,7 @@
         document.getElementById('dvAddTable').style.display = '';
     }
 
-    setInterval(myCheckAlert, 10000);
+    setInterval(myCheckAlert, 100000000);
 
     function myCheckAlert() {
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
@@ -154,6 +161,12 @@
         }
         document.getElementById(GroupID).style.display = '';
         document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = GroupID;
+    }
+
+    function ChangemenuAreaByID(GroupID) {
+        document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = GroupID;
+        var ClickChangeAlert = document.getElementById("<%= btnChangeGroup.ClientID %>");
+        ClickChangeAlert.click();
     }
 
     function CallWaiter() {
@@ -187,7 +200,7 @@
             </tr>
         </table>
     </div>
-    <table width="100%">
+    <table>
         <tr>
             <td>
                 <div>
@@ -195,6 +208,31 @@
                 </div>
             </td>
         </tr>
+    </table>
+     <table>
+        <tr>
+            <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img id="imgCallWaiter" src="Images/Icons/CallWaiter.png" runat="server" /></div></td>
+            <td><div id="dvCloseBill" onclick="CloseBill()" runat="server"><img id="imgCloseBill" src="Images/Icons/CloseBill.png" runat="server"  /></div></td>
+            <td><div id="dvCloseTable" onclick="CloseTable()" runat="server"><img id="imgCloseTable" src="Images/Icons/CloseTable.png" runat="server"  /></div></td>
+        </tr>
+    </table>
+    <table border="0" width="100%">
+        <tr>
+            <td id="tdMenu" onclick="ChangeDiv('Menu')">
+                <img id="imgMenu" src="Images/Icons/Menu.png" runat="server"  />
+            </td>
+            <td id="tdOrder" onclick="ChangeDiv('Order')">
+                <img id="imgOrders" src="Images/Icons/Orders.png" runat="server"  />
+            </td>
+            <td id="tdSplit" onclick="ChangeDiv('Split')">
+                <img id="imgAll" src="Images/Icons/All.png" runat="server"  />
+            </td>
+            <td id="td1" onclick="ChangeDiv('Hide')">
+                <img id="imgHide" src="Images/Icons/Hide.png" runat="server"  />  
+            </td>
+        </tr>
+    </table>
+    <table width="100%">
         <tr>
             <td>
                 <div id="dvWaiterMenu">
@@ -204,8 +242,11 @@
                                 <div id="dvTablesTop" runat="server">
                                 </div>
                             </td>
-                            <td onclick="ShowAdd()">
-                                +
+                            <td>
+                                <input id="Button1" type="button" value="Go to Table" onclick="OpenTableDDL()" />
+                            </td>
+                            <td>
+                                <input id="Button2" type="button" value="Add a Table" onclick="ShowAdd()"/>
                             </td>
                         </tr>
                     </table>
@@ -290,24 +331,7 @@
         <tr>
             <td>
                 <div>
-                    <table border="0" width="100%">
-                        <tr>
-                            <td id="tdMenu" onclick="ChangeDiv('Menu')">
-                                <img id="imgMenu" src="Images/Icons/Menu.png" runat="server"  />
-                            </td>
-                            <td id="tdOrder" onclick="ChangeDiv('Order')">
-                                <img id="imgOrders" src="Images/Icons/Orders.png" runat="server"  />
-                            </td>
-                            <td id="tdSplit" onclick="ChangeDiv('Split')">
-                                <img id="imgAll" src="Images/Icons/All.png" runat="server"  />
-                            </td>
-                            <td id="td1" onclick="ChangeDiv('Hide')">
-                                <img id="imgHide" src="Images/Icons/Hide.png" runat="server"  />
-  
-  
-                            </td>
-                        </tr>
-                    </table>
+                    
                 </div>
             </td>
         </tr>
@@ -329,13 +353,7 @@
             </td>
         </tr>
     </table>
-    <table>
-    <tr>
-    <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img id="imgCallWaiter" src="Images/Icons/CallWaiter.png" runat="server" /></div></td>
-    <td><div id="dvCloseBill" onclick="CloseBill()" runat="server"><img id="imgCloseBill" src="Images/Icons/CloseBill.png" runat="server"  /></div></td>
-    <td><div id="dvCloseTable" onclick="CloseTable()" runat="server"><img id="imgCloseTable" src="Images/Icons/CloseTable.png" runat="server"  /></div></td>
-    </tr>
-    </table>
+   
     <div style="visibility: hidden">
         <asp:UpdatePanel ID="updateAlerts" runat="server">
             <ContentTemplate>
@@ -351,6 +369,7 @@
         <asp:Button ID="btnPlaceOrder" runat="server" Text="Button" onclick="btnPlaceOrder_Click" />
         <asp:Button ID="btnUpdateOrderStatus" runat="server" Text="Button" OnClick="btnUpdateOrderStatus_Click" />
         <asp:Button ID="btnAlertSent" runat="server" Text="ALERT" onclick="btnAlertSent_Click" />
+        <asp:Button ID="btnChangeGroup" runat="server" Text="ChangeGroup" onclick="btnChangeGroup_Click" />
         <asp:HiddenField ID="hdnTableNumber" runat="server" />
         <asp:HiddenField ID="hdnTextForOrder" runat="server" />
         <asp:HiddenField ID="hdnOrderNumber" runat="server" />
