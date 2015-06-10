@@ -215,6 +215,15 @@
             </td>
         </tr>
         <tr>
+            <td>
+                Main Menu Group
+            </td>
+            <td colspan="3">
+                <asp:DropDownList ID="ddlMainMenuGroup" runat="server">
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
             <td>Name</td>
             <td>
                 <asp:TextBox ID="txtMenuGroupEditName" runat="server"></asp:TextBox>

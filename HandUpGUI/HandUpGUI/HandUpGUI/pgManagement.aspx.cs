@@ -39,6 +39,7 @@ namespace HandUpGUI {
                     ddlMenuGroup.Items.Add(liF);
                     ddlServiceStation.Items.Add(liF);
                     ddlEditMenuGroup.Items.Add(liF);
+                    ddlMainMenuGroup.Items.Add(liF);
                     ddlEditServiceStation.Items.Add(liF);
                     ddlSubmenuGroup.Items.Add(liF);
                     foreach (DataRow dr in dsMG.Tables[0].Rows) {
@@ -47,6 +48,12 @@ namespace HandUpGUI {
                         li.Value = dr["PKiMenuGroupID"].ToString();
                         ddlMenuGroup.Items.Add(li);
                         ddlEditMenuGroup.Items.Add(li);
+                    }
+                    foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                        ListItem li = new ListItem();
+                        li.Text = dr["sMenuGroupName"].ToString();
+                        li.Value = dr["PKiMenuGroupID"].ToString();
+                        ddlMainMenuGroup.Items.Add(li);
                     }
                     foreach (DataRow dr in dsSS.Tables[0].Rows) {
                         ListItem li = new ListItem();
@@ -418,7 +425,7 @@ namespace HandUpGUI {
             int MenuGroupID = 0;
             int ServicestationID = 0;
             if (txtNewMenuGroup.Text != "") {
-                MenuGroupID = Convert.ToInt32(WSNew.AddMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, txtNewMenuGroup.Text, "").Tables[0].Rows[0]["PKiMenuGroupID"].ToString());
+                MenuGroupID = Convert.ToInt32(WSNew.AddMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, txtNewMenuGroup.Text, "", ddlEditMenuGroup.SelectedValue).Tables[0].Rows[0]["PKiMenuGroupID"].ToString());
             }
             else {
                 MenuGroupID = Convert.ToInt32(ddlMenuGroup.SelectedValue);
@@ -457,7 +464,7 @@ namespace HandUpGUI {
 
         protected void btnMenuGroupSubmit_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            DataSet ds = WSNew.UpdateMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, Convert.ToInt32(ddlEditMenuGroup.SelectedValue), true, txtMenuGroupEditName.Text, txtMenuGroupEditDescription.Text);
+            DataSet ds = WSNew.UpdateMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, Convert.ToInt32(ddlEditMenuGroup.SelectedValue), true, txtMenuGroupEditName.Text, txtMenuGroupEditDescription.Text, ddlMainMenuGroup.SelectedValue);
         }
 
         protected void btnServiceStationEdit_Click(object sender, EventArgs e) {
@@ -473,6 +480,7 @@ namespace HandUpGUI {
                 if (ddlEditMenuGroup.SelectedValue == dr["PKiMenuGroupID"].ToString()) {
                     txtMenuGroupEditName.Text = dr["sMenuGroupName"].ToString();
                     txtMenuGroupEditDescription.Text = dr["sMenuGroupDescription"].ToString();
+                    ddlMainMenuGroup.SelectedValue = dr["FKiMenuGroupID"].ToString();
                 }
             }
         }

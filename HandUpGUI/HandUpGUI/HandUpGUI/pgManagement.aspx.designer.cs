@@ -31,6 +31,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlEditMenuGroup;
         
         /// <summary>
+        /// ddlMainMenuGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMainMenuGroup;
+        
+        /// <summary>
         /// txtMenuGroupEditName control.
         /// </summary>
         /// <remarks>

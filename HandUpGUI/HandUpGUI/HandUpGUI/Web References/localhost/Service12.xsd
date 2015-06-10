@@ -947,6 +947,7 @@
         <xs:element minOccurs="0" name="MenuGroupID" type="xs:int" />
         <xs:element minOccurs="0" name="MenuGroupName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="MenuGroupDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FKiMenuGroupID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -975,6 +976,7 @@
         <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
         <xs:element minOccurs="0" name="MenuGroupName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="MenuGroupDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FKiMenuGroupID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

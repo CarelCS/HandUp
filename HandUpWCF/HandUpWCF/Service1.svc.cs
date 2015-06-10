@@ -260,14 +260,14 @@ namespace HandUpWCF {
             catch { DataSet ds = new DataSet(); return ds; }
         }
 
-        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
+        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
             Management clsManagement = new Management();
-            return clsManagement.UpdateMenuGroupPerProvider(ProviderID, MenuGroupID, MenuGroupName, MenuGroupDescription);
+            return clsManagement.UpdateMenuGroupPerProvider(ProviderID, MenuGroupID, MenuGroupName, MenuGroupDescription, FKiMenuGroupID);
         }
 
-        public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
+        public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
             Management clsManagement = new Management();
-            return clsManagement.AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
+            return clsManagement.AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription, FKiMenuGroupID);
         }
 
         public DataSet AddNewServiceStation(int ProviderID, int ServicestationID, string ServiceStationName, string ServiceNameDescription, string ActiveStatus) {

@@ -277,28 +277,30 @@ namespace HandUpWCF {
         }
 
 
-        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription) {
+        public DataSet UpdateMenuGroupPerProvider(int ProviderID, int MenuGroupID, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
             DataSet dsDataSet = new DataSet();
             if (MenuGroupID == 0) {
-                dsDataSet = AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription);
+                dsDataSet = AddMenuGroupPerProvider(ProviderID, MenuGroupName, MenuGroupDescription, FKiMenuGroupID);
             }
             else {
                 tblluMenugroups aMenuGroup = new tblluMenugroups(MenuGroupID);
                 aMenuGroup.FKiProviderID = ProviderID.ToString();
                 aMenuGroup.sMenuGroupDescription = MenuGroupDescription;
                 aMenuGroup.sMenuGroupName = MenuGroupName;
+                aMenuGroup.FKiMenuGroupID = Convert.ToInt32(FKiMenuGroupID);
                 aMenuGroup.executeUPDATE();
                 dsDataSet = aMenuGroup.executeSelectDataSet();
             }
             return dsDataSet;
         }
 
-        public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription) {
+        public DataSet AddMenuGroupPerProvider(int ProviderID, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
             tblluMenugroups aMenuGroup = new tblluMenugroups();
 
             aMenuGroup.FKiProviderID = ProviderID.ToString();
             aMenuGroup.sMenuGroupDescription = MenuGroupDescription;
             aMenuGroup.sMenuGroupName = MenuGroupName;
+            aMenuGroup.FKiMenuGroupID = Convert.ToInt32(FKiMenuGroupID);
             aMenuGroup = aMenuGroup.executeINSERT();
 
             aMenuGroup.addEquals(tblluMenugroups._PKIMENUGROUPID, aMenuGroup.PKiMenuGroupID);

@@ -1806,24 +1806,25 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateMenuGroupPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet UpdateMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription) {
+        public System.Data.DataSet UpdateMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, int MenuGroupID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuGroupIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string FKiMenuGroupID) {
             object[] results = this.Invoke("UpdateMenuGroupPerProvider", new object[] {
                         ProviderID,
                         ProviderIDSpecified,
                         MenuGroupID,
                         MenuGroupIDSpecified,
                         MenuGroupName,
-                        MenuGroupDescription});
+                        MenuGroupDescription,
+                        FKiMenuGroupID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription) {
-            this.UpdateMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuGroupName, MenuGroupDescription, null);
+        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
+            this.UpdateMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupID, MenuGroupIDSpecified, MenuGroupName, MenuGroupDescription, FKiMenuGroupID, null);
         }
         
         /// <remarks/>
-        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription, object userState) {
+        public void UpdateMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, int MenuGroupID, bool MenuGroupIDSpecified, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID, object userState) {
             if ((this.UpdateMenuGroupPerProviderOperationCompleted == null)) {
                 this.UpdateMenuGroupPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateMenuGroupPerProviderOperationCompleted);
             }
@@ -1833,7 +1834,8 @@ namespace HandUpGUI.localhost {
                         MenuGroupID,
                         MenuGroupIDSpecified,
                         MenuGroupName,
-                        MenuGroupDescription}, this.UpdateMenuGroupPerProviderOperationCompleted, userState);
+                        MenuGroupDescription,
+                        FKiMenuGroupID}, this.UpdateMenuGroupPerProviderOperationCompleted, userState);
         }
         
         private void OnUpdateMenuGroupPerProviderOperationCompleted(object arg) {
@@ -1846,22 +1848,23 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddMenuGroupPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet AddMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription) {
+        public System.Data.DataSet AddMenuGroupPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuGroupDescription, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string FKiMenuGroupID) {
             object[] results = this.Invoke("AddMenuGroupPerProvider", new object[] {
                         ProviderID,
                         ProviderIDSpecified,
                         MenuGroupName,
-                        MenuGroupDescription});
+                        MenuGroupDescription,
+                        FKiMenuGroupID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription) {
-            this.AddMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupName, MenuGroupDescription, null);
+        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID) {
+            this.AddMenuGroupPerProviderAsync(ProviderID, ProviderIDSpecified, MenuGroupName, MenuGroupDescription, FKiMenuGroupID, null);
         }
         
         /// <remarks/>
-        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription, object userState) {
+        public void AddMenuGroupPerProviderAsync(int ProviderID, bool ProviderIDSpecified, string MenuGroupName, string MenuGroupDescription, string FKiMenuGroupID, object userState) {
             if ((this.AddMenuGroupPerProviderOperationCompleted == null)) {
                 this.AddMenuGroupPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddMenuGroupPerProviderOperationCompleted);
             }
@@ -1869,7 +1872,8 @@ namespace HandUpGUI.localhost {
                         ProviderID,
                         ProviderIDSpecified,
                         MenuGroupName,
-                        MenuGroupDescription}, this.AddMenuGroupPerProviderOperationCompleted, userState);
+                        MenuGroupDescription,
+                        FKiMenuGroupID}, this.AddMenuGroupPerProviderOperationCompleted, userState);
         }
         
         private void OnAddMenuGroupPerProviderOperationCompleted(object arg) {
