@@ -49,12 +49,6 @@ namespace HandUpGUI {
                         ddlMenuGroup.Items.Add(li);
                         ddlEditMenuGroup.Items.Add(li);
                     }
-                    foreach (DataRow dr in dsMG.Tables[0].Rows) {
-                        ListItem li = new ListItem();
-                        li.Text = dr["sMenuGroupName"].ToString();
-                        li.Value = dr["PKiMenuGroupID"].ToString();
-                        ddlMainMenuGroup.Items.Add(li);
-                    }
                     foreach (DataRow dr in dsSS.Tables[0].Rows) {
                         ListItem li = new ListItem();
                         li.Text = dr["sName"].ToString();
@@ -70,6 +64,23 @@ namespace HandUpGUI {
                         ddlSubmenuGroup.Items.Add(li);
                     }
                 }
+        }
+
+        protected void PopulateAfterGroupEdit() {
+            localhost.HandUpService WSNew = new localhost.HandUpService();
+            DataSet dsMG = new DataSet();
+            dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true); ListItem liF = new ListItem();
+            liF.Text = "Please select";
+            liF.Value = "0";
+            ddlMainMenuGroup.Items.Add(liF);
+            ddlEditMenuGroup.Items.Add(liF);
+            foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                ListItem li = new ListItem();
+                li.Text = dr["sMenuGroupName"].ToString();
+                li.Value = dr["PKiMenuGroupID"].ToString();
+                ddlMainMenuGroup.Items.Add(li);
+                ddlEditMenuGroup.Items.Add(li);
+            }
         }
 
         /// <summary>
@@ -465,6 +476,7 @@ namespace HandUpGUI {
         protected void btnMenuGroupSubmit_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.UpdateMenuGroupPerProvider(Convert.ToInt32(PKiProviderID), true, Convert.ToInt32(ddlEditMenuGroup.SelectedValue), true, txtMenuGroupEditName.Text, txtMenuGroupEditDescription.Text, ddlMainMenuGroup.SelectedValue);
+            PopulateAfterGroupEdit();
         }
 
         protected void btnServiceStationEdit_Click(object sender, EventArgs e) {

@@ -87,6 +87,7 @@ namespace HandUpGUI {
                 if (!IsPostBack) {
                     //PopulateMenu();
                     PopulateMenuBase("0");
+                    hdnGroupCurrent.Value = "0";
                     if (PKiEmployeeTypeID == "2") {
                         Advertisement();
                     }
@@ -118,7 +119,7 @@ namespace HandUpGUI {
             foreach (DataRow drGroups in ds.Tables["MenuGroup"].Rows) {
                 if (drGroups["FKiMenuGroupID"].ToString() == GroupCurrent) {
                     DoesHavemenu = true;
-                    BaseMenu += "<tr><td><div style='border-width:thin; background-color:transparent; cursor:pointer; color:White; font-weight:bolder; font-family:Arial; background-color:Lime' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuAreaByID(\"" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td></tr>";
+                    BaseMenu += "<tr><td width='20%'></td><td align='center'><div style='border-width:thin; background-color:transparent; cursor:pointer; color:White; font-weight:bolder; font-family:Arial; background-color:rgb(192,212,79)' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuAreaByID(\"" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td><td width='20%'></td></tr>";
                 }
             }
             BaseMenu += "</table>";
@@ -128,7 +129,7 @@ namespace HandUpGUI {
                 int ItemRow = 0;
                 foreach (DataRow dr in ds.Tables[0].Rows) {
                     if (dr["FKiMenuID"].ToString() == "0" && dr["FKiMenuGroupID"].ToString() == GroupCurrent) {
-                        MenuTotal += "<tr><td>" + dr["sMenuItemName"].ToString() + "</td><td width='100%'>" + dr["sMenuItemDescription"].ToString();
+                        MenuTotal += "<tr><td><B>" + dr["sMenuItemName"].ToString() + "</br></B>" + dr["sMenuItemDescription"].ToString() + "</td><td width='100%'>" + dr["sMenuItemDescription"].ToString();
                         CurrentMenuID = dr["PKiMenuID"].ToString();
                         int ItemColumn = 0;
                         foreach (DataTable dt in ds.Tables) {
@@ -370,14 +371,17 @@ namespace HandUpGUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
-            localhost.HandUpService WSNew = new localhost.HandUpService();
-            DataSet ds = new DataSet();
-            ds = WSNew.TableAlertPerEmployee(Convert.ToInt32(PKiEmployeeID), true);
-            if (ds.Tables[0].Rows.Count > 0) {
-                foreach (DataRow dr in ds.Tables[0].Rows) {
-                    lblAlert.Text += dr["sTableName"].ToString() + "\n" + dr["sAlertMessage"].ToString() + "|";
+            try {
+                localhost.HandUpService WSNew = new localhost.HandUpService();
+                DataSet ds = new DataSet();
+                ds = WSNew.TableAlertPerEmployee(Convert.ToInt32(PKiEmployeeID), true);
+                if (ds.Tables[0].Rows.Count > 0) {
+                    foreach (DataRow dr in ds.Tables[0].Rows) {
+                        lblAlert.Text += dr["sTableName"].ToString() + "\n" + dr["sAlertMessage"].ToString() + "|";
+                    }
                 }
             }
+            catch { }
         }
 
         protected void btnUpdateTextValues_Click(object sender, EventArgs e) {

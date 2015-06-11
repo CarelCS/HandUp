@@ -19,6 +19,7 @@
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 document.getElementById('dvGroups').style.display = 'none';
+                document.getElementById('dvSubmenu').style.display = 'none';
                 break;
             case "2":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -37,6 +38,7 @@
                 document.getElementById('dvReports').style.display = '';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 document.getElementById('dvGroups').style.display = 'none';
+                document.getElementById('dvSubmenu').style.display = 'none';
                 break;
             case "4":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -46,6 +48,7 @@
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = '';
                 document.getElementById('dvGroups').style.display = 'none';
+                document.getElementById('dvSubmenu').style.display = 'none';
                 break;
             case "5":
                 document.getElementById('dvEmployeeDetails').style.display = 'none';
@@ -55,6 +58,7 @@
                 document.getElementById('dvReports').style.display = 'none';
                 document.getElementById('dvTableManagement').style.display = 'none';
                 document.getElementById('dvGroups').style.display = '';
+                document.getElementById('dvSubmenu').style.display = 'none';
                 break;
             default:
         }

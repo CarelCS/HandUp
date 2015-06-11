@@ -101,9 +101,33 @@
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = OrderID;
         openOrderTextWindow();
     }
-    
+
+    function ChangeDivDisplay() {
+        DivDisplay = document.getElementById("<%= hdnDisplayAreas.ClientID %>").value;
+        if (DivDisplay == "Menu") {
+            document.getElementById('dvMenu').style.display = '';
+            document.getElementById('dvOrderList').style.display = 'none';
+            document.getElementById('dvAddTable').style.display = 'none';
+        }
+        if (DivDisplay == "Order") {
+            document.getElementById('dvMenu').style.display = 'none';
+            document.getElementById('dvOrderList').style.display = '';
+            document.getElementById('dvAddTable').style.display = 'none';
+        }
+        if (DivDisplay == "Split") {
+            document.getElementById('dvMenu').style.display = '';
+            document.getElementById('dvOrderList').style.display = '';
+            document.getElementById('dvAddTable').style.display = 'none';
+        }
+        if (DivDisplay == "Hide") {
+            document.getElementById('dvMenu').style.display = 'none';
+            document.getElementById('dvOrderList').style.display = 'none';
+            document.getElementById('dvAddTable').style.display = 'none';
+        }
+    }
 
     function ChangeDiv(DivDisplay) {
+        document.getElementById("<%= hdnDisplayAreas.ClientID %>").value = DivDisplay;
         if (DivDisplay == "Menu") {
             document.getElementById('dvMenu').style.display = '';
             document.getElementById('dvOrderList').style.display = 'none';
@@ -164,7 +188,23 @@
     }
 
     function ChangemenuAreaByID(GroupID) {
+        document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value = document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value + "|" + document.getElementById("<%= hdnGroupCurrent.ClientID %>").value;
         document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = GroupID;
+        var ClickChangeAlert = document.getElementById("<%= btnChangeGroup.ClientID %>");
+        ClickChangeAlert.click();
+    }
+    function btnGoBackOneGroup() {
+        var X = document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value;
+        alert(X);
+        var ArrayBack = X.split("|");
+        var NewBack = "";
+        for (i = 0; i < ArrayBack.length - 1; i++) {
+            alert(ArrayBack[i]);
+            NewBack = NewBack + "|" + ArrayBack[i];
+        }
+        alert(NewBack);
+        document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value = NewBack;
+        document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = ArrayBack[ArrayBack.length - 1];
         var ClickChangeAlert = document.getElementById("<%= btnChangeGroup.ClientID %>");
         ClickChangeAlert.click();
     }
@@ -209,6 +249,31 @@
             </td>
         </tr>
     </table>
+    <table>
+        <tr>
+            <td>
+                <div id="dvWaiterMenu">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div id="dvTablesTop" runat="server">
+                                </div>
+                            </td>
+                            <td>
+                                <input id="Button1" type="button" value="Go to Table" onclick="OpenTableDDL()" />
+                            </td>
+                            <td>
+                                <input id="Button2" type="button" value="Add a Table" onclick="ShowAdd()"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <asp:Label ID="lblTableOpened" runat="server" Text=""></asp:Label>
+                </div>
+            </td>
+        </tr>
+     </table>
      <table>
         <tr>
             <td><div id="dvCallWaiter" onclick="CallWaiter()" runat="server"><img id="imgCallWaiter" src="Images/Icons/CallWaiter.png" runat="server" /></div></td>
@@ -233,29 +298,6 @@
         </tr>
     </table>
     <table width="100%">
-        <tr>
-            <td>
-                <div id="dvWaiterMenu">
-                    <table width="100%">
-                        <tr>
-                            <td>
-                                <div id="dvTablesTop" runat="server">
-                                </div>
-                            </td>
-                            <td>
-                                <input id="Button1" type="button" value="Go to Table" onclick="OpenTableDDL()" />
-                            </td>
-                            <td>
-                                <input id="Button2" type="button" value="Add a Table" onclick="ShowAdd()"/>
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <br />
-                    <asp:Label ID="lblTableOpened" runat="server" Text=""></asp:Label>
-                </div>
-            </td>
-        </tr>
         <tr>
             <td>
                 <div id="dvAddTable" style="display: none;">
@@ -303,6 +345,10 @@
             <td>
                 <div id="dvMenu" style="display: inline;">
                     <table width="100%">
+                        <tr>
+                            <td>
+                                <input id="btnBackOneGroup" type="button" value="Back" onclick="btnGoBackOneGroup()" /></td>
+                        </tr>
                         <tr>
                             <td>
                             <div id="dvMenuGroup" runat="server"></div><br />
@@ -382,6 +428,8 @@
         <asp:HiddenField ID="hdnTextForAlertGUI" runat="server" />
         <asp:HiddenField ID="hdnAlertWindowOpen" runat="server" />
         <asp:HiddenField ID="hdnAlertText" runat="server" />
+        <asp:HiddenField ID="hdnDisplayAreas" runat="server" />
+        <asp:HiddenField ID="hdnGroupCurrentPrev" runat="server" />
     </div>
     </form>
 </body>
@@ -389,5 +437,6 @@
     if (document.getElementById("<%= hdnTableCodeOnlyGuest.ClientID %>").value != "") {
         document.getElementById('dvWaiterMenu').style.display = 'none';
     }
+    ChangeDivDisplay();
 </script>
 </html>

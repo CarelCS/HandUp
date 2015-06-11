@@ -49,6 +49,24 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.Label lblEmployeeUserName;
         
         /// <summary>
+        /// dvTablesTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTablesTop;
+        
+        /// <summary>
+        /// lblTableOpened control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTableOpened;
+        
+        /// <summary>
         /// dvCallWaiter control.
         /// </summary>
         /// <remarks>
@@ -137,24 +155,6 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage imgHide;
-        
-        /// <summary>
-        /// dvTablesTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTablesTop;
-        
-        /// <summary>
-        /// lblTableOpened control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTableOpened;
         
         /// <summary>
         /// tblTableName control.
@@ -443,5 +443,23 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnAlertText;
+        
+        /// <summary>
+        /// hdnDisplayAreas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDisplayAreas;
+        
+        /// <summary>
+        /// hdnGroupCurrentPrev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnGroupCurrentPrev;
     }
 }
