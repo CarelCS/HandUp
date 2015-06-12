@@ -84,23 +84,6 @@
         document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "OPEN";
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         newWindow.document.write("<table><tr><td>" + value + "</td></tr><tr><td><textarea id=\"txtAddGUI\" cols=\"20\" rows=\"2\"></textarea></td></tr><tr><td><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setAlertValue(document.getElementById('txtAddGUI').value);window.close();\" value=\"Confirm the GUI\" /></td></tr></table>");
-
-        //alert("CLOSING GUI VAL : " + document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value);
-//        var Counter = 0;
-//        while (document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value == "" && Counter < 10000) {
-//            Counter = Counter + 1;
-//            var TextValue = document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value;
-//            //alert("CLOSING : " + TextValue);
-//            if (TextValue != "") {
-//                newWindow.close();
-//                //alert("CLOSE");
-//                document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "";
-//                //alert("CLOSED");
-//                //alert(document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value);
-//            }
-//            var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
-//            ClickChangeAlert.click();
-//        }
     }
 
     function setAlertValue(value) {
@@ -181,6 +164,7 @@
                 if (ConfirmNow) {
                     var IsOpen = document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
                     if (IsOpen == "") {
+                        i = MyArray2.length - 1;
                         openOrderConfirmAlertWindow(MyArray2[i]);
                     }
                 }
