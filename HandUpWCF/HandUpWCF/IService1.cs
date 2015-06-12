@@ -87,7 +87,7 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet TableAlertPerEmployee(int EmployeeID);
         [OperationContract]
-        void ConfirmAlert(string sCode);
+        void ConfirmAlert(string sCode, int EmployeeID);
         [OperationContract]
         DataSet getEmployeeByID(int EmployeeID);
 

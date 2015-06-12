@@ -36,11 +36,13 @@ namespace HandUpWCF {
             return aDataset;
         }
 
-        public void ConfirmAlert(string sCode) {
+        public void ConfirmAlert(string sCode, int EmployeeID) {
             tblTablealerts aTableAlert = new tblTablealerts();
             aTableAlert.sAlertGUI = sCode;
             aTableAlert.bActiveStatus = 0;
-            string sSql = "UPDATE tblTableAlerts SET bActiveStatus = 0, dtAlertConfirmTime = " + DateTime.Now + " WHERE bActiveStatus = 1 AND sAlertGUI = '" + sCode + "'";
+            DateTime theDate = DateTime.Now;
+            string NowDateTime = theDate.ToString("yyyy-MM-dd H:mm:ss");
+            string sSql = "UPDATE tblTableAlerts SET bActiveStatus = 0, dtAlertConfimTime = '" + NowDateTime + "' WHERE FKiEployeeID = '" + EmployeeID + "' AND bActiveStatus = 1 AND sAlertGUI = '" + sCode + "'";
             DataSet DS = aTableAlert.executeCustomSQLDataSet(sSql);
         }
 

@@ -1142,23 +1142,27 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ConfirmAlert", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void ConfirmAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sCode) {
+        public void ConfirmAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sCode, int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
             this.Invoke("ConfirmAlert", new object[] {
-                        sCode});
+                        sCode,
+                        EmployeeID,
+                        EmployeeIDSpecified});
         }
         
         /// <remarks/>
-        public void ConfirmAlertAsync(string sCode) {
-            this.ConfirmAlertAsync(sCode, null);
+        public void ConfirmAlertAsync(string sCode, int EmployeeID, bool EmployeeIDSpecified) {
+            this.ConfirmAlertAsync(sCode, EmployeeID, EmployeeIDSpecified, null);
         }
         
         /// <remarks/>
-        public void ConfirmAlertAsync(string sCode, object userState) {
+        public void ConfirmAlertAsync(string sCode, int EmployeeID, bool EmployeeIDSpecified, object userState) {
             if ((this.ConfirmAlertOperationCompleted == null)) {
                 this.ConfirmAlertOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConfirmAlertOperationCompleted);
             }
             this.InvokeAsync("ConfirmAlert", new object[] {
-                        sCode}, this.ConfirmAlertOperationCompleted, userState);
+                        sCode,
+                        EmployeeID,
+                        EmployeeIDSpecified}, this.ConfirmAlertOperationCompleted, userState);
         }
         
         private void OnConfirmAlertOperationCompleted(object arg) {

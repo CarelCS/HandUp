@@ -372,6 +372,7 @@ namespace HandUpGUI {
         /// <param name="e"></param>
         protected void btnAlertUpdate_Click(object sender, EventArgs e) {
             try {
+                lblAlert.Text = "";
                 localhost.HandUpService WSNew = new localhost.HandUpService();
                 DataSet ds = new DataSet();
                 ds = WSNew.TableAlertPerEmployee(Convert.ToInt32(PKiEmployeeID), true);
@@ -429,7 +430,7 @@ namespace HandUpGUI {
 
         protected void btnUpdateAlertConfirmed_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            WSNew.ConfirmAlert(hdnTextForAlertGUI.Value);
+            WSNew.ConfirmAlert(hdnTextForAlertGUI.Value, Convert.ToInt32(PKiEmployeeID), true);
         }
 
         protected void btnAlertSent_Click(object sender, EventArgs e) {

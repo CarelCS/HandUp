@@ -145,9 +145,9 @@ namespace HandUpWCF {
             return clsEmployees.TableAlertPerEmployee(EmployeeID);
         }
 
-        public void ConfirmAlert(string sCode) {
+        public void ConfirmAlert(string sCode, int EmployeeID) {
             Employees clsEmployee = new Employees();
-            clsEmployee.ConfirmAlert(sCode);
+            clsEmployee.ConfirmAlert(sCode, EmployeeID);
         }
 
         #endregion
