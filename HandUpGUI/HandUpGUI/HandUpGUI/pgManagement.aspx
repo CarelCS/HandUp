@@ -220,7 +220,7 @@
         </tr>
         <tr>
             <td>
-                Main Menu Group
+                Base Menu Group
             </td>
             <td colspan="3">
                 <asp:DropDownList ID="ddlMainMenuGroup" runat="server">

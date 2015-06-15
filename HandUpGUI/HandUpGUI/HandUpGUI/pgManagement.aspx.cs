@@ -488,7 +488,16 @@ namespace HandUpGUI {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet dsMG = new DataSet();
             dsMG = WSNew.getMenuGroupsPerProvider(Convert.ToInt32(PKiProviderID), true);
+            ListItem liF = new ListItem();
+            liF.Text = "Please select";
+            liF.Value = "0";
+            ddlMainMenuGroup.Items.Clear();
+            ddlMainMenuGroup.Items.Add(liF);
             foreach (DataRow dr in dsMG.Tables[0].Rows) {
+                ListItem li = new ListItem();
+                li.Text = dr["sMenuGroupName"].ToString();
+                li.Value = dr["PKiMenuGroupID"].ToString();
+                ddlMainMenuGroup.Items.Add(li);
                 if (ddlEditMenuGroup.SelectedValue == dr["PKiMenuGroupID"].ToString()) {
                     txtMenuGroupEditName.Text = dr["sMenuGroupName"].ToString();
                     txtMenuGroupEditDescription.Text = dr["sMenuGroupDescription"].ToString();
