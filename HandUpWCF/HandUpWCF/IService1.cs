@@ -172,6 +172,27 @@ namespace HandUpWCF {
 
         #endregion
 
+        #region Stock Management
+
+        [OperationContract]
+        DataSet StockTable(int ProviderID);
+
+        [OperationContract]
+        void StockAdd(int StockID, double StockAddValue);
+
+        [OperationContract]
+        void StockDeduct(int StockID, double StockAddValue);
+
+        [OperationContract]
+        DataSet StockItem(int StockID);
+
+        [OperationContract]
+        DataSet StockTypeList();
+
+        [OperationContract]
+        void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType);
+        #endregion
+
         [OperationContract]
         string AddEmployee();
         [OperationContract]

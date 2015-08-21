@@ -93,6 +93,7 @@
     <Content Include="pgOrderProcessing.aspx" />
     <Content Include="pgPatron.aspx" />
     <Content Include="pgRegistration.aspx" />
+    <Content Include="pgStockManagement.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="pgRegistration.aspx.designer.cs">
       <DependentUpon>pgRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pgStockManagement.aspx.cs">
+      <DependentUpon>pgStockManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pgStockManagement.aspx.designer.cs">
+      <DependentUpon>pgStockManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

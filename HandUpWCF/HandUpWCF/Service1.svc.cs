@@ -186,6 +186,40 @@ namespace HandUpWCF {
             return ds;
         }
 
+        #region Stock Management
+
+        public DataSet StockTable(int providerID) {
+            StockManagment clsStockManagement = new StockManagment();
+            return clsStockManagement.StockTable(providerID);
+        }
+
+        public void StockAdd(int StockID, double StockAddValue) {
+            StockManagment clsStockManagement = new StockManagment();
+            clsStockManagement.StockAdd(StockID, StockAddValue);
+        }
+
+
+        public void StockDeduct(int StockID, double StockAddValue) {
+            StockManagment clsStockManagement = new StockManagment();
+            clsStockManagement.StockDeduct(StockID, StockAddValue);
+        }
+        public DataSet StockItem(int StockID) {
+            StockManagment clsStockManagement = new StockManagment();
+            return clsStockManagement.StockItem(StockID);
+        }
+
+        public DataSet StockTypeList() { 
+            StockManagment clsStockManagement = new StockManagment();
+            return clsStockManagement.StockTypeList();
+        }
+
+        public void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType) {
+            StockManagment clsStockManagement = new StockManagment();
+            clsStockManagement.UpdateStockItem(StockItemID, StockName, StockDesc, StockLevel, StocklevelReplace, MenuItem, SocklevelType);
+        }
+
+        #endregion
+
         #region Management
 
         public DataSet MenuPerProviderAdminFull(int ProviderID) {

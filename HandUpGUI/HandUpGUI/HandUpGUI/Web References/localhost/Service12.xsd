@@ -1283,6 +1283,126 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="StockTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProviderID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockTableResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockTableResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockID" type="xs:int" />
+        <xs:element minOccurs="0" name="StockAddValue" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockAddResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockDeduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockID" type="xs:int" />
+        <xs:element minOccurs="0" name="StockAddValue" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockDeductResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockItemResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockTypeList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StockTypeListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockTypeListResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStockItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StockItemID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StockName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StockDesc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StockLevel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StocklevelReplace" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MenuItem" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SocklevelType" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStockItemResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddEmployee">
     <xs:complexType>
       <xs:sequence />

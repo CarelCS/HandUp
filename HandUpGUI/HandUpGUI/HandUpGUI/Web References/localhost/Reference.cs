@@ -128,6 +128,18 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback DefaultReportPerProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback StockTableOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback StockAddOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback StockDeductOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback StockItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback StockTypeListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateStockItemOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback EditEmployeeOperationCompleted;
@@ -334,6 +346,24 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event DefaultReportPerProviderCompletedEventHandler DefaultReportPerProviderCompleted;
+        
+        /// <remarks/>
+        public event StockTableCompletedEventHandler StockTableCompleted;
+        
+        /// <remarks/>
+        public event StockAddCompletedEventHandler StockAddCompleted;
+        
+        /// <remarks/>
+        public event StockDeductCompletedEventHandler StockDeductCompleted;
+        
+        /// <remarks/>
+        public event StockItemCompletedEventHandler StockItemCompleted;
+        
+        /// <remarks/>
+        public event StockTypeListCompletedEventHandler StockTypeListCompleted;
+        
+        /// <remarks/>
+        public event UpdateStockItemCompletedEventHandler UpdateStockItemCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -2268,6 +2298,206 @@ namespace HandUpGUI.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/StockTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet StockTable(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("StockTable", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void StockTableAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.StockTableAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void StockTableAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.StockTableOperationCompleted == null)) {
+                this.StockTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStockTableOperationCompleted);
+            }
+            this.InvokeAsync("StockTable", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.StockTableOperationCompleted, userState);
+        }
+        
+        private void OnStockTableOperationCompleted(object arg) {
+            if ((this.StockTableCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.StockTableCompleted(this, new StockTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/StockAdd", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void StockAdd(int StockID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StockIDSpecified, double StockAddValue, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StockAddValueSpecified) {
+            this.Invoke("StockAdd", new object[] {
+                        StockID,
+                        StockIDSpecified,
+                        StockAddValue,
+                        StockAddValueSpecified});
+        }
+        
+        /// <remarks/>
+        public void StockAddAsync(int StockID, bool StockIDSpecified, double StockAddValue, bool StockAddValueSpecified) {
+            this.StockAddAsync(StockID, StockIDSpecified, StockAddValue, StockAddValueSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void StockAddAsync(int StockID, bool StockIDSpecified, double StockAddValue, bool StockAddValueSpecified, object userState) {
+            if ((this.StockAddOperationCompleted == null)) {
+                this.StockAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStockAddOperationCompleted);
+            }
+            this.InvokeAsync("StockAdd", new object[] {
+                        StockID,
+                        StockIDSpecified,
+                        StockAddValue,
+                        StockAddValueSpecified}, this.StockAddOperationCompleted, userState);
+        }
+        
+        private void OnStockAddOperationCompleted(object arg) {
+            if ((this.StockAddCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.StockAddCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/StockDeduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void StockDeduct(int StockID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StockIDSpecified, double StockAddValue, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StockAddValueSpecified) {
+            this.Invoke("StockDeduct", new object[] {
+                        StockID,
+                        StockIDSpecified,
+                        StockAddValue,
+                        StockAddValueSpecified});
+        }
+        
+        /// <remarks/>
+        public void StockDeductAsync(int StockID, bool StockIDSpecified, double StockAddValue, bool StockAddValueSpecified) {
+            this.StockDeductAsync(StockID, StockIDSpecified, StockAddValue, StockAddValueSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void StockDeductAsync(int StockID, bool StockIDSpecified, double StockAddValue, bool StockAddValueSpecified, object userState) {
+            if ((this.StockDeductOperationCompleted == null)) {
+                this.StockDeductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStockDeductOperationCompleted);
+            }
+            this.InvokeAsync("StockDeduct", new object[] {
+                        StockID,
+                        StockIDSpecified,
+                        StockAddValue,
+                        StockAddValueSpecified}, this.StockDeductOperationCompleted, userState);
+        }
+        
+        private void OnStockDeductOperationCompleted(object arg) {
+            if ((this.StockDeductCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.StockDeductCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/StockItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet StockItem(int StockID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool StockIDSpecified) {
+            object[] results = this.Invoke("StockItem", new object[] {
+                        StockID,
+                        StockIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void StockItemAsync(int StockID, bool StockIDSpecified) {
+            this.StockItemAsync(StockID, StockIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void StockItemAsync(int StockID, bool StockIDSpecified, object userState) {
+            if ((this.StockItemOperationCompleted == null)) {
+                this.StockItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStockItemOperationCompleted);
+            }
+            this.InvokeAsync("StockItem", new object[] {
+                        StockID,
+                        StockIDSpecified}, this.StockItemOperationCompleted, userState);
+        }
+        
+        private void OnStockItemOperationCompleted(object arg) {
+            if ((this.StockItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.StockItemCompleted(this, new StockItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/StockTypeList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet StockTypeList() {
+            object[] results = this.Invoke("StockTypeList", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void StockTypeListAsync() {
+            this.StockTypeListAsync(null);
+        }
+        
+        /// <remarks/>
+        public void StockTypeListAsync(object userState) {
+            if ((this.StockTypeListOperationCompleted == null)) {
+                this.StockTypeListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStockTypeListOperationCompleted);
+            }
+            this.InvokeAsync("StockTypeList", new object[0], this.StockTypeListOperationCompleted, userState);
+        }
+        
+        private void OnStockTypeListOperationCompleted(object arg) {
+            if ((this.StockTypeListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.StockTypeListCompleted(this, new StockTypeListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateStockItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateStockItem([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockItemID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockDesc, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockLevel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StocklevelReplace, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItem, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SocklevelType) {
+            this.Invoke("UpdateStockItem", new object[] {
+                        StockItemID,
+                        StockName,
+                        StockDesc,
+                        StockLevel,
+                        StocklevelReplace,
+                        MenuItem,
+                        SocklevelType});
+        }
+        
+        /// <remarks/>
+        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType) {
+            this.UpdateStockItemAsync(StockItemID, StockName, StockDesc, StockLevel, StocklevelReplace, MenuItem, SocklevelType, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType, object userState) {
+            if ((this.UpdateStockItemOperationCompleted == null)) {
+                this.UpdateStockItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateStockItemOperationCompleted);
+            }
+            this.InvokeAsync("UpdateStockItem", new object[] {
+                        StockItemID,
+                        StockName,
+                        StockDesc,
+                        StockLevel,
+                        StocklevelReplace,
+                        MenuItem,
+                        SocklevelType}, this.UpdateStockItemOperationCompleted, userState);
+        }
+        
+        private void OnUpdateStockItemOperationCompleted(object arg) {
+            if ((this.UpdateStockItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateStockItemCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AddEmployee() {
@@ -3894,6 +4124,96 @@ namespace HandUpGUI.localhost {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void StockTableCompletedEventHandler(object sender, StockTableCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class StockTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal StockTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void StockAddCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void StockDeductCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void StockItemCompletedEventHandler(object sender, StockItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class StockItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal StockItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void StockTypeListCompletedEventHandler(object sender, StockTypeListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class StockTypeListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal StockTypeListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void UpdateStockItemCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]

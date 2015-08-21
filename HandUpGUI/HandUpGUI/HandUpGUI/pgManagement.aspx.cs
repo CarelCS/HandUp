@@ -549,5 +549,9 @@ namespace HandUpGUI {
             ReportString += "</table>";
             dvReportDisplay.InnerHtml = ReportString;
         }
+
+        protected void btnGoToStock_Click(object sender, EventArgs e) {
+            Server.Transfer("pgStockManagement.aspx", false);
+        }
     }
 }

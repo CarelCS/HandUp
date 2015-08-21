@@ -83,6 +83,9 @@
     <Compile Include="DBClasses\tblProviders.cs" />
     <Compile Include="DBClasses\tblServicestation.cs" />
     <Compile Include="DBClasses\tblSpecials.cs" />
+    <Compile Include="DBClasses\tblStock.cs" />
+    <Compile Include="DBClasses\tblStockleveltype.cs" />
+    <Compile Include="DBClasses\tblStockpermenuitem.cs" />
     <Compile Include="DBClasses\tblTablealerts.cs" />
     <Compile Include="DBClasses\tblTables.cs" />
     <Compile Include="Employees.cs" />
@@ -94,6 +97,7 @@
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockManagment.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>
   <ItemGroup>

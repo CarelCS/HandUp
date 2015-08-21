@@ -302,6 +302,42 @@
   <wsdl:message name="IHandUpService_DefaultReportPerProvider_OutputMessage">
     <wsdl:part name="parameters" element="tns:DefaultReportPerProviderResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_StockTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:StockTable" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StockTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:StockAdd" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StockAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockDeduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:StockDeduct" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockDeduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StockDeductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:StockItem" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StockItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockTypeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:StockTypeList" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_StockTypeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StockTypeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateStockItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStockItem" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_UpdateStockItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStockItemResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
   </wsdl:message>
@@ -564,6 +600,30 @@
     <wsdl:operation name="DefaultReportPerProvider">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/DefaultReportPerProvider" message="tns:IHandUpService_DefaultReportPerProvider_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/DefaultReportPerProviderResponse" message="tns:IHandUpService_DefaultReportPerProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StockTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/StockTable" message="tns:IHandUpService_StockTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/StockTableResponse" message="tns:IHandUpService_StockTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StockAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/StockAdd" message="tns:IHandUpService_StockAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/StockAddResponse" message="tns:IHandUpService_StockAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StockDeduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/StockDeduct" message="tns:IHandUpService_StockDeduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/StockDeductResponse" message="tns:IHandUpService_StockDeduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StockItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/StockItem" message="tns:IHandUpService_StockItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/StockItemResponse" message="tns:IHandUpService_StockItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StockTypeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/StockTypeList" message="tns:IHandUpService_StockTypeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/StockTypeListResponse" message="tns:IHandUpService_StockTypeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStockItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateStockItem" message="tns:IHandUpService_UpdateStockItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateStockItemResponse" message="tns:IHandUpService_UpdateStockItem_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployee" message="tns:IHandUpService_AddEmployee_InputMessage" />
@@ -1046,6 +1106,60 @@
     </wsdl:operation>
     <wsdl:operation name="DefaultReportPerProvider">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/DefaultReportPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockTable">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/StockTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockAdd">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/StockAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockDeduct">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/StockDeduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockItem">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/StockItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockTypeList">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/StockTypeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStockItem">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateStockItem" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
