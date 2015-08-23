@@ -11,6 +11,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _ISTOCKLEVEL="iStockLevel";
 		public const string _FKISTOCKLEVELTYPEID="FKiStockLevelTypeID";
 		public const string _ISTOCKLEVELREPLACE="iStockLevelReplace";
+        public const string _IQUANTITY = "iQuantity";
 		public const string _tblStock="tblstock";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -71,6 +72,17 @@ namespace HandUpWCF.DBClasses{
 				_iStockLevelReplace = value;
 			}
 		}
+
+        private int _iQuantity;
+        public int iQuantity {
+            get {
+                return _iQuantity;
+            }
+            set {
+                _iQuantity = value;
+            }
+        }
+
 		private string sOrderBy="PKiStockID";
 		private string sOrderType="ASC";
 
@@ -84,6 +96,7 @@ namespace HandUpWCF.DBClasses{
 			this.iStockLevel=atblStock.iStockLevel;
 			this.FKiStockLevelTypeID=atblStock.FKiStockLevelTypeID;
 			this.iStockLevelReplace=atblStock.iStockLevelReplace;
+            this.iQuantity = atblStock.iQuantity;
 		}
 
 		public tblStock(){
@@ -131,6 +144,8 @@ namespace HandUpWCF.DBClasses{
 					atblStock.FKiStockLevelTypeID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("iStockLevelReplace");
 					atblStock.iStockLevelReplace=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("iQuantity");
+                    atblStock.iQuantity = aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblStock.Add(atblStock);
 					}
 			}
@@ -272,6 +287,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@iStockLevel",iStockLevel);
 				insertCommand.Parameters.AddWithValue("@FKiStockLevelTypeID",FKiStockLevelTypeID);
 				insertCommand.Parameters.AddWithValue("@iStockLevelReplace",iStockLevelReplace);
+                insertCommand.Parameters.AddWithValue("@iQuantity", iQuantity);
 				insertCommand.ExecuteNonQuery();
              PKiStockID= (Int32)insertCommand.Parameters["@outPKiStockID"].Value;
 				return this;
@@ -285,9 +301,24 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@insStockDescription", sStockDescription);
 				updateCommand.Parameters.AddWithValue("@iniStockLevel", iStockLevel);
 				updateCommand.Parameters.AddWithValue("@inFKiStockLevelTypeID", FKiStockLevelTypeID);
-				updateCommand.Parameters.AddWithValue("@iniStockLevelReplace", iStockLevelReplace);
+                updateCommand.Parameters.AddWithValue("@iniStockLevelReplace", iStockLevelReplace);
+                updateCommand.Parameters.AddWithValue("@iniQuantity", iQuantity);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}
+
+            public bool executeStockSP() {
+                MySqlCommand updateCommand = new MySqlCommand("stockReduce_UPDATE", clsDatabase.getPooledConnection());
+                updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                updateCommand.Parameters.AddWithValue("@inPKiStockID", PKiStockID);
+                updateCommand.Parameters.AddWithValue("@insStockName", sStockName);
+                updateCommand.Parameters.AddWithValue("@insStockDescription", sStockDescription);
+                updateCommand.Parameters.AddWithValue("@iniStockLevel", iStockLevel);
+                updateCommand.Parameters.AddWithValue("@inFKiStockLevelTypeID", FKiStockLevelTypeID);
+                updateCommand.Parameters.AddWithValue("@iniStockLevelReplace", iStockLevelReplace);
+                updateCommand.Parameters.AddWithValue("@iniQuantity", iQuantity);
+                updateCommand.ExecuteNonQuery();
+                return true;
+            }
 	}
 }

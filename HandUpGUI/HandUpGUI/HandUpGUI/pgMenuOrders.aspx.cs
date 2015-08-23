@@ -122,6 +122,7 @@ namespace HandUpGUI {
                     BaseMenu += "<tr><td width='20%'></td><td align='center'><div style='border-width:thin; background-color:transparent; cursor:pointer; color:White; font-weight:bolder; font-family:Arial; background-color:rgb(192,212,79)' id=" + drGroups["PKiMenuGroupID"].ToString() + "Click onclick=ChangemenuAreaByID(\"" + drGroups["PKiMenuGroupID"].ToString() + "\")>" + drGroups["sMenuGroupName"].ToString() + "</div></td><td width='20%'></td></tr>";
                 }
             }
+            hdnMaxSubs.Value = (ds.Tables.Count - 1).ToString();
             BaseMenu += "</table>";
             if (!DoesHavemenu) {
                 string MenuTotal = "<table>";
@@ -140,7 +141,7 @@ namespace HandUpGUI {
                                 bool IsItem = false;
                                 foreach (DataRow drInner in dt.Rows) {
                                     if (drInner["FKiMenuID"].ToString() == CurrentMenuID) {
-                                        MenuTotalSUB += "<option value=\"" + drInner["sSubMenuName"].ToString() + "\">" + drInner["sSubMenuName"].ToString() + "</option>";
+                                        MenuTotalSUB += "<option value=\"" + drInner[0].ToString() + "^"  + drInner["sSubMenuName"].ToString() + "\">" + drInner["sSubMenuName"].ToString() + "</option>";
                                         IsItem = true;
                                     }
                                 }
@@ -161,7 +162,7 @@ namespace HandUpGUI {
         }
 
         /// <summary>
-        /// 
+        /// NOT USED. REPLACED BY POPULATEMENUBASE
         /// </summary>
         protected void PopulateMenu() {
             DataSet ds = new DataSet();
@@ -406,7 +407,15 @@ namespace HandUpGUI {
             string OrderID = OrderFull[0];
             string ChoicesString = OrderFull[1];
             localhost.HandUpService WSNew = new localhost.HandUpService();
-            PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoicesString.Replace("~", "<br />")));
+            string[] Suborder = ChoicesString.Split('~');
+            string ChoiceDetail = "";
+            string ChoiceSuborderListIDs = "";
+            foreach (string SuborderID in Suborder) {
+                string[] SuborderIDlists = SuborderID.Split('^');
+                ChoiceDetail += SuborderIDlists[1] + "<br />";
+                ChoiceSuborderListIDs += SuborderIDlists[0] + ",";
+            }
+            PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoiceDetail, ChoiceSuborderListIDs));
         }
 
         /// <summary>

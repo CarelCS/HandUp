@@ -60,6 +60,7 @@
         <xs:element minOccurs="0" name="MenuItemID" type="xs:int" />
         <xs:element minOccurs="0" name="TableID" type="xs:int" />
         <xs:element minOccurs="0" name="TextValue" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SubmenuList" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

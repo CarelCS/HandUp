@@ -16,6 +16,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _SORDERSTATUS="sOrderStatus";
 		public const string _DBLORDERVALUE="dblOrderValue";
 		public const string _IBILLID="iBillID";
+        public const string _SSUBMENULIST = "sSubmenuList";
 		public const string _tblOrders="tblorders";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -121,6 +122,17 @@ namespace HandUpWCF.DBClasses{
 				_iBillID = value;
 			}
 		}
+
+        private string _sSubmenuList;
+        public string sSubmenuList {
+            get {
+                return _sSubmenuList;
+            }
+            set {
+                _sSubmenuList = value;
+            }
+        }
+
 		private string sOrderBy="PKiOrderID";
 		private string sOrderType="ASC";
 
@@ -138,6 +150,7 @@ namespace HandUpWCF.DBClasses{
 			this.sMenuItemChanges=atblOrders.sMenuItemChanges;
 			this.sOrderStatus=atblOrders.sOrderStatus;
 			this.dblOrderValue=atblOrders.dblOrderValue;
+            this.sSubmenuList = atblOrders.sSubmenuList;
 			this.iBillID=atblOrders.iBillID;
 		}
 
@@ -196,6 +209,8 @@ namespace HandUpWCF.DBClasses{
 					atblOrders.dblOrderValue=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetDouble(iIndex);
 					iIndex=aSqlReader.GetOrdinal("iBillID");
 					atblOrders.iBillID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+                    iIndex = aSqlReader.GetOrdinal("sSubmenuList");
+                    atblOrders.sSubmenuList = aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
 					listtblOrders.Add(atblOrders);
 					}
 			}
@@ -413,6 +428,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@sOrderStatus",sOrderStatus);
 				insertCommand.Parameters.AddWithValue("@dblOrderValue",dblOrderValue);
 				insertCommand.Parameters.AddWithValue("@iBillID",iBillID);
+                insertCommand.Parameters.AddWithValue("@sSubmenuList", sSubmenuList);
 				insertCommand.ExecuteNonQuery();
              PKiOrderID= (Int32)insertCommand.Parameters["@outPKiOrderID"].Value;
 				return this;
@@ -432,6 +448,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@insOrderStatus", sOrderStatus);
 				updateCommand.Parameters.AddWithValue("@indblOrderValue", dblOrderValue);
 				updateCommand.Parameters.AddWithValue("@iniBillID", iBillID);
+                updateCommand.Parameters.AddWithValue("@insSubmenuList", sSubmenuList);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

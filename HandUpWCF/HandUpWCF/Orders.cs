@@ -7,7 +7,7 @@ using HandUpWCF.DBClasses;
 
 namespace HandUpWCF {
     public class Orders {
-        public DataSet AddOrder( int MenuItemID, int TableID, string TextValue) {
+        public DataSet AddOrder( int MenuItemID, int TableID, string TextValue, string SubmenuList) {
             tblOrders aOrder = new tblOrders();
             tblMenu aMenuItem=new tblMenu(MenuItemID);
             aOrder.dblOrderValue = aMenuItem.dblMenuItemPrice;
@@ -20,6 +20,7 @@ namespace HandUpWCF {
             aOrder.iBillID = 0;
             aOrder.sMenuItemChanges = TextValue;
             aOrder.sOrderStatus = "1";
+            aOrder.sSubmenuList = SubmenuList;
             aOrder.executeINSERT();
             
             Orders clsOrders=new Orders();
@@ -35,10 +36,10 @@ namespace HandUpWCF {
             tblOrders aOrder = new tblOrders(OrderID);
             aOrder.sOrderStatus = sStatus;
             aOrder.executeUPDATE();
-
-            //string SqlText = "update tblOrders set sOrderStatus = '" + sStatus + "' where PKiOrderID = '" + OrderID + "')";
-            //DataAdapters da = new DataAdapters();
-            //da.InsertUpdateData(SqlText);
+            if (sStatus == "3") {
+                StockManagment sStock = new StockManagment();
+                sStock.UpdateStockLevels(OrderID, aOrder.sSubmenuList);
+            }
         }
 
         public DataSet OrdersPerTable(int TableID) {
@@ -119,6 +120,15 @@ namespace HandUpWCF {
         public DataSet AllOrdersByProviderTableByTableId(int ProverId, int TablesID) {
             DataSet aDataSet = new DataSet();
             return aDataSet;
+        }
+
+        public DataSet GetMenuItemsPerOrder(int OrderID) {
+            DataSet dDataSet = new DataSet();
+
+            tblOrders aOrder = new tblOrders(OrderID);
+            //aOrder.addEquals(tblOrders._PKIORDERID, OrderID);
+            dDataSet = aOrder.executeSelectDataSet();
+            return dDataSet;
         }
     }
 }

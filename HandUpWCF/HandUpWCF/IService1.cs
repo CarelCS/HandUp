@@ -29,7 +29,7 @@ namespace HandUpWCF {
         #region Orders
 
         [OperationContract]
-        DataSet AddOrder(int MenuItemID, int TableID, string TextValue);
+        DataSet AddOrder(int MenuItemID, int TableID, string TextValue, string SubmenuList);
         [OperationContract]
         string ConfirmOrder(int OrderID, string sStatus);
         [OperationContract]

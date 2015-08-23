@@ -31,9 +31,9 @@ namespace HandUpWCF {
 
         #region Orders
 
-        public DataSet AddOrder(int MenuItemID, int TableID, string TextValue) {
+        public DataSet AddOrder(int MenuItemID, int TableID, string TextValue, string SubmenuList) {
             Orders clsOrder = new Orders();
-            return clsOrder.AddOrder(MenuItemID, TableID, TextValue);
+            return clsOrder.AddOrder(MenuItemID, TableID, TextValue, SubmenuList);
         }
 
         public string ConfirmOrder(int OrderID, string sStatus) {

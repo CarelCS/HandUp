@@ -71,5 +71,27 @@ namespace HandUpWCF {
             }
 
         }
+
+        public void UpdateStockLevels(int OrderID, string SubmenuList) {
+            Orders aOrder = new Orders();
+            DataSet dsItems = aOrder.GetMenuItemsPerOrder(OrderID);
+            tblStockpermenuitem aStockMenu = new tblStockpermenuitem();
+            tblStock aStock = new tblStock();
+            
+            foreach (DataRow dr in dsItems.Tables[0].Rows) {
+                aStockMenu.addEquals(tblStockpermenuitem._FKIMENUITEM, Convert.ToInt32(dsItems.Tables[0].Rows[0][3].ToString()));
+                DataSet dsItemsLinked = aStockMenu.executeSelectDataSet();
+                aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(dr[2].ToString()));
+                aStock.executeStockSP();
+                string[] sAllSubs = dsItems.Tables[0].Rows[0][3].ToString().Split(',');
+                foreach (string item in sAllSubs) {
+                    try {
+                        aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(item));
+                        aStock.executeStockSP();
+                    }
+                    catch { }
+                }
+            }
+        }
     }
 }

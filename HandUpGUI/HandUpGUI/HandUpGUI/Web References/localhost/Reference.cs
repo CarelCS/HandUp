@@ -465,23 +465,24 @@ namespace HandUpGUI.localhost {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AddOrder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataSet AddOrder(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int TableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool TableIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string TextValue) {
+        public System.Data.DataSet AddOrder(int MenuItemID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuItemIDSpecified, int TableID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool TableIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string TextValue, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubmenuList) {
             object[] results = this.Invoke("AddOrder", new object[] {
                         MenuItemID,
                         MenuItemIDSpecified,
                         TableID,
                         TableIDSpecified,
-                        TextValue});
+                        TextValue,
+                        SubmenuList});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, int TableID, bool TableIDSpecified, string TextValue) {
-            this.AddOrderAsync(MenuItemID, MenuItemIDSpecified, TableID, TableIDSpecified, TextValue, null);
+        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, int TableID, bool TableIDSpecified, string TextValue, string SubmenuList) {
+            this.AddOrderAsync(MenuItemID, MenuItemIDSpecified, TableID, TableIDSpecified, TextValue, SubmenuList, null);
         }
         
         /// <remarks/>
-        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, int TableID, bool TableIDSpecified, string TextValue, object userState) {
+        public void AddOrderAsync(int MenuItemID, bool MenuItemIDSpecified, int TableID, bool TableIDSpecified, string TextValue, string SubmenuList, object userState) {
             if ((this.AddOrderOperationCompleted == null)) {
                 this.AddOrderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddOrderOperationCompleted);
             }
@@ -490,7 +491,8 @@ namespace HandUpGUI.localhost {
                         MenuItemIDSpecified,
                         TableID,
                         TableIDSpecified,
-                        TextValue}, this.AddOrderOperationCompleted, userState);
+                        TextValue,
+                        SubmenuList}, this.AddOrderOperationCompleted, userState);
         }
         
         private void OnAddOrderOperationCompleted(object arg) {
