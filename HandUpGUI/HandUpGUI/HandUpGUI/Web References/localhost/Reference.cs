@@ -74,6 +74,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback getServiceStationsPerProviderOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getSubmenuItemsByMenuIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TableAlertPerEmployeeOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConfirmAlertOperationCompleted;
@@ -139,6 +141,8 @@ namespace HandUpGUI.localhost {
         private System.Threading.SendOrPostCallback StockTypeListOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateStockItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getStockItemsPerProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddEmployeeOperationCompleted;
         
@@ -267,6 +271,9 @@ namespace HandUpGUI.localhost {
         public event getServiceStationsPerProviderCompletedEventHandler getServiceStationsPerProviderCompleted;
         
         /// <remarks/>
+        public event getSubmenuItemsByMenuIdCompletedEventHandler getSubmenuItemsByMenuIdCompleted;
+        
+        /// <remarks/>
         public event TableAlertPerEmployeeCompletedEventHandler TableAlertPerEmployeeCompleted;
         
         /// <remarks/>
@@ -364,6 +371,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event UpdateStockItemCompletedEventHandler UpdateStockItemCompleted;
+        
+        /// <remarks/>
+        public event getStockItemsPerProviderCompletedEventHandler getStockItemsPerProviderCompleted;
         
         /// <remarks/>
         public event AddEmployeeCompletedEventHandler AddEmployeeCompleted;
@@ -1137,6 +1147,38 @@ namespace HandUpGUI.localhost {
             if ((this.getServiceStationsPerProviderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getServiceStationsPerProviderCompleted(this, new getServiceStationsPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getSubmenuItemsByMenuId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getSubmenuItemsByMenuId(int MenuID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool MenuIDSpecified) {
+            object[] results = this.Invoke("getSubmenuItemsByMenuId", new object[] {
+                        MenuID,
+                        MenuIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getSubmenuItemsByMenuIdAsync(int MenuID, bool MenuIDSpecified) {
+            this.getSubmenuItemsByMenuIdAsync(MenuID, MenuIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getSubmenuItemsByMenuIdAsync(int MenuID, bool MenuIDSpecified, object userState) {
+            if ((this.getSubmenuItemsByMenuIdOperationCompleted == null)) {
+                this.getSubmenuItemsByMenuIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSubmenuItemsByMenuIdOperationCompleted);
+            }
+            this.InvokeAsync("getSubmenuItemsByMenuId", new object[] {
+                        MenuID,
+                        MenuIDSpecified}, this.getSubmenuItemsByMenuIdOperationCompleted, userState);
+        }
+        
+        private void OngetSubmenuItemsByMenuIdOperationCompleted(object arg) {
+            if ((this.getSubmenuItemsByMenuIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getSubmenuItemsByMenuIdCompleted(this, new getSubmenuItemsByMenuIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2461,24 +2503,23 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/UpdateStockItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateStockItem([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockItemID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockDesc, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockLevel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StocklevelReplace, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItem, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SocklevelType) {
+        public void UpdateStockItem([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockItemID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string StockDesc, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string MenuItem, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string SubmenuItem, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ReduceAmount) {
             this.Invoke("UpdateStockItem", new object[] {
                         StockItemID,
                         StockName,
                         StockDesc,
-                        StockLevel,
-                        StocklevelReplace,
                         MenuItem,
-                        SocklevelType});
+                        SubmenuItem,
+                        ReduceAmount});
         }
         
         /// <remarks/>
-        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType) {
-            this.UpdateStockItemAsync(StockItemID, StockName, StockDesc, StockLevel, StocklevelReplace, MenuItem, SocklevelType, null);
+        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string MenuItem, string SubmenuItem, string ReduceAmount) {
+            this.UpdateStockItemAsync(StockItemID, StockName, StockDesc, MenuItem, SubmenuItem, ReduceAmount, null);
         }
         
         /// <remarks/>
-        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType, object userState) {
+        public void UpdateStockItemAsync(string StockItemID, string StockName, string StockDesc, string MenuItem, string SubmenuItem, string ReduceAmount, object userState) {
             if ((this.UpdateStockItemOperationCompleted == null)) {
                 this.UpdateStockItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateStockItemOperationCompleted);
             }
@@ -2486,16 +2527,47 @@ namespace HandUpGUI.localhost {
                         StockItemID,
                         StockName,
                         StockDesc,
-                        StockLevel,
-                        StocklevelReplace,
                         MenuItem,
-                        SocklevelType}, this.UpdateStockItemOperationCompleted, userState);
+                        SubmenuItem,
+                        ReduceAmount}, this.UpdateStockItemOperationCompleted, userState);
         }
         
         private void OnUpdateStockItemOperationCompleted(object arg) {
             if ((this.UpdateStockItemCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateStockItemCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/getStockItemsPerProvider", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet getStockItemsPerProvider(int ProviderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ProviderIDSpecified) {
+            object[] results = this.Invoke("getStockItemsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getStockItemsPerProviderAsync(int ProviderID, bool ProviderIDSpecified) {
+            this.getStockItemsPerProviderAsync(ProviderID, ProviderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getStockItemsPerProviderAsync(int ProviderID, bool ProviderIDSpecified, object userState) {
+            if ((this.getStockItemsPerProviderOperationCompleted == null)) {
+                this.getStockItemsPerProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetStockItemsPerProviderOperationCompleted);
+            }
+            this.InvokeAsync("getStockItemsPerProvider", new object[] {
+                        ProviderID,
+                        ProviderIDSpecified}, this.getStockItemsPerProviderOperationCompleted, userState);
+        }
+        
+        private void OngetStockItemsPerProviderOperationCompleted(object arg) {
+            if ((this.getStockItemsPerProviderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getStockItemsPerProviderCompleted(this, new getStockItemsPerProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3449,6 +3521,32 @@ namespace HandUpGUI.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getSubmenuItemsByMenuIdCompletedEventHandler(object sender, getSubmenuItemsByMenuIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getSubmenuItemsByMenuIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getSubmenuItemsByMenuIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void TableAlertPerEmployeeCompletedEventHandler(object sender, TableAlertPerEmployeeCompletedEventArgs e);
     
     /// <remarks/>
@@ -4216,6 +4314,32 @@ namespace HandUpGUI.localhost {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     public delegate void UpdateStockItemCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void getStockItemsPerProviderCompletedEventHandler(object sender, getStockItemsPerProviderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getStockItemsPerProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getStockItemsPerProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]

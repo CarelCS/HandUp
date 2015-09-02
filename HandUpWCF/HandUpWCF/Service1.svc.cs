@@ -121,6 +121,11 @@ namespace HandUpWCF {
 
         }
 
+        public DataSet getSubmenuItemsByMenuId(int menuID) {
+            Menu table = new Menu();
+            return table.getSubmenuItemsByMenuId(menuID);
+        }
+
         public DataSet getMenuItemByID(int PKiMenuID) {
             Menu table = new Menu();
             return table.getMenuItemByID(PKiMenuID);
@@ -213,9 +218,14 @@ namespace HandUpWCF {
             return clsStockManagement.StockTypeList();
         }
 
-        public void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType) {
+        public DataSet getStockItemsPerProvider(int ProviderID) {
+            StockManagment clsStockmanagement = new StockManagment();
+            return clsStockmanagement.getStockItemsPerProvider(ProviderID);
+        }
+
+        public void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string MenuItem, string SubmenuItem, string ReduceAmount) {
             StockManagment clsStockManagement = new StockManagment();
-            clsStockManagement.UpdateStockItem(StockItemID, StockName, StockDesc, StockLevel, StocklevelReplace, MenuItem, SocklevelType);
+            clsStockManagement.UpdateStockItem(StockItemID, StockName, StockDesc, MenuItem, SubmenuItem, ReduceAmount);
         }
 
         #endregion

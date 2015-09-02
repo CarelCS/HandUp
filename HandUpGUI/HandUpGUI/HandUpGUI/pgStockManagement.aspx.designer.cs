@@ -31,13 +31,13 @@ namespace HandUpGUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvStockList;
         
         /// <summary>
-        /// txtStockName control.
+        /// ddlStockItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStockName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStockItem;
         
         /// <summary>
         /// ddlMenuItem control.
@@ -49,6 +49,15 @@ namespace HandUpGUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlMenuItem;
         
         /// <summary>
+        /// ddlSubmenuItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubmenuItem;
+        
+        /// <summary>
         /// txtStockDesc control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace HandUpGUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStockDesc;
+        
+        /// <summary>
+        /// txtReduceCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReduceCount;
         
         /// <summary>
         /// txtStockLevel control.

@@ -84,6 +84,7 @@
     <Compile Include="DBClasses\tblServicestation.cs" />
     <Compile Include="DBClasses\tblSpecials.cs" />
     <Compile Include="DBClasses\tblStock.cs" />
+    <Compile Include="DBClasses\tblStockitem.cs" />
     <Compile Include="DBClasses\tblStockleveltype.cs" />
     <Compile Include="DBClasses\tblStockpermenuitem.cs" />
     <Compile Include="DBClasses\tblTablealerts.cs" />

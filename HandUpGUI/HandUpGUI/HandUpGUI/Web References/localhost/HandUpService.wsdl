@@ -140,6 +140,12 @@
   <wsdl:message name="IHandUpService_getServiceStationsPerProvider_OutputMessage">
     <wsdl:part name="parameters" element="tns:getServiceStationsPerProviderResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_getSubmenuItemsByMenuId_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSubmenuItemsByMenuId" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getSubmenuItemsByMenuId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSubmenuItemsByMenuIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_TableAlertPerEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:TableAlertPerEmployee" />
   </wsdl:message>
@@ -338,6 +344,12 @@
   <wsdl:message name="IHandUpService_UpdateStockItem_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateStockItemResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_getStockItemsPerProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStockItemsPerProvider" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_getStockItemsPerProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStockItemsPerProviderResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
   </wsdl:message>
@@ -493,6 +505,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getServiceStationsPerProvider" message="tns:IHandUpService_getServiceStationsPerProvider_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getServiceStationsPerProviderResponse" message="tns:IHandUpService_getServiceStationsPerProvider_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getSubmenuItemsByMenuId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getSubmenuItemsByMenuId" message="tns:IHandUpService_getSubmenuItemsByMenuId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getSubmenuItemsByMenuIdResponse" message="tns:IHandUpService_getSubmenuItemsByMenuId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="TableAlertPerEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployee" message="tns:IHandUpService_TableAlertPerEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/TableAlertPerEmployeeResponse" message="tns:IHandUpService_TableAlertPerEmployee_OutputMessage" />
@@ -624,6 +640,10 @@
     <wsdl:operation name="UpdateStockItem">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/UpdateStockItem" message="tns:IHandUpService_UpdateStockItem_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/UpdateStockItemResponse" message="tns:IHandUpService_UpdateStockItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockItemsPerProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getStockItemsPerProvider" message="tns:IHandUpService_getStockItemsPerProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getStockItemsPerProviderResponse" message="tns:IHandUpService_getStockItemsPerProvider_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/AddEmployee" message="tns:IHandUpService_AddEmployee_InputMessage" />
@@ -863,6 +883,15 @@
     </wsdl:operation>
     <wsdl:operation name="getServiceStationsPerProvider">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/getServiceStationsPerProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSubmenuItemsByMenuId">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getSubmenuItemsByMenuId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1160,6 +1189,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateStockItem">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/UpdateStockItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockItemsPerProvider">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/getStockItemsPerProvider" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

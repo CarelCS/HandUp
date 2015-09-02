@@ -79,6 +79,8 @@ namespace HandUpWCF {
         DataSet getMenuGroupsPerProvider(int ProviderID);
         [OperationContract]
         DataSet getServiceStationsPerProvider(int ProviderID);
+        [OperationContract]
+        DataSet getSubmenuItemsByMenuId(int MenuID);
 
         #endregion
 
@@ -190,7 +192,10 @@ namespace HandUpWCF {
         DataSet StockTypeList();
 
         [OperationContract]
-        void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string StockLevel, string StocklevelReplace, string MenuItem, string SocklevelType);
+        void UpdateStockItem(string StockItemID, string StockName, string StockDesc, string MenuItem, string SubmenuItem, string ReduceAmount);
+
+        [OperationContract]
+        DataSet getStockItemsPerProvider(int ProviderID);
         #endregion
 
         [OperationContract]

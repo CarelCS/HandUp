@@ -4,67 +4,89 @@ using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace HandUpWCF.DBClasses{
-	class tblStock{
-		public const string _PKISTOCKID="PKiStockID";
-		public const string _FKISTOCKITEM="FKiStockItem";
-		public const string _SSTOCKDESCRIPTION="sStockDescription";
-		public const string _IQUANTITY="iQuantity";
-		public const string _tblStock="tblstock";
+	class tblStockitem{
+		public const string _PKISTOCKITEMID="PKiStockitemID";
+		public const string _SSTOCKITEMNAME="sStockItemName";
+		public const string _ISTOCKREPLACE="iStockReplace";
+		public const string _ISTOCKLEVEL="iStockLevel";
+		public const string _FKISTOCKLEVELTYPE="FKiStockLevelType";
+		public const string _FKIPROVIDERID="FKiProviderID";
+		public const string _tblStockitem="tblstockitem";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
 
 		private string sSqlWhere="";
 
-		private int _PKiStockID;
-		public int PKiStockID{
+		private int _PKiStockitemID;
+		public int PKiStockitemID{
 			get {
-				return _PKiStockID;
+				return _PKiStockitemID;
 			}
 			set {
-				_PKiStockID = value;
+				_PKiStockitemID = value;
 			}
 		}
-		private int _FKiStockItem;
-		public int FKiStockItem{
+		private string _sStockItemName;
+		public string sStockItemName{
 			get {
-				return _FKiStockItem;
+				return _sStockItemName;
 			}
 			set {
-				_FKiStockItem = value;
+				_sStockItemName = value;
 			}
 		}
-		private string _sStockDescription;
-		public string sStockDescription{
+		private int _iStockReplace;
+		public int iStockReplace{
 			get {
-				return _sStockDescription;
+				return _iStockReplace;
 			}
 			set {
-				_sStockDescription = value;
+				_iStockReplace = value;
 			}
 		}
-		private int _iQuantity;
-		public int iQuantity{
+		private int _iStockLevel;
+		public int iStockLevel{
 			get {
-				return _iQuantity;
+				return _iStockLevel;
 			}
 			set {
-				_iQuantity = value;
+				_iStockLevel = value;
 			}
 		}
-		private string sOrderBy="PKiStockID";
+		private int _FKiStockLevelType;
+		public int FKiStockLevelType{
+			get {
+				return _FKiStockLevelType;
+			}
+			set {
+				_FKiStockLevelType = value;
+			}
+		}
+		private int _FKiProviderID;
+		public int FKiProviderID{
+			get {
+				return _FKiProviderID;
+			}
+			set {
+				_FKiProviderID = value;
+			}
+		}
+		private string sOrderBy="PKiStockitemID";
 		private string sOrderType="ASC";
 
-		public tblStock(int initPKiStockID){
-			addEquals(_PKISTOCKID,initPKiStockID);
-			List<tblStock> listtblStock=executeSelect();
-			tblStock atblStock=listtblStock[0];
-			this.PKiStockID=atblStock.PKiStockID;
-			this.FKiStockItem=atblStock.FKiStockItem;
-			this.sStockDescription=atblStock.sStockDescription;
-			this.iQuantity=atblStock.iQuantity;
+		public tblStockitem(int initPKiStockitemID){
+			addEquals(_PKISTOCKITEMID,initPKiStockitemID);
+			List<tblStockitem> listtblStockitem=executeSelect();
+			tblStockitem atblStockitem=listtblStockitem[0];
+			this.PKiStockitemID=atblStockitem.PKiStockitemID;
+			this.sStockItemName=atblStockitem.sStockItemName;
+			this.iStockReplace=atblStockitem.iStockReplace;
+			this.iStockLevel=atblStockitem.iStockLevel;
+			this.FKiStockLevelType=atblStockitem.FKiStockLevelType;
+			this.FKiProviderID=atblStockitem.FKiProviderID;
 		}
 
-		public tblStock(){
+		public tblStockitem(){
 			sSqlWhere="";
 		}
 
@@ -77,18 +99,18 @@ namespace HandUpWCF.DBClasses{
 			return sSqlWhere;
 		}
 
-		public List<tblStock> executeSelect(){
+		public List<tblStockitem> executeSelect(){
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		public List<tblStock> executeSelect(string localsOrderBy,string localsOrderType){
+		public List<tblStockitem> executeSelect(string localsOrderBy,string localsOrderType){
 			sOrderBy=localsOrderBy;
 			sOrderType=localsOrderType;
 			return getConnectionAndExecuteSelect(getCompleteSQL());
 		}
 
-		private List<tblStock> getConnectionAndExecuteSelect(string sSelectStmt){
-			List<tblStock> listtblStock=new List<tblStock>();
+		private List<tblStockitem> getConnectionAndExecuteSelect(string sSelectStmt){
+			List<tblStockitem> listtblStockitem=new List<tblStockitem>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -96,24 +118,28 @@ namespace HandUpWCF.DBClasses{
          int iIndex=0;
 			if (aSqlReader.HasRows) {
 				while (aSqlReader.Read()) {
-					tblStock atblStock= new tblStock();
-					iIndex=aSqlReader.GetOrdinal("PKiStockID");
-					atblStock.PKiStockID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("FKiStockItem");
-					atblStock.FKiStockItem=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					iIndex=aSqlReader.GetOrdinal("sStockDescription");
-					atblStock.sStockDescription=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
-					iIndex=aSqlReader.GetOrdinal("iQuantity");
-					atblStock.iQuantity=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
-					listtblStock.Add(atblStock);
+					tblStockitem atblStockitem= new tblStockitem();
+					iIndex=aSqlReader.GetOrdinal("PKiStockitemID");
+					atblStockitem.PKiStockitemID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("sStockItemName");
+					atblStockitem.sStockItemName=aSqlReader.IsDBNull(iIndex) ? "" : aSqlReader.GetString(iIndex);
+					iIndex=aSqlReader.GetOrdinal("iStockReplace");
+					atblStockitem.iStockReplace=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("iStockLevel");
+					atblStockitem.iStockLevel=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiStockLevelType");
+					atblStockitem.FKiStockLevelType=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiProviderID");
+					atblStockitem.FKiProviderID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					listtblStockitem.Add(atblStockitem);
 					}
 			}
 			aSqlReader.Close();
-			return listtblStock;
+			return listtblStockitem;
 		}
 
 		public string getCompleteSQL(){
-			string sCompleteSQL="SELECT * FROM tblstock WHERE "+ sSqlWhere;
+			string sCompleteSQL="SELECT * FROM tblstockitem WHERE "+ sSqlWhere;
 			sCompleteSQL+=" ORDER BY " + sOrderBy + " " + sOrderType;
 			return sCompleteSQL;
 		}
@@ -139,7 +165,7 @@ namespace HandUpWCF.DBClasses{
 		}
 
 		private DataSet getConnectionAndExecuteSelectDataSet(string sSelectStmt){
-			List<tblStock> listtblStock=new List<tblStock>();
+			List<tblStockitem> listtblStockitem=new List<tblStockitem>();
 			MySqlCommand aSqlCommand = new MySqlCommand();
 			aSqlCommand.Connection=clsDatabase.getPooledConnection();
 			aSqlCommand.CommandText = sSelectStmt;
@@ -236,26 +262,30 @@ namespace HandUpWCF.DBClasses{
 				return "DESC";
 			}
 
-			public tblStock executeINSERT(){
-				MySqlCommand insertCommand = new MySqlCommand("tblstock_INSERT", clsDatabase.getPooledConnection());
+			public tblStockitem executeINSERT(){
+				MySqlCommand insertCommand = new MySqlCommand("tblstockitem_INSERT", clsDatabase.getPooledConnection());
 				insertCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				insertCommand.Parameters.AddWithValue("@outPKiStockID",MySqlDbType.Int32);
-				insertCommand.Parameters["@outPKiStockID"].Direction = System.Data.ParameterDirection.Output;
-				insertCommand.Parameters.AddWithValue("@FKiStockItem",FKiStockItem);
-				insertCommand.Parameters.AddWithValue("@sStockDescription",sStockDescription);
-				insertCommand.Parameters.AddWithValue("@iQuantity",iQuantity);
+				insertCommand.Parameters.AddWithValue("@outPKiStockitemID",MySqlDbType.Int32);
+				insertCommand.Parameters["@outPKiStockitemID"].Direction = System.Data.ParameterDirection.Output;
+				insertCommand.Parameters.AddWithValue("@sStockItemName",sStockItemName);
+				insertCommand.Parameters.AddWithValue("@iStockReplace",iStockReplace);
+				insertCommand.Parameters.AddWithValue("@iStockLevel",iStockLevel);
+				insertCommand.Parameters.AddWithValue("@FKiStockLevelType",FKiStockLevelType);
+				insertCommand.Parameters.AddWithValue("@FKiProviderID",FKiProviderID);
 				insertCommand.ExecuteNonQuery();
-             PKiStockID= (Int32)insertCommand.Parameters["@outPKiStockID"].Value;
+             PKiStockitemID= (Int32)insertCommand.Parameters["@outPKiStockitemID"].Value;
 				return this;
 			}
 
 			public bool executeUPDATE(){
-				MySqlCommand updateCommand = new MySqlCommand("tblstock_UPDATE", clsDatabase.getPooledConnection());
+				MySqlCommand updateCommand = new MySqlCommand("tblstockitem_UPDATE", clsDatabase.getPooledConnection());
 				updateCommand.CommandType = System.Data.CommandType.StoredProcedure;
-				updateCommand.Parameters.AddWithValue("@inPKiStockID", PKiStockID);
-				updateCommand.Parameters.AddWithValue("@inFKiStockItem", FKiStockItem);
-				updateCommand.Parameters.AddWithValue("@insStockDescription", sStockDescription);
-				updateCommand.Parameters.AddWithValue("@iniQuantity", iQuantity);
+				updateCommand.Parameters.AddWithValue("@inPKiStockitemID", PKiStockitemID);
+				updateCommand.Parameters.AddWithValue("@insStockItemName", sStockItemName);
+				updateCommand.Parameters.AddWithValue("@iniStockReplace", iStockReplace);
+				updateCommand.Parameters.AddWithValue("@iniStockLevel", iStockLevel);
+				updateCommand.Parameters.AddWithValue("@inFKiStockLevelType", FKiStockLevelType);
+				updateCommand.Parameters.AddWithValue("@inFKiProviderID", FKiProviderID);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

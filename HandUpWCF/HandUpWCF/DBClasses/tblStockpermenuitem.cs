@@ -9,6 +9,7 @@ namespace HandUpWCF.DBClasses{
 		public const string _FKIMENUITEM="FKiMenuItem";
 		public const string _FKISTOCKID="FKiStockID";
 		public const string _ISTOCKAMOUNT="iStockAmount";
+		public const string _FKISUBMENUITEM="FKiSubmenuItem";
 		public const string _tblStockpermenuitem="tblstockpermenuitem";
 		public const string _Ascending="ASC";
 		public const string _Descending="DESC";
@@ -51,6 +52,15 @@ namespace HandUpWCF.DBClasses{
 				_iStockAmount = value;
 			}
 		}
+		private int _FKiSubmenuItem;
+		public int FKiSubmenuItem{
+			get {
+				return _FKiSubmenuItem;
+			}
+			set {
+				_FKiSubmenuItem = value;
+			}
+		}
 		private string sOrderBy="PKistockpermenuitemID";
 		private string sOrderType="ASC";
 
@@ -62,6 +72,7 @@ namespace HandUpWCF.DBClasses{
 			this.FKiMenuItem=atblStockpermenuitem.FKiMenuItem;
 			this.FKiStockID=atblStockpermenuitem.FKiStockID;
 			this.iStockAmount=atblStockpermenuitem.iStockAmount;
+			this.FKiSubmenuItem=atblStockpermenuitem.FKiSubmenuItem;
 		}
 
 		public tblStockpermenuitem(){
@@ -105,6 +116,8 @@ namespace HandUpWCF.DBClasses{
 					atblStockpermenuitem.FKiStockID=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					iIndex=aSqlReader.GetOrdinal("iStockAmount");
 					atblStockpermenuitem.iStockAmount=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
+					iIndex=aSqlReader.GetOrdinal("FKiSubmenuItem");
+					atblStockpermenuitem.FKiSubmenuItem=aSqlReader.IsDBNull(iIndex) ? 0 : aSqlReader.GetInt32(iIndex);
 					listtblStockpermenuitem.Add(atblStockpermenuitem);
 					}
 			}
@@ -216,6 +229,7 @@ namespace HandUpWCF.DBClasses{
 				insertCommand.Parameters.AddWithValue("@FKiMenuItem",FKiMenuItem);
 				insertCommand.Parameters.AddWithValue("@FKiStockID",FKiStockID);
 				insertCommand.Parameters.AddWithValue("@iStockAmount",iStockAmount);
+				insertCommand.Parameters.AddWithValue("@FKiSubmenuItem",FKiSubmenuItem);
 				insertCommand.ExecuteNonQuery();
              PKistockpermenuitemID= (Int32)insertCommand.Parameters["@outPKistockpermenuitemID"].Value;
 				return this;
@@ -228,6 +242,7 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.Parameters.AddWithValue("@inFKiMenuItem", FKiMenuItem);
 				updateCommand.Parameters.AddWithValue("@inFKiStockID", FKiStockID);
 				updateCommand.Parameters.AddWithValue("@iniStockAmount", iStockAmount);
+				updateCommand.Parameters.AddWithValue("@inFKiSubmenuItem", FKiSubmenuItem);
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}

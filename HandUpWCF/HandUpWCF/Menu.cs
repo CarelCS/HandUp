@@ -76,5 +76,11 @@ namespace HandUpWCF {
             DataSet aDataSet = aMenuSS.executeSelectDataSet();
             return aDataSet;
         }
+
+        public DataSet getSubmenuItemsByMenuId(int MenuID) {
+            tblluSubmenus aSub = new tblluSubmenus();
+            aSub.addEquals(tblluSubmenus._FKIMENUID, MenuID);
+            return aSub.executeSelectDataSet();
+        }
     }
 }

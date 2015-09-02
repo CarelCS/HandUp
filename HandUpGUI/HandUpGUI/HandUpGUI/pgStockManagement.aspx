@@ -26,19 +26,27 @@
     <div id="dvStockEdit">
     <table>
         <tr>
-            <td>Stock Name : </td>
+            <td>Stock Item : </td>
             <td>
-                <asp:TextBox ID="txtStockName" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddlStockItem" runat="server">
+                </asp:DropDownList>
             </td>
             <td>Menu Item Linked : </td>
             <td>
-                <asp:DropDownList ID="ddlMenuItem" runat="server">
+                <asp:DropDownList ID="ddlMenuItem" runat="server" AutoPostBack="true" EnableViewState="true" ViewStateMode="Enabled"
+                    onselectedindexchanged="ddlMenuItem_SelectedIndexChanged">
+                </asp:DropDownList>
+                <asp:DropDownList ID="ddlSubmenuItem" runat="server">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>Description : </td>
+            <td>
                 <asp:TextBox ID="txtStockDesc" Rows="2" runat="server"></asp:TextBox></td>
+            <td>Quantity to reduce : </td>
+            <td>
+                <asp:TextBox ID="txtReduceCount" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Stock Level : </td>
