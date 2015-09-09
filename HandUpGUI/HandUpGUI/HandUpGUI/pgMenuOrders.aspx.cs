@@ -411,9 +411,12 @@ namespace HandUpGUI {
             string ChoiceDetail = "";
             string ChoiceSuborderListIDs = "";
             foreach (string SuborderID in Suborder) {
-                string[] SuborderIDlists = SuborderID.Split('^');
-                ChoiceDetail += SuborderIDlists[1] + "<br />";
-                ChoiceSuborderListIDs += SuborderIDlists[0] + ",";
+                try {
+                    string[] SuborderIDlists = SuborderID.Split('^');
+                    ChoiceDetail += SuborderIDlists[1] + "<br />";
+                    ChoiceSuborderListIDs += SuborderIDlists[0] + ",";
+                }
+                catch { }
             }
             PopulateNewOrderForTable(WSNew.AddOrder(Convert.ToInt32(OrderID), true, Convert.ToInt32(hdnTableNumber.Value), true, ChoiceDetail, ChoiceSuborderListIDs));
         }

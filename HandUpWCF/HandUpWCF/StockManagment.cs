@@ -106,22 +106,32 @@ namespace HandUpWCF {
             DataSet dsItems = aOrder.GetMenuItemsPerOrder(OrderID);
             tblStockpermenuitem aStockMenu = new tblStockpermenuitem();
             tblStock aStock = new tblStock();
+            tblStockitem aStockItem = new tblStockitem();
             
             foreach (DataRow dr in dsItems.Tables[0].Rows) {
-                aStockMenu.addEquals(tblStockpermenuitem._FKIMENUITEM, Convert.ToInt32(dsItems.Tables[0].Rows[0][3].ToString()));
-                aStockMenu.addEquals(tblStockpermenuitem._FKISUBMENUITEM, 0);
-                DataSet dsItemsLinked = aStockMenu.executeSelectDataSet();
-                aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(dr[2].ToString()));
-                string[] sAllSubs = dsItems.Tables[0].Rows[0][3].ToString().Split(',');
-                foreach (string item in sAllSubs) {
-                    try {
-                        aStockMenu.addEquals(tblStockpermenuitem._FKIMENUITEM, Convert.ToInt32(dsItems.Tables[0].Rows[0][3].ToString()));
-                        aStockMenu.addEquals(tblStockpermenuitem._FKISUBMENUITEM, Convert.ToInt32(item));
-                        dsItemsLinked = aStockMenu.executeSelectDataSet();
-                        aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(dr[2].ToString()));
+                try {
+                    aStockMenu.addEquals(tblStockpermenuitem._FKIMENUITEM, Convert.ToInt32(dr[3].ToString()));
+                    aStockMenu.addAND();
+                    aStockMenu.addEquals(tblStockpermenuitem._FKISUBMENUITEM, 0);
+                    DataSet dsItemsLinked = aStockMenu.executeSelectDataSet();
+                    aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(dsItemsLinked.Tables[0].Rows[0][2].ToString()));
+                    DataSet dsStockItem = aStock.executeSelectDataSet();
+                    aStockItem.executeUPDATESTOCKLEVEL(Convert.ToInt32(dsStockItem.Tables[0].Rows[0][1].ToString()), Convert.ToInt32(dsItemsLinked.Tables[0].Rows[0][3].ToString()));
+                    string[] sAllSubs = dsItems.Tables[0].Rows[0][3].ToString().Split(',');
+                    foreach (string item in sAllSubs) {
+                        try {
+                            aStockMenu.addEquals(tblStockpermenuitem._FKIMENUITEM, Convert.ToInt32(dsItems.Tables[0].Rows[0][3].ToString()));
+                            aStockMenu.addAND();
+                            aStockMenu.addEquals(tblStockpermenuitem._FKISUBMENUITEM, Convert.ToInt32(item));
+                            dsItemsLinked = aStockMenu.executeSelectDataSet();
+                            aStock.addEquals(tblStock._PKISTOCKID, Convert.ToInt32(dsItemsLinked.Tables[0].Rows[0][2].ToString()));
+                            dsStockItem = aStock.executeSelectDataSet();
+                            aStockItem.executeUPDATESTOCKLEVEL(Convert.ToInt32(dsStockItem.Tables[0].Rows[0][1].ToString()), Convert.ToInt32(dsItemsLinked.Tables[0].Rows[0][3].ToString()));
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
+                catch (Exception ex) { }
             }
         }
 

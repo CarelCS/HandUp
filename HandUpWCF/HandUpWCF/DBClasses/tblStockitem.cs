@@ -289,5 +289,14 @@ namespace HandUpWCF.DBClasses{
 				updateCommand.ExecuteNonQuery();
 				return true;
 			}
+
+            public bool executeUPDATESTOCKLEVEL(int StockitemID, int StocklevelReduce) {
+                MySqlCommand updateLevel = new MySqlCommand("stockReduce_UPDATE", clsDatabase.getPooledConnection());
+                updateLevel.CommandType = System.Data.CommandType.StoredProcedure;
+                updateLevel.Parameters.AddWithValue("inPKiStockItemID", StockitemID);
+                updateLevel.Parameters.AddWithValue("iniQuantity", StocklevelReduce);
+                updateLevel.ExecuteNonQuery();
+                return true;
+            }
 	}
 }
