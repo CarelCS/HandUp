@@ -18,7 +18,6 @@ namespace HandUpWCF {
 
         #endregion
 
-
         #region Login
 
         [OperationContract]

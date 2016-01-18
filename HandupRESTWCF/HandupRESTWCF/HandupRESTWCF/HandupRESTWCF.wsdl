@@ -1,0 +1,682 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="HandupRESTWCF" targetNamespace="http://tempuri.org/">
+<wsdl:types>
+<xsd:schema targetNamespace="http://tempuri.org/Imports">
+<xsd:import schemaLocation="http://10.10.50.150:8080/HandupRESTWCF/HandupRESTWCF.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+<xsd:import schemaLocation="http://10.10.50.150:8080/HandupRESTWCF/HandupRESTWCF.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+<xsd:import schemaLocation="http://10.10.50.150:8080/HandupRESTWCF/HandupRESTWCF.svc?xsd=xsd2"/>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="IHandupRESTWCF_LoginAndroid_InputMessage">
+<wsdl:part name="parameters" element="tns:LoginAndroid"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_LoginAndroid_OutputMessage">
+<wsdl:part name="parameters" element="tns:LoginAndroidResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_LoginAndroiBlank_InputMessage">
+<wsdl:part name="parameters" element="tns:LoginAndroiBlank"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_LoginAndroiBlank_OutputMessage">
+<wsdl:part name="parameters" element="tns:LoginAndroiBlankResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddOrder_InputMessage">
+<wsdl:part name="parameters" element="tns:AddOrder"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddOrder_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddOrderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ConfirmOrder_InputMessage">
+<wsdl:part name="parameters" element="tns:ConfirmOrder"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ConfirmOrder_OutputMessage">
+<wsdl:part name="parameters" element="tns:ConfirmOrderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DeclineOrder_InputMessage">
+<wsdl:part name="parameters" element="tns:DeclineOrder"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DeclineOrder_OutputMessage">
+<wsdl:part name="parameters" element="tns:DeclineOrderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddTextToOrder_InputMessage">
+<wsdl:part name="parameters" element="tns:AddTextToOrder"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddTextToOrder_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddTextToOrderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_OrdersPerTable_InputMessage">
+<wsdl:part name="parameters" element="tns:OrdersPerTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_OrdersPerTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:OrdersPerTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_JoinTableCode_InputMessage">
+<wsdl:part name="parameters" element="tns:JoinTableCode"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_JoinTableCode_OutputMessage">
+<wsdl:part name="parameters" element="tns:JoinTableCodeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddTable_InputMessage">
+<wsdl:part name="parameters" element="tns:AddTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddPatronToTable_InputMessage">
+<wsdl:part name="parameters" element="tns:AddPatronToTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddPatronToTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddPatronToTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_CloseTable_InputMessage">
+<wsdl:part name="parameters" element="tns:CloseTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_CloseTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:CloseTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_CallWaiter_InputMessage">
+<wsdl:part name="parameters" element="tns:CallWaiter"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_CallWaiter_OutputMessage">
+<wsdl:part name="parameters" element="tns:CallWaiterResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForWaiter_InputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForWaiter"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForWaiter_OutputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForWaiterResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForProcessor_InputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForProcessor"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForProcessor_OutputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForProcessorResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ActiveTablesForProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:ActiveTablesForProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AllTablesForProviderByDate_InputMessage">
+<wsdl:part name="parameters" element="tns:AllTablesForProviderByDate"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AllTablesForProviderByDate_OutputMessage">
+<wsdl:part name="parameters" element="tns:AllTablesForProviderByDateResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AllTablesForProviderByDateStatus_InputMessage">
+<wsdl:part name="parameters" element="tns:AllTablesForProviderByDateStatus"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AllTablesForProviderByDateStatus_OutputMessage">
+<wsdl:part name="parameters" element="tns:AllTablesForProviderByDateStatusResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getEmployeeAssignedToTable_InputMessage">
+<wsdl:part name="parameters" element="tns:getEmployeeAssignedToTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getEmployeeAssignedToTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:getEmployeeAssignedToTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MenuForProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:MenuForProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MenuForProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:MenuForProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getMenuItemByID_InputMessage">
+<wsdl:part name="parameters" element="tns:getMenuItemByID"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getMenuItemByID_OutputMessage">
+<wsdl:part name="parameters" element="tns:getMenuItemByIDResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getMenuGroupsPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:getMenuGroupsPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getMenuGroupsPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:getMenuGroupsPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getServiceStationsPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:getServiceStationsPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getServiceStationsPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:getServiceStationsPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getSubmenuItemsByMenuId_InputMessage">
+<wsdl:part name="parameters" element="tns:getSubmenuItemsByMenuId"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getSubmenuItemsByMenuId_OutputMessage">
+<wsdl:part name="parameters" element="tns:getSubmenuItemsByMenuIdResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TableAlertPerEmployee_InputMessage">
+<wsdl:part name="parameters" element="tns:TableAlertPerEmployee"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TableAlertPerEmployee_OutputMessage">
+<wsdl:part name="parameters" element="tns:TableAlertPerEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ConfirmAlert_InputMessage">
+<wsdl:part name="parameters" element="tns:ConfirmAlert"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ConfirmAlert_OutputMessage">
+<wsdl:part name="parameters" element="tns:ConfirmAlertResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getEmployeeByID_InputMessage">
+<wsdl:part name="parameters" element="tns:getEmployeeByID"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getEmployeeByID_OutputMessage">
+<wsdl:part name="parameters" element="tns:getEmployeeByIDResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MenuPerProviderAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:MenuPerProviderAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MenuPerProviderAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:MenuPerProviderAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_EmployeeListPerProvireAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:EmployeeListPerProvireAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_EmployeeListPerProvireAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:EmployeeListPerProvireAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddEmployeePerProviderAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:AddEmployeePerProviderAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddEmployeePerProviderAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddEmployeePerProviderAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateEmployeePerProviderAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateEmployeePerProviderAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateEmployeePerProviderAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateEmployeePerProviderAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TablesPerProviderAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:TablesPerProviderAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TablesPerProviderAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:TablesPerProviderAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ReOpenTablesPerProviderAdmin_InputMessage">
+<wsdl:part name="parameters" element="tns:ReOpenTablesPerProviderAdmin"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ReOpenTablesPerProviderAdmin_OutputMessage">
+<wsdl:part name="parameters" element="tns:ReOpenTablesPerProviderAdminResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveOrderBetweenTablesPerProviderAdmin_InputMessage">
+<wsdl:part name="parameters" element="tns:MoveOrderBetweenTablesPerProviderAdmin"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveOrderBetweenTablesPerProviderAdmin_OutputMessage">
+<wsdl:part name="parameters" element="tns:MoveOrderBetweenTablesPerProviderAdminResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveTableBetweenEmployeePerProviderAdmin_InputMessage">
+<wsdl:part name="parameters" element="tns:MoveTableBetweenEmployeePerProviderAdmin"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveTableBetweenEmployeePerProviderAdmin_OutputMessage">
+<wsdl:part name="parameters" element="tns:MoveTableBetweenEmployeePerProviderAdminResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ChangeOrderValuePerOrderPerProviderAdmin_InputMessage">
+<wsdl:part name="parameters" element="tns:ChangeOrderValuePerOrderPerProviderAdmin"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ChangeOrderValuePerOrderPerProviderAdmin_OutputMessage">
+<wsdl:part name="parameters" element="tns:ChangeOrderValuePerOrderPerProviderAdminResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TablesPerProviderPerStatusAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:TablesPerProviderPerStatusAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_TablesPerProviderPerStatusAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:TablesPerProviderPerStatusAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddNewMenuItem_InputMessage">
+<wsdl:part name="parameters" element="tns:AddNewMenuItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddNewMenuItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddNewMenuItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuItem_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuGroupPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuGroupPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuGroupPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuGroupPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddMenuGroupPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:AddMenuGroupPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddMenuGroupPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddMenuGroupPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddNewServiceStation_InputMessage">
+<wsdl:part name="parameters" element="tns:AddNewServiceStation"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddNewServiceStation_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddNewServiceStationResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateServiceStation_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateServiceStation"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateServiceStation_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateServiceStationResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuGroupTypesPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuGroupTypesPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateMenuGroupTypesPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateMenuGroupTypesPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubMenuGroupTypesPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:AddSubMenuGroupTypesPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubMenuGroupTypesPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddSubMenuGroupTypesPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateSubMenuGroupTypePerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateSubMenuGroupTypePerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateSubMenuGroupTypePerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateSubMenuGroupTypePerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubMenuPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:AddSubMenuPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubMenuPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddSubMenuPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateSubMenuPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateSubMenuPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateSubMenuPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateSubMenuPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_GetSubMenusPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:GetSubMenusPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_GetSubMenusPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetSubMenusPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_SubmenuGroupTypesPerProvireAdminFull_InputMessage">
+<wsdl:part name="parameters" element="tns:SubmenuGroupTypesPerProvireAdminFull"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_SubmenuGroupTypesPerProvireAdminFull_OutputMessage">
+<wsdl:part name="parameters" element="tns:SubmenuGroupTypesPerProvireAdminFullResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DefaultReportPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:DefaultReportPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DefaultReportPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:DefaultReportPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockTable_InputMessage">
+<wsdl:part name="parameters" element="tns:StockTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:StockTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockAdd_InputMessage">
+<wsdl:part name="parameters" element="tns:StockAdd"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockAdd_OutputMessage">
+<wsdl:part name="parameters" element="tns:StockAddResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockDeduct_InputMessage">
+<wsdl:part name="parameters" element="tns:StockDeduct"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockDeduct_OutputMessage">
+<wsdl:part name="parameters" element="tns:StockDeductResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockItem_InputMessage">
+<wsdl:part name="parameters" element="tns:StockItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:StockItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockTypeList_InputMessage">
+<wsdl:part name="parameters" element="tns:StockTypeList"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_StockTypeList_OutputMessage">
+<wsdl:part name="parameters" element="tns:StockTypeListResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateStockItem_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdateStockItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_UpdateStockItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdateStockItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getStockItemsPerProvider_InputMessage">
+<wsdl:part name="parameters" element="tns:getStockItemsPerProvider"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_getStockItemsPerProvider_OutputMessage">
+<wsdl:part name="parameters" element="tns:getStockItemsPerProviderResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddEmployee_InputMessage">
+<wsdl:part name="parameters" element="tns:AddEmployee"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddEmployee_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_EditEmployee_InputMessage">
+<wsdl:part name="parameters" element="tns:EditEmployee"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_EditEmployee_OutputMessage">
+<wsdl:part name="parameters" element="tns:EditEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DisableEmployee_InputMessage">
+<wsdl:part name="parameters" element="tns:DisableEmployee"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_DisableEmployee_OutputMessage">
+<wsdl:part name="parameters" element="tns:DisableEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_GrantDenyAccessEmployee_InputMessage">
+<wsdl:part name="parameters" element="tns:GrantDenyAccessEmployee"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_GrantDenyAccessEmployee_OutputMessage">
+<wsdl:part name="parameters" element="tns:GrantDenyAccessEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddMenuItem_InputMessage">
+<wsdl:part name="parameters" element="tns:AddMenuItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddMenuItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddMenuItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubmenuItem_InputMessage">
+<wsdl:part name="parameters" element="tns:AddSubmenuItem"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSubmenuItem_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddSubmenuItemResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_OverrideOrderValue_InputMessage">
+<wsdl:part name="parameters" element="tns:OverrideOrderValue"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_OverrideOrderValue_OutputMessage">
+<wsdl:part name="parameters" element="tns:OverrideOrderValueResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveOrderFromTable_InputMessage">
+<wsdl:part name="parameters" element="tns:MoveOrderFromTable"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_MoveOrderFromTable_OutputMessage">
+<wsdl:part name="parameters" element="tns:MoveOrderFromTableResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ReportsOverView_InputMessage">
+<wsdl:part name="parameters" element="tns:ReportsOverView"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_ReportsOverView_OutputMessage">
+<wsdl:part name="parameters" element="tns:ReportsOverViewResponse"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSpecialsList_InputMessage">
+<wsdl:part name="parameters" element="tns:AddSpecialsList"/>
+</wsdl:message>
+<wsdl:message name="IHandupRESTWCF_AddSpecialsList_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddSpecialsListResponse"/>
+</wsdl:message>
+<wsdl:portType name="IHandupRESTWCF">
+<wsdl:operation name="LoginAndroid">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/LoginAndroid" message="tns:IHandupRESTWCF_LoginAndroid_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/LoginAndroidResponse" message="tns:IHandupRESTWCF_LoginAndroid_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="LoginAndroiBlank">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/LoginAndroiBlank" message="tns:IHandupRESTWCF_LoginAndroiBlank_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/LoginAndroiBlankResponse" message="tns:IHandupRESTWCF_LoginAndroiBlank_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddOrder">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddOrder" message="tns:IHandupRESTWCF_AddOrder_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddOrderResponse" message="tns:IHandupRESTWCF_AddOrder_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ConfirmOrder">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ConfirmOrder" message="tns:IHandupRESTWCF_ConfirmOrder_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ConfirmOrderResponse" message="tns:IHandupRESTWCF_ConfirmOrder_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="DeclineOrder">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/DeclineOrder" message="tns:IHandupRESTWCF_DeclineOrder_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/DeclineOrderResponse" message="tns:IHandupRESTWCF_DeclineOrder_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddTextToOrder">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddTextToOrder" message="tns:IHandupRESTWCF_AddTextToOrder_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddTextToOrderResponse" message="tns:IHandupRESTWCF_AddTextToOrder_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="OrdersPerTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/OrdersPerTable" message="tns:IHandupRESTWCF_OrdersPerTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/OrdersPerTableResponse" message="tns:IHandupRESTWCF_OrdersPerTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="JoinTableCode">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/JoinTableCode" message="tns:IHandupRESTWCF_JoinTableCode_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/JoinTableCodeResponse" message="tns:IHandupRESTWCF_JoinTableCode_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddTable" message="tns:IHandupRESTWCF_AddTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddTableResponse" message="tns:IHandupRESTWCF_AddTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddPatronToTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddPatronToTable" message="tns:IHandupRESTWCF_AddPatronToTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddPatronToTableResponse" message="tns:IHandupRESTWCF_AddPatronToTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CloseTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/CloseTable" message="tns:IHandupRESTWCF_CloseTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/CloseTableResponse" message="tns:IHandupRESTWCF_CloseTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CallWaiter">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/CallWaiter" message="tns:IHandupRESTWCF_CallWaiter_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/CallWaiterResponse" message="tns:IHandupRESTWCF_CallWaiter_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ActiveTablesForWaiter">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForWaiter" message="tns:IHandupRESTWCF_ActiveTablesForWaiter_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForWaiterResponse" message="tns:IHandupRESTWCF_ActiveTablesForWaiter_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ActiveTablesForProcessor">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForProcessor" message="tns:IHandupRESTWCF_ActiveTablesForProcessor_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForProcessorResponse" message="tns:IHandupRESTWCF_ActiveTablesForProcessor_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ActiveTablesForProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForProvider" message="tns:IHandupRESTWCF_ActiveTablesForProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ActiveTablesForProviderResponse" message="tns:IHandupRESTWCF_ActiveTablesForProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AllTablesForProviderByDate">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AllTablesForProviderByDate" message="tns:IHandupRESTWCF_AllTablesForProviderByDate_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AllTablesForProviderByDateResponse" message="tns:IHandupRESTWCF_AllTablesForProviderByDate_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AllTablesForProviderByDateStatus">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AllTablesForProviderByDateStatus" message="tns:IHandupRESTWCF_AllTablesForProviderByDateStatus_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AllTablesForProviderByDateStatusResponse" message="tns:IHandupRESTWCF_AllTablesForProviderByDateStatus_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getEmployeeAssignedToTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getEmployeeAssignedToTable" message="tns:IHandupRESTWCF_getEmployeeAssignedToTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getEmployeeAssignedToTableResponse" message="tns:IHandupRESTWCF_getEmployeeAssignedToTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MenuForProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/MenuForProvider" message="tns:IHandupRESTWCF_MenuForProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/MenuForProviderResponse" message="tns:IHandupRESTWCF_MenuForProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getMenuItemByID">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getMenuItemByID" message="tns:IHandupRESTWCF_getMenuItemByID_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getMenuItemByIDResponse" message="tns:IHandupRESTWCF_getMenuItemByID_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getMenuGroupsPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getMenuGroupsPerProvider" message="tns:IHandupRESTWCF_getMenuGroupsPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getMenuGroupsPerProviderResponse" message="tns:IHandupRESTWCF_getMenuGroupsPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getServiceStationsPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getServiceStationsPerProvider" message="tns:IHandupRESTWCF_getServiceStationsPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getServiceStationsPerProviderResponse" message="tns:IHandupRESTWCF_getServiceStationsPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getSubmenuItemsByMenuId">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getSubmenuItemsByMenuId" message="tns:IHandupRESTWCF_getSubmenuItemsByMenuId_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getSubmenuItemsByMenuIdResponse" message="tns:IHandupRESTWCF_getSubmenuItemsByMenuId_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="TableAlertPerEmployee">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/TableAlertPerEmployee" message="tns:IHandupRESTWCF_TableAlertPerEmployee_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/TableAlertPerEmployeeResponse" message="tns:IHandupRESTWCF_TableAlertPerEmployee_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ConfirmAlert">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ConfirmAlert" message="tns:IHandupRESTWCF_ConfirmAlert_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ConfirmAlertResponse" message="tns:IHandupRESTWCF_ConfirmAlert_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getEmployeeByID">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getEmployeeByID" message="tns:IHandupRESTWCF_getEmployeeByID_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getEmployeeByIDResponse" message="tns:IHandupRESTWCF_getEmployeeByID_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MenuPerProviderAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/MenuPerProviderAdminFull" message="tns:IHandupRESTWCF_MenuPerProviderAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/MenuPerProviderAdminFullResponse" message="tns:IHandupRESTWCF_MenuPerProviderAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="EmployeeListPerProvireAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/EmployeeListPerProvireAdminFull" message="tns:IHandupRESTWCF_EmployeeListPerProvireAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/EmployeeListPerProvireAdminFullResponse" message="tns:IHandupRESTWCF_EmployeeListPerProvireAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddEmployeePerProviderAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddEmployeePerProviderAdminFull" message="tns:IHandupRESTWCF_AddEmployeePerProviderAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddEmployeePerProviderAdminFullResponse" message="tns:IHandupRESTWCF_AddEmployeePerProviderAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateEmployeePerProviderAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateEmployeePerProviderAdminFull" message="tns:IHandupRESTWCF_UpdateEmployeePerProviderAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateEmployeePerProviderAdminFullResponse" message="tns:IHandupRESTWCF_UpdateEmployeePerProviderAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="TablesPerProviderAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/TablesPerProviderAdminFull" message="tns:IHandupRESTWCF_TablesPerProviderAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/TablesPerProviderAdminFullResponse" message="tns:IHandupRESTWCF_TablesPerProviderAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ReOpenTablesPerProviderAdmin">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ReOpenTablesPerProviderAdmin" message="tns:IHandupRESTWCF_ReOpenTablesPerProviderAdmin_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ReOpenTablesPerProviderAdminResponse" message="tns:IHandupRESTWCF_ReOpenTablesPerProviderAdmin_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MoveOrderBetweenTablesPerProviderAdmin">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveOrderBetweenTablesPerProviderAdmin" message="tns:IHandupRESTWCF_MoveOrderBetweenTablesPerProviderAdmin_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveOrderBetweenTablesPerProviderAdminResponse" message="tns:IHandupRESTWCF_MoveOrderBetweenTablesPerProviderAdmin_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MoveTableBetweenEmployeePerProviderAdmin">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveTableBetweenEmployeePerProviderAdmin" message="tns:IHandupRESTWCF_MoveTableBetweenEmployeePerProviderAdmin_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveTableBetweenEmployeePerProviderAdminResponse" message="tns:IHandupRESTWCF_MoveTableBetweenEmployeePerProviderAdmin_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ChangeOrderValuePerOrderPerProviderAdmin">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ChangeOrderValuePerOrderPerProviderAdmin" message="tns:IHandupRESTWCF_ChangeOrderValuePerOrderPerProviderAdmin_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ChangeOrderValuePerOrderPerProviderAdminResponse" message="tns:IHandupRESTWCF_ChangeOrderValuePerOrderPerProviderAdmin_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="TablesPerProviderPerStatusAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/TablesPerProviderPerStatusAdminFull" message="tns:IHandupRESTWCF_TablesPerProviderPerStatusAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/TablesPerProviderPerStatusAdminFullResponse" message="tns:IHandupRESTWCF_TablesPerProviderPerStatusAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddNewMenuItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddNewMenuItem" message="tns:IHandupRESTWCF_AddNewMenuItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddNewMenuItemResponse" message="tns:IHandupRESTWCF_AddNewMenuItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateMenuItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuItem" message="tns:IHandupRESTWCF_UpdateMenuItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuItemResponse" message="tns:IHandupRESTWCF_UpdateMenuItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateMenuGroupPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuGroupPerProvider" message="tns:IHandupRESTWCF_UpdateMenuGroupPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuGroupPerProviderResponse" message="tns:IHandupRESTWCF_UpdateMenuGroupPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddMenuGroupPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddMenuGroupPerProvider" message="tns:IHandupRESTWCF_AddMenuGroupPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddMenuGroupPerProviderResponse" message="tns:IHandupRESTWCF_AddMenuGroupPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddNewServiceStation">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddNewServiceStation" message="tns:IHandupRESTWCF_AddNewServiceStation_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddNewServiceStationResponse" message="tns:IHandupRESTWCF_AddNewServiceStation_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateServiceStation">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateServiceStation" message="tns:IHandupRESTWCF_UpdateServiceStation_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateServiceStationResponse" message="tns:IHandupRESTWCF_UpdateServiceStation_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateMenuGroupTypesPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuGroupTypesPerProvider" message="tns:IHandupRESTWCF_UpdateMenuGroupTypesPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateMenuGroupTypesPerProviderResponse" message="tns:IHandupRESTWCF_UpdateMenuGroupTypesPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddSubMenuGroupTypesPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubMenuGroupTypesPerProvider" message="tns:IHandupRESTWCF_AddSubMenuGroupTypesPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubMenuGroupTypesPerProviderResponse" message="tns:IHandupRESTWCF_AddSubMenuGroupTypesPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateSubMenuGroupTypePerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateSubMenuGroupTypePerProvider" message="tns:IHandupRESTWCF_UpdateSubMenuGroupTypePerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateSubMenuGroupTypePerProviderResponse" message="tns:IHandupRESTWCF_UpdateSubMenuGroupTypePerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddSubMenuPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubMenuPerProvider" message="tns:IHandupRESTWCF_AddSubMenuPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubMenuPerProviderResponse" message="tns:IHandupRESTWCF_AddSubMenuPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateSubMenuPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateSubMenuPerProvider" message="tns:IHandupRESTWCF_UpdateSubMenuPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateSubMenuPerProviderResponse" message="tns:IHandupRESTWCF_UpdateSubMenuPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetSubMenusPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/GetSubMenusPerProvider" message="tns:IHandupRESTWCF_GetSubMenusPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/GetSubMenusPerProviderResponse" message="tns:IHandupRESTWCF_GetSubMenusPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SubmenuGroupTypesPerProvireAdminFull">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/SubmenuGroupTypesPerProvireAdminFull" message="tns:IHandupRESTWCF_SubmenuGroupTypesPerProvireAdminFull_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/SubmenuGroupTypesPerProvireAdminFullResponse" message="tns:IHandupRESTWCF_SubmenuGroupTypesPerProvireAdminFull_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="DefaultReportPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/DefaultReportPerProvider" message="tns:IHandupRESTWCF_DefaultReportPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/DefaultReportPerProviderResponse" message="tns:IHandupRESTWCF_DefaultReportPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="StockTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockTable" message="tns:IHandupRESTWCF_StockTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockTableResponse" message="tns:IHandupRESTWCF_StockTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="StockAdd">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockAdd" message="tns:IHandupRESTWCF_StockAdd_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockAddResponse" message="tns:IHandupRESTWCF_StockAdd_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="StockDeduct">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockDeduct" message="tns:IHandupRESTWCF_StockDeduct_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockDeductResponse" message="tns:IHandupRESTWCF_StockDeduct_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="StockItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockItem" message="tns:IHandupRESTWCF_StockItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockItemResponse" message="tns:IHandupRESTWCF_StockItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="StockTypeList">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockTypeList" message="tns:IHandupRESTWCF_StockTypeList_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/StockTypeListResponse" message="tns:IHandupRESTWCF_StockTypeList_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateStockItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateStockItem" message="tns:IHandupRESTWCF_UpdateStockItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/UpdateStockItemResponse" message="tns:IHandupRESTWCF_UpdateStockItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getStockItemsPerProvider">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/getStockItemsPerProvider" message="tns:IHandupRESTWCF_getStockItemsPerProvider_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/getStockItemsPerProviderResponse" message="tns:IHandupRESTWCF_getStockItemsPerProvider_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddEmployee">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddEmployee" message="tns:IHandupRESTWCF_AddEmployee_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddEmployeeResponse" message="tns:IHandupRESTWCF_AddEmployee_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="EditEmployee">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/EditEmployee" message="tns:IHandupRESTWCF_EditEmployee_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/EditEmployeeResponse" message="tns:IHandupRESTWCF_EditEmployee_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="DisableEmployee">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/DisableEmployee" message="tns:IHandupRESTWCF_DisableEmployee_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/DisableEmployeeResponse" message="tns:IHandupRESTWCF_DisableEmployee_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GrantDenyAccessEmployee">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/GrantDenyAccessEmployee" message="tns:IHandupRESTWCF_GrantDenyAccessEmployee_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/GrantDenyAccessEmployeeResponse" message="tns:IHandupRESTWCF_GrantDenyAccessEmployee_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddMenuItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddMenuItem" message="tns:IHandupRESTWCF_AddMenuItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddMenuItemResponse" message="tns:IHandupRESTWCF_AddMenuItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddSubmenuItem">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubmenuItem" message="tns:IHandupRESTWCF_AddSubmenuItem_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSubmenuItemResponse" message="tns:IHandupRESTWCF_AddSubmenuItem_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="OverrideOrderValue">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/OverrideOrderValue" message="tns:IHandupRESTWCF_OverrideOrderValue_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/OverrideOrderValueResponse" message="tns:IHandupRESTWCF_OverrideOrderValue_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MoveOrderFromTable">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveOrderFromTable" message="tns:IHandupRESTWCF_MoveOrderFromTable_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/MoveOrderFromTableResponse" message="tns:IHandupRESTWCF_MoveOrderFromTable_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ReportsOverView">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/ReportsOverView" message="tns:IHandupRESTWCF_ReportsOverView_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/ReportsOverViewResponse" message="tns:IHandupRESTWCF_ReportsOverView_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddSpecialsList">
+<wsdl:input wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSpecialsList" message="tns:IHandupRESTWCF_AddSpecialsList_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IHandupRESTWCF/AddSpecialsListResponse" message="tns:IHandupRESTWCF_AddSpecialsList_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:service name="HandupRESTWCF"/>
+</wsdl:definitions>

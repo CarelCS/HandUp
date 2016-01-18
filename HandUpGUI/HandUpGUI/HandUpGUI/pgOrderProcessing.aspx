@@ -15,6 +15,13 @@
         ClickChangeAlert.click();
     }
 
+    function ConfirmProcessed(orderID) {
+        document.getElementById("<%= hdnOrderNumber.ClientID %>").value = orderID;
+        document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "6";
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateOrderStatus.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
     function CompleteOrder(orderID) {
         document.getElementById("<%= hdnOrderNumber.ClientID %>").value = orderID;
         document.getElementById("<%= hdnOrderStatus.ClientID %>").value = "6";
