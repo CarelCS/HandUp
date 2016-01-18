@@ -32,7 +32,7 @@
             ClickChangeTable.click();
         }
     </script>
-    <p>
+    <%--<asp:Button ID="btnLogout" runat="server" Text="Logout" onclick="btnLogout_Click" />--%>
     <table width="100%" border="0" style="background-color:transparent; height:100%">
         <tr>
             <td colspan="2" align="center">
@@ -71,8 +71,6 @@
             <asp:Button ID="btnJoinTable" runat="server" Text="Join Table" onclick="btnJoinTable_Click" />
             <asp:Button ID="btnSendSize" runat="server" Text="Button" onclick="btnSendSize_Click" />
         </div>
-
-    </p>
 <script language="javascript">
 
     var chkPostBack = '<%= Page.IsPostBack ? "true" : "false" %>';

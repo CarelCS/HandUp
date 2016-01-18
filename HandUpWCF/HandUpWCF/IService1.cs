@@ -37,7 +37,8 @@ namespace HandUpWCF {
         DataSet AddTextToOrder(int OrderID, string TextValue);
         [OperationContract]
         DataSet OrdersPerTable(int TableID);
-
+        [OperationContract]
+        string TableforOrderID(int OrderID);
 
         #endregion
 
@@ -88,7 +89,7 @@ namespace HandUpWCF {
         [OperationContract]
         DataSet TableAlertPerEmployee(int EmployeeID);
         [OperationContract]
-        void ConfirmAlert(string sCode, int EmployeeID);
+        void ConfirmAlert(string sCode, string GUI, int EmployeeID);
         [OperationContract]
         DataSet getEmployeeByID(int EmployeeID);
 

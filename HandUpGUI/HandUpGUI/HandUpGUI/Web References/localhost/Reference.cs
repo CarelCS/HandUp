@@ -44,6 +44,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback OrdersPerTableOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TableforOrderIDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback JoinTableCodeOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddTableOperationCompleted;
@@ -224,6 +226,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event OrdersPerTableCompletedEventHandler OrdersPerTableCompleted;
+        
+        /// <remarks/>
+        public event TableforOrderIDCompletedEventHandler TableforOrderIDCompleted;
         
         /// <remarks/>
         public event JoinTableCodeCompletedEventHandler JoinTableCodeCompleted;
@@ -641,6 +646,38 @@ namespace HandUpGUI.localhost {
             if ((this.OrdersPerTableCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.OrdersPerTableCompleted(this, new OrdersPerTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/TableforOrderID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string TableforOrderID(int OrderID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool OrderIDSpecified) {
+            object[] results = this.Invoke("TableforOrderID", new object[] {
+                        OrderID,
+                        OrderIDSpecified});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TableforOrderIDAsync(int OrderID, bool OrderIDSpecified) {
+            this.TableforOrderIDAsync(OrderID, OrderIDSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void TableforOrderIDAsync(int OrderID, bool OrderIDSpecified, object userState) {
+            if ((this.TableforOrderIDOperationCompleted == null)) {
+                this.TableforOrderIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTableforOrderIDOperationCompleted);
+            }
+            this.InvokeAsync("TableforOrderID", new object[] {
+                        OrderID,
+                        OrderIDSpecified}, this.TableforOrderIDOperationCompleted, userState);
+        }
+        
+        private void OnTableforOrderIDOperationCompleted(object arg) {
+            if ((this.TableforOrderIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TableforOrderIDCompleted(this, new TableforOrderIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1216,25 +1253,27 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/ConfirmAlert", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void ConfirmAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sCode, int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
+        public void ConfirmAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sCode, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string GUI, int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified) {
             this.Invoke("ConfirmAlert", new object[] {
                         sCode,
+                        GUI,
                         EmployeeID,
                         EmployeeIDSpecified});
         }
         
         /// <remarks/>
-        public void ConfirmAlertAsync(string sCode, int EmployeeID, bool EmployeeIDSpecified) {
-            this.ConfirmAlertAsync(sCode, EmployeeID, EmployeeIDSpecified, null);
+        public void ConfirmAlertAsync(string sCode, string GUI, int EmployeeID, bool EmployeeIDSpecified) {
+            this.ConfirmAlertAsync(sCode, GUI, EmployeeID, EmployeeIDSpecified, null);
         }
         
         /// <remarks/>
-        public void ConfirmAlertAsync(string sCode, int EmployeeID, bool EmployeeIDSpecified, object userState) {
+        public void ConfirmAlertAsync(string sCode, string GUI, int EmployeeID, bool EmployeeIDSpecified, object userState) {
             if ((this.ConfirmAlertOperationCompleted == null)) {
                 this.ConfirmAlertOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConfirmAlertOperationCompleted);
             }
             this.InvokeAsync("ConfirmAlert", new object[] {
                         sCode,
+                        GUI,
                         EmployeeID,
                         EmployeeIDSpecified}, this.ConfirmAlertOperationCompleted, userState);
         }
@@ -3125,6 +3164,32 @@ namespace HandUpGUI.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void TableforOrderIDCompletedEventHandler(object sender, TableforOrderIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TableforOrderIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TableforOrderIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

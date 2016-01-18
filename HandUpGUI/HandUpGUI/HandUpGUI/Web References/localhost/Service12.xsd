@@ -165,6 +165,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="TableforOrderID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TableforOrderIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TableforOrderIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="JoinTableCode">
     <xs:complexType>
       <xs:sequence>
@@ -572,6 +586,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="sCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GUI" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="EmployeeID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

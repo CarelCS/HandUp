@@ -5,7 +5,7 @@
 <head runat="server">
     <title></title>
     <style type="text/css">
-</style>
+    </style>
 </head>
 <script type="text/javascript">
 
@@ -81,13 +81,23 @@
     }
 
     function openOrderConfirmAlertWindow(value) {
+        //alert("WHAT THE HELL " + value);
         document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "OPEN";
         newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
+        var MyArray2 = value.split("~");
+        //alert("THIS GUI : "  + MyArray2[1]);
+        document.getElementById("<%= hdnCurrentTableGUI.ClientID %>").value = MyArray2[1];
         newWindow.document.write("<table><tr><td>" + value + "</td></tr><tr><td><textarea id=\"txtAddGUI\" cols=\"20\" rows=\"2\"></textarea></td></tr><tr><td><input id=\"btnTextAddConfirm\" type=\"button\" onclick=\"window.opener.setAlertValue(document.getElementById('txtAddGUI').value);window.close();\" value=\"Confirm the GUI\" /></td></tr></table>");
     }
 
     function setAlertValue(value) {
         document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "";
+        document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value + "~" + document.getElementById("<%= hdnCurrentTableGUI.ClientID %>").value;
+        var ClickChangeAlert = document.getElementById("<%= btnUpdateAlertConfirmed.ClientID %>");
+        ClickChangeAlert.click();
+    }
+
+    function AcceptConfirm(value) {
         document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value;
         var ClickChangeAlert = document.getElementById("<%= btnUpdateAlertConfirmed.ClientID %>");
         ClickChangeAlert.click();
@@ -155,17 +165,22 @@
     setInterval(myCheckAlert, 10000);
 
     function myCheckAlert() {
+        alert("CHECK THIS BEFORE : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
         document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+        alert("CHECK THIS AFTER : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         if (CurrentAlert != "") {
             var MyArray2 = CurrentAlert.split("|");
             for (i = 0; i < MyArray2.length - 1; i++) {
                 var ConfirmNow = confirm(MyArray2[i]);
+                var CurrentAlert = MyArray2[i];
                 if (ConfirmNow) {
                     var IsOpen = document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
                     if (IsOpen == "") {
                         i = MyArray2.length - 1;
-                        openOrderConfirmAlertWindow(MyArray2[i]);
+                        //alert("in here " + CurrentAlert);
+                        //openOrderConfirmAlertWindow(CurrentAlert);
+                        AcceptConfirm(CurrentAlert);
                     }
                 }
             }
@@ -226,6 +241,8 @@
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
+    <asp:Button ID="btnLogout" runat="server" Text="Logout" 
+        onclick="btnLogout_Click" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
@@ -302,7 +319,7 @@
                         <tr>
                             <td>
                                 Add Table
-                            </td>
+                            >
                             <td>
                                 <asp:Label ID="tblTableName" runat="server" Text="Table Name"></asp:Label>
                                 <asp:TextBox ID="txtTableName" runat="server"></asp:TextBox><br />
@@ -427,6 +444,7 @@
         <asp:HiddenField ID="hdnAlertText" runat="server" />
         <asp:HiddenField ID="hdnDisplayAreas" runat="server" />
         <asp:HiddenField ID="hdnGroupCurrentPrev" runat="server" />
+        <asp:HiddenField ID="hdnCurrentTableGUI" runat="server" />
     </div>
     </form>
 </body>

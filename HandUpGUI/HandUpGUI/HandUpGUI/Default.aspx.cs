@@ -96,5 +96,10 @@ namespace HandUpGUI {
         protected void btnRegister_Click(object sender, EventArgs e) {
             Server.Transfer("pgRegistration.aspx", false);
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e) {
+            Session.Clear();
+            Server.Transfer("Default.aspx", false);
+        }
     }
 }

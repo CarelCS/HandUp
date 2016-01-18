@@ -15,13 +15,19 @@ namespace HandUpGUI {
             string ScreenH = screenHeight.Value;
             string ScreenW = screenWidth.Value;
             try {
-                Session.Add("ScreenWidth", ScreenW);
                 if (Convert.ToInt32(ScreenH) > Convert.ToInt32(ScreenW)) {
+                    Session.Add("ScreenWidth", ScreenH);
                 }
                 else {
+                    Session.Add("ScreenWidth", ScreenW);
                 }
             }
             catch { Session.Add("ScreenWidth", 800); }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e) {
+            Session.Clear();
+            Server.Transfer("Default.aspx", false);
         }
     }
 }

@@ -130,5 +130,15 @@ namespace HandUpWCF {
             dDataSet = aOrder.executeSelectDataSet();
             return dDataSet;
         }
+
+        public string TableforOrderID(int OrderID) {
+            DataSet ds = new DataSet();
+
+            tblOrders aOrder = new tblOrders(OrderID);
+            ds = aOrder.executeSelectDataSet();
+
+            return ds.Tables[0].Rows[0][4].ToString();
+
+        }
     }
 }

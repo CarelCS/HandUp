@@ -52,6 +52,7 @@ namespace HandUpWCF {
             aAlert.FKiEployeeID = aEmp.PKiEmployeeID;
             aAlert.FKiTableID = PkiTableID;
             aAlert.sAlertMessage = sMessage;
+            aAlert.sAlertGUI = aTable.UIDGenerated;
             aAlert.executeINSERT();
             return "";
         }

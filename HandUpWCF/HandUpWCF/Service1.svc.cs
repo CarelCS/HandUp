@@ -54,6 +54,11 @@ namespace HandUpWCF {
             return clsOrder.OrdersPerTable(TableID);
         }
 
+        public string TableforOrderID(int OrderID) {
+            Orders clsOrder = new Orders();
+            return clsOrder.TableforOrderID(OrderID);
+        }
+
         #endregion
 
         #region Tables
@@ -150,9 +155,9 @@ namespace HandUpWCF {
             return clsEmployees.TableAlertPerEmployee(EmployeeID);
         }
 
-        public void ConfirmAlert(string sCode, int EmployeeID) {
+        public void ConfirmAlert(string sCode, string GUI, int EmployeeID) {
             Employees clsEmployee = new Employees();
-            clsEmployee.ConfirmAlert(sCode, EmployeeID);
+            clsEmployee.ConfirmAlert(sCode, GUI, EmployeeID);
         }
 
         #endregion

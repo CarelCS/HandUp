@@ -30,8 +30,10 @@
 </script>
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:no-repeat; border:0;">
     <form runat="server" enableviewstate="true"  >
-    <div class="page" style="background-color:transparent">
-        <div class="main" style="background-color:transparent">
+    <%--<asp:Button ID="btnLogout" runat="server" Text="Logout" 
+        onclick="btnLogout_Click" />--%>
+    <div class="page" style="background-color:transparent; border:0">
+        <div class="main" style="background-color:transparent; border:0">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>
         <div class="clear">
