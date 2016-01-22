@@ -91,13 +91,15 @@
     }
 
     function setAlertValue(value) {
-        document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "";
-        document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value + "~" + document.getElementById("<%= hdnCurrentTableGUI.ClientID %>").value;
+       // document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+       // document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value = "";
+       // document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value + "~" + document.getElementById("<%= hdnCurrentTableGUI.ClientID %>").value;
         var ClickChangeAlert = document.getElementById("<%= btnUpdateAlertConfirmed.ClientID %>");
         ClickChangeAlert.click();
     }
 
     function AcceptConfirm(value) {
+        document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
         document.getElementById("<%= hdnTextForAlertGUI.ClientID %>").value = value;
         var ClickChangeAlert = document.getElementById("<%= btnUpdateAlertConfirmed.ClientID %>");
         ClickChangeAlert.click();
@@ -175,17 +177,23 @@
                 var ConfirmNow = confirm(MyArray2[i]);
                 var CurrentAlertToDisplay = MyArray2[i];
                 if (ConfirmNow) {
-                    var IsOpen = document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
-                    if (IsOpen == "") {
-                        i = MyArray2.length - 1;
-                        //alert("in here " + CurrentAlert);
-                        //openOrderConfirmAlertWindow(CurrentAlert);
-                        AcceptConfirm(CurrentAlertToDisplay);
-                    }
+                    document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+                    //alert("YES");
+                    //var IsOpen = "test";  //document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
+                    //if (IsOpen == "") {
+                    i = MyArray2.length - 1;
+                    //alert("in here " + CurrentAlert);
+                    //openOrderConfirmAlertWindow(CurrentAlert);
+                    AcceptConfirm(CurrentAlertToDisplay);
+                    document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+                    //}
+                }
+                else {
+                    document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
                 }
             }
         }
-        document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+        //document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
         //alert("WHAT THE FUCK : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
         ClickChangeAlert.click();

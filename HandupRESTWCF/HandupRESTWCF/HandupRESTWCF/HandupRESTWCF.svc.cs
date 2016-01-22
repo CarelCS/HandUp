@@ -107,6 +107,17 @@ namespace HandupRESTWCF {
             return clsTable.ActiveTablesForWaiter(EmployeeID);
         }
 
+        public string ActiveTablesForWaiterJSON(int EmployeeID) {
+            Table clsTable = new Table();
+            DataSet ds = clsTable.ActiveTablesForWaiter(EmployeeID);
+
+            Utilities util = new Utilities();
+            string JsonData = util.ConvertToJSON(ds);
+            string Final = "{'ActiveTablesForWaiter' : " + JsonData + "}";
+
+            return Final.Replace("\"", "'");
+        }
+
         public DataSet ActiveTablesForProcessor(int EmployeeID) {
             Table clsTable = new Table();
             return clsTable.ActiveTablesForProcessor(EmployeeID);

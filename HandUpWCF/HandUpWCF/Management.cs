@@ -166,6 +166,25 @@ namespace HandUpWCF {
             aTable.FKiEmployeeID = EmployeeID; ;
             aTable.executeUPDATE();
 
+            tblTablealerts aTableAlert = new tblTablealerts();           
+            aTableAlert.addEquals(tblTablealerts._FKITABLEID,ToTableID);
+            aTableAlert.addAND();
+            aTableAlert.addEquals(tblTablealerts._BACTIVESTATUS, 1);
+            List<tblTablealerts> listTableAlert = aTableAlert.executeSelect();
+            foreach (tblTablealerts aActiveTableAlert in listTableAlert) {
+                tblTablealerts aChangeTableAlert = new tblTablealerts();
+                aChangeTableAlert.bActiveStatus = aActiveTableAlert.bActiveStatus;
+                aChangeTableAlert.dtAlertStartTime = DateTime.Now;
+                aChangeTableAlert.FKiEployeeID = EmployeeID;
+                aChangeTableAlert.FKiTableID = ToTableID;
+                aChangeTableAlert.sAlertGUI = aActiveTableAlert.sAlertGUI;
+                aChangeTableAlert.sAlertMessage = aActiveTableAlert.sAlertMessage;
+                aChangeTableAlert.executeINSERT();
+
+                aActiveTableAlert.bActiveStatus = 0;
+                aActiveTableAlert.executeUPDATE();
+            }
+            
             DataSet dsDataSet = aTable.executeSelectDataSet();
             return dsDataSet;
         }

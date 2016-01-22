@@ -63,6 +63,9 @@ namespace HandupRESTWCF {
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ActiveTablesForWaiter?EmployeeID={EmployeeID}")]
         DataSet ActiveTablesForWaiter(int EmployeeID);
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ActiveTablesForWaiterJSON?EmployeeID={EmployeeID}")]
+        string ActiveTablesForWaiterJSON(int EmployeeID);
+        [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ActiveTablesForProcessor?EmployeeID={EmployeeID}")]
         DataSet ActiveTablesForProcessor(int EmployeeID);
         [OperationContract]

@@ -38,6 +38,7 @@ namespace HandUpGUI {
                 DataSet ds = new DataSet();
                 DataSet dsE = new DataSet();
                 dsE = (DataSet)Session["SEmployee"];
+                lblAlert.Text = "";
                 PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
                 PKiEmployeeTypeID = dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString();
                 if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
@@ -394,6 +395,9 @@ namespace HandUpGUI {
                     //    lblAlert.Text += dr["sTableName"].ToString() + "\n" + dr["sAlertMessage"].ToString() + "\n~" + dr["PKiTableAlertsID"].ToString() + "|";
                     //}
                     lblAlert.Text = ds.Tables[0].Rows[0]["sTableName"].ToString() + "\n" + ds.Tables[0].Rows[0]["sAlertMessage"].ToString() + "\n~" + ds.Tables[0].Rows[0]["PKiTableAlertsID"].ToString() + "|";
+                }
+                else {
+                    lblAlert.Text = "";
                 }
             }
             catch { }
