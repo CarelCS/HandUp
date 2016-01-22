@@ -83,7 +83,7 @@
         ClickChangeAlert.click();
     }
 </script>
-<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
+<body style="background: linear-gradient(to right, silver, white);"><%----%>
     <form id="form1" runat="server">
     <asp:Button ID="btnLogout" runat="server" Text="Logout" 
         onclick="btnLogout_Click" />

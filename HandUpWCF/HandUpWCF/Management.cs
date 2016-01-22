@@ -60,6 +60,8 @@ namespace HandUpWCF {
         public DataSet EmployeeListPerProvireAdminFull(int ProviderID) {
             tblEmployees aEmployees = new tblEmployees();
             aEmployees.addEquals(tblEmployees._FKIPROVIDERID, ProviderID);
+            aEmployees.addAND();
+            aEmployees.addEquals(tblEmployees._FKIEMPLOYEETYPE, "1");
             DataSet dsDataSet = aEmployees.executeSelectDataSet();
             return dsDataSet;
         }

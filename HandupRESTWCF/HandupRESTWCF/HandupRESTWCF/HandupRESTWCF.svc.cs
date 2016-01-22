@@ -16,7 +16,11 @@ namespace HandupRESTWCF {
             DataSet tmp = aLogin.Login(sUsername, sPassword);
             Utilities util = new Utilities();
             string JsonData = util.ConvertToJSON(tmp);
-            return JsonData;
+            string Final = "{'LoginUser' : " + JsonData + "}";
+
+            return Final.Replace("\"", "'");
+
+            //return "{'abridged_cast':[{'name':'JeffBridges','id':'162655890','characters':['JackPrescott']},{'name':'CharlesGrodin','id':'162662571','characters':['FredWilson']},{'name':'JessicaLange','id':'162653068','characters':['Dwan']},{'name':'JohnRandolph','id':'162691889','characters':['Capt.Ross']},{'name':'ReneAuberjonois','id':'162718328','characters':['Bagley']}]}";
         }
 
         public string LoginAndroiBlank() {

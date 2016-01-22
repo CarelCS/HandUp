@@ -165,26 +165,28 @@
     setInterval(myCheckAlert, 10000);
 
     function myCheckAlert() {
-        alert("CHECK THIS BEFORE : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
+        //alert("CHECK THIS BEFORE : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         var CurrentAlert = document.getElementById("<%= lblAlert.ClientID %>").innerHTML;
         document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
-        alert("CHECK THIS AFTER : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
+        //alert("CHECK THIS AFTER : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         if (CurrentAlert != "") {
             var MyArray2 = CurrentAlert.split("|");
             for (i = 0; i < MyArray2.length - 1; i++) {
                 var ConfirmNow = confirm(MyArray2[i]);
-                var CurrentAlert = MyArray2[i];
+                var CurrentAlertToDisplay = MyArray2[i];
                 if (ConfirmNow) {
                     var IsOpen = document.getElementById("<%= hdnAlertWindowOpen.ClientID %>").value;
                     if (IsOpen == "") {
                         i = MyArray2.length - 1;
                         //alert("in here " + CurrentAlert);
                         //openOrderConfirmAlertWindow(CurrentAlert);
-                        AcceptConfirm(CurrentAlert);
+                        AcceptConfirm(CurrentAlertToDisplay);
                     }
                 }
             }
         }
+        document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
+        //alert("WHAT THE FUCK : " + document.getElementById("<%= lblAlert.ClientID %>").innerHTML);
         var ClickChangeAlert = document.getElementById("<%= btnAlertUpdate.ClientID %>");
         ClickChangeAlert.click();
     }
@@ -239,7 +241,7 @@
         ClickChangeAlert.click();
     }
 </script>
-<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:repeat; border:0;">
+<body style="background: linear-gradient(to right, silver, white);"><%----%>
     <form id="form1" runat="server" enableviewstate="true" >
     <asp:Button ID="btnLogout" runat="server" Text="Logout" 
         onclick="btnLogout_Click" />
@@ -441,7 +443,7 @@
         <asp:HiddenField ID="hdnGroupCurrent" runat="server" />
         <asp:HiddenField ID="hdnTextForAlertGUI" runat="server" />
         <asp:HiddenField ID="hdnAlertWindowOpen" runat="server" />
-        <asp:HiddenField ID="hdnAlertText" runat="server" />
+        <asp:HiddenField ID="hdnAlertText" runat="server" EnableViewState="false" ViewStateMode="Disabled" />
         <asp:HiddenField ID="hdnDisplayAreas" runat="server" />
         <asp:HiddenField ID="hdnGroupCurrentPrev" runat="server" />
         <asp:HiddenField ID="hdnCurrentTableGUI" runat="server" />
@@ -453,5 +455,6 @@
         document.getElementById('dvWaiterMenu').style.display = 'none';
     }
     ChangeDivDisplay();
+    document.getElementById("<%= hdnAlertText.ClientID %>").value = "";
 </script>
 </html>

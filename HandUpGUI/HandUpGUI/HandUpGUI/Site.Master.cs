@@ -12,8 +12,12 @@ namespace HandUpGUI {
         }
 
         protected void btnSendSize_Click(object sender, EventArgs e) {
+            
             string ScreenH = screenHeight.Value;
             string ScreenW = screenWidth.Value;
+            while (ScreenH == "" && ScreenW == "") {
+                Server.Transfer("Default.aspx", false);
+            }
             try {
                 if (Convert.ToInt32(ScreenH) > Convert.ToInt32(ScreenW)) {
                     Session.Add("ScreenWidth", ScreenH);
