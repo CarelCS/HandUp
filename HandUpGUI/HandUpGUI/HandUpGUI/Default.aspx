@@ -33,7 +33,7 @@
         }
     </script>
     <%--<asp:Button ID="btnLogout" runat="server" Text="Logout" onclick="btnLogout_Click" />--%>
-    <table width="100%" border="0" style="background-color:transparent; background: linear-gradient(to right, silver, white); height:100%">
+    <table width="100%" border="0" style="background-color:transparent; background-size: 100%; background-repeat:no-repeat; border:0;">
         <tr>
             <td colspan="2" align="center">
                 <asp:Image ID="Image3" ImageUrl="~/Images/Icons/Logo-01.png" runat="server" /></td>

@@ -49,6 +49,7 @@ namespace HandUpWCF {
             DataSet aDataSet = aOrder.executeSelectDataSet();
             aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMDESCRIPTION);
             aDataSet.Tables[0].Columns.Add(tblMenu._SMENUITEMNAME);
+            aDataSet.Tables[0].Columns.Add(tblMenu._FKIMENUSERVICESTATIONID);
 
             Dictionary<int, tblMenu> dicMenu = new Dictionary<int, tblMenu>();
             foreach (DataRow aMenuItemRow in aDataSet.Tables[0].Rows) {
@@ -63,6 +64,7 @@ namespace HandUpWCF {
                 }
                 aMenuItemRow[tblMenu._SMENUITEMDESCRIPTION] = aMenuItem.sMenuItemDescription;
                 aMenuItemRow[tblMenu._SMENUITEMNAME] = aMenuItem.sMenuItemName;
+                aMenuItemRow[tblMenu._FKIMENUSERVICESTATIONID] = aMenuItem.fkiServicestationID;
             }
             return aDataSet;
         }

@@ -186,7 +186,7 @@
         ClickChangeAlert.click();
     }
 </script>
-<body style="background: linear-gradient(to right, silver, white); background-size: 100%; background-repeat:repeat; border:0;">
+<body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:no-repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
     <asp:Button ID="btnGoToStock" runat="server" Text="Stock" 
         onclick="btnGoToStock_Click" />
