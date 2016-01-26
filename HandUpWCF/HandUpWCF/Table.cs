@@ -136,6 +136,32 @@ namespace HandUpWCF {
             return aDataSet;
         }
 
-       
+        public string NewTableAlert(string sProvider, string sTable) {
+            string AlertSent = "";
+            tblTables aTable = new tblTables();
+            aTable.addEquals(tblTables._FKIPROVIDERID, sProvider);
+            aTable.addAND();
+            aTable.addEquals(tblTables._BACTIVESTATUS, "1");
+            DataSet ds = aTable.executeSelectDataSet(); 
+            string DoneList = "";
+            if (ds.Tables[0].Rows.Count > 0) {
+                foreach (DataRow dr in ds.Tables[0].Rows) {
+                    if (!DoneList.Contains("|" + dr["FKiEmployeeID"].ToString() + "|"))
+                    {
+                        tblTablealerts aAlert = new tblTablealerts();
+                        aAlert.bActiveStatus = 1;
+                        aAlert.dtAlertStartTime = DateTime.Now;
+                        aAlert.FKiEployeeID = Convert.ToInt32(dr["FKiEmployeeID"].ToString());
+                        aAlert.FKiTableID = Convert.ToInt32(dr["PKiTableID"].ToString());
+                        aAlert.sAlertMessage = "NEW GUESTS AT TABLE : " + sTable;
+                        aAlert.sAlertGUI = "NA";
+                        aAlert.executeINSERT();
+                        AlertSent = "SENT";
+                    }
+                    DoneList += "|" + dr["FKiEmployeeID"].ToString() + "|";
+                }
+            }
+            return AlertSent;
+        }
     }
 }

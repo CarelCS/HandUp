@@ -68,6 +68,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback getEmployeeAssignedToTableOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SendNewTableAlertOperationCompleted;
+        
         private System.Threading.SendOrPostCallback MenuForProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMenuItemByIDOperationCompleted;
@@ -262,6 +264,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event getEmployeeAssignedToTableCompletedEventHandler getEmployeeAssignedToTableCompleted;
+        
+        /// <remarks/>
+        public event SendNewTableAlertCompletedEventHandler SendNewTableAlertCompleted;
         
         /// <remarks/>
         public event MenuForProviderCompletedEventHandler MenuForProviderCompleted;
@@ -1058,6 +1063,38 @@ namespace HandUpGUI.localhost {
             if ((this.getEmployeeAssignedToTableCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getEmployeeAssignedToTableCompleted(this, new getEmployeeAssignedToTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/SendNewTableAlert", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string SendNewTableAlert([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sProvider, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sTable) {
+            object[] results = this.Invoke("SendNewTableAlert", new object[] {
+                        sProvider,
+                        sTable});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendNewTableAlertAsync(string sProvider, string sTable) {
+            this.SendNewTableAlertAsync(sProvider, sTable, null);
+        }
+        
+        /// <remarks/>
+        public void SendNewTableAlertAsync(string sProvider, string sTable, object userState) {
+            if ((this.SendNewTableAlertOperationCompleted == null)) {
+                this.SendNewTableAlertOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendNewTableAlertOperationCompleted);
+            }
+            this.InvokeAsync("SendNewTableAlert", new object[] {
+                        sProvider,
+                        sTable}, this.SendNewTableAlertOperationCompleted, userState);
+        }
+        
+        private void OnSendNewTableAlertOperationCompleted(object arg) {
+            if ((this.SendNewTableAlertCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendNewTableAlertCompleted(this, new SendNewTableAlertCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3476,6 +3513,32 @@ namespace HandUpGUI.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void SendNewTableAlertCompletedEventHandler(object sender, SendNewTableAlertCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendNewTableAlertCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendNewTableAlertCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

@@ -116,6 +116,11 @@ namespace HandUpWCF {
             return clsTable.AllTablesForProviderByDateStatus(ProviderID, dtFromDate, StatusID);
         }
 
+        public string SendNewTableAlert(string sProvider, string sTable) {
+            Table clsTable = new Table();
+            return clsTable.NewTableAlert(sProvider, sTable);
+        }
+
         #endregion
 
         #region Menu

@@ -39,11 +39,10 @@ namespace HandUpGUI {
                 DataSet dsE = new DataSet();
                 dsE = (DataSet)Session["SEmployee"];
                 lblAlert.Text = "";
-                PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
-                PKiEmployeeTypeID = dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString();
-                if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
+                if (dsE == null) {
                     if ((DataSet)Session["sTableCodeActive"] != null) {
                         //a guest with table code only
+                        dvCloseTable.Visible = false;
                         ds = (DataSet)Session["sTableCodeActive"];
                         hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
                         PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
@@ -56,33 +55,51 @@ namespace HandUpGUI {
                     }
                 }
                 else {
-                    dvCallWaiter.Visible = false;
-                    dvCloseBill.Visible = false;
-                    ds = (DataSet)Session["SEmployee"];
-                    PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
-                    lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
-                    DataSet dsTables = new DataSet();
-                    dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
-                    if (dsTables.Tables.Count > 0) {
-                        string sTableSelectDDL = "<select name=\"TableSelectDDL\" id=\"TableSelectDDL\">";
-                        //string sTablesDisplay = "<table border='0' width=\"100%\"><tr>";
-                        foreach (DataRow dr in dsTables.Tables[0].Rows) {
-                            if (hdnTableNumber.Value == "") 
-                            {
-                                hdnTableNumber.Value = dr["PKiTableID"].ToString();
-                                lblTableOpened.Text = dr["sTableName"].ToString();
-                                lblTableGUI.Text = "GUI : " + dr["UIDGenerated"].ToString();
-                                lblWaiterName.Text = "Carel";
-                                dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
-                                PopulateTable(dr["sTableName"].ToString());
-                            }
-                            sTableSelectDDL += "<option value=\"" + dr["PKiTableID"].ToString() + "\">" + dr["sTableName"].ToString() + "</option>";
-                            //sTablesDisplay += "<td><table cellpadding=\"0\" cellspacing=\"0\"><tr><td align=\"center\"><div style='cursor:pointer; color:White; font-weight:bolder; font-family:Arial' id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td></table></td>";
+                    PKiEmployeeID = dsE.Tables[0].Rows[0]["PKiEmployeeID"].ToString();
+                    PKiEmployeeTypeID = dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString();
+                    if (dsE.Tables[0].Rows[0]["FKiEmployeeType"].ToString() == "2") {
+                        if ((DataSet)Session["sTableCodeActive"] != null) {
+                            //a guest with table code only
+                            dvCloseTable.Visible = false;
+                            ds = (DataSet)Session["sTableCodeActive"];
+                            hdnTableCodeOnlyGuest.Value = ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
+                            PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
+                            hdnTableNumber.Value = ds.Tables[0].Rows[0]["PKiTableID"].ToString();
+                            lblTableGUI.Text = "GUI : " + ds.Tables[0].Rows[0]["UIDGenerated"].ToString();
+                            lblWaiterName.Text = "Carel";
+                            dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
+                            PopulateTable(ds.Tables[0].Rows[0]["UIDGenerated"].ToString());
+                            dvCloseTable.Visible = false;
                         }
-                        sTableSelectDDL += "</select>";
-                        //sTablesDisplay += "</tr></table>";
-                        //dvTablesTop.InnerHtml = sTablesDisplay + "</br>" + sTableSelectDDL;
-                        dvTablesTop.InnerHtml = sTableSelectDDL;
+                    }
+                    else {
+                        dvCallWaiter.Visible = false;
+                        dvCloseBill.Visible = false;
+                        ds = (DataSet)Session["SEmployee"];
+                        PKiProviderID = ds.Tables[0].Rows[0]["FKiProviderID"].ToString();
+                        lblEmployeeUserName.Text = ds.Tables[0].Rows[0]["sEmployeeName"].ToString();
+                        DataSet dsTables = new DataSet();
+                        dsTables = WSNew.ActiveTablesForWaiter(Convert.ToInt32(ds.Tables[0].Rows[0]["PKiEmployeeID"].ToString()), true);
+                        if (dsTables.Tables.Count > 0) {
+                            string sTableSelectDDL = "<select name=\"TableSelectDDL\" id=\"TableSelectDDL\">";
+                            //string sTablesDisplay = "<table border='0' width=\"100%\"><tr>";
+                            foreach (DataRow dr in dsTables.Tables[0].Rows) {
+                                if (hdnTableNumber.Value == "") {
+                                    hdnTableNumber.Value = dr["PKiTableID"].ToString();
+                                    lblTableOpened.Text = dr["sTableName"].ToString();
+                                    lblTableGUI.Text = "GUI : " + dr["UIDGenerated"].ToString();
+                                    lblWaiterName.Text = "Carel";
+                                    dvWaiterImage.InnerHtml = "<img id=\"Image1\" src=\"images/EmployeeImages/Carelwaiter.jpg\"  width='" + IconWidth * 2 + "'/>";
+                                    PopulateTable(dr["sTableName"].ToString());
+                                }
+                                sTableSelectDDL += "<option value=\"" + dr["PKiTableID"].ToString() + "\">" + dr["sTableName"].ToString() + "</option>";
+                                //sTablesDisplay += "<td><table cellpadding=\"0\" cellspacing=\"0\"><tr><td align=\"center\"><div style='cursor:pointer; color:White; font-weight:bolder; font-family:Arial' id=\"Table" + dr["PKiTableID"].ToString() + "\" onclick=\"OpenTable('" + dr["PKiTableID"].ToString() + "')\">" + dr["sTableName"].ToString() + "</div></td></table></td>";
+                            }
+                            sTableSelectDDL += "</select>";
+                            //sTablesDisplay += "</tr></table>";
+                            //dvTablesTop.InnerHtml = sTablesDisplay + "</br>" + sTableSelectDDL;
+                            dvTablesTop.InnerHtml = sTableSelectDDL;
+                        }
                     }
                 }
                 if (!IsPostBack) {

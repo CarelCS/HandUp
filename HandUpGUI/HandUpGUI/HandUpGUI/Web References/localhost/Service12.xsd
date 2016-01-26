@@ -426,6 +426,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SendNewTableAlert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sProvider" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sTable" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendNewTableAlertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendNewTableAlertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MenuForProvider">
     <xs:complexType>
       <xs:sequence>

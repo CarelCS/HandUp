@@ -55,6 +55,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="BarcodeAlert.aspx" />
     <Content Include="Images\EmployeeImages\Carelwaiter.jpg" />
     <Content Include="Images\Icons\Accept.png" />
     <Content Include="Images\Icons\AddEmployee.png" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BarcodeAlert.aspx.cs">
+      <DependentUpon>BarcodeAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BarcodeAlert.aspx.designer.cs">
+      <DependentUpon>BarcodeAlert.aspx</DependentUpon>
     </Compile>
     <Compile Include="cEmployees.cs" />
     <Compile Include="Default.aspx.cs">
