@@ -95,6 +95,7 @@
     <Content Include="pgPatron.aspx" />
     <Content Include="pgRegistration.aspx" />
     <Content Include="pgStockManagement.aspx" />
+    <Content Include="ProviderMenu.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -237,6 +238,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ProviderMenu.aspx.cs">
+      <DependentUpon>ProviderMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProviderMenu.aspx.designer.cs">
+      <DependentUpon>ProviderMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

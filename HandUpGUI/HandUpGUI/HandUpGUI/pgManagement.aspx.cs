@@ -549,12 +549,37 @@ namespace HandUpGUI {
         protected void btnShowReports_Click(object sender, EventArgs e) {
             localhost.HandUpService WSNew = new localhost.HandUpService();
             DataSet ds = WSNew.DefaultReportPerProvider(Convert.ToInt32(PKiProviderID), true);
-            string ReportString = "<table>";
+            string ReportString = "<table width='100%'>";
             int reportcount = 0;
+            string ReportDesc = "";
             foreach (DataTable dt in ds.Tables) {
-                ReportString += "<tr><td colspan='3'>Report " + reportcount++ + "</td></tr>";
+                switch (reportcount) {
+                    case 0:
+                        ReportDesc = "Most ordered menu items in the last month.";
+                        break;
+                    case 1:
+                        ReportDesc = "Order Values per Waiter.";
+                        break;
+                    case 2:
+                        ReportDesc = "Number of guests per table per Waiter.";
+                        break;
+                    default:
+                        break;
+                }
+                ReportString += "<tr><td colspan='2'>" + ReportDesc + "</td></tr>";
+
+                int Totals = 0;
                 foreach (DataRow dr in dt.Rows) {
-                    ReportString += "<tr><td>" + dr[0].ToString() + "</td><td>" + dr[1].ToString() + "</td><td>" + dr[2].ToString() + "</td></tr>";
+                    Totals += Convert.ToInt32(dr[0].ToString());
+                }
+
+                double PercToFill = 0;
+                int TotalPerc = 0;
+                foreach (DataRow dr in dt.Rows) {
+                    int CurrentTotal = Convert.ToInt32(dr[0].ToString());
+                    PercToFill = (Convert.ToDouble(CurrentTotal) / Convert.ToDouble(Totals)) * 100;
+                    TotalPerc = Convert.ToInt32(PercToFill);
+                    ReportString += "<tr><td>" + dr[2].ToString() + "</td><td width='100%'><table width='100%'><tr><td width='" + TotalPerc + "%' style='background-color:red'>" + dr[0].ToString() + "</td><td width='100%'></td></tr></table></td></tr>"; //<td>" + dr[1].ToString() + "</td>
                 }
             }
             ReportString += "</table>";

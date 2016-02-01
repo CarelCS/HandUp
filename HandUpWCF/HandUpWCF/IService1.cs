@@ -74,6 +74,8 @@ namespace HandUpWCF {
         #region Menu
 
         [OperationContract]
+        DataSet AllAvailableProviderMenues();
+        [OperationContract]
         DataSet MenuForProvider(string ProviderID);
         [OperationContract]
         DataSet getMenuItemByID(int PKiMenuID);
@@ -175,7 +177,7 @@ namespace HandUpWCF {
         DataSet DefaultReportPerProvider(int ProviderID);
 
         #endregion
-
+        
         #region Stock Management
 
         [OperationContract]

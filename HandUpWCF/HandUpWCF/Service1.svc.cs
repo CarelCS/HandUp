@@ -125,6 +125,11 @@ namespace HandUpWCF {
 
         #region Menu
 
+        public DataSet AllAvailableProviderMenues() {
+            Menu menues = new Menu();
+            return menues.AllAvailableProviderMenues();
+        }
+
         public DataSet MenuForProvider(string ProviderID) {
             Menu table = new Menu();
             return table.MenuForProvider(ProviderID);
@@ -267,8 +272,6 @@ namespace HandUpWCF {
         }
 
         #endregion
-
-
 
         public DataSet TablesPerProviderAdminFull(int ProviderID, DateTime dtOpen) {
             Management clsManagement = new Management();

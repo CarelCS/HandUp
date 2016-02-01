@@ -13,7 +13,7 @@
         <tr align="center">
             <td align="right">Restaurant Menus</td>
             <td align="left">
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="ddlMenuesAvailable" runat="server">
                 </asp:DropDownList>
             </td>
         </tr>

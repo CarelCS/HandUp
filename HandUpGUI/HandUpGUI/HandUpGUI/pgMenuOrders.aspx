@@ -217,14 +217,14 @@
     }
     function btnGoBackOneGroup() {
         var X = document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value;
-        alert(X);
+        //alert(X);
         var ArrayBack = X.split("|");
         var NewBack = "";
         for (i = 0; i < ArrayBack.length - 1; i++) {
-            alert(ArrayBack[i]);
+            //alert(ArrayBack[i]);
             NewBack = NewBack + "|" + ArrayBack[i];
         }
-        alert(NewBack);
+        //alert(NewBack);
         document.getElementById("<%= hdnGroupCurrentPrev.ClientID %>").value = NewBack;
         document.getElementById("<%= hdnGroupCurrent.ClientID %>").value = ArrayBack[ArrayBack.length - 1];
         var ClickChangeAlert = document.getElementById("<%= btnChangeGroup.ClientID %>");

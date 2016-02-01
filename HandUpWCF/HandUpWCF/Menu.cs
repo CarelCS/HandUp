@@ -7,6 +7,15 @@ using HandUpWCF.DBClasses;
 
 namespace HandUpWCF {
     public class Menu {
+
+        public DataSet AllAvailableProviderMenues() {
+            DataSet ds = new DataSet();
+            tblProviders aProvider = new tblProviders();
+            aProvider.addEquals(tblProviders._SPROVIDERSTATUS, "1");
+            ds = aProvider.executeSelectDataSet();
+            return ds;
+        }
+
         public DataSet MenuForProvider(string sProviderID) {
             tblMenu aMenu = new tblMenu();
             aMenu.addEquals(tblMenu._FKIPROVIDERID, sProviderID);

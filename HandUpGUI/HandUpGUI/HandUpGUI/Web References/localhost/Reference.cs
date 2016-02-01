@@ -70,6 +70,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback SendNewTableAlertOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AllAvailableProviderMenuesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback MenuForProviderOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMenuItemByIDOperationCompleted;
@@ -267,6 +269,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event SendNewTableAlertCompletedEventHandler SendNewTableAlertCompleted;
+        
+        /// <remarks/>
+        public event AllAvailableProviderMenuesCompletedEventHandler AllAvailableProviderMenuesCompleted;
         
         /// <remarks/>
         public event MenuForProviderCompletedEventHandler MenuForProviderCompleted;
@@ -1095,6 +1100,34 @@ namespace HandUpGUI.localhost {
             if ((this.SendNewTableAlertCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SendNewTableAlertCompleted(this, new SendNewTableAlertCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/AllAvailableProviderMenues", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataSet AllAvailableProviderMenues() {
+            object[] results = this.Invoke("AllAvailableProviderMenues", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AllAvailableProviderMenuesAsync() {
+            this.AllAvailableProviderMenuesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void AllAvailableProviderMenuesAsync(object userState) {
+            if ((this.AllAvailableProviderMenuesOperationCompleted == null)) {
+                this.AllAvailableProviderMenuesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllAvailableProviderMenuesOperationCompleted);
+            }
+            this.InvokeAsync("AllAvailableProviderMenues", new object[0], this.AllAvailableProviderMenuesOperationCompleted, userState);
+        }
+        
+        private void OnAllAvailableProviderMenuesOperationCompleted(object arg) {
+            if ((this.AllAvailableProviderMenuesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AllAvailableProviderMenuesCompleted(this, new AllAvailableProviderMenuesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3539,6 +3572,32 @@ namespace HandUpGUI.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void AllAvailableProviderMenuesCompletedEventHandler(object sender, AllAvailableProviderMenuesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AllAvailableProviderMenuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AllAvailableProviderMenuesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
