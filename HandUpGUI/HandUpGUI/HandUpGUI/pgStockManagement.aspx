@@ -17,6 +17,8 @@
 <body style="background-image:url(Images/Icons/BG.jpg); background-size: 100%; background-repeat:no-repeat; border:0;">
     <form id="form1" runat="server" enableviewstate="true" >
     <div>
+        <asp:Button ID="btnBack" runat="server" onclick="btnBack_Click" 
+            Text="Back to Management" />
         <table>
             <tr>
                 <td><div id="dvStockList" runat="server"></div></td>

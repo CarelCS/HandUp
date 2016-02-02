@@ -130,5 +130,9 @@ namespace HandUpGUI {
                 ddlSubmenuItem.Items.Add(li);
             }
         }
+
+        protected void btnBack_Click(object sender, EventArgs e) {
+            Server.Transfer("pgManagement.aspx", false);
+        }
     }
 }
