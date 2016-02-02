@@ -206,6 +206,11 @@ namespace HandUpWCF {
             return ds;
         }
 
+        public void updateOnShift(int EmployeeID, string sOnShift) {
+            Employees setEmployee = new Employees();
+            setEmployee.updateOnShift(EmployeeID, sOnShift);
+        }
+
         #region Stock Management
 
         public DataSet StockTable(int providerID) {

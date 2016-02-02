@@ -91,6 +91,7 @@
     <Content Include="Images\MenuImages\Steak.jpg" />
     <Content Include="pgManagement.aspx" />
     <Content Include="pgMenuOrders.aspx" />
+    <Content Include="pgOnShiftWaiters.aspx" />
     <Content Include="pgOrderProcessing.aspx" />
     <Content Include="pgPatron.aspx" />
     <Content Include="pgRegistration.aspx" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="pgMenuOrders.aspx.designer.cs">
       <DependentUpon>pgMenuOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pgOnShiftWaiters.aspx.cs">
+      <DependentUpon>pgOnShiftWaiters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pgOnShiftWaiters.aspx.designer.cs">
+      <DependentUpon>pgOnShiftWaiters.aspx</DependentUpon>
     </Compile>
     <Compile Include="pgOrderProcessing.aspx.cs">
       <DependentUpon>pgOrderProcessing.aspx</DependentUpon>

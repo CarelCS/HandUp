@@ -589,5 +589,10 @@ namespace HandUpGUI {
         protected void btnGoToStock_Click(object sender, EventArgs e) {
             Server.Transfer("pgStockManagement.aspx", false);
         }
+
+        protected void btnOnShift_Click(object sender, EventArgs e) {
+
+            Server.Transfer("pgOnShiftWaiters.aspx", false);
+        }
     }
 }

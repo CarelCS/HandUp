@@ -138,28 +138,21 @@ namespace HandUpWCF {
 
         public string NewTableAlert(string sProvider, string sTable) {
             string AlertSent = "";
-            tblTables aTable = new tblTables();
-            aTable.addEquals(tblTables._FKIPROVIDERID, sProvider);
-            aTable.addAND();
-            aTable.addEquals(tblTables._BACTIVESTATUS, "1");
-            DataSet ds = aTable.executeSelectDataSet(); 
-            string DoneList = "";
-            if (ds.Tables[0].Rows.Count > 0) {
-                foreach (DataRow dr in ds.Tables[0].Rows) {
-                    if (!DoneList.Contains("|" + dr["FKiEmployeeID"].ToString() + "|"))
-                    {
-                        tblTablealerts aAlert = new tblTablealerts();
-                        aAlert.bActiveStatus = 1;
-                        aAlert.dtAlertStartTime = DateTime.Now;
-                        aAlert.FKiEployeeID = Convert.ToInt32(dr["FKiEmployeeID"].ToString());
-                        aAlert.FKiTableID = Convert.ToInt32(dr["PKiTableID"].ToString());
-                        aAlert.sAlertMessage = "NEW GUESTS AT TABLE : " + sTable;
-                        aAlert.sAlertGUI = "NA";
-                        aAlert.executeINSERT();
-                        AlertSent = "SENT";
-                    }
-                    DoneList += "|" + dr["FKiEmployeeID"].ToString() + "|";
-                }
+            tblEmployees aEmployee = new tblEmployees();
+            aEmployee.addEquals(tblEmployees._SONSHIFT, "1");
+            aEmployee.addAND();
+            aEmployee.addEquals(tblEmployees._FKIPROVIDERID, sProvider);
+            DataSet dsEmp = aEmployee.executeSelectDataSet();
+            foreach (DataRow dr in dsEmp.Tables[0].Rows) {
+                tblTablealerts aAlert = new tblTablealerts();
+                aAlert.bActiveStatus = 1;
+                aAlert.dtAlertStartTime = DateTime.Now;
+                aAlert.FKiEployeeID = Convert.ToInt32(dr["PKiEmployeeID"].ToString());
+                aAlert.FKiTableID = 0;
+                aAlert.sAlertMessage = "NEW GUESTS AT TABLE : " + sTable;
+                aAlert.sAlertGUI = "NA";
+                aAlert.executeINSERT();
+                AlertSent = "SENT";
             }
             return AlertSent;
         }

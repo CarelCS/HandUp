@@ -190,6 +190,8 @@
     <form id="form1" runat="server" enableviewstate="true" >
     <asp:Button ID="btnGoToStock" runat="server" Text="Stock" 
         onclick="btnGoToStock_Click" />
+    <asp:Button ID="btnOnShift" runat="server" onclick="btnOnShift_Click" 
+        Text="On Shift Waiters" />
     <div>
     <table border="1" width="100%">
         <tr align="center">

@@ -25,6 +25,7 @@ namespace HandUpWCF {
         public string bGender { get; set; }
         public int FKiProviderID { get; set; }
         public string bActiveStatus { get; set; }
+        public string sOnShift { get; set; }
 
         public DataSet TableAlertPerEmployee(int EmployeeID) {
             tblEmployees aEmployee = new tblEmployees(EmployeeID);
@@ -51,6 +52,12 @@ namespace HandUpWCF {
             string sSql = "SELECT * FROM tblemployees where tblemployees.PKiEmployeeID=" + EmployeeID;
             DataSet aDataset = aEmployee.executeCustomSQLDataSet(sSql);
             return aDataset;
+        }
+
+        public void updateOnShift(int EmployeeID, string sOnShift) {
+            tblEmployees aEmployee = new tblEmployees();
+            string sSql = "UPDATE tblEmployees SET sOnShift = '" + sOnShift + "' where tblemployees.PKiEmployeeID=" + EmployeeID;
+            DataSet DS = aEmployee.executeCustomSQLDataSet(sSql);
         }
     }
 }

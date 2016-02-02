@@ -182,6 +182,12 @@
   <wsdl:message name="IHandUpService_getEmployeeByID_OutputMessage">
     <wsdl:part name="parameters" element="tns:getEmployeeByIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IHandUpService_updateOnShift_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateOnShift" />
+  </wsdl:message>
+  <wsdl:message name="IHandUpService_updateOnShift_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateOnShiftResponse" />
+  </wsdl:message>
   <wsdl:message name="IHandUpService_MenuPerProviderAdminFull_InputMessage">
     <wsdl:part name="parameters" element="tns:MenuPerProviderAdminFull" />
   </wsdl:message>
@@ -550,6 +556,10 @@
     <wsdl:operation name="getEmployeeByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeByID" message="tns:IHandUpService_getEmployeeByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/getEmployeeByIDResponse" message="tns:IHandUpService_getEmployeeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateOnShift">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/updateOnShift" message="tns:IHandUpService_updateOnShift_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHandUpService/updateOnShiftResponse" message="tns:IHandUpService_updateOnShift_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MenuPerProviderAdminFull">
       <wsdl:input wsaw:Action="http://tempuri.org/IHandUpService/MenuPerProviderAdminFull" message="tns:IHandUpService_MenuPerProviderAdminFull_InputMessage" />
@@ -976,6 +986,15 @@
     </wsdl:operation>
     <wsdl:operation name="getEmployeeByID">
       <soap:operation soapAction="http://tempuri.org/IHandUpService/getEmployeeByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateOnShift">
+      <soap:operation soapAction="http://tempuri.org/IHandUpService/updateOnShift" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

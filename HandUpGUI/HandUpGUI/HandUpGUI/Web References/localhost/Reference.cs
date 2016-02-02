@@ -88,6 +88,8 @@ namespace HandUpGUI.localhost {
         
         private System.Threading.SendOrPostCallback getEmployeeByIDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback updateOnShiftOperationCompleted;
+        
         private System.Threading.SendOrPostCallback MenuPerProviderAdminFullOperationCompleted;
         
         private System.Threading.SendOrPostCallback EmployeeListPerProvireAdminFullOperationCompleted;
@@ -296,6 +298,9 @@ namespace HandUpGUI.localhost {
         
         /// <remarks/>
         public event getEmployeeByIDCompletedEventHandler getEmployeeByIDCompleted;
+        
+        /// <remarks/>
+        public event updateOnShiftCompletedEventHandler updateOnShiftCompleted;
         
         /// <remarks/>
         public event MenuPerProviderAdminFullCompletedEventHandler MenuPerProviderAdminFullCompleted;
@@ -1384,6 +1389,38 @@ namespace HandUpGUI.localhost {
             if ((this.getEmployeeByIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getEmployeeByIDCompleted(this, new getEmployeeByIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IHandUpService/updateOnShift", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void updateOnShift(int EmployeeID, [System.Xml.Serialization.XmlIgnoreAttribute()] bool EmployeeIDSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sOnShift) {
+            this.Invoke("updateOnShift", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        sOnShift});
+        }
+        
+        /// <remarks/>
+        public void updateOnShiftAsync(int EmployeeID, bool EmployeeIDSpecified, string sOnShift) {
+            this.updateOnShiftAsync(EmployeeID, EmployeeIDSpecified, sOnShift, null);
+        }
+        
+        /// <remarks/>
+        public void updateOnShiftAsync(int EmployeeID, bool EmployeeIDSpecified, string sOnShift, object userState) {
+            if ((this.updateOnShiftOperationCompleted == null)) {
+                this.updateOnShiftOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateOnShiftOperationCompleted);
+            }
+            this.InvokeAsync("updateOnShift", new object[] {
+                        EmployeeID,
+                        EmployeeIDSpecified,
+                        sOnShift}, this.updateOnShiftOperationCompleted, userState);
+        }
+        
+        private void OnupdateOnShiftOperationCompleted(object arg) {
+            if ((this.updateOnShiftCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateOnShiftCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3787,6 +3824,10 @@ namespace HandUpGUI.localhost {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void updateOnShiftCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]

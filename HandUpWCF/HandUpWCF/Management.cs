@@ -65,7 +65,7 @@ namespace HandUpWCF {
             DataSet dsDataSet = aEmployees.executeSelectDataSet();
             return dsDataSet;
         }
-
+        
         public DataSet AddEmployeePerProviderAdminFull(int ProviderID, int EmployeeType, string EmployeeAddress1, string EmployeeAddress2, string EmployeeAddress3, string EmployeeEmail,
             string EmployeeID, string EmployeeName, string EmployeeNationality, string EmployeeSurname, string EmployeeTel, string Password, string UserName) {
             tblEmployees aEmployees = new tblEmployees();
@@ -82,6 +82,7 @@ namespace HandUpWCF {
             aEmployees.sEmployeeTel = EmployeeTel;
             aEmployees.sPassword = Password;
             aEmployees.sUserName = UserName;
+            aEmployees.sOnShift = "0";
             aEmployees.executeINSERT();
             DataSet dsDataSet = EmployeeListPerProvireAdminFull(ProviderID);
             return dsDataSet;
@@ -102,6 +103,7 @@ namespace HandUpWCF {
             aEmployees.sEmployeeTel = EmployeeTel;
             aEmployees.sPassword = Password;
             aEmployees.sUserName = UserName;
+            aEmployees.sOnShift = "0";
             aEmployees.executeUPDATE();
             aEmployees.addEquals(tblEmployees._PKIEMPLOYEEID, EmployeeID);
             DataSet dsDataSet = aEmployees.executeSelectDataSet();

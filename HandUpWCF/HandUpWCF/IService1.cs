@@ -96,6 +96,8 @@ namespace HandUpWCF {
         void ConfirmAlert(string sCode, string GUI, int EmployeeID);
         [OperationContract]
         DataSet getEmployeeByID(int EmployeeID);
+        [OperationContract]
+        void updateOnShift(int EmployeeID, string sOnShift);
 
         #endregion
 
