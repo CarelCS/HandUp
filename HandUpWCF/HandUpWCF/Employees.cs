@@ -32,7 +32,9 @@ namespace HandUpWCF {
             tblTablealerts aTableAlert = new tblTablealerts();
             string sSql="SELECT tbltablealerts.*,tbltables.sTableName FROM tbltablealerts,tbltables where tbltables.PKiTableID=tbltablealerts.FKiTableID "+
                 "AND tbltablealerts." + tblTablealerts._BACTIVESTATUS + "= 1 " +
-                "AND tbltablealerts." + tblTablealerts._FKIEPLOYEEID + "=" + EmployeeID;
+                "AND tbltablealerts." + tblTablealerts._FKIEPLOYEEID + "=" + EmployeeID +
+                " UNION " +
+                " SELECT tbltablealerts.*,'NEW' FROM tbltablealerts where tbltablealerts.bActiveStatus= 1 AND tbltablealerts.FKiEployeeID=2 and tbltablealerts.FKiTableID = 0";
             DataSet aDataset = aTableAlert.executeCustomSQLDataSet(sSql);
             return aDataset;
         }
