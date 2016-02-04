@@ -174,7 +174,8 @@
         if (CurrentAlert != "") {
             var MyArray2 = CurrentAlert.split("|");
             for (i = 0; i < MyArray2.length - 1; i++) {
-                var ConfirmNow = confirm(MyArray2[i]);
+                var MyTEXTForAlert = MyArray2[i].split("~");
+                var ConfirmNow = confirm(MyTEXTForAlert[0], "ALERT"); //confirm(MyArray2[i]);
                 var CurrentAlertToDisplay = MyArray2[i];
                 if (ConfirmNow) {
                     document.getElementById("<%= lblAlert.ClientID %>").innerHTML = "";
