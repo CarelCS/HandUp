@@ -62,6 +62,7 @@
     <Content Include="Images\Icons\All.png" />
     <Content Include="Images\Icons\BG-01.png" />
     <Content Include="Images\Icons\BG.jpg" />
+    <Content Include="Images\Icons\BlankSpace.png" />
     <Content Include="Images\Icons\BorderBlock.png" />
     <Content Include="Images\Icons\BottomLeft.png" />
     <Content Include="Images\Icons\BottomRight.png" />

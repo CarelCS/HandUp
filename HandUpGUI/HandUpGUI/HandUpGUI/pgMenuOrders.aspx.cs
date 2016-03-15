@@ -301,8 +301,10 @@ namespace HandUpGUI {
             string sOrderList = "<table border='1' width=\"100%\">";
             string sCapableOption = "";
             string sCanConfirm = "";
+            string BlankSpace = "";
             double TotalCost = 0;
              foreach (DataRow dr in ds.Tables[0].Rows) {
+                 BlankSpace = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/BlankSpace.png\"  width='" + IconWidth + "'/></div>";
                  if (dr["sOrderStatus"].ToString() == "6")
                  {
                      sCanConfirm = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/Processed.png\"  width='" + IconWidth + "'/></div>";
@@ -326,12 +328,15 @@ namespace HandUpGUI {
                              sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\" onclick=\"AddTextTable('" + dr["PKiOrderID"].ToString() + "')\"><img id=\"Image1\" src=\"images/icons/Text.png\"  width='" + IconWidth + "'/></div>";
                          }
                      }
+                     if (sCapableOption == "") {
+                         sCapableOption = "<div style=\"cursor:pointer;\" id=\"order3T\"><img id=\"Image1\" src=\"images/icons/BlankSpace.png\"  width='" + IconWidth + "'/></div>";
+                     }
                      if (dr["sOrderStatus"].ToString() == "4" || dr["sOrderStatus"].ToString() == "2") {
                          if (dr["sOrderStatus"].ToString() == "4") {
                              //sOrderList += "<tr style=\"text-decoration:line-through\"><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
                          }
                          else {
-                             sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td></td><td>" + sCapableOption + "</td></tr>";
+                             sOrderList += "<tr><td width='100%'>" + dr["sMenuItemDescription"].ToString() + dr["sMenuItemChanges"].ToString() + "</td><td>R " + dr["dblOrderValue"].ToString() + "</td><td>" + sCanConfirm + "</td><td>" + BlankSpace + "</td><td>" + sCapableOption + "</td></tr>";
                          }
                      }
                      else {
@@ -465,6 +470,9 @@ namespace HandUpGUI {
             string OrderStatus = hdnOrderStatus.Value;
             localhost.HandUpService WSNew = new localhost.HandUpService();
             string Success = WSNew.ConfirmOrder(Convert.ToInt32(OrderID), true, OrderStatus);
+            if (OrderStatus == "3") {
+                string Returned = WSNew.CallWaiter(Convert.ToInt32(hdnTableNumber.Value), true, "Assistance required");
+            }
             PopulateTable(lblTableGUI.Text);
         }
 
